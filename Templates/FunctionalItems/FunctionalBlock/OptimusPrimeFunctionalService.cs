@@ -20,7 +20,7 @@ namespace OptimusPrime.Templates
             while (true)
             {
                 var input = OptimusPrimeIn[0].Get<TIn>();
-                var output = functionalBlock.Action.Invoke(input);
+                var output = functionalBlock.Process(input);
                 OptimusPrimeOut[0].Set(output);
             }
         }
