@@ -1,6 +1,6 @@
-using OptimusPrime.OprimusPrimeCore.Service;
+using OptimusPrime.OprimusPrimeCore;
 
-namespace OptimusPrime.Templates.TopologyItems.Source.OptimusPrime
+namespace OptimusPrime.Templates
 {
     public class OptimusPrimeSource<TPublic> : IOptimusPrimeSource<TPublic>
     {

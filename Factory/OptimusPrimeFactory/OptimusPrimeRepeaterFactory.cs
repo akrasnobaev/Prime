@@ -1,9 +1,6 @@
-﻿using OptimusPrime.Templates.FunctionalItems;
-using OptimusPrime.Templates.FunctionalItems.SourceCollector;
-using OptimusPrime.Templates.TopologyItems.Chain.OptimusPrime;
-using OptimusPrime.Templates.TopologyItems.Repeater.OptimusPrime;
+﻿using OptimusPrime.Templates;
 
-namespace OptimusPrime.Factory.OptimusPrimeFactory
+namespace OptimusPrime.Factory
 {
     public partial class OptimusPrimeFactory
     {

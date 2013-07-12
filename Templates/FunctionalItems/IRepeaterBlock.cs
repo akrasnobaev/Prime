@@ -1,6 +1,4 @@
-using OptimusPrime.Templates.FunctionalItems.SourceCollector;
-
-namespace OptimusPrime.Templates.FunctionalItems
+namespace OptimusPrime.Templates
 {
     public interface IRepeaterBlock<TPublicIn, TPrivateIn, TPublicOut, TPrivateOut>
     {

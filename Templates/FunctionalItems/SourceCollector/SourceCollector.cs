@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using OptimusPrime.Templates.FunctionalItems.SourceReader;
 
-namespace OptimusPrime.Templates.FunctionalItems.SourceCollector
+namespace OptimusPrime.Templates
 {
     public class SourceCollector<TDataCollection, T1> : ISourceCollector<TDataCollection>
         where TDataCollection : ISourceDataCollection

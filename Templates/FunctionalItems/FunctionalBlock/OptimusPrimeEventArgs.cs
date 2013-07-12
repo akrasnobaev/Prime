@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OptimusPrime.Templates.FunctionalItems.FunctionalBlock
+namespace OptimusPrime.Templates
 {
     public class OptimusPrimeEventArgs<TData> : EventArgs
     {

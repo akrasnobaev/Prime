@@ -1,4 +1,4 @@
-namespace OptimusPrime.Templates.TopologyItems.Source
+namespace OptimusPrime.Templates
 {
     public interface ISource<TPublic>
     {

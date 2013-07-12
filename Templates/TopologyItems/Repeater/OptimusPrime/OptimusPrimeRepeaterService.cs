@@ -1,8 +1,6 @@
-using OptimusPrime.OprimusPrimeCore.Service;
-using OptimusPrime.Templates.FunctionalItems;
-using OptimusPrime.Templates.FunctionalItems.SourceCollector;
+using OptimusPrime.OprimusPrimeCore;
 
-namespace OptimusPrime.Templates.TopologyItems.Repeater.OptimusPrime
+namespace OptimusPrime.Templates
 {
     public class OptimusPrimeRepeaterService<TPublicIn, TPrivateIn, TPublicOut, TPrivateOut, TDataCollection> : OptimusPrimeService where TDataCollection : ISourceDataCollection
     {

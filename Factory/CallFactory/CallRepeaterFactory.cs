@@ -1,8 +1,6 @@
-﻿using OptimusPrime.Templates.FunctionalItems;
-using OptimusPrime.Templates.FunctionalItems.SourceCollector;
-using OptimusPrime.Templates.TopologyItems.Chain.Call;
+﻿using OptimusPrime.Templates;
 
-namespace OptimusPrime.Factory.CallFactory
+namespace OptimusPrime.Factory
 {
     public partial class CallFactory
     {

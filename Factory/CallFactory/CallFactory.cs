@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 
-namespace OptimusPrime.Factory.CallFactory
+namespace OptimusPrime.Factory
 {
     public partial class CallFactory : IFactory
     {

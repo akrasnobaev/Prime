@@ -1,6 +1,6 @@
-using OptimusPrime.OprimusPrimeCore.Service;
+using OptimusPrime.OprimusPrimeCore;
 
-namespace OptimusPrime.Templates.TopologyItems.Chain.OptimusPrime
+namespace OptimusPrime.Templates
 {
     public class OptimusPrimeChain<TIn, TOut> : IOptimusPrimeChane<TIn, TOut>
     {

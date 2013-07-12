@@ -1,4 +1,4 @@
-﻿namespace OptimusPrime.Templates.FunctionalItems.SourceCollector
+﻿namespace OptimusPrime.Templates
 {
     public interface ISourceCollector<TDataCollection> where TDataCollection : ISourceDataCollection
     {

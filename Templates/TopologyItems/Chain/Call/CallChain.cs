@@ -1,6 +1,6 @@
 using System;
 
-namespace OptimusPrime.Templates.TopologyItems.Chain.Call
+namespace OptimusPrime.Templates
 {
     public class CallChain<T1, T2> : ICallChain<T1, T2>
     {

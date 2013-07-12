@@ -1,6 +1,6 @@
-using OptimusPrime.OprimusPrimeCore.Service;
+using OptimusPrime.OprimusPrimeCore;
 
-namespace OptimusPrime.Templates.FunctionalItems.FunctionalBlock
+namespace OptimusPrime.Templates
 {
     public class OptimusPrimeFunctionalService<TIn, TOut> : OptimusPrimeService
     {

@@ -2,10 +2,9 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using BookSleeve;
-using OptimusPrime.OprimusPrimeCore.Exception;
 using System.Linq;
 
-namespace OptimusPrime.OprimusPrimeCore.Service
+namespace OptimusPrime.OprimusPrimeCore
 {
     public class OptimusPrimeIn : IOptimusPrimeIn
     {

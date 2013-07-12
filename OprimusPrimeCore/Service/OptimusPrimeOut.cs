@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace OptimusPrime.OprimusPrimeCore.Service
+namespace OptimusPrime.OprimusPrimeCore
 {
     public class OptimusPrimeOut : IOptimusPrimeOut
     {

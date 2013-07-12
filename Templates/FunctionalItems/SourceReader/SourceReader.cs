@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using OptimusPrime.Templates.TopologyItems.Source.Call;
 
-namespace OptimusPrime.Templates.FunctionalItems.SourceReader
+namespace OptimusPrime.Templates
 {
     public class SourceReader<T> : ISourceReader<T>
     {

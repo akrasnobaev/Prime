@@ -1,6 +1,6 @@
 using System;
 
-namespace OptimusPrime.Templates.TopologyItems.Chain.Call
+namespace OptimusPrime.Templates
 {
     public interface ICallChain<TIn, TOut> : IChain<TIn, TOut>
     {

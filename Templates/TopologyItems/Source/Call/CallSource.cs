@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 
-namespace OptimusPrime.Templates.TopologyItems.Source.Call
+namespace OptimusPrime.Templates
 {
     public class CallSource<T> : ICallSource<T>
     {

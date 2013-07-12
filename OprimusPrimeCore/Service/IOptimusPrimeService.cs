@@ -1,6 +1,6 @@
 ﻿using BookSleeve;
 
-namespace OptimusPrime.OprimusPrimeCore.Service
+namespace OptimusPrime.OprimusPrimeCore
 {
     public interface IOptimusPrimeService
     {

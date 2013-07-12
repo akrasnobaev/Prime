@@ -1,10 +1,7 @@
 ﻿using System.Threading;
-using OptimusPrime.Templates.FunctionalItems.FunctionalBlock;
-using OptimusPrime.Templates.FunctionalItems.SourceReader;
-using OptimusPrime.Templates.TopologyItems.Chain.Call;
-using OptimusPrime.Templates.TopologyItems.Source.Call;
+using OptimusPrime.Templates;
 
-namespace OptimusPrime.Factory.CallFactory
+namespace OptimusPrime.Factory
 {
     public partial class CallFactory
     {

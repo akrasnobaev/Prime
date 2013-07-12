@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading;
-using OptimusPrime.OprimusPrimeCore.Service;
+using OptimusPrime.OprimusPrimeCore;
 
-namespace OptimusPrime.Factory.OptimusPrimeFactory
+namespace OptimusPrime.Factory
 {
     public partial class OptimusPrimeFactory : IFactory
     {
