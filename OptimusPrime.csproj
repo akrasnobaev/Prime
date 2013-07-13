@@ -81,6 +81,7 @@
     <Compile Include="Templates\FunctionalItems\SourceCollector\ISourceDataCollectionFactory.cs" />
     <Compile Include="Templates\FunctionalItems\SourceCollector\SourceCollector.cs" />
     <Compile Include="Templates\FunctionalItems\SourceReader\ISourceReader.cs" />
+    <Compile Include="Templates\FunctionalItems\SourceReader\OptimusPrimeReader.cs" />
     <Compile Include="Templates\FunctionalItems\SourceReader\SourceReader.cs" />
     <Compile Include="Templates\TopologyItems\Chain\Call\CallChain.cs" />
     <Compile Include="Templates\TopologyItems\Chain\Call\ICallChain.cs" />
