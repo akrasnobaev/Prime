@@ -37,11 +37,8 @@ namespace OptimusPrime.Templates
 
         public IEnumerable<T> GetCollection()
         {
-            var dataCollection = new T[] {};
-            callSource.Collection.CopyTo(dataCollection, readCount);
-            readCount = callSource.Collection.Count;
-
-            return dataCollection;
+            for (; readCount < callSource.Collection.Count; readCount++)
+                yield return callSource.Collection[readCount];
         }
 
         public System.Collections.IEnumerable GetCollectionNonTypized()

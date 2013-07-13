@@ -5,7 +5,7 @@ namespace OptimusPrime.Factory
     public partial class OptimusPrimeFactory
     {
         //todo: CreateSource by Chain
-        public IOptimusPrimeSource<TPublic> CreateSource<TPublic>(ISourceBlock<TPublic> sourceBlock)
+        public ISource<TPublic> CreateSource<TPublic>(ISourceBlock<TPublic> sourceBlock)
         {
             string outputName = string.Format("{0}_out", sourceBlock.GetType().Name);
             var service = new OptimusPrimeSourceService<TPublic>(sourceBlock, outputName);
@@ -15,9 +15,11 @@ namespace OptimusPrime.Factory
             return new OptimusPrimeSource<TPublic>(service.Output);
         }
 
-        public IOptimusPrimeSource<T2> LinkSourceToChain<T1, T2>(IOptimusPrimeSource<T1> source,
-                                                                 IOptimusPrimeChane<T1, T2> chain)
+        public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> _source,
+                                                                 IChain<T1, T2> _chain)
         {
+            var chain = _chain as IOptimusPrimeChane<T1, T2>;
+            var source = _source as IOptimusPrimeSource<T1>;
             chain.Input.ChangeName(source.Output.Name);
 
             return new OptimusPrimeSource<T2>(chain.Output);

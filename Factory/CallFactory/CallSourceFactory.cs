@@ -5,23 +5,23 @@ namespace OptimusPrime.Factory
 {
     public partial class CallFactory
     {
-        public ICallSource<T> CreateSource<T>(ISourceBlock<T> sourceBlock)
+        public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock)
         {
             var callSource = new CallSource<T>();
             sourceBlock.Event += (sender, args) => callSource.Collection.Add(args.Data);
             return callSource;
         }
 
-        public ICallSource<T2> LinkSourceToChain<T1, T2>(ICallSource<T1> source, ICallChain<T1, T2> chain)
+        public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> source, IChain<T1, T2> chain)
         {
             var newSource = new CallSource<T2>();
             var newSourceThread = new Thread(() =>
                 {
-                    var sourceReader = new SourceReader<T1>(source);
+                    var sourceReader = source.CreateReader();
                     while (true)
                     {
                         T1 inputData = sourceReader.Get();
-                        T2 outputData = chain.Action(inputData);
+                        T2 outputData = (chain as ICallChain<T1,T2>).Action(inputData);
                         newSource.Collection.Add(outputData);
                     }
                 });

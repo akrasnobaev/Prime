@@ -1,10 +1,11 @@
 ﻿using OptimusPrime.Templates;
+using System;
 
 namespace OptimusPrime.Factory
 {
     public partial class OptimusPrimeFactory
     {
-        public IOptimusPrimeChane<TIn, TOut> CreateChain<TIn, TOut>(IFunctionalBlock<TIn, TOut> functionalBlock)
+        public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> functionalBlock)
         {
             var inputName = string.Format("{0}_in", functionalBlock.GetType().Name);
             var outputName = string.Format("{0}_out", functionalBlock.GetType().Name);
@@ -15,12 +16,12 @@ namespace OptimusPrime.Factory
             return new OptimusPrimeChain<TIn, TOut>(service.Input, service.Output);
         }
 
-        public IOptimusPrimeChane<TIn, T3> AddFunctionalBlockToChain<TIn, TOut, T3>(IOptimusPrimeChane<TIn, TOut> optimusPrimeChane,
+        public IChain<TIn, T3> AddFunctionalBlockToChain<TIn, TOut, T3>(IOptimusPrimeChane<TIn, TOut> optimusPrimeChane,
                                                                              IFunctionalBlock<TOut, T3> functionalBlock)
         {
             var inputName = optimusPrimeChane.Output.Name;
             var outputName = string.Format("{0}_out", functionalBlock.GetType().Name);
-            var service = new OptimusPrimeFunctionalService<TOut, T3>(functionalBlock, inputName, outputName);
+            var service = new OptimusPrimeFunctionalService<TOut, T3>(functionalBlock.Process, inputName, outputName);
 
             Services.Add(service);
 
@@ -28,7 +29,7 @@ namespace OptimusPrime.Factory
         }
 
         //todo: Добавить в экстеншены OptimusPrimeChain методы типа LinkChainToChain
-        public IOptimusPrimeChane<T1, T3> LinkChainToChain<T1, T2, T3>(IOptimusPrimeChane<T1, T2> firstChain,
+        public IChain<T1, T3> LinkChainToChain<T1, T2, T3>(IOptimusPrimeChane<T1, T2> firstChain,
                                                                   IOptimusPrimeChane<T2, T3> secondChain)
         {
             secondChain.Input.ChangeName(firstChain.Output.Name);
