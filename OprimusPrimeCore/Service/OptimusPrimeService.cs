@@ -8,8 +8,8 @@ namespace OptimusPrime.OprimusPrimeCore
         public int DbPage { get; set; }
 
         public virtual string Name { get { return GetType().ToString(); } }
-        public IOptimusPrimeIn[] OptimusPrimeIn { get; protected set; }
-        public IOptimusPrimeOut[] OptimusPrimeOut { get; protected set; }
+        public IOptimusPrimeIn[] OptimusPrimeIn { get; protected internal set; }
+        public IOptimusPrimeOut[] OptimusPrimeOut { get; protected internal set; }
         public abstract void Actuation();
 
         protected OptimusPrimeService(string host = "localhost", int dbPage = 1)

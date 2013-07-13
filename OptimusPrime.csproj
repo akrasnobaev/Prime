@@ -65,7 +65,9 @@
     <Compile Include="OprimusPrimeCore\Service\OptimusPrimeService.cs" />
     <Compile Include="OprimusPrimeCore\Service\OptimusPrimeIn.cs" />
     <Compile Include="OprimusPrimeCore\Service\OptimusPrimeOut.cs" />
+    <Compile Include="OprimusPrimeCore\Service\OptimusPrimeStabService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\FunctionalItems\FunctionalBlock\FunctionalBlock.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\IFunctionalBlock.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\ISourceBlock.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeEventArgs.cs" />

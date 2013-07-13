@@ -1,9 +1,4 @@
 ﻿using OptimusPrime.Templates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OptimusPrime.Factory
 {
@@ -17,12 +12,12 @@ namespace OptimusPrime.Factory
         {
             return new CallChain<TPublicIn, TPublicOut>(input =>
             {
-                var callPrivateChain = privateChaine.ToCallChain();
+                var functionalBlock = privateChaine.ToFunctionalBlock();
                 TPrivateIn privateIn = repeaterBlock.Start(input);
                 TPrivateOut privateOut;
 
                 while (repeaterBlock.MakeIteration(privateIn, sourceCollector.Get(), out privateOut))
-                    privateIn = callPrivateChain.Action(privateOut);
+                    privateIn = functionalBlock.Process(privateOut);
 
                 return repeaterBlock.Conclude();
             });

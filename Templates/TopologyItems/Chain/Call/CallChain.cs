@@ -11,9 +11,9 @@ namespace OptimusPrime.Templates
             Action = action;
         }
 
-        public ICallChain<T1, T2> ToCallChain()
+        public IFunctionalBlock<T1, T2> ToFunctionalBlock()
         {
-            return this;
+            return new FunctionalBlock<T1, T2>(Action);
         }
     }
 }

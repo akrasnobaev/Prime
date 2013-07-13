@@ -1,5 +1,3 @@
-using System;
-
 namespace OptimusPrime.Templates
 {
     public interface IFunctionalBlock<TIn, TOut>
