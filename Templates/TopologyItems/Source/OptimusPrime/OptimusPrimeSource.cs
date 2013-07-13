@@ -11,10 +11,9 @@ namespace OptimusPrime.Templates
 
         public IOptimusPrimeOut Output { get; private set; }
 
-        //TODO: create OptimusPrimeSourceReader and implement this method
         public ISourceReader<TPublic> CreateReader()
         {
-            throw new System.NotImplementedException();
+            return new OptimusPrimeReader<TPublic>(Output.Name);
         }
     }
 }
