@@ -10,5 +10,10 @@ namespace OptimusPrime.Templates
         {
             Action = action;
         }
+
+        public ICallChain<T1, T2> ToCallChain()
+        {
+            return this;
+        }
     }
 }

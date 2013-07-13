@@ -2,24 +2,24 @@
 
 namespace OptimusPrime.Templates
 {
-    public class SourceCollector<TDataCollection, T1> : ISourceCollector<TDataCollection>
-        where TDataCollection : ISourceDataCollection
+    public class SourceCollector<TDataCollection> : ISourceCollector<TDataCollection>
+        where TDataCollection : ISourceDataCollection, new()
     {
-        private readonly ISourceDataCollectionFactory<TDataCollection, T1> sourceDataCollectionFactory;
-        private readonly ISourceReader<T1> sourceReader1;
+        private readonly ISourceReader[] sourceReaders;
 
-        public SourceCollector(ISourceReader<T1> sourceReader1,
-                               ISourceDataCollectionFactory<TDataCollection, T1> sourceDataCollectionFactory)
+        public SourceCollector(ISourceReader[] sourceReaders)
         {
-            this.sourceReader1 = sourceReader1;
-            this.sourceDataCollectionFactory = sourceDataCollectionFactory;
+            this.sourceReaders = sourceReaders;
         }
 
         public TDataCollection Get()
         {
-            IEnumerable<T1> argument1 = sourceReader1.GetCollection();
-
-            return sourceDataCollectionFactory.Create(argument1);
+            var collection = new TDataCollection();
+            for (int i = 0; i < collection.ListCount; i++)
+                if (sourceReaders[i]!=null) //костыль? Сделать флаг в reader?
+                    collection.Pull(i, sourceReaders[i].GetCollectionNonTypized());
+            return collection;
+            
         }
     }
 }

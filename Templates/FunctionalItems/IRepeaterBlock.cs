@@ -5,6 +5,6 @@ namespace OptimusPrime.Templates
         TPrivateIn Start(TPublicIn publicIn);
         bool MakeIteration(TPrivateIn privateIn, ISourceDataCollection sourceDatas, out TPrivateOut privateOut);
         //todo: не передавть TPrivateOut
-        TPublicOut Conclude(TPrivateOut privateOut);
+        TPublicOut Conclude();
     }
 }

@@ -51,11 +51,13 @@
     <Compile Include="Factory\CallFactory\CallFactory.cs" />
     <Compile Include="Factory\CallFactory\CallRepeaterFactory.cs" />
     <Compile Include="Factory\CallFactory\CallSourceFactory.cs" />
+    <Compile Include="Factory\GenericFactory\SourceCollector\SourceCollectorHelper.cs" />
+    <Compile Include="Factory\GenericFactory\SourceCollector\Codegen.cs" />
     <Compile Include="Factory\IFactory.cs" />
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeChainFactory.cs" />
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeFactory.cs" />
-    <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeRepeaterFactory.cs" />
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeSourceFactory.cs" />
+    <Compile Include="Factory\GenericFactory\RepeaterFactory.cs" />
     <Compile Include="OprimusPrimeCore\Exception\OptimusPrimeException.cs" />
     <Compile Include="OprimusPrimeCore\Service\IOptimusPrimeService.cs" />
     <Compile Include="OprimusPrimeCore\Service\IOptimusPrimeIn.cs" />

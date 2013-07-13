@@ -12,5 +12,11 @@ namespace OptimusPrime.Templates
             Input = input;
             Output = output;
         }
+
+        //TODO: add implementation
+        public ICallChain<TIn, TOut> ToCallChain()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

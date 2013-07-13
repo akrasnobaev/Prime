@@ -2,6 +2,7 @@ using OptimusPrime.OprimusPrimeCore;
 
 namespace OptimusPrime.Templates
 {
+    /*
     public class OptimusPrimeRepeaterService<TPublicIn, TPrivateIn, TPublicOut, TPrivateOut, TDataCollection> : OptimusPrimeService where TDataCollection : ISourceDataCollection
     {
         private readonly IRepeaterBlock<TPublicIn, TPrivateIn, TPublicOut, TPrivateOut> repeaterBlock;
@@ -48,4 +49,5 @@ namespace OptimusPrime.Templates
             }
         }
     }
+     * */
 }

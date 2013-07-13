@@ -43,5 +43,10 @@ namespace OptimusPrime.Templates
 
             return dataCollection;
         }
+
+        public System.Collections.IEnumerable GetCollectionNonTypized()
+        {
+            return GetCollection();
+        }
     }
 }

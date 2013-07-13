@@ -19,5 +19,10 @@ namespace OptimusPrime.Templates
             Collection = collection;
             AutoResetEvent = new AutoResetEvent(false);
         }
+
+        public ISourceReader<T> CreateReader()
+        {
+            return new SourceReader<T>(this);
+        }
     }
 }
