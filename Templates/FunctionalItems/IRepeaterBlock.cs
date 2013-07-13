@@ -1,10 +1,10 @@
 namespace OptimusPrime.Templates
 {
-    public interface IRepeaterBlock<TPublicIn, TPrivateIn, TPublicOut, TPrivateOut>
+    public interface IRepeaterBlock<TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TSourceDataCollection>
     {
-        TPrivateIn Start(TPublicIn publicIn);
-        bool MakeIteration(TPrivateIn privateIn, ISourceDataCollection sourceDatas, out TPrivateOut privateOut);
+        void Start(TRepeaterBigIn publicIn);
+        bool MakeIteration(TSourceDataCollection sourceDatas, TChainSmallOut oldPrivateOut, out TChainSmallIn privateIn);
         //todo: не передавть TPrivateOut
-        TPublicOut Conclude();
+        TRepeaterBigOut Conclude();
     }
 }

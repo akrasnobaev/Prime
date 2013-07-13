@@ -73,6 +73,7 @@
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeEventArgs.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeFunctionalService.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeSourceService.cs" />
+    <Compile Include="Templates\FunctionalItems\FunctionalBlock\SourceBlock.cs" />
     <Compile Include="Templates\FunctionalItems\IRepeaterBlock.cs" />
     <Compile Include="Templates\FunctionalItems\SourceCollector\ISourceCollector.cs" />
     <Compile Include="Templates\FunctionalItems\SourceCollector\ISourceDataCollection.cs" />
@@ -85,7 +86,6 @@
     <Compile Include="Templates\TopologyItems\Chain\IChain.cs" />
     <Compile Include="Templates\TopologyItems\Chain\OptimusPrime\IOptimusPrimeChane.cs" />
     <Compile Include="Templates\TopologyItems\Chain\OptimusPrime\OptimusPrimeChain.cs" />
-    <Compile Include="Templates\TopologyItems\Repeater\OptimusPrime\OptimusPrimeRepeaterService.cs" />
     <Compile Include="Templates\TopologyItems\Source\Call\CallSource.cs" />
     <Compile Include="Templates\TopologyItems\Source\Call\ICallSource.cs" />
     <Compile Include="Templates\TopologyItems\Source\ISource.cs" />

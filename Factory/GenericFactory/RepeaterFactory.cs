@@ -4,20 +4,22 @@ namespace OptimusPrime.Factory
 {
     public  static  partial class IFactoryExtensions
     {
-        public static ICallChain<TPublicIn, TPublicOut> CreateRepeater
-          <TPublicIn, TPrivateIn, TPublicOut, TPrivateOut, TDataCollection>(
-          IRepeaterBlock<TPublicIn, TPrivateIn, TPublicOut, TPrivateOut> repeaterBlock,
-          ISourceCollector<TDataCollection> sourceCollector, IChain<TPrivateOut, TPrivateIn> privateChaine)
+        public static ICallChain<TRepeaterBigIn, TRepeaterBigOut> CreateRepeater
+          <TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TDataCollection>(this IFactory factory,
+          IRepeaterBlock<TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TDataCollection> repeaterBlock,
+          ISourceCollector<TDataCollection> sourceCollector, IChain<TChainSmallIn, TChainSmallOut> privateChaine)
           where TDataCollection : ISourceDataCollection
         {
-            return new CallChain<TPublicIn, TPublicOut>(input =>
+            return new CallChain<TRepeaterBigIn, TRepeaterBigOut>(input =>
             {
                 var functionalBlock = privateChaine.ToFunctionalBlock();
-                TPrivateIn privateIn = repeaterBlock.Start(input);
-                TPrivateOut privateOut;
+                repeaterBlock.Start(input);
+                TChainSmallIn smallIn;
+                TChainSmallOut smallOut = default(TChainSmallOut);
 
-                while (repeaterBlock.MakeIteration(privateIn, sourceCollector.Get(), out privateOut))
-                    privateIn = functionalBlock.Process(privateOut);
+                
+                while (repeaterBlock.MakeIteration(sourceCollector.Get(), smallOut, out smallIn))
+                    smallOut = functionalBlock.Process(smallIn);
 
                 return repeaterBlock.Conclude();
             });
