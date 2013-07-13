@@ -48,7 +48,7 @@ namespace OptimusPrime.Factory
             }
             if (index == 1)
             {
-                if (List1 != null) List1 = new List<T1>();
+                if (List1 == null) List1 = new List<T1>();
                 List1.AddRange(source.Cast<T1>());
             }
 
