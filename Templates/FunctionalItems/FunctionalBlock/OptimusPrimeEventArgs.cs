@@ -2,6 +2,7 @@
 
 namespace OptimusPrime.Templates
 {
+    [Serializable]
     public class OptimusPrimeEventArgs<TData> : EventArgs
     {
         public OptimusPrimeEventArgs(TData data)

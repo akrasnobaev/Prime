@@ -16,7 +16,7 @@ namespace OptimusPrime.Templates
 
         public override void Actuation()
         {
-            sourceBlock.Event += (sender, e) => Output.Set(e);
+            sourceBlock.Event += (sender, e) => Output.Set(e.Data);
         }
     }
 }
