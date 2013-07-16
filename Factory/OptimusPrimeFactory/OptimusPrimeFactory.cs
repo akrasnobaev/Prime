@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
+using BookSleeve;
 using OptimusPrime.OprimusPrimeCore;
 
 namespace OptimusPrime.Factory
@@ -17,6 +19,14 @@ namespace OptimusPrime.Factory
 
         public void Start()
         {
+            var connection = new RedisConnection("localhost", allowAdmin: true);
+
+            Task openTask = connection.Open();
+            connection.Wait(openTask);
+
+            Task flushDbTask = connection.Server.FlushAll();
+            connection.Wait(flushDbTask);
+
             foreach (var service in Services)
             {
                 var serviceThread = new Thread(service.Actuation);
