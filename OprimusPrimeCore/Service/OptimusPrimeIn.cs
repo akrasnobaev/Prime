@@ -26,8 +26,9 @@ namespace OptimusPrime.OprimusPrimeCore
             subscriberChannel.Subscribe(Name, OnMessageReceived);
         }
 
-        public void ChangeName(string newName)
+        public void ChangeName(string newName, int readCounter = 0)
         {
+            ReadCounter = readCounter;
             subscriberChannel.Unsubscribe(Name);
             subscriberChannel.Subscribe(newName, OnMessageReceived);
             Name = newName;

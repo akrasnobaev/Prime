@@ -10,6 +10,6 @@
         T Get<T>();
         T[] GetRange<T>();
 
-        void ChangeName(string newName);
+        void ChangeName(string newName, int readCounter = 0);
     }
 }
