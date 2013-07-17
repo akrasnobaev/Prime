@@ -3,6 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using BookSleeve;
 using System.Linq;
+using OptimusPrime.OprimusPrimeCore.Extension;
 
 namespace OptimusPrime.OprimusPrimeCore
 {
@@ -80,7 +81,7 @@ namespace OptimusPrime.OprimusPrimeCore
 
             resetEvent.Reset();
 
-            var result = bytes.Select(Deserialize<T>).ToArray();
+            var result = bytes.Select(SerializeExtension.Deserialize<T>).ToArray();
             ReadCounter += result.Length;
 
             return result;
@@ -97,17 +98,8 @@ namespace OptimusPrime.OprimusPrimeCore
                 return false;
             }
 
-            result = Deserialize<T>(bytes);
+            result = bytes.Deserialize<T>();
             return true;
-        }
-
-        private static T Deserialize<T>(byte[] bytes)
-        {
-            var memoryStream = new MemoryStream();
-            var binaryFormatter = new BinaryFormatter();
-            memoryStream.Write(bytes, 0, bytes.Length);
-            memoryStream.Seek(0, SeekOrigin.Begin);
-            return (T) binaryFormatter.Deserialize(memoryStream);
         }
     }
 }

@@ -60,6 +60,9 @@
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeSourceFactory.cs" />
     <Compile Include="Factory\GenericFactory\RepeaterFactory.cs" />
     <Compile Include="OprimusPrimeCore\Exception\OptimusPrimeException.cs" />
+    <Compile Include="OprimusPrimeCore\Extension\SerializeExtension.cs" />
+    <Compile Include="OprimusPrimeCore\Logger\IOptimusPrimeLogger.cs" />
+    <Compile Include="OprimusPrimeCore\Logger\OptimusPrimeLogger.cs" />
     <Compile Include="OprimusPrimeCore\Service\IOptimusPrimeService.cs" />
     <Compile Include="OprimusPrimeCore\Service\IOptimusPrimeIn.cs" />
     <Compile Include="OprimusPrimeCore\Service\IOptimusPrimeOut.cs" />
