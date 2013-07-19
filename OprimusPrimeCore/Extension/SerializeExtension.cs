@@ -13,5 +13,16 @@ namespace OptimusPrime.OprimusPrimeCore.Extension
             memoryStream.Seek(0, SeekOrigin.Begin);
             return (T)binaryFormatter.Deserialize(memoryStream);
         }
+
+        public static byte[] Serialize(this object value)
+        {
+            if (value == null)
+                return new byte[0];
+            var binaryFormatter = new BinaryFormatter();
+            var memoryStream = new MemoryStream();
+
+            binaryFormatter.Serialize(memoryStream, value);
+            return memoryStream.ToArray();
+        }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BookSleeve;
 using OptimusPrime.OprimusPrimeCore.Extension;
 
-namespace OptimusPrime.OprimusPrimeCore.Logger
+namespace OptimusPrime.OprimusPrimeCore
 {
     public class OptimusPrimeLogger : IOptimusPrimeLogger
     {
@@ -15,11 +16,29 @@ namespace OptimusPrime.OprimusPrimeCore.Logger
         public OptimusPrimeLogger(int DbPage = 1)
         {
             dbPage = DbPage;
-            connection = new RedisConnection("localhost");
+            connection = new RedisConnection("localhost", allowAdmin: true);
             readCounterDictionary = new Dictionary<string, int>();
 
             Task openTask = connection.Open();
             connection.Wait(openTask);
+        }
+
+        public bool LoadDb(string filePath)
+        {
+            var flushDbTask = connection.Server.FlushAll();
+            connection.Wait(flushDbTask);
+
+            if (!File.Exists(filePath))
+                return false;
+
+            var db = File.ReadAllBytes(filePath).Deserialize<Dictionary<string, byte[]>>();
+            foreach (var dbItem in db)
+            {
+                var importTask = connection.Server.Import(dbPage, dbItem.Key, dbItem.Value);
+                connection.Wait(importTask);
+            }
+            readCounterDictionary.Clear();
+            return true;
         }
 
         public T Get<T>(string storageKey)

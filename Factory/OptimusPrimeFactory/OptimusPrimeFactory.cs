@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BookSleeve;
 using OptimusPrime.OprimusPrimeCore;
+using OptimusPrime.OprimusPrimeCore.Extension;
 
 namespace OptimusPrime.Factory
 {
@@ -14,6 +15,7 @@ namespace OptimusPrime.Factory
         private readonly List<Thread> threads;
         private RedisConnection connection;
         private static IList<IOptimusPrimeService> Services { get; set; }
+        
 
         public OptimusPrimeFactory()
         {
@@ -43,21 +45,22 @@ namespace OptimusPrime.Factory
         {
             foreach (var thread in threads)
                 thread.Abort();
+        }
 
-            var fileName = "C:\\" +
-                           String.Format("{0:yyyy.MM.dd_hh.mm.ss.fff}", DateTime.Now) + ".opdump";
-            var fileStream = new FileStream(fileName, FileMode.CreateNew, FileAccess.Write);
-
+        public string DumpDb()
+        {
+            var db = new Dictionary<string, byte[]>();
             foreach (var service in Services)
                 foreach (var output in service.OptimusPrimeOut)
                 {
                     var exportTask = connection.Server.Export(output.Service.DbPage, output.Name);
-                    var value = connection.Wait(exportTask);
+                    var bytes = connection.Wait(exportTask);
 
-                    fileStream.Write(value, 0, value.Length);
-                    fileStream.Flush();
+                    db.Add(output.Name, bytes);
                 }
-            fileStream.Close();
+            var filePath = PathHelper.GetFilePath();
+            File.WriteAllBytes(filePath, db.Serialize());
+            return filePath;
         }
     }
 }
