@@ -1,4 +1,5 @@
-﻿using OptimusPrime.Templates;
+﻿using OptimusPrime.OprimusPrimeCore.Helpers;
+using OptimusPrime.Templates;
 
 namespace OptimusPrime.Factory
 {
@@ -7,7 +8,7 @@ namespace OptimusPrime.Factory
         //todo: CreateSource by Chain
         public ISource<TPublic> CreateSource<TPublic>(ISourceBlock<TPublic> sourceBlock)
         {
-            string outputName = string.Format("{0}_out", sourceBlock.GetType().Name);
+            string outputName = ServiceNameHelper.GetOutName();
             var service = new OptimusPrimeSourceService<TPublic>(sourceBlock, outputName);
 
             Services.Add(service);

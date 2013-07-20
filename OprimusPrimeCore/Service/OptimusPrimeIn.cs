@@ -59,19 +59,21 @@ namespace OptimusPrime.OprimusPrimeCore
         public T Get<T>()
         {
             T result;
-            if (TryGetBytes(out result))
+            while (!TryGetBytes(out result))
             {
-                ReadCounter++;
-                resetEvent.Reset();
-                return result;
+                Thread.Sleep(1);
             }
 
-            resetEvent.WaitOne();
-            if (!TryGetBytes(out result))
-                throw new OptimusPrimeException(
-                    string.Format("После оповещения о записи, данные по ключу {0} не найдены", Name));
             ReadCounter++;
+            resetEvent.Reset();
             return result;
+
+//            resetEvent.WaitOne();
+//            if (!TryGetBytes(out result))
+//                throw new OptimusPrimeException(
+//                    string.Format("После оповещения о записи, данные по ключу {0} не найдены", Name));
+//            ReadCounter++;
+//            return result;
         }
 
         public T[] GetRange<T>()

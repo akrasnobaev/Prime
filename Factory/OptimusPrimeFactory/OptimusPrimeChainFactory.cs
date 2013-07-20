@@ -1,5 +1,6 @@
 ﻿using OptimusPrime.Templates;
 using System;
+using OptimusPrime.OprimusPrimeCore.Helpers;
 
 namespace OptimusPrime.Factory
 {
@@ -7,8 +8,8 @@ namespace OptimusPrime.Factory
     {
         public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> functionalBlock)
         {
-            var inputName = string.Format("{0}_in", functionalBlock.GetType().Name);
-            var outputName = string.Format("{0}_out", functionalBlock.GetType().Name);
+            var inputName = ServiceNameHelper.GetInName();
+            var outputName = ServiceNameHelper.GetOutName();
             var service = new OptimusPrimeFunctionalService<TIn, TOut>(functionalBlock, inputName, outputName);
 
             Services.Add(service);
@@ -20,7 +21,7 @@ namespace OptimusPrime.Factory
                                                                              IFunctionalBlock<TOut, T3> functionalBlock)
         {
             var inputName = optimusPrimeChane.Output.Name;
-            var outputName = string.Format("{0}_out", functionalBlock.GetType().Name);
+            var outputName = ServiceNameHelper.GetOutName();
             var service = new OptimusPrimeFunctionalService<TOut, T3>(functionalBlock.Process, inputName, outputName);
 
             Services.Add(service);
