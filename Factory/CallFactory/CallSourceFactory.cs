@@ -8,7 +8,11 @@ namespace OptimusPrime.Factory
         public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock)
         {
             var callSource = new CallSource<T>();
-            sourceBlock.Event += (sender, args) => callSource.Collection.Add(args.Data);
+            sourceBlock.Event += (sender, args) =>
+                {
+                    callSource.Collection.Add(args.Data);
+                    // callSource.AutoResetEvent.Set(); ??
+                };
             return callSource;
         }
 
