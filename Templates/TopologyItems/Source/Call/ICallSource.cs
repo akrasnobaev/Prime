@@ -6,6 +6,6 @@ namespace OptimusPrime.Templates
     public interface ICallSource <T> : ISource<T>
     {
         IList<T> Collection { get; }
-        AutoResetEvent AutoResetEvent { get; }
+        Semaphore Semaphore { get; }
     }
 }

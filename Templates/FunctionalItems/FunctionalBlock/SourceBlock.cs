@@ -8,8 +8,8 @@ namespace Eurobot.Services
         public void Publish(T value)
         {
             if (Event != null)
-                Event(this, new OptimusPrimeEventArgs<T>(value));
+                Event(this, value);
         }
-        public event EventHandler<OptimusPrimeEventArgs<T>> Event;
+        public event EventHandler<T> Event;
     }
 }

@@ -5,24 +5,23 @@ namespace OptimusPrime.Templates
 {
     public class CallSource<T> : ICallSource<T>
     {
-        public IList<T> Collection { get; private set; }
-        public AutoResetEvent AutoResetEvent { get; private set; }
-
         public CallSource()
         {
             Collection = new List<T>();
-            AutoResetEvent = new AutoResetEvent(false);
+            Semaphore = new Semaphore(0, int.MaxValue);
         }
 
-        public CallSource(IList<T> collection)
+        ~CallSource()
         {
-            Collection = collection;
-            AutoResetEvent = new AutoResetEvent(false);
+            Semaphore.Dispose();
         }
 
         public ISourceReader<T> CreateReader()
         {
             return new SourceReader<T>(this);
         }
+
+        public IList<T> Collection { get; private set; }
+        public Semaphore Semaphore { get; private set; }
     }
 }

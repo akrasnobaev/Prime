@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="Factory\CallFactory\CallChainFactory.cs" />
     <Compile Include="Factory\CallFactory\CallFactory.cs" />
-    <Compile Include="Factory\CallFactory\CallRepeaterFactory.cs" />
     <Compile Include="Factory\CallFactory\CallSourceFactory.cs" />
     <Compile Include="Factory\GenericFactory\SourceCollector\SourceCollectorHelper.cs" />
     <Compile Include="Factory\GenericFactory\SourceCollector\Codegen.cs" />
@@ -76,7 +75,6 @@
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\FunctionalBlock.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\IFunctionalBlock.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\ISourceBlock.cs" />
-    <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeEventArgs.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeFunctionalService.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeSourceService.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\SourceBlock.cs" />
