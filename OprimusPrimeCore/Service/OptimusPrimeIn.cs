@@ -1,7 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Linq;
 using System.Threading;
 using BookSleeve;
-using System.Linq;
 using OptimusPrime.OprimusPrimeCore.Extension;
 
 namespace OptimusPrime.OprimusPrimeCore
@@ -22,7 +21,6 @@ namespace OptimusPrime.OprimusPrimeCore
             ReadCounter = 0;
             semaphore = new Semaphore(0, int.MaxValue);
 
-
             subscriberChannel = Service.Connection.GetOpenSubscriberChannel();
             var subscribe = subscriberChannel.Subscribe(Name, OnMessageReceived);
             subscriberChannel.Wait(subscribe);
@@ -30,14 +28,18 @@ namespace OptimusPrime.OprimusPrimeCore
 
         public void ChangeName(string newName, int readCounter = 0)
         {
-            ReadCounter = readCounter;
-            
             var unsubscribe = subscriberChannel.Unsubscribe(Name);
             subscriberChannel.Wait(unsubscribe);
 
+            ReadCounter = readCounter;
+
+            var lengthTask = Service.Connection.Lists.GetLength(Service.DbPage, newName);
+            var initialCount = (int) Service.Connection.Wait(lengthTask);
+            semaphore = new Semaphore(initialCount, int.MaxValue);
+
             var subscribe = subscriberChannel.Subscribe(newName, OnMessageReceived);
             subscriberChannel.Wait(subscribe);
-            
+
             Name = newName;
         }
 
@@ -49,7 +51,7 @@ namespace OptimusPrime.OprimusPrimeCore
 
         private void OnMessageReceived(string s, byte[] bytes)
         {
-            Debug.WriteLine(semaphore.Release());
+            semaphore.Release();
         }
 
         public bool TryGet<T>(out T result)
@@ -57,16 +59,15 @@ namespace OptimusPrime.OprimusPrimeCore
             if (TryGetBytes(out result))
             {
                 ReadCounter++;
+                semaphore.WaitOne();
                 return true;
             }
-
             return false;
         }
 
         public T Get<T>()
         {
             semaphore.WaitOne();
-
             T result;
             if (TryGetBytes(out result))
             {
@@ -84,8 +85,8 @@ namespace OptimusPrime.OprimusPrimeCore
 
             var result = bytes.Select(SerializeExtension.Deserialize<T>).ToArray();
             ReadCounter += result.Length;
-            
-            for (int i = 0; i < result.Length; i++)
+
+            for (var i = 0; i < result.Length; i++)
                 semaphore.WaitOne();
             return result;
         }
