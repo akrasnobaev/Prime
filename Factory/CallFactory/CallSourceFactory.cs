@@ -8,7 +8,11 @@ namespace OptimusPrime.Factory
         public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock)
         {
             var callSource = new CallSource<T>();
-            sourceBlock.Event += (sender, args) => callSource.Collection.Add(args.Data);
+            sourceBlock.Event += (sender, e) =>
+                {
+                    callSource.Collection.Add(e);
+                    callSource.Semaphore.Release();
+                };
             return callSource;
         }
 
@@ -17,12 +21,14 @@ namespace OptimusPrime.Factory
             var newSource = new CallSource<T2>();
             var newSourceThread = new Thread(() =>
                 {
-                    var sourceReader = source.CreateReader();
+                    ISourceReader<T1> sourceReader = source.CreateReader();
                     while (true)
                     {
                         T1 inputData = sourceReader.Get();
-                        T2 outputData = (chain as ICallChain<T1,T2>).Action(inputData);
+                        T2 outputData = ((ICallChain<T1, T2>) chain).Action(inputData);
+
                         newSource.Collection.Add(outputData);
+                        newSource.Semaphore.Release();
                     }
                 });
             threads.Add(newSourceThread);

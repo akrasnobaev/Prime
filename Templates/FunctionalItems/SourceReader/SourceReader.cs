@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using OptimusPrime.OprimusPrimeCore;
 
 namespace OptimusPrime.Templates
 {
@@ -15,18 +17,17 @@ namespace OptimusPrime.Templates
 
         public T Get()
         {
-            T data;
-            if (TryGet(out data))
-                return data;
-
-            callSource.AutoResetEvent.WaitOne();
-            return callSource.Collection[readCount++];
+            callSource.Semaphore.WaitOne();
+            if (callSource.Collection.Count > readCount)
+                return callSource.Collection[readCount++];
+            throw new OptimusPrimeException("При попытке чтения из CallSource данные не найдены");
         }
 
         public bool TryGet(out T data)
         {
             if (callSource.Collection.Count > readCount)
             {
+                callSource.Semaphore.WaitOne();
                 data = callSource.Collection[readCount++];
                 return true;
             }
@@ -38,10 +39,13 @@ namespace OptimusPrime.Templates
         public IEnumerable<T> GetCollection()
         {
             for (; readCount < callSource.Collection.Count; readCount++)
+            {
+                callSource.Semaphore.WaitOne();
                 yield return callSource.Collection[readCount];
+            }
         }
 
-        public System.Collections.IEnumerable GetCollectionNonTypized()
+        public IEnumerable GetCollectionNonTypized()
         {
             return GetCollection();
         }
