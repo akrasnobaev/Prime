@@ -11,6 +11,11 @@ namespace OptimusPrime.Templates
             Semaphore = new Semaphore(0, int.MaxValue);
         }
 
+        ~CallSource()
+        {
+            Semaphore.Dispose();
+        }
+
         public ISourceReader<T> CreateReader()
         {
             return new SourceReader<T>(this);
