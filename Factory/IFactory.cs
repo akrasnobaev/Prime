@@ -9,7 +9,7 @@ namespace OptimusPrime.Factory
         IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function);
         ISource<TData> CreateSource<TData>(ISourceBlock<TData> block);
         ISource<TOut> LinkSourceToChain<TIn, TOut>(ISource<TIn> source, IChain<TIn, TOut> chain);
-
+  
     }
 
     public static partial class IFactoryExtensions
@@ -18,5 +18,11 @@ namespace OptimusPrime.Factory
         {
            return factory.CreateChain<TIn, TOut>(function.Process);
         }
+
+        public static ISourceReader<TOut> CreateReader<TOut>(this IFactory factory, ISource<TOut> source)
+        {
+            return source.CreateReader();
+        }
+
     }
 }
