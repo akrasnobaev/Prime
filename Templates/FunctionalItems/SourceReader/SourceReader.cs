@@ -40,7 +40,7 @@ namespace OptimusPrime.Templates
         {
             for (; readCount < callSource.Collection.Count; readCount++)
             {
-                callSource.Semaphore.WaitOne();
+//                callSource.Semaphore.WaitOne();
                 yield return callSource.Collection[readCount];
             }
         }
