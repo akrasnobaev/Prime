@@ -1,4 +1,5 @@
 using System;
+using OptimusPrime.Factory;
 
 namespace OptimusPrime.Templates
 {
@@ -6,14 +7,24 @@ namespace OptimusPrime.Templates
     {
         public Func<T1, T2> Action { get; private set; } 
 
-        public CallChain(Func<T1, T2> action)
+        public CallChain(CallFactory factory, Func<T1, T2> action)
         {
             Action = action;
+            Factory = factory;
         }
+
+
 
         public IFunctionalBlock<T1, T2> ToFunctionalBlock()
         {
             return new FunctionalBlock<T1, T2>(Action);
+        }
+
+
+        public Factory.IFactory Factory
+        {
+            get;
+            private set; 
         }
     }
 }
