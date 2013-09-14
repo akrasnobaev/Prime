@@ -7,7 +7,7 @@ using OptimusPrime.Templates;
 
 namespace OptimusPrime
 {
-    public static class IChainExtension
+    public static class IOptimusPrimeAmenities
     {
         public static IChain<TExternalInput, TExternalOutput>
             Link<TExternalInput, TExternalOutput, TMiddle>
@@ -15,5 +15,15 @@ namespace OptimusPrime
         {
             return firstChain.Factory.LinkChainToChain(firstChain, secondChain);
         }
-    }
+
+        public static ISource<TSecondOutput>
+            Link<TFirstOutput, TSecondOutput>
+            (this ISource<TFirstOutput> source, IChain<TFirstOutput, TSecondOutput> chain)
+        {
+            return source.Factory.LinkSourceToChain(source, chain);
+        }
+
+
+
+        }
 }

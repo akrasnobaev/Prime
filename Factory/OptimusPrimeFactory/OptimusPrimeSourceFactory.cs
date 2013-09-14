@@ -13,7 +13,7 @@ namespace OptimusPrime.Factory
 
             Services.Add(service);
 
-            return new OptimusPrimeSource<TPublic>(service.Output);
+            return new OptimusPrimeSource<TPublic>(this,service.Output);
         }
 
         public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> _source,
@@ -23,7 +23,7 @@ namespace OptimusPrime.Factory
             var source = _source as IOptimusPrimeSource<T1>;
             chain.Input.ChangeName(source.Output.Name);
 
-            return new OptimusPrimeSource<T2>(chain.Output);
+            return new OptimusPrimeSource<T2>(this,chain.Output);
         }
     }
 }

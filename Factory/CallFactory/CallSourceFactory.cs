@@ -7,7 +7,7 @@ namespace OptimusPrime.Factory
     {
         public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock)
         {
-            var callSource = new CallSource<T>();
+            var callSource = new CallSource<T>(this);
             sourceBlock.Event += (sender, e) =>
                 {
                     callSource.Collection.Add(e);
@@ -18,7 +18,7 @@ namespace OptimusPrime.Factory
 
         public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> source, IChain<T1, T2> chain)
         {
-            var newSource = new CallSource<T2>();
+            var newSource = new CallSource<T2>(this);
             var newSourceThread = new Thread(() =>
                 {
                     ISourceReader<T1> sourceReader = source.CreateReader();

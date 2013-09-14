@@ -1,11 +1,15 @@
+using OptimusPrime.Factory;
 using OptimusPrime.OprimusPrimeCore;
 
 namespace OptimusPrime.Templates
 {
     public class OptimusPrimeSource<TPublic> : IOptimusPrimeSource<TPublic>
     {
-        public OptimusPrimeSource(IOptimusPrimeOut output)
+        public IFactory Factory { get; private set; }
+
+        public OptimusPrimeSource(OptimusPrimeFactory factory, IOptimusPrimeOut output)
         {
+            Factory = factory;
             Output = output;
         }
 
