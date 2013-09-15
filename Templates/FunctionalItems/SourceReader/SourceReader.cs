@@ -43,7 +43,10 @@ namespace OptimusPrime.Templates
             var result = new T[resultLength];
 
             for (var i = 0; i < resultLength; i++)
+            {
                 result[i] = _callSource.Collection[_readCount++];
+                AvailableData.WaitOne();
+            }
 
             return result;
         }
