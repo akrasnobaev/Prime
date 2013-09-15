@@ -6,6 +6,10 @@ namespace OptimusPrime.Templates
     public interface ICallSource <T> : ISource<T>
     {
         IList<T> Collection { get; }
-        Semaphore Semaphore { get; }
+
+        /// <summary>
+        /// Уведомляет все SourceReader о возможности чтения из источника.
+        /// </summary>
+        void Release();
     }
 }

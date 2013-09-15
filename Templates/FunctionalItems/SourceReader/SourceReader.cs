@@ -1,34 +1,35 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System.Threading;
 using OptimusPrime.OprimusPrimeCore;
 
 namespace OptimusPrime.Templates
 {
     public class SourceReader<T> : ISourceReader<T>
     {
-        private readonly ICallSource<T> callSource;
-        private int readCount;
+        private readonly ICallSource<T> _callSource;
+        private int _readCount;
 
         public SourceReader(ICallSource<T> callSource)
         {
-            this.callSource = callSource;
-            readCount = 0;
+            _callSource = callSource;
+            _readCount = 0;
+            AvailableData = new Semaphore(callSource.Collection.Count, int.MaxValue);
         }
 
         public T Get()
         {
-            callSource.Semaphore.WaitOne();
-            if (callSource.Collection.Count > readCount)
-                return callSource.Collection[readCount++];
+            AvailableData.WaitOne();
+            if (_callSource.Collection.Count > _readCount)
+                return _callSource.Collection[_readCount++];
             throw new OptimusPrimeException("При попытке чтения из CallSource данные не найдены");
         }
 
         public bool TryGet(out T data)
         {
-            if (callSource.Collection.Count > readCount)
+            if (_callSource.Collection.Count > _readCount)
             {
-                callSource.Semaphore.WaitOne();
-                data = callSource.Collection[readCount++];
+                AvailableData.WaitOne();
+                data = _callSource.Collection[_readCount++];
                 return true;
             }
 
@@ -36,18 +37,22 @@ namespace OptimusPrime.Templates
             return false;
         }
 
-        public IEnumerable<T> GetCollection()
+        public T[] GetCollection()
         {
-            for (; readCount < callSource.Collection.Count; readCount++)
-            {
-//                callSource.Semaphore.WaitOne();
-                yield return callSource.Collection[readCount];
-            }
+            var resultLength = _callSource.Collection.Count - _readCount;
+            var result = new T[resultLength];
+
+            for (var i = 0; i < resultLength; i++)
+                result[i] = _callSource.Collection[_readCount++];
+
+            return result;
         }
 
         public IEnumerable GetCollectionNonTypized()
         {
             return GetCollection();
         }
+
+        public Semaphore AvailableData { get; private set; }
     }
 }

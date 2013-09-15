@@ -11,7 +11,7 @@ namespace OptimusPrime.Factory
             sourceBlock.Event += (sender, e) =>
                 {
                     callSource.Collection.Add(e);
-                    callSource.Semaphore.Release();
+                    callSource.Release();
                 };
             return callSource;
         }
@@ -28,7 +28,7 @@ namespace OptimusPrime.Factory
                         T2 outputData = ((ICallChain<T1, T2>) chain).Action(inputData);
 
                         newSource.Collection.Add(outputData);
-                        newSource.Semaphore.Release();
+                        newSource.Release();
                     }
                 });
             threads.Add(newSourceThread);
