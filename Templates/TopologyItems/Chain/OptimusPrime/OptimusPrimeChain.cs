@@ -1,14 +1,18 @@
+using OptimusPrime.Factory;
 using OptimusPrime.OprimusPrimeCore;
 
 namespace OptimusPrime.Templates
 {
     public class OptimusPrimeChain<TIn, TOut> : IOptimusPrimeChane<TIn, TOut>
     {
-        public OptimusPrimeChain(IOptimusPrimeIn input, IOptimusPrimeOut output)
+        public OptimusPrimeChain(OptimusPrimeFactory factory, IOptimusPrimeIn input, IOptimusPrimeOut output)
         {
             Input = input;
             Output = output;
+            this.Factory = factory;
         }
+
+        public IFactory Factory { get; private set; }
 
         public IOptimusPrimeIn Input { get; private set; }
         public IOptimusPrimeOut Output { get; private set; }

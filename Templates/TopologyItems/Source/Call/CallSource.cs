@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using OptimusPrime.Factory;
 
 namespace OptimusPrime.Templates
 {
     public class CallSource<T> : ICallSource<T>
     {
-        public CallSource()
+        public IFactory Factory { get; private set; }
+
+        public CallSource(CallFactory factory)
         {
+            Factory = factory;
             Collection = new List<T>();
             Semaphore = new Semaphore(0, int.MaxValue);
         }
