@@ -4,7 +4,7 @@ using OptimusPrime.OprimusPrimeCore.Helpers;
 
 namespace OptimusPrime.Factory
 {
-    public partial class OptimusPrimeFactory
+    public partial class OptimusPrimeFactory : IFactory
     {
         public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> functionalBlock)
         {
@@ -14,7 +14,7 @@ namespace OptimusPrime.Factory
 
             Services.Add(service);
 
-            return new OptimusPrimeChain<TIn, TOut>(service.Input, service.Output);
+            return new OptimusPrimeChain<TIn, TOut>(this, service.Input, service.Output);
         }
 
         public IChain<TIn, T3> AddFunctionalBlockToChain<TIn, TOut, T3>(IOptimusPrimeChane<TIn, TOut> optimusPrimeChane,
@@ -26,16 +26,17 @@ namespace OptimusPrime.Factory
 
             Services.Add(service);
 
-            return new OptimusPrimeChain<TIn, T3>(optimusPrimeChane.Input, service.Output);
+            return new OptimusPrimeChain<TIn, T3>(this, optimusPrimeChane.Input, service.Output);
         }
 
-        //todo: Добавить в экстеншены OptimusPrimeChain методы типа LinkChainToChain
-        public IChain<T1, T3> LinkChainToChain<T1, T2, T3>(IOptimusPrimeChane<T1, T2> firstChain,
-                                                                  IOptimusPrimeChane<T2, T3> secondChain)
-        {
-            secondChain.Input.ChangeName(firstChain.Output.Name);
+       
 
-            return new OptimusPrimeChain<T1, T3>(firstChain.Input, secondChain.Output);
+        public IChain<TIn, TOut> LinkChainToChain<TIn, TOut, TMiddle>(IChain<TIn, TMiddle> first, IChain<TMiddle, TOut> second)
+        {
+            var firstChain = first as IOptimusPrimeChane<TIn, TMiddle>;
+            var secondChain = second as IOptimusPrimeChane<TMiddle, TOut>;
+            secondChain.Input.ChangeName(firstChain.Output.Name);
+            return new OptimusPrimeChain<TIn, TOut>(this, firstChain.Input, secondChain.Output);
         }
     }
 }

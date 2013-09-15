@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\Amenities.cs" />
     <Compile Include="Factory\CallFactory\CallChainFactory.cs" />
     <Compile Include="Factory\CallFactory\CallFactory.cs" />
     <Compile Include="Factory\CallFactory\CallSourceFactory.cs" />
