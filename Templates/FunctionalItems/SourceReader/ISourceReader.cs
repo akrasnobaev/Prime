@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 
 namespace OptimusPrime.Templates
 {
@@ -12,6 +11,6 @@ namespace OptimusPrime.Templates
     {
         T Get();
         bool TryGet(out T data);
-        IEnumerable<T> GetCollection();
+        T[] GetCollection();
     }
 }
