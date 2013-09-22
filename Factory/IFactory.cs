@@ -6,6 +6,7 @@ namespace OptimusPrime.Factory
     {
         void Start();
         void Stop();
+        string DumpDb();
         IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function);
         IChain<TIn, TOut> LinkChainToChain<TIn, TOut, TMiddle>(IChain<TIn, TMiddle> first, IChain<TMiddle, TOut> second);
         ISource<TData> CreateSource<TData>(ISourceBlock<TData> block);

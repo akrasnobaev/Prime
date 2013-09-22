@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
 
-namespace OptimusPrime.OprimusPrimeCore
+namespace OptimusPrime.OprimusPrimeCore.Helpers
 {
     public class PathHelper
     {

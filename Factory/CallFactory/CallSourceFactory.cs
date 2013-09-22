@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Diagnostics;
+using System.Threading;
 using OptimusPrime.Templates;
 
 namespace OptimusPrime.Factory
@@ -7,21 +8,26 @@ namespace OptimusPrime.Factory
     {
         public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock)
         {
-            var callSource = new CallSource<T>(this);
+            var collectionName = GetCollectionName<T>();
+            var callSource = new CallSource<T>(this, collectionName);
+
             sourceBlock.Event += (sender, e) =>
                 {
                     callSource.Collection.Add(e);
                     callSource.Release();
                 };
+
+            _collections.Add(collectionName, callSource.Collection);
             return callSource;
         }
 
         public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> source, IChain<T1, T2> chain)
         {
-            var newSource = new CallSource<T2>(this);
+            var collectionName = GetCollectionName<T2>();
+            var newSource = new CallSource<T2>(this, collectionName);
             var newSourceThread = new Thread(() =>
                 {
-                    ISourceReader<T1> sourceReader = source.CreateReader();
+                    var sourceReader = source.CreateReader();
                     while (true)
                     {
                         T1 inputData = sourceReader.Get();
@@ -31,7 +37,9 @@ namespace OptimusPrime.Factory
                         newSource.Release();
                     }
                 });
-            threads.Add(newSourceThread);
+
+            _collections.Add(collectionName, newSource.Collection);
+            _threads.Add(newSourceThread);
             return newSource;
         }
     }

@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BookSleeve;
 using OptimusPrime.OprimusPrimeCore;
 using OptimusPrime.OprimusPrimeCore.Extension;
+using OptimusPrime.OprimusPrimeCore.Helpers;
 
 namespace OptimusPrime.Factory
 {
@@ -49,14 +51,15 @@ namespace OptimusPrime.Factory
 
         public string DumpDb()
         {
-            var db = new Dictionary<string, byte[]>();
+            var db = new Dictionary<string, object[]>();
             foreach (var service in Services)
                 foreach (var output in service.OptimusPrimeOut)
                 {
-                    var exportTask = connection.Server.Export(output.Service.DbPage, output.Name);
-                    var bytes = connection.Wait(exportTask);
+                    var range = connection.Lists.Range(output.Service.DbPage, output.Name, 0, -1);
+                    var bytes = connection.Wait(range);
+                    var result = bytes.Select(SerializeExtension.Deserialize<object>).ToArray();
 
-                    db.Add(output.Name, bytes);
+                    db.Add(output.Name, result);
                 }
             var filePath = PathHelper.GetFilePath();
             File.WriteAllBytes(filePath, db.Serialize());

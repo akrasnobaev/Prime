@@ -20,7 +20,7 @@ namespace OptimusPrime.Templates
         {
             AvailableData.WaitOne();
             if (_callSource.Collection.Count > _readCount)
-                return _callSource.Collection[_readCount++];
+                return (T) _callSource.Collection[_readCount++];
             throw new OptimusPrimeException("При попытке чтения из CallSource данные не найдены");
         }
 
@@ -29,7 +29,7 @@ namespace OptimusPrime.Templates
             if (_callSource.Collection.Count > _readCount)
             {
                 AvailableData.WaitOne();
-                data = _callSource.Collection[_readCount++];
+                data = (T) _callSource.Collection[_readCount++];
                 return true;
             }
 
@@ -44,7 +44,7 @@ namespace OptimusPrime.Templates
 
             for (var i = 0; i < resultLength; i++)
             {
-                result[i] = _callSource.Collection[_readCount++];
+                result[i] = (T) _callSource.Collection[_readCount++];
                 AvailableData.WaitOne();
             }
 
