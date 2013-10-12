@@ -8,10 +8,10 @@ namespace OptimusPrime.Templates
         public IFactory Factory { get; private set; }
         private readonly IList<SourceReader<T>> _sourceReaders;
 
-        public CallSource(CallFactory factory, string collectionName)
+        public CallSource(CallFactory factory, string name)
         {
             Factory = factory;
-            CollectionName = collectionName;
+            Name = name;
             Collection = new List<object>();
             _sourceReaders = new List<SourceReader<T>>();
         }
@@ -23,8 +23,9 @@ namespace OptimusPrime.Templates
             return sourceReader;
         }
 
+        public string Name { get; private set; }
+
         public IList<object> Collection { get; private set; }
-        public string CollectionName { get; private set; }
 
         public void Release()
         {

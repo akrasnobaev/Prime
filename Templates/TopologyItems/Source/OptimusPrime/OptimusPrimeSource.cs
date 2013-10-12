@@ -19,5 +19,10 @@ namespace OptimusPrime.Templates
         {
             return new OptimusPrimeReader<TPublic>(Output.Name);
         }
+
+        public string Name
+        {
+            get { return Output.Name; }
+        }
     }
 }

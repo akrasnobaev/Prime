@@ -1,17 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 
 namespace OptimusPrime.Templates
 {
     public interface ICallSource <T> : ISource<T>
     {
-        IList<object> Collection { get; }
-
         /// <summary>
-        /// Автосгенерированное имя коллекции данных в лог-файле, которая получена
-        /// в результате работы ICallSource
+        /// Коллекция данных, полученных из ISource.
         /// </summary>
-        string CollectionName { get; }
+        IList<object> Collection { get; }
 
         /// <summary>
         /// Уведомляет все SourceReader о возможности чтения из источника.
