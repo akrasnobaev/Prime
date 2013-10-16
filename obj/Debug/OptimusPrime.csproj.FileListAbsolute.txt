@@ -1,0 +1,11 @@
+D:\eurobot\OptimusPrime\bin\Debug\OptimusPrime.dll.config
+D:\eurobot\OptimusPrime\bin\Debug\OptimusPrime.dll
+D:\eurobot\OptimusPrime\bin\Debug\OptimusPrime.pdb
+D:\eurobot\OptimusPrime\bin\Debug\BookSleeve.dll
+D:\eurobot\OptimusPrime\bin\Debug\nunit.framework.dll
+D:\eurobot\OptimusPrime\bin\Debug\BookSleeve.pdb
+D:\eurobot\OptimusPrime\bin\Debug\BookSleeve.xml
+D:\eurobot\OptimusPrime\bin\Debug\nunit.framework.xml
+D:\eurobot\OptimusPrime\obj\Debug\OptimusPrime.csprojResolveAssemblyReference.cache
+D:\eurobot\OptimusPrime\obj\Debug\OptimusPrime.dll
+D:\eurobot\OptimusPrime\obj\Debug\OptimusPrime.pdb
