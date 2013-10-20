@@ -9,11 +9,17 @@ namespace OptimusPrime.Templates
         {
             Input = input;
             Output = output;
-            this.Factory = factory;
+            Factory = factory;
         }
 
         public IFactory Factory { get; private set; }
-
+        public string InputName
+        {
+            get { return Input.Name; }
+        }
+        public string OutputName {
+            get { return Output.Name; }
+        }
         public IOptimusPrimeIn Input { get; private set; }
         public IOptimusPrimeOut Output { get; private set; }
 

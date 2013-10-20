@@ -6,6 +6,11 @@ namespace OptimusPrime.Templates
     public class CallChain<T1, T2> : ICallChain<T1, T2>
     {
         public Func<T1, T2> Action { get; private set; }
+        public void SetInputName(string inputName)
+        {
+            InputName = inputName;
+        }
+        public string InputName { get; private set; }
         public string OutputName { get; private set; }
 
         public CallChain(CallFactory factory, Func<T1, T2> action, string outputName)
