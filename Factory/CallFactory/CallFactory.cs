@@ -11,11 +11,17 @@ namespace OptimusPrime.Factory
     public partial class CallFactory : IFactory
     {
         private readonly IList<Thread> _threads;
+        /// <summary>
+        /// Коллекция AutoResetEvent, которые релизятся в тот момент,
+        /// когда соответствующий поток успешно стартовал.
+        /// </summary>
+        private readonly IList<AutoResetEvent> _threadsStartSuccessed;
         private readonly IDictionary<string, IList<object>> _collections;
 
         public CallFactory()
         {
             _threads = new List<Thread>();
+            _threadsStartSuccessed = new List<AutoResetEvent>();
             _collections = new Dictionary<string, IList<object>>();
         }
 
@@ -23,6 +29,10 @@ namespace OptimusPrime.Factory
         {
             foreach (var thread in _threads)
                 thread.Start();
+
+            // Ожидание того, что все потоки стартовали успешно.
+            foreach (var resetEvent in _threadsStartSuccessed)
+                resetEvent.WaitOne();
         }
 
         public void Stop()

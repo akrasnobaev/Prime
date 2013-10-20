@@ -10,10 +10,13 @@ namespace OptimusPrime.Factory
         {
             var logCollection = new List<object>();
             var outputName = GetCollectionName<TOut>();
+
             _collections.Add(outputName, logCollection);
+
             return new CallChain<TIn, TOut>(this, inputData =>
                 {
                     var result = func(inputData);
+                    // логирование результата работы цепочки.
                     logCollection.Add(result);
                     return result;
                 }, outputName);

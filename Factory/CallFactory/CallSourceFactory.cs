@@ -25,9 +25,13 @@ namespace OptimusPrime.Factory
         {
             var collectionName = GetCollectionName<T2>();
             var newSource = new CallSource<T2>(this, collectionName);
+            var startSuccesed = new AutoResetEvent(false);
+
             var newSourceThread = new Thread(() =>
                 {
                     var sourceReader = source.CreateReader();
+                    startSuccesed.Set();
+
                     while (true)
                     {
                         T1 inputData = sourceReader.Get();
@@ -40,6 +44,8 @@ namespace OptimusPrime.Factory
 
             _collections.Add(collectionName, newSource.Collection);
             _threads.Add(newSourceThread);
+            _threadsStartSuccessed.Add(startSuccesed);
+
             return newSource;
         }
     }
