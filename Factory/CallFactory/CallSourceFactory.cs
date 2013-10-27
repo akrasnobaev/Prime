@@ -5,10 +5,14 @@ namespace OptimusPrime.Factory
 {
     public partial class CallFactory
     {
-        public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock)
+        public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock, string pseudoName = null)
         {
             var collectionName = GetCollectionName<T>();
             var callSource = new CallSource<T>(this, collectionName);
+
+            // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+            if (!string.IsNullOrEmpty(pseudoName))
+                _pseudoNames.Add(pseudoName, collectionName);
 
             sourceBlock.Event += (sender, e) =>
                 {

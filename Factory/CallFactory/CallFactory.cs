@@ -5,24 +5,39 @@ using System.Linq;
 using System.Threading;
 using OptimusPrime.OprimusPrimeCore.Helpers;
 using OptimusPrime.OprimusPrimeCore.Extension;
+using OptimusPrime.OprimusPrimeCore.Logger;
 
 namespace OptimusPrime.Factory
 {
     public partial class CallFactory : IFactory
     {
+        /// <summary>
+        /// Коллекция потоков, которые запускают все источники данных.
+        /// </summary>
         private readonly IList<Thread> _threads;
+
         /// <summary>
         /// Коллекция AutoResetEvent, которые релизятся в тот момент,
         /// когда соответствующий поток успешно стартовал.
         /// </summary>
         private readonly IList<AutoResetEvent> _threadsStartSuccessed;
+
+        /// <summary>
+        /// Список коллекций данных, порожденных топологическими единицами.
+        /// </summary>
         private readonly IDictionary<string, IList<object>> _collections;
+
+        /// <summary>
+        /// Коллекция псевдонимов имен.
+        /// </summary>
+        private readonly Dictionary<string, string> _pseudoNames;
 
         public CallFactory()
         {
             _threads = new List<Thread>();
             _threadsStartSuccessed = new List<AutoResetEvent>();
             _collections = new Dictionary<string, IList<object>>();
+            _pseudoNames = new Dictionary<string, string>();
         }
 
         public void Start()
@@ -47,7 +62,8 @@ namespace OptimusPrime.Factory
             var serialozableCollections = _collections.ToDictionary(
                 collection => collection.Key,
                 collection => collection.Value.ToArray());
-            var data = serialozableCollections.Serialize();
+            var logData = new LogData(_pseudoNames, serialozableCollections);
+            var data = logData.Serialize();
             File.WriteAllBytes(filePath, data);
             return filePath;
         }

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using OptimusPrime.OprimusPrimeCore.Extension;
+using OptimusPrime.OprimusPrimeCore.Logger;
 
 namespace OptimusPrime.OprimusPrimeCore
 {
@@ -9,6 +10,7 @@ namespace OptimusPrime.OprimusPrimeCore
     {
         private Dictionary<string, object[]> _data;
         private Dictionary<string, int> _readCounter;
+        private Dictionary<string, string> _pseudoNames;
 
         /// <summary>
         /// Вычитывание лог-файла.
@@ -21,7 +23,10 @@ namespace OptimusPrime.OprimusPrimeCore
                 return false;
 
             var file = File.ReadAllBytes(filePath);
-            _data = file.Deserialize<Dictionary<string, object[]>>();
+            var logData = file.Deserialize<LogData>();
+
+            _data = logData.Data;
+            _pseudoNames = logData.PseudoNames;
             _readCounter = new Dictionary<string, int>();
 
             foreach (var set in _data)
@@ -34,12 +39,13 @@ namespace OptimusPrime.OprimusPrimeCore
         /// Возвращает данные типа T по ключу key.
         /// </summary>
         /// <typeparam name="T">Тип запрашиваемых данных.</typeparam>
-        /// <param name="key">Ключ в лог-файле, который соответствует коллекции данных.</param>
+        /// <param name="key">Имя или псевдоним коллекции данных.</param>
         /// <returns>Данные типа T.</returns>
         public T Get<T>(string key) where T : class
         {
             T result;
             string message;
+
             if (!tryGet(key, out result, out message))
                 throw new LoggerException(message);
 
@@ -50,10 +56,14 @@ namespace OptimusPrime.OprimusPrimeCore
         /// Возвращает коллекцию данных типа T.
         /// </summary>
         /// <typeparam name="T">Тип запрашиваемых данных.</typeparam>
-        /// <param name="key">Ключ в лог-файле, который соответствует коллекции данных.</param>
+        /// <param name="key">Имя или псевдоним коллекции данных.</param>
         /// <returns>Коллекция данных типа T.</returns>
         public IEnumerable<T> GetRange<T>(string key)
         {
+            // В случае обращения по псевдониму, берем значение из словаря псевдонимов.
+            if (_pseudoNames.ContainsKey(key))
+                key = _pseudoNames[key];
+
             if (!_data.ContainsKey(key))
                 throw new LoggerException(string.Format("Данные по ключу '{0}' отсутствуют", key));
 
@@ -67,7 +77,7 @@ namespace OptimusPrime.OprimusPrimeCore
         /// а значение возвращается в out параметре result.
         /// </summary>
         /// <typeparam name="T">Тип запрашиваемых данных</typeparam>
-        /// <param name="key">Ключ в лог-файле, который соответствует коллекции данных.</param>
+        /// <param name="key">Имя или псевдоним коллекции данных.</param>
         /// <param name="result">Данные типа T.</param>
         /// <returns>Результат запроса.</returns>
         public bool TryGet<T>(string key, out T result)
@@ -81,7 +91,7 @@ namespace OptimusPrime.OprimusPrimeCore
         /// Запрос на данные типа T по ключу key.
         /// </summary>
         /// <typeparam name="T">Тип запрашиваемых данных.</typeparam>
-        /// <param name="key">Ключ в лог-файле, который соответствует коллекции данных.</param>
+        /// <param name="key">Имя или псевдоним коллекции данных.</param>
         /// <param name="result">Данные типа T.</param>
         /// <param name="message">Сообщение об ошибке. Пусто, если значение получено без ошибок.</param>
         /// <returns>Результат запроса</returns>
@@ -90,6 +100,10 @@ namespace OptimusPrime.OprimusPrimeCore
         {
             result = default(T);
             message = "";
+
+            // В случае обращения по псевдониму, берем значение из словаря псевдонимов.
+            if (_pseudoNames.ContainsKey(key))
+                key = _pseudoNames[key];
 
             if (!_data.ContainsKey(key))
             {

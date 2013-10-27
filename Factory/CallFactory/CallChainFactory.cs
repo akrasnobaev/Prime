@@ -6,10 +6,14 @@ namespace OptimusPrime.Factory
 {
     public partial class CallFactory
     {
-        public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> func)
+        public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> func, string pseudoName = null)
         {
             var logCollection = new List<object>();
             var outputName = GetCollectionName<TOut>();
+
+            // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+            if (!string.IsNullOrEmpty(pseudoName))
+                _pseudoNames.Add(pseudoName, outputName);
 
             _collections.Add(outputName, logCollection);
 

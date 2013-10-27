@@ -6,11 +6,15 @@ namespace OptimusPrime.Factory
 {
     public partial class OptimusPrimeFactory : IFactory
     {
-        public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> functionalBlock)
+        public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> functionalBlock, string pseudoName = null)
         {
             var inputName = ServiceNameHelper.GetInName();
             var outputName = ServiceNameHelper.GetOutName();
             var service = new OptimusPrimeFunctionalService<TIn, TOut>(functionalBlock, inputName, outputName);
+
+            // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+            if (!string.IsNullOrEmpty(pseudoName))
+                _pseudoNames.Add(pseudoName, outputName);
 
             Services.Add(service);
 

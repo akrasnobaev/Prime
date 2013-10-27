@@ -6,10 +6,14 @@ namespace OptimusPrime.Factory
     public partial class OptimusPrimeFactory
     {
         //todo: CreateSource by Chain
-        public ISource<TPublic> CreateSource<TPublic>(ISourceBlock<TPublic> sourceBlock)
+        public ISource<TPublic> CreateSource<TPublic>(ISourceBlock<TPublic> sourceBlock, string pseudoName = null)
         {
             string outputName = ServiceNameHelper.GetOutName();
             var service = new OptimusPrimeSourceService<TPublic>(sourceBlock, outputName);
+
+            // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+            if (!string.IsNullOrEmpty(pseudoName))
+                _pseudoNames.Add(pseudoName, outputName);
 
             Services.Add(service);
 

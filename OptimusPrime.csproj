@@ -63,6 +63,7 @@
     <Compile Include="OprimusPrimeCore\Extension\SerializeExtension.cs" />
     <Compile Include="OprimusPrimeCore\Helpers\PathHelper.cs" />
     <Compile Include="OprimusPrimeCore\Helpers\ServiceNameHelper.cs" />
+    <Compile Include="OprimusPrimeCore\Logger\LogData.cs" />
     <Compile Include="OprimusPrimeCore\Logger\LoggerException.cs" />
     <Compile Include="OprimusPrimeCore\Logger\IOptimusPrimeLogger.cs" />
     <Compile Include="OprimusPrimeCore\Logger\OptimusPrimeLogger.cs" />

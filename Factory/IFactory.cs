@@ -24,9 +24,10 @@ namespace OptimusPrime.Factory
         /// </summary>
         /// <typeparam name="TIn">Исходный тип данных.</typeparam>
         /// <typeparam name="TOut">Результирующий тип данных.</typeparam>
-        /// <param name="function">ункция преобразования данных из типа TIn в TOut</param>
-        /// <returns>Цепочка данных.</returns>
-        IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function);
+        /// <param name="function">Функция преобразования данных из типа TIn в TOut</param>
+        /// <param name="pseudoName">Псевдоним коллекции данных, полученных в ходе работы цепочки.</param>
+        /// <returns>Цепочка преобразования данных.</returns>
+        IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function, string pseudoName = null);
 
         /// <summary>
         /// Объединение двух цепочек в одну.
@@ -47,8 +48,9 @@ namespace OptimusPrime.Factory
         /// </summary>
         /// <typeparam name="TData">Тип генерируемых данных.</typeparam>
         /// <param name="block">Источник данных типа TData.</param>
+        /// <param name="pseudoName">Псевдоним коллекции данных, полученных из источника данных.</param>
         /// <returns>Источник данных типа TData.</returns>
-        ISource<TData> CreateSource<TData>(ISourceBlock<TData> block);
+        ISource<TData> CreateSource<TData>(ISourceBlock<TData> block, string pseudoName = null);
 
         /// <summary>
         /// Объединение источника данных и цепочки в источник данных.
