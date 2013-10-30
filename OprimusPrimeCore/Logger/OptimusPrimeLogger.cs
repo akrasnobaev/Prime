@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using OptimusPrime.Factory;
 using OptimusPrime.OprimusPrimeCore.Extension;
 using OptimusPrime.OprimusPrimeCore.Logger;
 
@@ -11,6 +13,31 @@ namespace OptimusPrime.OprimusPrimeCore
         private Dictionary<string, object[]> _data;
         private Dictionary<string, int> _readCounter;
         private Dictionary<string, string> _pseudoNames;
+
+        //TODO: зачем здесь пустой конструктор? Он вводит в заблуждение, потому что без вызова дополнительных методов 
+        //класс не работоспособен
+        public OptimusPrimeLogger()
+        {
+
+        }
+
+        //TODO: добавил такой конструктор, но это какая-то хрень
+        //Разве нельзя получить данные без сохранения на диск?
+        public OptimusPrimeLogger(IFactory factory)
+        {
+            if (!LoadFile(factory.DumpDb()))
+                throw new Exception("Логгер не смог инициализироваться");
+
+            
+        }
+
+        public OptimusPrimeLogger(string fileName)
+        {
+           if (!LoadFile(fileName))
+               throw new Exception("Логгер не смог инициализироваться");
+        }
+
+
 
         /// <summary>
         /// Вычитывание лог-файла.
