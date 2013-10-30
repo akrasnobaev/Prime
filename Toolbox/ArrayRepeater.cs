@@ -26,7 +26,7 @@ namespace OptimusPrime.Toolbox
             if (counter > 0)
                 publicOut[counter - 1] = oldPrivateOut;
             counter++;
-            return counter >= publicIn.Length;
+            return counter < publicIn.Length;
         }
 
         public TOut[] Conclude()
