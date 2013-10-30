@@ -99,6 +99,7 @@
     <Compile Include="Templates\TopologyItems\Source\ISource.cs" />
     <Compile Include="Templates\TopologyItems\Source\OptimusPrime\IOptimusPrimeSource.cs" />
     <Compile Include="Templates\TopologyItems\Source\OptimusPrime\OptimusPrimeSource.cs" />
+    <Compile Include="Toolbox\ArrayRepeater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
