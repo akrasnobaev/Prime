@@ -10,6 +10,6 @@ namespace Eurobot.Services
             if (Event != null)
                 Event(this, value);
         }
-        public event EventHandler<T> Event;
+        public event OPEventHandler<T> Event;
     }
 }
