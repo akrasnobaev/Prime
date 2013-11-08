@@ -30,13 +30,11 @@ namespace OptimusPrime.Factory
             return source.Factory.LinkSourceToChain(source, chain);
         }
 
-
-
         public static ISource<TSecondOutput>
             Link<TFirstOutput, TSecondOutput>
             (this ISource<TFirstOutput> source, IFunctionalBlock<TFirstOutput, TSecondOutput> chain, string pseudoName=null)
         {
             return source.Link(source.Factory.CreateChain(new Func<TFirstOutput,TSecondOutput>(chain.Process), pseudoName));
         }
-    }
+    } 
 }

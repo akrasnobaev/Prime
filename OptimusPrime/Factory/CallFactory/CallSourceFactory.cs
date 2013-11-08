@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using OptimusPrime.Templates;
 
 namespace OptimusPrime.Factory
@@ -45,6 +46,34 @@ namespace OptimusPrime.Factory
                         newSource.Release();
                     }
                 });
+
+            _threads.Add(newSourceThread);
+            _threadsStartSuccessed.Add(startSuccesed);
+
+            return newSource;
+        }
+
+        public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IChain<T,bool> filter)
+        {
+            var callFilter = (ICallChain<T, bool>)filter;
+            callFilter.SetInputName(source.Name);
+            var newSource = new CallSource<T>(this, callFilter.OutputName);
+            var startSuccesed = new AutoResetEvent(false);
+
+            var newSourceThread = new Thread(() =>
+            {
+                var sourceReader = source.CreateReader();
+                startSuccesed.Set();
+
+                while (true)
+                {
+                    T inputData = sourceReader.Get();
+                    var filteringResult = callFilter.Action(inputData);
+                    if (filteringResult)
+                        newSource.Collection.Add(inputData); 
+                    newSource.Release();
+                }
+            });
 
             _threads.Add(newSourceThread);
             _threadsStartSuccessed.Add(startSuccesed);

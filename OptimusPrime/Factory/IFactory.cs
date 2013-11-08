@@ -64,6 +64,10 @@ namespace OptimusPrime.Factory
         /// <param name="chain">Цепочка преодразования данных из типа TIn в тип TOut.</param>
         /// <returns>Источник данных типа TOut.</returns>
         ISource<TOut> LinkSourceToChain<TIn, TOut>(ISource<TIn> source, IChain<TIn, TOut> chain);
+
+        //TODO: написать документацию
+        ISource<T> LinkSourceToFilter<T>(ISource<T> source, IChain<T,bool> filter);
+
     }
      
     public static partial class IFactoryExtensions

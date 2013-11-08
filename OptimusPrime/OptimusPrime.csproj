@@ -77,7 +77,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\FunctionalBlock.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\IFunctionalBlock.cs" />
-    <Compile Include="Templates\FunctionalItems\FunctionalBlock\IFilterBlock.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\ISourceBlock.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeFunctionalService.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeSourceService.cs" />
