@@ -70,8 +70,10 @@ namespace OptimusPrime.Factory
                     T inputData = sourceReader.Get();
                     var filteringResult = callFilter.Action(inputData);
                     if (filteringResult)
-                        newSource.Collection.Add(inputData); 
-                    newSource.Release();
+                    {
+                        newSource.Collection.Add(inputData);
+                        newSource.Release();
+                    }
                 }
             });
 

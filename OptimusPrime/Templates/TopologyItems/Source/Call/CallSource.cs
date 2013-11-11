@@ -18,9 +18,12 @@ namespace OptimusPrime.Templates
 
         public ISourceReader<T> CreateReader()
         {
-            var sourceReader = new SourceReader<T>(this);
-            _sourceReaders.Add(sourceReader);
-            return sourceReader;
+            lock (_sourceReaders)
+            {
+                var sourceReader = new SourceReader<T>(this);
+                _sourceReaders.Add(sourceReader);
+                return sourceReader;
+            }
         }
 
         public string Name { get; private set; }
@@ -29,8 +32,11 @@ namespace OptimusPrime.Templates
 
         public void Release()
         {
-            foreach (var sourceReader in _sourceReaders)
-                sourceReader.AvailableData.Release();
+            lock (_sourceReaders)
+            {
+                foreach (var sourceReader in _sourceReaders)
+                    sourceReader.AvailableData.Release();
+            }
         }
     }
 }
