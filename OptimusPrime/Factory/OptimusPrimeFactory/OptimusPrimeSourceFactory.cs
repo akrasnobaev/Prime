@@ -1,6 +1,8 @@
 ﻿using System;
+using Eurobot.Services;
 using OptimusPrime.OprimusPrimeCore.Helpers;
 using OptimusPrime.Templates;
+using OptimusPrime.Templates.FunctionalItems.FunctionalBlock;
 
 namespace OptimusPrime.Factory
 {
@@ -27,13 +29,23 @@ namespace OptimusPrime.Factory
             var source = _source as IOptimusPrimeSource<T1>;
             chain.Input.ChangeName(source.Output.Name);
 
-            return new OptimusPrimeSource<T2>(this,chain.Output);
+            return new OptimusPrimeSource<T2>(this, chain.Output);
         }
 
-        public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T, bool> chain, string pseudoName = null)
+        public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T, bool> filterBlock, string pseudoName = null)
         {
-            throw new NotImplementedException();
+            
 
+            string outputName = ServiceNameHelper.GetOutName();
+            var service = new OptimusPrimeFilterService<T>(filterBlock, source.Name, outputName);
+
+            // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+            if (!string.IsNullOrEmpty(pseudoName))
+                _pseudoNames.Add(pseudoName, outputName);
+
+            Services.Add(service);
+
+            return new OptimusPrimeSource<T>(this, service.Output);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace OptimusPrime.Factory
             return newSource;
         }
 
-        public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T,bool> filter, string pseudoName = null)
+        public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T,bool> filterBlock, string pseudoName = null)
         {
             var collectionName = GetCollectionName<T>();
             var newSource = new CallSource<T>(this, collectionName);
@@ -71,7 +71,7 @@ namespace OptimusPrime.Factory
                 while (true)
                 {
                     T inputData = sourceReader.Get();
-                    var filteringResult = filter.Process(inputData);
+                    var filteringResult = filterBlock.Process(inputData);
                     if (!filteringResult) continue;
                     newSource.Collection.Add(inputData);
                     newSource.Release();

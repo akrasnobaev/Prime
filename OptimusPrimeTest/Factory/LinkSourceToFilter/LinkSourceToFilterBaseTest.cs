@@ -6,24 +6,25 @@ using Eurobot.Services;
 using NUnit.Framework;
 using OptimusPrime.Factory;
 using OptimusPrime.Templates;
+using OptimusPrimeTest;
 
-namespace OptimusPrimeTest.Call
+namespace OptimusPrimeTests.Factory.LinkSourceToFilter
 {
     [TestFixture]
-    public class LinkSourceToFilterTest
+    public abstract class LinkSourceToFilterBaseTest
     {
-        private CallFactory factory;
+        private IFactory factory;
         private SourceBlock<TestData> sourceBlock;
         private AutoResetEvent isReadFinished;
         private List<TestData> sourseData;
         private List<TestData> resultData;
         private ISourceReader<TestData> sourceReader;
 
+        protected abstract IFactory CreaFactory();
 
-        [SetUp]
         public void SetUp()
         {
-            factory = new CallFactory();
+            factory = CreaFactory();
             isReadFinished = new AutoResetEvent(false);
         }
 
