@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using OptimusPrime.Templates;
 
 namespace OptimusPrime.Factory
@@ -11,7 +10,9 @@ namespace OptimusPrime.Factory
             var collectionName = GetCollectionName<T>();
             var callSource = new CallSource<T>(this, collectionName);
 
-            // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+            /**
+             * Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+             */
             if (!string.IsNullOrEmpty(pseudoName))
                 _pseudoNames.Add(pseudoName, collectionName);
 
@@ -25,12 +26,18 @@ namespace OptimusPrime.Factory
             return callSource;
         }
 
-        public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> source, IChain<T1, T2> chain)
+        public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> source, IChain<T1, T2> chain, string pseudoName = null)
         {
             var callChain = (ICallChain<T1, T2>) chain;
             callChain.SetInputName(source.Name);
             var newSource = new CallSource<T2>(this, callChain.OutputName);
             var startSuccesed = new AutoResetEvent(false);
+
+            /**
+             * Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+             */
+            if (!string.IsNullOrEmpty(pseudoName))
+                _pseudoNames.Add(pseudoName, callChain.OutputName);
 
             var newSourceThread = new Thread(() =>
                 {
@@ -59,7 +66,9 @@ namespace OptimusPrime.Factory
             var newSource = new CallSource<T>(this, collectionName);
             var startSuccesed = new AutoResetEvent(false);
 
-            // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+            /**
+             * Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+             */
             if (!string.IsNullOrEmpty(pseudoName))
                 _pseudoNames.Add(pseudoName, collectionName);
 

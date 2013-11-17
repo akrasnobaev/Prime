@@ -62,10 +62,19 @@ namespace OptimusPrime.Factory
         /// <typeparam name="TOut">Итоговый тип данных.</typeparam>
         /// <param name="source">Источник данных типа TIn.</param>
         /// <param name="chain">Цепочка преодразования данных из типа TIn в тип TOut.</param>
+        /// /// <param name="pseudoName">Псевдоним. Используется при работе с лог-файлом.</param>
         /// <returns>Источник данных типа TOut.</returns>
-        ISource<TOut> LinkSourceToChain<TIn, TOut>(ISource<TIn> source, IChain<TIn, TOut> chain);
+        ISource<TOut> LinkSourceToChain<TIn, TOut>(ISource<TIn> source, IChain<TIn, TOut> chain, string pseudoName = null);
 
-        //TODO: написать документацию
+        /// <summary>
+        /// Создание источника данных из источника данных и фильтрующего блока.
+        /// Фильтрующий блок пропускает только чать данных типа T сгенерированных источником данных.
+        /// </summary>
+        /// <typeparam name="T">Тип данных.</typeparam>
+        /// <param name="source">Источник данных типа T.</param>
+        /// <param name="filterBlock">Фильтрующий блок.</param>
+        /// <param name="pseudoName">Псевдоним. Используется при работе с лог-файлом.</param>
+        /// <returns>Источник отфильтрованных данных типа T.</returns>
         ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T, bool> filterBlock, string pseudoName = null);
 
     }
