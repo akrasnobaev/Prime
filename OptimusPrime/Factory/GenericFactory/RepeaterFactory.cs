@@ -46,31 +46,5 @@ namespace OptimusPrime.Factory
                  return repeaterBlock.Conclude();
              }));
         }
-
-
-        public static IChain<TRepeaterBigIn, TRepeaterBigOut> CreateRepeaterWithPostCollection
-  <TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TDataCollection>(this IFactory factory,
-  IRepeaterBlock<TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TDataCollection> repeaterBlock,
-  ISourceCollector<TDataCollection> sourceCollector, IChain<TChainSmallIn, TChainSmallOut> privateChaine)
-        {
-            return factory.CreateChain(new FunctionalBlock<TRepeaterBigIn, TRepeaterBigOut>(
-            input =>
-            {
-                var functionalBlock = privateChaine.ToFunctionalBlock();
-                repeaterBlock.Start(input);
-                TChainSmallIn smallIn;
-                TChainSmallOut smallOut = default(TChainSmallOut);
-
-                TDataCollection collection = default(TDataCollection);
-
-                while (repeaterBlock.MakeIteration(collection, smallOut, out smallIn))
-                {
-                    smallOut = functionalBlock.Process(smallIn);
-                    collection = sourceCollector.Get();
-                }
-
-                return repeaterBlock.Conclude();
-            }));
-        }
     }
 }

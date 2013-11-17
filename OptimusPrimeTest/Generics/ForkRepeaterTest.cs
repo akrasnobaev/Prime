@@ -27,19 +27,16 @@ namespace OptimusPrimeTests.Generics
 
             public bool MakeIteration(CharSourceCollection sourceDatas, char oldPrivateOut, out char privateIn)
             {
-                if (position == 0)
-                    Assert.Null(sourceDatas);
-                else
-                {
-                    Assert.NotNull(sourceDatas);
+                Assert.NotNull(sourceDatas);
+                if (position != 0)
                     Assert.AreEqual(oldPrivateOut, sourceDatas.Data0);
-                }
                 
                 if (position >= input.Length)
                 {
                     privateIn = '\0';
                     return false;
                 }
+
                 privateIn = input[position];
                 position++;
                 return true;
@@ -56,7 +53,7 @@ namespace OptimusPrimeTests.Generics
             var privateChain = factory.CreateChain(new Func<char, char>(c => c));
             var fork = privateChain.Fork();
             var collector = factory.BindSources(fork.Source).CreateSyncCollector<CharSourceCollection>();
-            var repeater = factory.CreateRepeaterWithPostCollection(new RepeaterForFork(), collector, fork.Chain);
+            var repeater = factory.CreateRepeater(new RepeaterForFork(), collector, fork.Chain);
             factory.Start();
             repeater.ToFunctionalBlock().Process("abcdefghij");
             factory.Stop();
