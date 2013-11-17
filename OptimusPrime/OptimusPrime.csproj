@@ -52,6 +52,7 @@
     <Compile Include="Factory\CallFactory\CallChainFactory.cs" />
     <Compile Include="Factory\CallFactory\CallFactory.cs" />
     <Compile Include="Factory\CallFactory\CallSourceFactory.cs" />
+    <Compile Include="Factory\GenericFactory\ForkBlock.cs" />
     <Compile Include="Factory\GenericFactory\SourceCollector\SourceCollectorHelper.cs" />
     <Compile Include="Factory\GenericFactory\SourceCollector\Codegen.cs" />
     <Compile Include="Factory\IFactory.cs" />
