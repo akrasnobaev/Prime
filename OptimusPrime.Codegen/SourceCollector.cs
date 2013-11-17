@@ -71,11 +71,25 @@ public static SourceCollectorHelper{0} BindSources{0}(this IFactory factory, {1}
                 string.Format(@"
  public class SourceCollectorHelper{0} : SourceCollectorHelper
     {{
-        public SourceCollector<TOutput> CreateCollector<TOutput>()
+        [Obsolete(""Используйте CreateSyncCollector или CreateAsyncCollector. Этот метод производит тот же коллектор, что и раньше. Он теперь называется асинхронным"")]
+        public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection{0}, new()
         {{
-            return new SourceCollector<TOutput>(readers);
+            return new AsyncSourceCollector<TOutput>(readers);
         }}
+
+        public AsyncSourceCollector<TOutput> CreateAsyncCollector<TOutput>()
+            where TOutput : SourceDataCollection{0}, new()
+        {{
+            return new AsyncSourceCollector<TOutput>(readers);
+        }}
+
+        public SyncSourceCollector<TOutput> CreateSyncCollector<TOutput>()
+            where TOutput : SyncronousSourceDataCollection{0}, new()
+        {{
+            return new SyncSourceCollector<TOutput>(readers);
+        }}
+
     }}",
                 GenericParam(z)));
 
@@ -105,6 +119,30 @@ public static SourceCollectorHelper{0} BindSources{0}(this IFactory factory, {1}
                     ));
         }
 
+        static string SyncSourceDataCollection()
+        {
+            return GenerateFrom1(Max, z => string.Format(@"
+    public class SyncronousSourceDataCollection{0} : ISyncronousDataCollection
+    {{
+        public int FieldsCount
+        {{
+            get {{ return {1}; }}
+        }}
+        public void GetOne(int index, object data)
+        {{
+            {2}
+        }}
+
+        {3}
+    }}",
+                    GenericParam(z),
+                    z,
+                    GenerateByTemplate(z, "if (index==#) { Data#=(T#)data; }"),
+                     GenerateByTemplate(z, "public T# Data#;")
+                 
+                    ));
+        }
+
 
         [STAThread]
         public static void Main()
@@ -128,10 +166,13 @@ namespace OptimusPrime.Factory
     {1}
 
     {2}
+
+    {3}
 }}",
             FactoryExtensions(),
             SourceCollectorHelper(),
-            SourceDataCollection());
+            SourceDataCollection(),
+            SyncSourceDataCollection());
 
             Console.WriteLine(result);
             Clipboard.SetText(result);

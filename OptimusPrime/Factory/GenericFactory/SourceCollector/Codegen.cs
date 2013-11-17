@@ -73,47 +73,117 @@ namespace OptimusPrime.Factory
 
     public class SourceCollectorHelper<T0> : SourceCollectorHelper
     {
+        [Obsolete("Используйте CreateSyncCollector или CreateAsyncCollector. Этот метод производит тот же коллектор, что и раньше. Он теперь называется асинхронным")]
         public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0>, new()
         {
             return new AsyncSourceCollector<TOutput>(readers);
         }
+
+        public AsyncSourceCollector<TOutput> CreateAsyncCollector<TOutput>()
+            where TOutput : SourceDataCollection<T0>, new()
+        {
+            return new AsyncSourceCollector<TOutput>(readers);
+        }
+
+        public SyncSourceCollector<TOutput> CreateSyncCollector<TOutput>()
+            where TOutput : SyncronousSourceDataCollection<T0>, new()
+        {
+            return new SyncSourceCollector<TOutput>(readers);
+        }
+
     }
 
     public class SourceCollectorHelper<T0, T1> : SourceCollectorHelper
     {
+        [Obsolete("Используйте CreateSyncCollector или CreateAsyncCollector. Этот метод производит тот же коллектор, что и раньше. Он теперь называется асинхронным")]
         public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0, T1>, new()
         {
             return new AsyncSourceCollector<TOutput>(readers);
         }
+
+        public AsyncSourceCollector<TOutput> CreateAsyncCollector<TOutput>()
+            where TOutput : SourceDataCollection<T0, T1>, new()
+        {
+            return new AsyncSourceCollector<TOutput>(readers);
+        }
+
+        public SyncSourceCollector<TOutput> CreateSyncCollector<TOutput>()
+            where TOutput : SyncronousSourceDataCollection<T0, T1>, new()
+        {
+            return new SyncSourceCollector<TOutput>(readers);
+        }
+
     }
 
     public class SourceCollectorHelper<T0, T1, T2> : SourceCollectorHelper
     {
+        [Obsolete("Используйте CreateSyncCollector или CreateAsyncCollector. Этот метод производит тот же коллектор, что и раньше. Он теперь называется асинхронным")]
         public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0, T1, T2>, new()
         {
             return new AsyncSourceCollector<TOutput>(readers);
         }
+
+        public AsyncSourceCollector<TOutput> CreateAsyncCollector<TOutput>()
+            where TOutput : SourceDataCollection<T0, T1, T2>, new()
+        {
+            return new AsyncSourceCollector<TOutput>(readers);
+        }
+
+        public SyncSourceCollector<TOutput> CreateSyncCollector<TOutput>()
+            where TOutput : SyncronousSourceDataCollection<T0, T1, T2>, new()
+        {
+            return new SyncSourceCollector<TOutput>(readers);
+        }
+
     }
 
     public class SourceCollectorHelper<T0, T1, T2, T3> : SourceCollectorHelper
     {
+        [Obsolete("Используйте CreateSyncCollector или CreateAsyncCollector. Этот метод производит тот же коллектор, что и раньше. Он теперь называется асинхронным")]
         public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0, T1, T2, T3>, new()
         {
             return new AsyncSourceCollector<TOutput>(readers);
         }
+
+        public AsyncSourceCollector<TOutput> CreateAsyncCollector<TOutput>()
+            where TOutput : SourceDataCollection<T0, T1, T2, T3>, new()
+        {
+            return new AsyncSourceCollector<TOutput>(readers);
+        }
+
+        public SyncSourceCollector<TOutput> CreateSyncCollector<TOutput>()
+            where TOutput : SyncronousSourceDataCollection<T0, T1, T2, T3>, new()
+        {
+            return new SyncSourceCollector<TOutput>(readers);
+        }
+
     }
 
     public class SourceCollectorHelper<T0, T1, T2, T3, T4> : SourceCollectorHelper
     {
+        [Obsolete("Используйте CreateSyncCollector или CreateAsyncCollector. Этот метод производит тот же коллектор, что и раньше. Он теперь называется асинхронным")]
         public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0, T1, T2, T3, T4>, new()
         {
             return new AsyncSourceCollector<TOutput>(readers);
         }
+
+        public AsyncSourceCollector<TOutput> CreateAsyncCollector<TOutput>()
+            where TOutput : SourceDataCollection<T0, T1, T2, T3, T4>, new()
+        {
+            return new AsyncSourceCollector<TOutput>(readers);
+        }
+
+        public SyncSourceCollector<TOutput> CreateSyncCollector<TOutput>()
+            where TOutput : SyncronousSourceDataCollection<T0, T1, T2, T3, T4>, new()
+        {
+            return new SyncSourceCollector<TOutput>(readers);
+        }
+
     }
 
 
@@ -206,5 +276,97 @@ namespace OptimusPrime.Factory
             if (index == 3) { if (List3 == null) List3 = new List<T3>(); List3.AddRange(source.Cast<T3>()); }
             if (index == 4) { if (List4 == null) List4 = new List<T4>(); List4.AddRange(source.Cast<T4>()); }
         }
+    }
+
+
+
+    public class SyncronousSourceDataCollection<T0> : ISyncronousDataCollection
+    {
+        public int FieldsCount
+        {
+            get { return 1; }
+        }
+        public void GetOne(int index, object data)
+        {
+            if (index == 0) { Data0 = (T0)data; }
+        }
+
+        public T0 Data0;
+    }
+
+    public class SyncronousSourceDataCollection<T0, T1> : ISyncronousDataCollection
+    {
+        public int FieldsCount
+        {
+            get { return 2; }
+        }
+        public void GetOne(int index, object data)
+        {
+            if (index == 0) { Data0 = (T0)data; }
+            if (index == 1) { Data1 = (T1)data; }
+        }
+
+        public T0 Data0;
+        public T1 Data1;
+    }
+
+    public class SyncronousSourceDataCollection<T0, T1, T2> : ISyncronousDataCollection
+    {
+        public int FieldsCount
+        {
+            get { return 3; }
+        }
+        public void GetOne(int index, object data)
+        {
+            if (index == 0) { Data0 = (T0)data; }
+            if (index == 1) { Data1 = (T1)data; }
+            if (index == 2) { Data2 = (T2)data; }
+        }
+
+        public T0 Data0;
+        public T1 Data1;
+        public T2 Data2;
+    }
+
+    public class SyncronousSourceDataCollection<T0, T1, T2, T3> : ISyncronousDataCollection
+    {
+        public int FieldsCount
+        {
+            get { return 4; }
+        }
+        public void GetOne(int index, object data)
+        {
+            if (index == 0) { Data0 = (T0)data; }
+            if (index == 1) { Data1 = (T1)data; }
+            if (index == 2) { Data2 = (T2)data; }
+            if (index == 3) { Data3 = (T3)data; }
+        }
+
+        public T0 Data0;
+        public T1 Data1;
+        public T2 Data2;
+        public T3 Data3;
+    }
+
+    public class SyncronousSourceDataCollection<T0, T1, T2, T3, T4> : ISyncronousDataCollection
+    {
+        public int FieldsCount
+        {
+            get { return 5; }
+        }
+        public void GetOne(int index, object data)
+        {
+            if (index == 0) { Data0 = (T0)data; }
+            if (index == 1) { Data1 = (T1)data; }
+            if (index == 2) { Data2 = (T2)data; }
+            if (index == 3) { Data3 = (T3)data; }
+            if (index == 4) { Data4 = (T4)data; }
+        }
+
+        public T0 Data0;
+        public T1 Data1;
+        public T2 Data2;
+        public T3 Data3;
+        public T4 Data4;
     }
 }
