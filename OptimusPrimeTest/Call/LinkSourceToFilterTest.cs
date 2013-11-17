@@ -10,14 +10,15 @@ using OptimusPrime.Templates;
 namespace OptimusPrimeTest.Call
 {
     [TestFixture]
-    public class CallFilteringTest
+    public class LinkSourceToFilterTest
     {
         private CallFactory factory;
-        private IChain<TestData, bool> chain;
         private SourceBlock<TestData> sourceBlock;
-        private ISource<TestData> source;
         private AutoResetEvent isReadFinished;
-        private TestData outTestData;
+        private List<TestData> sourseData;
+        private List<TestData> resultData;
+        private ISourceReader<TestData> sourceReader;
+
 
         [SetUp]
         public void SetUp()
@@ -29,42 +30,44 @@ namespace OptimusPrimeTest.Call
         [Test]
         public void TestGet()
         {
-            chain = factory.CreateChain<TestData, bool>(AddOne);
+            var chain = factory.CreateChain<TestData, bool>(IsEven);
             sourceBlock = new SourceBlock<TestData>();
-            source = factory.CreateSource(sourceBlock);
+            var source = factory.CreateSource(sourceBlock);
 
             var testSource = factory.LinkSourceToFilter(source, chain);
-            var testDatas = TestData.CreateData(100);
-            var sourceReader = testSource.CreateReader();
+            sourseData = TestData.CreateData(100);
+            sourceReader = testSource.CreateReader();
+            resultData = sourseData.Where(z => z.Number % 2 == 0).ToList();
 
             factory.Start();
 
-            new Thread(() => WriteData(testDatas, true)).Start();
-            new Thread(() => ReadData(testDatas.Where(z=>z.Number>10).ToList(), sourceReader, true)).Start();
+            new Thread(() => WriteData(true)).Start();
+            new Thread(() => ReadData(true)).Start();
             isReadFinished.WaitOne();
 
+            TestData outTestData;
             Assert.IsFalse(sourceReader.TryGet(out outTestData));
             Assert.AreEqual(source.Name, chain.InputName);
             Assert.AreEqual(testSource.Name, chain.OutputName);
         }
 
-        private void ReadData(IEnumerable<TestData> testDatas, ISourceReader<TestData> reader, bool isWait)
+        private void ReadData(bool isWait)
         {
             var random = new Random();
-            foreach (var testData in testDatas)
+            foreach (var testData in resultData)
             {
                 if(isWait)
                     Thread.Sleep(random.Next(10));
-                var actual = reader.Get();
+                var actual = sourceReader.Get();
                 testData.AssertAreEqual(actual);
             }
             isReadFinished.Set();
         }
 
-        private void WriteData(IEnumerable<TestData> datas, bool isWait = false)
+        private void WriteData(bool isWait = false)
         {
             var random = new Random();
-            foreach (var data in datas)
+            foreach (var data in sourseData)
             {
                 if(isWait)
                     Thread.Sleep(random.Next(10));
@@ -72,10 +75,10 @@ namespace OptimusPrimeTest.Call
             }
         }
 
-        private static bool AddOne(TestData input)
+        private static bool IsEven(TestData input)
         {
             var result = input.Clone();
-            return result.Number > 10;
+            return result.Number % 2 == 0;
         }
 
         [TearDown]
