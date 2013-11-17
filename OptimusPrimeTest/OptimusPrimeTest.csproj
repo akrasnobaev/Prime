@@ -51,9 +51,11 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Call\LinkSourceToChainTest.cs" />
     <Compile Include="Call\CallSourceTest.cs" />
     <Compile Include="Factory\FactoryTest.cs" />
+    <Compile Include="Factory\LinkSourceToChain\LinkSourceToChainCallTest.cs" />
+    <Compile Include="Factory\LinkSourceToChain\LinkSourceToChainBaseTest.cs" />
+    <Compile Include="Factory\LinkSourceToChain\LinkSourceToChainOptimusPrimeTest.cs" />
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterBaseTest.cs" />
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterCallTest.cs" />
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterOptimusPrimeTest.cs" />

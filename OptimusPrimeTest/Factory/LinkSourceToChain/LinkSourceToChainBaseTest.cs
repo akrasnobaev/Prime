@@ -5,41 +5,43 @@ using Eurobot.Services;
 using NUnit.Framework;
 using OptimusPrime.Factory;
 using OptimusPrime.Templates;
+using OptimusPrimeTest;
 
-namespace OptimusPrimeTest.Call
+namespace OptimusPrimeTests.Factory.LinkSourceToChain
 {
     [TestFixture]
-    public class CallChainTest
+    public abstract class LinkSourceToChainBaseTest
     {
-        private CallFactory factory;
-        private IChain<TestData, TestData> chain;
+        private IFactory factory;
         private SourceBlock<TestData> sourceBlock;
-        private ISource<TestData> source;
         private AutoResetEvent isReadFinished;
         private TestData outTestData;
+        private List<TestData> testDatas;
+        private ISourceReader<TestData> sourceReader;
 
-        [SetUp]
+        protected abstract IFactory CreaFactory();
+        
         public void SetUp()
         {
-            factory = new CallFactory();
+            factory = CreaFactory();
             isReadFinished = new AutoResetEvent(false);
         }
 
         [Test]
         public void TestGet()
         {
-            chain = factory.CreateChain<TestData, TestData>(AddOne);
+            var chain = factory.CreateChain<TestData, TestData>(AddOne);
             sourceBlock = new SourceBlock<TestData>();
-            source = factory.CreateSource(sourceBlock);
+            var source = factory.CreateSource(sourceBlock);
 
             var testSource = factory.LinkSourceToChain(source, chain);
-            var testDatas = TestData.CreateData(100);
-            var sourceReader = testSource.CreateReader();
+            testDatas = TestData.CreateData(100);
+            sourceReader = testSource.CreateReader();
 
             factory.Start();
 
-            new Thread(() => WriteData(testDatas, true)).Start();
-            new Thread(() => ReadData(testDatas, sourceReader, true)).Start();
+            new Thread(() => WriteData(true)).Start();
+            new Thread(() => ReadData(true)).Start();
             isReadFinished.WaitOne();
 
             Assert.IsFalse(sourceReader.TryGet(out outTestData));
@@ -47,24 +49,24 @@ namespace OptimusPrimeTest.Call
             Assert.AreEqual(testSource.Name, chain.OutputName);
         }
 
-        private void ReadData(IEnumerable<TestData> testDatas, ISourceReader<TestData> reader, bool isWait)
+        private void ReadData(bool isWait)
         {
             var random = new Random();
             foreach (var testData in testDatas)
             {
                 if(isWait)
                     Thread.Sleep(random.Next(10));
-                var actual = reader.Get();
+                var actual = sourceReader.Get();
                 actual.Number--;
                 testData.AssertAreEqual(actual);
             }
             isReadFinished.Set();
         }
 
-        private void WriteData(IEnumerable<TestData> datas, bool isWait = false)
+        private void WriteData(bool isWait = false)
         {
             var random = new Random();
-            foreach (var data in datas)
+            foreach (var data in testDatas)
             {
                 if(isWait)
                     Thread.Sleep(random.Next(10));

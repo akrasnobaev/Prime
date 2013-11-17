@@ -36,7 +36,7 @@ namespace OptimusPrimeTests.Factory.LinkSourceToFilter
             var source = factory.CreateSource(sourceBlock);
 
             var testSource = factory.LinkSourceToFilter(source, chain);
-            sourseData = TestData.CreateData(100);
+            sourseData = TestData.CreateData(20);
             sourceReader = testSource.CreateReader();
             resultData = sourseData.Where(z => z.Number % 2 == 0).ToList();
 
