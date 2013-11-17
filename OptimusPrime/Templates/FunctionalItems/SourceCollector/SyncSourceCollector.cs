@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OptimusPrime.Templates
 {
-    public class SyncSourceCollector<TDataCollection>
+    public class SyncSourceCollector<TDataCollection> : ISourceCollector<TDataCollection>
         where TDataCollection : ISyncronousDataCollection, new()
     {
         private readonly ISourceReader[] sourceReaders;
