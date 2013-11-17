@@ -37,6 +37,9 @@
     <Reference Include="BookSleeve">
       <HintPath>..\..\packages\BookSleeve.1.3.35\lib\BookSleeve.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -74,6 +77,9 @@
       <Project>{12e65f04-c271-4707-a380-1e98b8b078be}</Project>
       <Name>OptimusPrime %28OptimusPrime\OptimusPrime%29</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
