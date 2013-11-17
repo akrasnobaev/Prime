@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using OptimusPrime.Factory;
+using OptimusPrime.Templates;
 
 namespace OptimusPrimeTests.Generics
 {
     [TestFixture]
     public class ForkTest
     {
-        void Test(IFactory factory)
+        void Fork(IFactory factory)
         {
             var chain = factory.CreateChain(new Func<int, int>(z => z + 1));
             var fork = chain.Fork();
@@ -31,13 +32,13 @@ namespace OptimusPrimeTests.Generics
         [Test]
         public void ForkOptimus()
         {
-            Test(new OptimusPrimeFactory());
+            Fork(new OptimusPrimeFactory());
         }
 
         [Test]
         public void ForkLiberty()
         {
-            Test(new CallFactory());
+            Fork(new CallFactory());
         }
     }
 }
