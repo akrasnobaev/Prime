@@ -66,7 +66,7 @@ namespace OptimusPrime.Factory
         ISource<TOut> LinkSourceToChain<TIn, TOut>(ISource<TIn> source, IChain<TIn, TOut> chain);
 
         //TODO: написать документацию
-        ISource<T> LinkSourceToFilter<T>(ISource<T> source, IChain<T,bool> filter);
+        ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T, bool> filter, string pseudoName = null);
 
     }
      

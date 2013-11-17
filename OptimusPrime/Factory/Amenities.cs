@@ -39,16 +39,16 @@ namespace OptimusPrime.Factory
 
         public static ISource<T>
             Where<T>
-            (this ISource<T> source, Func<T, bool> predicate, string pseudoname = null)
+            (this ISource<T> source, Func<T, bool> predicate)
         {
-            return source.Factory.LinkSourceToFilter(source, source.Factory.CreateChain(predicate, pseudoname));
+            return source.Factory.LinkSourceToFilter(source, new FunctionalBlock<T, bool>(predicate));
         }
 
         public static ISource<T>
             Where<T>
             (this ISource<T> source, IFunctionalBlock<T, bool> predicate, string pseudoName = null)
         {
-            return source.Where(predicate.Process, pseudoName);
+            return source.Factory.LinkSourceToFilter(source, predicate, pseudoName);
         }
     } 
 }

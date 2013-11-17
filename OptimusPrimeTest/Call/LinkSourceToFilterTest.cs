@@ -30,7 +30,7 @@ namespace OptimusPrimeTest.Call
         [Test]
         public void TestGet()
         {
-            var chain = factory.CreateChain<TestData, bool>(IsEven);
+            var chain = new FunctionalBlock<TestData, bool>(IsEven);
             sourceBlock = new SourceBlock<TestData>();
             var source = factory.CreateSource(sourceBlock);
 
@@ -47,8 +47,6 @@ namespace OptimusPrimeTest.Call
 
             TestData outTestData;
             Assert.IsFalse(sourceReader.TryGet(out outTestData));
-            Assert.AreEqual(source.Name, chain.InputName);
-            Assert.AreEqual(testSource.Name, chain.OutputName);
         }
 
         private void ReadData(bool isWait)

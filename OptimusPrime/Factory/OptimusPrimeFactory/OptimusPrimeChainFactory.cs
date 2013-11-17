@@ -42,12 +42,5 @@ namespace OptimusPrime.Factory
             secondChain.Input.ChangeName(firstChain.Output.Name);
             return new OptimusPrimeChain<TIn, TOut>(this, firstChain.Input, secondChain.Output);
         }
-
-
-        public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IChain<T, bool> filter)
-        {
-            //TODO: не знаю, как это делать =(
-            throw new NotImplementedException();
-        }
     }
 }

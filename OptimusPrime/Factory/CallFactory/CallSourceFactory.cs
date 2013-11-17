@@ -53,12 +53,15 @@ namespace OptimusPrime.Factory
             return newSource;
         }
 
-        public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IChain<T,bool> filter)
+        public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T,bool> filter, string pseudoName = null)
         {
-            var callFilter = (ICallChain<T, bool>)filter;
-            callFilter.SetInputName(source.Name);
-            var newSource = new CallSource<T>(this, callFilter.OutputName);
+            var collectionName = GetCollectionName<T>();
+            var newSource = new CallSource<T>(this, collectionName);
             var startSuccesed = new AutoResetEvent(false);
+
+            // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+            if (!string.IsNullOrEmpty(pseudoName))
+                _pseudoNames.Add(pseudoName, collectionName);
 
             var newSourceThread = new Thread(() =>
             {
@@ -68,7 +71,7 @@ namespace OptimusPrime.Factory
                 while (true)
                 {
                     T inputData = sourceReader.Get();
-                    var filteringResult = callFilter.Action(inputData);
+                    var filteringResult = filter.Process(inputData);
                     if (!filteringResult) continue;
                     newSource.Collection.Add(inputData);
                     newSource.Release();

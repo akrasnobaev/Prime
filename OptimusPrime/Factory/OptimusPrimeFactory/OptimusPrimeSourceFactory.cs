@@ -1,4 +1,5 @@
-﻿using OptimusPrime.OprimusPrimeCore.Helpers;
+﻿using System;
+using OptimusPrime.OprimusPrimeCore.Helpers;
 using OptimusPrime.Templates;
 
 namespace OptimusPrime.Factory
@@ -20,14 +21,19 @@ namespace OptimusPrime.Factory
             return new OptimusPrimeSource<TPublic>(this,service.Output);
         }
 
-        public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> _source,
-                                                                 IChain<T1, T2> _chain)
+        public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> _source, IChain<T1, T2> _chain)
         {
             var chain = _chain as IOptimusPrimeChane<T1, T2>;
             var source = _source as IOptimusPrimeSource<T1>;
             chain.Input.ChangeName(source.Output.Name);
 
             return new OptimusPrimeSource<T2>(this,chain.Output);
+        }
+
+        public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T, bool> chain, string pseudoName = null)
+        {
+            throw new NotImplementedException();
+
         }
     }
 }
