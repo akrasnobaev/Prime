@@ -5,6 +5,7 @@ namespace OptimusPrime.Templates
     public interface ISourceReader
     {
         IEnumerable GetCollectionNonTypized();
+        object GetNotTypized();
     }
 
     public interface ISourceReader<T> : ISourceReader

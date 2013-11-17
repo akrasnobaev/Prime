@@ -73,46 +73,46 @@ namespace OptimusPrime.Factory
 
     public class SourceCollectorHelper<T0> : SourceCollectorHelper
     {
-        public SourceCollector<TOutput> CreateCollector<TOutput>()
+        public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0>, new()
         {
-            return new SourceCollector<TOutput>(readers);
+            return new AsyncSourceCollector<TOutput>(readers);
         }
     }
 
     public class SourceCollectorHelper<T0, T1> : SourceCollectorHelper
     {
-        public SourceCollector<TOutput> CreateCollector<TOutput>()
+        public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0, T1>, new()
         {
-            return new SourceCollector<TOutput>(readers);
+            return new AsyncSourceCollector<TOutput>(readers);
         }
     }
 
     public class SourceCollectorHelper<T0, T1, T2> : SourceCollectorHelper
     {
-        public SourceCollector<TOutput> CreateCollector<TOutput>()
+        public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0, T1, T2>, new()
         {
-            return new SourceCollector<TOutput>(readers);
+            return new AsyncSourceCollector<TOutput>(readers);
         }
     }
 
     public class SourceCollectorHelper<T0, T1, T2, T3> : SourceCollectorHelper
     {
-        public SourceCollector<TOutput> CreateCollector<TOutput>()
+        public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0, T1, T2, T3>, new()
         {
-            return new SourceCollector<TOutput>(readers);
+            return new AsyncSourceCollector<TOutput>(readers);
         }
     }
 
     public class SourceCollectorHelper<T0, T1, T2, T3, T4> : SourceCollectorHelper
     {
-        public SourceCollector<TOutput> CreateCollector<TOutput>()
+        public AsyncSourceCollector<TOutput> CreateCollector<TOutput>()
             where TOutput : SourceDataCollection<T0, T1, T2, T3, T4>, new()
         {
-            return new SourceCollector<TOutput>(readers);
+            return new AsyncSourceCollector<TOutput>(readers);
         }
     }
 
