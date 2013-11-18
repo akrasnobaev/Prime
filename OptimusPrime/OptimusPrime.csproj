@@ -83,6 +83,7 @@
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeSourceService.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\SourceBlock.cs" />
     <Compile Include="Templates\FunctionalItems\IRepeaterBlock.cs" />
+    <Compile Include="Templates\FunctionalItems\SourceCollector\CombinedCollector.cs" />
     <Compile Include="Templates\FunctionalItems\SourceCollector\ISourceCollector.cs" />
     <Compile Include="Templates\FunctionalItems\SourceCollector\ISourceDataCollection.cs" />
     <Compile Include="Templates\FunctionalItems\SourceCollector\ISourceDataCollectionFactory.cs" />
