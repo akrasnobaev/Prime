@@ -52,14 +52,16 @@
     <Compile Include="Factory\CallFactory\CallChainFactory.cs" />
     <Compile Include="Factory\CallFactory\CallFactory.cs" />
     <Compile Include="Factory\CallFactory\CallSourceFactory.cs" />
-    <Compile Include="Factory\GenericFactory\ForkBlock.cs" />
-    <Compile Include="Factory\GenericFactory\SourceCollector\SourceCollectorHelper.cs" />
-    <Compile Include="Factory\GenericFactory\SourceCollector\Codegen.cs" />
+    <Compile Include="Generics\Fork\FactoryExtensions.cs" />
+    <Compile Include="Generics\Fork\Fork.cs" />
+    <Compile Include="Generics\Fork\ForkBlock.cs" />
+    <Compile Include="Generics\SourceCollector\SourceCollectorHelper.cs" />
+    <Compile Include="Generics\SourceCollector\Codegen.cs" />
     <Compile Include="Factory\IFactory.cs" />
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeChainFactory.cs" />
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeFactory.cs" />
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeSourceFactory.cs" />
-    <Compile Include="Factory\GenericFactory\RepeaterFactory.cs" />
+    <Compile Include="Generics\Repeater\FactoryExtensions.cs" />
     <Compile Include="OprimusPrimeCore\Exception\OptimusPrimeException.cs" />
     <Compile Include="OprimusPrimeCore\Extension\SerializeExtension.cs" />
     <Compile Include="OprimusPrimeCore\Helpers\PathHelper.cs" />
@@ -83,14 +85,14 @@
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeFunctionalService.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeSourceService.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\SourceBlock.cs" />
-    <Compile Include="Templates\FunctionalItems\IRepeaterBlock.cs" />
-    <Compile Include="Templates\FunctionalItems\SourceCollector\CombinedCollector.cs" />
-    <Compile Include="Templates\FunctionalItems\SourceCollector\ISourceCollector.cs" />
-    <Compile Include="Templates\FunctionalItems\SourceCollector\ISourceDataCollection.cs" />
-    <Compile Include="Templates\FunctionalItems\SourceCollector\ISourceDataCollectionFactory.cs" />
-    <Compile Include="Templates\FunctionalItems\SourceCollector\AsyncSourceCollector.cs" />
-    <Compile Include="Templates\FunctionalItems\SourceCollector\ISyncronousDataCollection.cs" />
-    <Compile Include="Templates\FunctionalItems\SourceCollector\SyncSourceCollector.cs" />
+    <Compile Include="Generics\Repeater\IRepeaterBlock.cs" />
+    <Compile Include="Generics\SourceCollector\CombinedCollector.cs" />
+    <Compile Include="Generics\SourceCollector\ISourceCollector.cs" />
+    <Compile Include="Generics\SourceCollector\ISourceDataCollection.cs" />
+    <Compile Include="Generics\SourceCollector\ISourceDataCollectionFactory.cs" />
+    <Compile Include="Generics\SourceCollector\AsyncSourceCollector.cs" />
+    <Compile Include="Generics\SourceCollector\ISyncronousDataCollection.cs" />
+    <Compile Include="Generics\SourceCollector\SyncSourceCollector.cs" />
     <Compile Include="Templates\FunctionalItems\SourceReader\ISourceReader.cs" />
     <Compile Include="Templates\FunctionalItems\SourceReader\OptimusPrimeReader.cs" />
     <Compile Include="Templates\FunctionalItems\SourceReader\SourceReader.cs" />
@@ -112,7 +114,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Factory\GenericFactory\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

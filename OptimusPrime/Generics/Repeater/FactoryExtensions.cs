@@ -2,7 +2,7 @@
 
 namespace OptimusPrime.Factory
 {
-    public  static  partial class IFactoryExtensions
+    public static partial class FactoryExtensions
     {
         public static IChain<TRepeaterBigIn, TRepeaterBigOut> CreateRepeater
           <TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TDataCollection>(this IFactory factory,

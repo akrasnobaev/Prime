@@ -7,7 +7,7 @@ using OptimusPrime.Templates;
 
 namespace OptimusPrime.Factory
 {
-    public static class IOptimusPrimeAmenities
+    public static partial class FactoryExtensions
     {
         public static IChain<TExternalInput, TExternalOutput>
             Link<TExternalInput, TExternalOutput, TMiddle>
@@ -51,12 +51,6 @@ namespace OptimusPrime.Factory
             return source.Factory.LinkSourceToFilter(source, predicate, pseudoName);
         }
 
-        public static Fork<TIn, TOut> Fork<TIn, TOut>(this IChain<TIn, TOut> chain)
-        {
-            var forkBlock = new ForkBlock<TIn, TOut>(new Func<TIn, TOut>(chain.ToFunctionalBlock().Process));
-            return new Fork<TIn, TOut>(
-                chain.Factory.CreateChain(forkBlock.ForkedAction),
-                chain.Factory.CreateSource(forkBlock.Source));
-        }
+
     } 
 }
