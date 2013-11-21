@@ -1,4 +1,5 @@
-﻿using OptimusPrime.Templates;
+﻿using OptimusPrime.Factory;
+using OptimusPrime.Templates;
 using System;
 using System.Collections.Generic;
 using System.Linq;

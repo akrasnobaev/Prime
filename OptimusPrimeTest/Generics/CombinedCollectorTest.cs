@@ -7,6 +7,7 @@ using OptimusPrime.Factory;
 using OptimusPrime.Templates;
 using Eurobot.Services;
 using System.Threading;
+using OptimusPrime;
 
 namespace OptimusPrimeTests.Generics
 {

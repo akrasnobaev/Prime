@@ -1,4 +1,5 @@
-﻿using OptimusPrime.Templates;
+﻿using OptimusPrime.Factory;
+using OptimusPrime.Templates;
 
 namespace OptimusPrime.Factory
 {

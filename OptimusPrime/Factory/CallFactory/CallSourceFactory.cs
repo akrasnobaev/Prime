@@ -1,10 +1,28 @@
 ﻿using System.Threading;
 using OptimusPrime.Templates;
+using System.Collections.Generic;
+using OptimusPrime.Generics;
 
 namespace OptimusPrime.Factory
 {
     public partial class CallFactory
     {
+        
+        public void RegisterGenericService(IGenericService service)
+        {
+            var startSuccesed = new AutoResetEvent(false);
+
+            var newSourceThread = new Thread(() =>
+                {
+                   service.Initialize();
+                    startSuccesed.Set();
+                    service.DoWork();
+                });
+
+            _threads.Add(newSourceThread);
+            _threadsStartSuccessed.Add(startSuccesed);
+        }
+
         public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock, string pseudoName = null)
         {
             var collectionName = GetCollectionName<T>();

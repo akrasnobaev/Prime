@@ -1,4 +1,5 @@
-﻿using OptimusPrime.Templates;
+﻿using OptimusPrime.Generics;
+using OptimusPrime.Templates;
 using System;
 namespace OptimusPrime.Factory
 {
@@ -77,6 +78,8 @@ namespace OptimusPrime.Factory
         /// <returns>Источник отфильтрованных данных типа T.</returns>
         ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T, bool> filterBlock, string pseudoName = null);
 
+        
+        void RegisterGenericService(IGenericService service);
     }
      
     public static partial class IFactoryExtensions

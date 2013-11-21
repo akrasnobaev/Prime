@@ -5,6 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using OptimusPrime.Factory;
 using OptimusPrime.Templates;
+using OptimusPrime;
 
 namespace OptimusPrimeTests.Generics
 {

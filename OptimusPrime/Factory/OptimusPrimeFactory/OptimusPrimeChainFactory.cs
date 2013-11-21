@@ -42,5 +42,11 @@ namespace OptimusPrime.Factory
             secondChain.Input.ChangeName(firstChain.Output.Name);
             return new OptimusPrimeChain<TIn, TOut>(this, firstChain.Input, secondChain.Output);
         }
+
+
+        public void RegisterGenericService(Generics.IGenericService service)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
