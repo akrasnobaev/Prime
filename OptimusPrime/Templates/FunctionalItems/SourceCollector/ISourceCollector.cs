@@ -1,6 +1,6 @@
 ﻿namespace OptimusPrime.Templates
 {
-    public interface ISourceCollector<TDataCollection> where TDataCollection : ISourceDataCollection
+    public interface ISourceCollector<TDataCollection>
     {
         TDataCollection Get();
     }

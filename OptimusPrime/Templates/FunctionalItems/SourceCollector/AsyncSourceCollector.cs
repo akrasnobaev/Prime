@@ -2,12 +2,12 @@
 
 namespace OptimusPrime.Templates
 {
-    public class SourceCollector<TDataCollection> : ISourceCollector<TDataCollection>
+    public class AsyncSourceCollector<TDataCollection> : ISourceCollector<TDataCollection>
         where TDataCollection : ISourceDataCollection, new()
     {
         private readonly ISourceReader[] sourceReaders;
 
-        public SourceCollector(ISourceReader[] sourceReaders)
+        public AsyncSourceCollector(ISourceReader[] sourceReaders)
         {
             this.sourceReaders = sourceReaders;
         }

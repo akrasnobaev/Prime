@@ -18,6 +18,11 @@ namespace OptimusPrime.Templates
             return GetCollection();
         }
 
+        public object GetNotTypized()
+        {
+            return Get();
+        }
+
         public T Get()
         {
             return _input.Get<T>();

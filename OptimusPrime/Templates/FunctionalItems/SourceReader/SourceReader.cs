@@ -55,7 +55,10 @@ namespace OptimusPrime.Templates
         {
             return GetCollection();
         }
-
+        public object GetNotTypized()
+        {
+            return Get();
+        }
         public Semaphore AvailableData { get; private set; }
     }
 }

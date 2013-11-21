@@ -8,7 +8,6 @@ namespace OptimusPrime.Factory
           <TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TDataCollection>(this IFactory factory,
           IRepeaterBlock<TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TDataCollection> repeaterBlock,
           ISourceCollector<TDataCollection> sourceCollector, IChain<TChainSmallIn, TChainSmallOut> privateChaine)
-          where TDataCollection : ISourceDataCollection
         {
             return factory.CreateChain(new FunctionalBlock<TRepeaterBigIn, TRepeaterBigOut>(
             input =>

@@ -59,6 +59,9 @@
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterBaseTest.cs" />
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterCallTest.cs" />
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterOptimusPrimeTest.cs" />
+    <Compile Include="Generics\CombinedCollectorTest.cs" />
+    <Compile Include="Generics\ForkRepeaterTest.cs" />
+    <Compile Include="Generics\ForkTest.cs" />
     <Compile Include="Logger\CallLoggerTest.cs" />
     <Compile Include="Logger\LoggerTestBase.cs" />
     <Compile Include="Logger\OptimusPrimeLoggerTest.cs" />
