@@ -52,6 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Call\CallSourceTest.cs" />
+    <Compile Include="CommonClasses.cs" />
     <Compile Include="Factory\FactoryTest.cs" />
     <Compile Include="Factory\LinkSourceToChain\LinkSourceToChainCallTest.cs" />
     <Compile Include="Factory\LinkSourceToChain\LinkSourceToChainBaseTest.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Generics\CombinedCollectorTest.cs" />
     <Compile Include="Generics\ForkRepeaterTest.cs" />
     <Compile Include="Generics\ForkTest.cs" />
+    <Compile Include="Generics\ListenerTest.cs" />
     <Compile Include="Logger\CallLoggerTest.cs" />
     <Compile Include="Logger\LoggerTestBase.cs" />
     <Compile Include="Logger\OptimusPrimeLoggerTest.cs" />
