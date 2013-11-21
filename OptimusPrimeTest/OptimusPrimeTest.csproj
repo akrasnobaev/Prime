@@ -61,6 +61,7 @@
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterCallTest.cs" />
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterOptimusPrimeTest.cs" />
     <Compile Include="Generics\CombinedCollectorTest.cs" />
+    <Compile Include="Generics\EnumerableLinkTest.cs" />
     <Compile Include="Generics\ForkRepeaterTest.cs" />
     <Compile Include="Generics\ForkTest.cs" />
     <Compile Include="Generics\ListenerTest.cs" />
