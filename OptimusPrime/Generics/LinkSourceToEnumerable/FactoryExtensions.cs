@@ -12,7 +12,7 @@ namespace OptimusPrime.Factory
         public static ISource<TOutput> LinkToEnumerable<TInput,TOutput>
             (this ISource<TInput> input, Func<TInput,IEnumerable<TOutput>> process, string pseudoname=null)
         {
-            var service = new LinkToEnumerableService<TInput, TOutput>(input, process);
+            var service = new LinkSourceToEnumerableService<TInput, TOutput>(input, process);
             input.Factory.RegisterGenericService(service);
             return input.Factory.CreateSource(service.SourceBlock, pseudoname);
         }

@@ -52,8 +52,10 @@
     <Compile Include="Factory\CallFactory\CallChainFactory.cs" />
     <Compile Include="Factory\CallFactory\CallFactory.cs" />
     <Compile Include="Factory\CallFactory\CallSourceFactory.cs" />
-    <Compile Include="Generics\EnumerableChain\FactoryExtensions.cs" />
-    <Compile Include="Generics\EnumerableChain\LinkToEnumerableService.cs" />
+    <Compile Include="Generics\LinkSourceToChain\FactoryExtensions.cs" />
+    <Compile Include="Generics\LinkSourceToChain\LinkSourceChainService.cs" />
+    <Compile Include="Generics\LinkSourceToEnumerable\FactoryExtensions.cs" />
+    <Compile Include="Generics\LinkSourceToEnumerable\LinkSourceToEnumerableService.cs" />
     <Compile Include="Generics\Fork\FactoryExtensions.cs" />
     <Compile Include="Generics\Fork\Fork.cs" />
     <Compile Include="Generics\Fork\ForkBlock.cs" />

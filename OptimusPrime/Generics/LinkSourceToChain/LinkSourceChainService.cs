@@ -7,14 +7,14 @@ using System.Text;
 
 namespace OptimusPrime.Generics
 {
-    public class LinkToEnumerableService<TInput,TOutput> : IGenericService
+    public class LinkSourceToChainService<TInput,TOutput> : IGenericService
     {
-        Func<TInput, IEnumerable<TOutput>> process;
+        Func<TInput, TOutput> process;
         public readonly SourceBlock<TOutput> SourceBlock = new SourceBlock<TOutput>();
         ISource<TInput> input;
         ISourceReader<TInput> reader;
-        
-        public LinkToEnumerableService(ISource<TInput> input, Func<TInput,IEnumerable<TOutput>> process)
+
+        public LinkSourceToChainService(ISource<TInput> input, Func<TInput, TOutput> process)
         {
             this.input = input;
             this.process = process;
@@ -29,9 +29,7 @@ namespace OptimusPrime.Generics
         {
             while (true)
             {
-                var data = reader.Get();
-                foreach (var e in process(data))
-                    SourceBlock.Publish(e);
+                SourceBlock.Publish(process(reader.Get()));
             }
         }
     }
