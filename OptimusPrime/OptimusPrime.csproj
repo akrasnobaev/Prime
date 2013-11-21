@@ -58,6 +58,8 @@
     <Compile Include="Generics\Fork\Fork.cs" />
     <Compile Include="Generics\Fork\ForkBlock.cs" />
     <Compile Include="Generics\IGenericService.cs" />
+    <Compile Include="Generics\Listener\FactoryExtensions.cs" />
+    <Compile Include="Generics\Listener\ListenerService.cs" />
     <Compile Include="Generics\SourceCollector\SourceCollectorHelper.cs" />
     <Compile Include="Generics\SourceCollector\Codegen.cs" />
     <Compile Include="Factory\IFactory.cs" />
