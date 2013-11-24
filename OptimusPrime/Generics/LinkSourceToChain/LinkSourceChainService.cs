@@ -1,9 +1,6 @@
 ﻿using Eurobot.Services;
 using OptimusPrime.Templates;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace OptimusPrime.Generics
 {

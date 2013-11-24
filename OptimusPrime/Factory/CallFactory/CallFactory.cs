@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using OptimusPrime.Generics;
 using OptimusPrime.OprimusPrimeCore.Helpers;
 using OptimusPrime.OprimusPrimeCore.Extension;
 using OptimusPrime.OprimusPrimeCore.Logger;
@@ -68,6 +69,21 @@ namespace OptimusPrime.Factory
             return filePath;
         }
 
+        public void RegisterGenericService(IGenericService service)
+        {
+            var startSuccesed = new AutoResetEvent(false);
+
+            var newSourceThread = new Thread(() =>
+            {
+                service.Initialize();
+                startSuccesed.Set();
+                service.DoWork();
+            });
+
+            _threads.Add(newSourceThread);
+            _threadsStartSuccessed.Add(startSuccesed);
+        }
+
         /// <summary>
         /// Название для набора данных типа T. Используется для логирования.
         /// TODO: Подумать как удобнее это делать.
@@ -76,7 +92,7 @@ namespace OptimusPrime.Factory
         /// <returns>Название для коллекции данных</returns>
         private string GetCollectionName<T>()
         {
-            return typeof(T).Name + '_' + Guid.NewGuid();
+            return typeof (T).Name + '_' + Guid.NewGuid();
         }
     }
 }

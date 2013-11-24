@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BookSleeve;
+using OptimusPrime.Generics;
 using OptimusPrime.OprimusPrimeCore;
 using OptimusPrime.OprimusPrimeCore.Extension;
 using OptimusPrime.OprimusPrimeCore.Helpers;
@@ -82,6 +83,11 @@ namespace OptimusPrime.Factory
             var data = logData.Serialize();
             File.WriteAllBytes(filePath, data);
             return filePath;
+        }
+        
+        public void RegisterGenericService(IGenericService service)
+        {
+            throw new NotImplementedException();
         }
     }
 }
