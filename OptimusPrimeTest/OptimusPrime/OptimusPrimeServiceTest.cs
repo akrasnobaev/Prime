@@ -55,10 +55,10 @@ namespace OptimusPrimeTest
             connection.Wait(flushDbTask);
 
             var firstService = new WriteService<T>(testData);
-            var firstThread = new Thread(firstService.Actuation);
+            var firstThread = new Thread(firstService.DoWork);
 
             var secondService = new ReadService<T>(testData.Length);
-            var secondThread = new Thread(secondService.Actuation);
+            var secondThread = new Thread(secondService.DoWork);
 
             firstThread.Start();
             secondThread.Start();

@@ -8,7 +8,11 @@
             OptimusPrimeOut = new IOptimusPrimeOut[0];
         }
 
-        public override void Actuation()
+        public override void Initialize()
+        {
+        }
+
+        public override void DoWork()
         {
         }
     }

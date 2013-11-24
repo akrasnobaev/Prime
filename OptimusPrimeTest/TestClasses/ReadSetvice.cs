@@ -6,23 +6,27 @@ namespace OptimusPrimeTest
 {
     public class ReadService<T> : OptimusPrimeService
     {
-        public readonly IList<T> TestDataCollection;
+        public IList<T> TestDataCollection;
         public AutoResetEvent AutoResetEvent;
-        private readonly int testDataCount;
+        private readonly int _testDataCount;
 
-        public ReadService(int testDataCount, string host = TestConstants.Host, int page = TestConstants.DbPage,
-                           string storageKey = TestConstants.StorageKey)
-            : base(host, page)
+        public ReadService(int testDataCount, string storageKey = TestConstants.StorageKey)
+            : base(TestConstants.Host, TestConstants.DbPage)
         {
-            this.testDataCount = testDataCount;
+            _testDataCount = testDataCount;
+
             TestDataCollection = new List<T>();
-            OptimusPrimeIn = new IOptimusPrimeIn[] {new OptimusPrimeIn(storageKey, this)};
+            OptimusPrimeIn = new IOptimusPrimeIn[] { new OptimusPrimeIn(storageKey, this) };
             AutoResetEvent = new AutoResetEvent(false);
         }
 
-        public override void Actuation()
+        public override void Initialize()
         {
-            for (int i = 0; i < testDataCount; i++)
+        }
+
+        public override void DoWork()
+        {
+            for (int i = 0; i < _testDataCount; i++)
                 TestDataCollection.Add(OptimusPrimeIn[0].Get<T>());
             AutoResetEvent.Set();
         }

@@ -4,16 +4,23 @@ namespace OptimusPrime.Templates
 {
     public class OptimusPrimeSourceService<TData> : OptimusPrimeService
     {
+        private readonly ISourceBlock<TData> _sourceBlock;
         public IOptimusPrimeOut Output { get { return OptimusPrimeOut[0]; } }
 
         public OptimusPrimeSourceService(ISourceBlock<TData> sourceBlock, string outputName)
         {
-            OptimusPrimeOut = new IOptimusPrimeOut[] {new OptimusPrimeOut(outputName, this)};
+            _sourceBlock = sourceBlock;
+
+            OptimusPrimeOut = new IOptimusPrimeOut[] { new OptimusPrimeOut(outputName, this) };
             OptimusPrimeIn = new IOptimusPrimeIn[0];
-            sourceBlock.Event += (sender, e) => Output.Set(e);
         }
 
-        public override void Actuation()
+        public override void Initialize()
+        {
+            _sourceBlock.Event += (sender, e) => Output.Set(e);
+        }
+
+        public override void DoWork()
         {
         }
     }

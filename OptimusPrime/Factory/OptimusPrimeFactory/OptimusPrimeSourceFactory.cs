@@ -19,7 +19,7 @@ namespace OptimusPrime.Factory
 
             Services.Add(service);
 
-            return new OptimusPrimeSource<TPublic>(this,service.Output);
+            return new OptimusPrimeSource<TPublic>(this, service.Output);
         }
 
         public ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> _source, IChain<T1, T2> _chain, string pseudoName = null)

@@ -4,18 +4,22 @@ namespace OptimusPrimeTest
 {
     public class WriteService<T> : OptimusPrimeService
     {
-        private readonly T[] testDatCollection;
+        private readonly T[] _testDatCollection;
 
         public WriteService(T[] testDatCollection)
             : base(TestConstants.Host, TestConstants.DbPage)
         {
-            this.testDatCollection = testDatCollection;
-            OptimusPrimeOut = new IOptimusPrimeOut[] {new OptimusPrimeOut(TestConstants.StorageKey, this)};
+            _testDatCollection = testDatCollection;
+            OptimusPrimeOut = new IOptimusPrimeOut[] { new OptimusPrimeOut(TestConstants.StorageKey, this) };
         }
 
-        public override void Actuation()
+        public override void Initialize()
         {
-            foreach (T testData in testDatCollection)
+        }
+
+        public override void DoWork()
+        {
+            foreach (T testData in _testDatCollection)
                 OptimusPrimeOut[0].Set(testData);
         }
     }

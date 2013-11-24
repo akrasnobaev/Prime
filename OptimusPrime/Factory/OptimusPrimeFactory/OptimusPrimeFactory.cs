@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -52,12 +53,17 @@ namespace OptimusPrime.Factory
             Task flushDbTask = _connection.Server.FlushAll();
             _connection.Wait(flushDbTask);
 
+            // Инициализируем все сервисы и создаем исполняющие потоки для каждого сервиса.
             foreach (var service in Services)
             {
-                var serviceThread = new Thread(service.Actuation);
-                serviceThread.Start();
+                service.Initialize();
+                var serviceThread = new Thread(service.DoWork);
                 _threads.Add(serviceThread);
             }
+
+            // Запуск исолняющий потоков для всех сервисов.
+            foreach (var thread in _threads)
+                thread.Start();
         }
 
         public void Stop()

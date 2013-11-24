@@ -12,14 +12,19 @@ namespace OptimusPrime.Templates.FunctionalItems.FunctionalBlock
             string outputName, string host = "localhost", int dbPage = 1) : base(host, dbPage)
         {
             this.filterBlock = filterBlock;
+
             input = new OptimusPrimeIn(inputName, this);
             Output = new OptimusPrimeOut(outputName, this);
 
-            OptimusPrimeOut = new IOptimusPrimeOut[] {Output};
-            OptimusPrimeIn = new IOptimusPrimeIn[] {input};
+            OptimusPrimeOut = new IOptimusPrimeOut[] { Output };
+            OptimusPrimeIn = new IOptimusPrimeIn[] { input };
         }
 
-        public override void Actuation()
+        public override void Initialize()
+        {
+        }
+
+        public override void DoWork()
         {
             while (true)
             {

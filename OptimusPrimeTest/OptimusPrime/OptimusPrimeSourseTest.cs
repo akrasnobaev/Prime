@@ -52,10 +52,8 @@ namespace OptimusPrimeTest
             var optimusPrimeSource = factory.CreateSource(sourceBlock) as OptimusPrimeSource<T>;
 
             factory.Start();
-            var readService = new ReadService<T>(sourceData.Length,
-                                                 page: optimusPrimeSource.Output.Service.DbPage,
-                                                 storageKey: optimusPrimeSource.Output.Name);
-            var testThread = new Thread(readService.Actuation);
+            var readService = new ReadService<T>(sourceData.Length, optimusPrimeSource.Output.Name);
+            var testThread = new Thread(readService.DoWork);
             testThread.Start();
 
             foreach (T data in sourceData)
