@@ -36,21 +36,5 @@ namespace OptimusPrime.Factory
         {
             return source.Link(source.Factory.CreateChain(new Func<TFirstOutput,TSecondOutput>(chain.Process), pseudoName));
         }
-
-        public static ISource<T>
-            Where<T>
-            (this ISource<T> source, Func<T, bool> predicate)
-        {
-            return source.Factory.LinkSourceToFilter(source, new FunctionalBlock<T, bool>(predicate));
-        }
-
-        public static ISource<T>
-            Where<T>
-            (this ISource<T> source, IFunctionalBlock<T, bool> predicate, string pseudoName = null)
-        {
-            return source.Factory.LinkSourceToFilter(source, predicate, pseudoName);
-        }
-
-
     } 
 }
