@@ -55,6 +55,8 @@
     <Compile Include="Factory\CallFactory\CallChainFactory.cs" />
     <Compile Include="Factory\CallFactory\CallFactory.cs" />
     <Compile Include="Factory\CallFactory\CallSourceFactory.cs" />
+    <Compile Include="Generics\Isolator\ChainExtension.cs" />
+    <Compile Include="Generics\Isolator\Isolator.cs" />
     <Compile Include="Generics\LinkSourceToChain\FactoryExtensions.cs" />
     <Compile Include="Generics\LinkSourceToChain\LinkSourceChainService.cs" />
     <Compile Include="Generics\LinkSourceToEnumerable\FactoryExtensions.cs" />
