@@ -67,6 +67,7 @@
     <Compile Include="Generics\EnumerableLinkTest.cs" />
     <Compile Include="Generics\ForkRepeaterTest.cs" />
     <Compile Include="Generics\ForkTest.cs" />
+    <Compile Include="Generics\IsolatorTests.cs" />
     <Compile Include="Generics\ListenerTest.cs" />
     <Compile Include="Logger\CallLoggerTest.cs" />
     <Compile Include="Logger\LoggerTestBase.cs" />
