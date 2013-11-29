@@ -19,8 +19,13 @@ namespace OptimusPrime.Factory
                 TChainSmallOut smallOut = default(TChainSmallOut);
 
 
-                while (repeaterBlock.MakeIteration(sourceCollector.Get(), smallOut, out smallIn))
+                while (true)
+                {
+                    var data = sourceCollector.Get();
+                    var stop = repeaterBlock.MakeIteration(data, smallOut, out smallIn);
                     smallOut = functionalBlock.Process(smallIn);
+                    if (stop) break;
+                }
 
                 return repeaterBlock.Conclude();
             }));
@@ -41,8 +46,12 @@ namespace OptimusPrime.Factory
                  TChainSmallOut smallOut = default(TChainSmallOut);
 
 
-                 while (repeaterBlock.MakeIteration(smallOut, out smallIn))
+                 while (true)
+                 {
+                     var stop = repeaterBlock.MakeIteration(smallOut, out smallIn);
                      smallOut = functionalBlock.Process(smallIn);
+                     if (stop) break;
+                 }
 
                  return repeaterBlock.Conclude();
              }));

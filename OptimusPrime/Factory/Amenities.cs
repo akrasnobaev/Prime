@@ -34,12 +34,7 @@ namespace OptimusPrime.Factory
             return firstChain.Link(firstChain.Factory.CreateChain(new Func<TMiddle, TExternalOutput>(block.Process), pseudoName));
         }
 
-        public static IChain<TExternalInput, TExternalOutput>
-  Link<TExternalInput, TExternalOutput, TMiddle>
-  (this IChain<TExternalInput, TMiddle> firstChain, Func<TMiddle, TExternalOutput> block, string pseudoName = null)
-        {
-            return firstChain.Link(firstChain.Factory.CreateChain(block, pseudoName));
-        }
+
 
         public static ISource<TSecondOutput>
             Link<TFirstOutput, TSecondOutput>
