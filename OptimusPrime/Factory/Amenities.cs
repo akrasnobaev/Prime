@@ -4,11 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OptimusPrime.Templates;
+using System.IO;
+using Eurobot.Services;
 
 namespace OptimusPrime.Factory
 {
     public static partial class FactoryExtensions
     {
+
+        public static IChain<TExternalInput, TExternalOutput>
+            Link<TExternalInput, TExternalOutput, TMiddle>
+            (this IChain<TExternalInput, TMiddle> firstChain, Func<TMiddle,TExternalOutput> lambda, string pseudoName=null)
+        {
+            return firstChain.Link(firstChain.Factory.CreateChain(new Func<TMiddle, TExternalOutput>(lambda), pseudoName));
+      }
+     
+
         public static IChain<TExternalInput, TExternalOutput>
             Link<TExternalInput, TExternalOutput, TMiddle>
             (this IChain<TExternalInput, TMiddle> firstChain, IChain<TMiddle, TExternalOutput> secondChain)
@@ -49,6 +60,21 @@ namespace OptimusPrime.Factory
             (this ISource<TFirstOutput> source, Func<TFirstOutput, TSecondOutput> chain, string pseudoName = null)
         {
             return source.Link(source.Factory.CreateChain(new Func<TFirstOutput, TSecondOutput>(chain), pseudoName));
+        }
+
+        public static void DumpDb(this IFactory factory, string filename, bool overwrite=true)
+        {
+            var f = factory.DumpDb();
+            if (File.Exists(filename) && overwrite)
+                File.Delete(filename);
+            File.Move(f, filename);
+        }
+
+        public static SourceBlock<T> CreateCustomLogger<T>(this IFactory factory, string loggingName)
+        {
+            var block = new SourceBlock<T>();
+            factory.CreateSource(block, loggingName);
+            return block;
         }
     } 
 }
