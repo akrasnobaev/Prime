@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OptimusPrime.Templates;
+using System.IO;
 
 namespace OptimusPrime.Factory
 {
@@ -42,6 +43,12 @@ namespace OptimusPrime.Factory
             (this ISource<TFirstOutput> source, Func<TFirstOutput, TSecondOutput> chain, string pseudoName = null)
         {
             return source.Link(source.Factory.CreateChain(new Func<TFirstOutput, TSecondOutput>(chain), pseudoName));
+        }
+
+        public static void DumpDb(this IFactory factory, string filename)
+        {
+            var f = factory.DumpDb();
+            File.Move(f, filename);
         }
     } 
 }
