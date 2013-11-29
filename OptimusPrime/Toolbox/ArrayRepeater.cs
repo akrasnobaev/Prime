@@ -22,11 +22,17 @@ namespace OptimusPrime.Toolbox
 
         public bool MakeIteration(TOut oldPrivateOut, out TIn privateIn)
         {
+            if (counter >= publicIn.Length)
+            {
+                privateIn = default(TIn);
+                return false;
+            }
+
             privateIn = publicIn[counter];
             if (counter > 0)
                 publicOut[counter - 1] = oldPrivateOut;
             counter++;
-            return counter <= publicIn.Length;
+            return true;
         }
 
         public TOut[] Conclude()
