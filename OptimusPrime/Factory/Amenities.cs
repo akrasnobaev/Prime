@@ -11,6 +11,15 @@ namespace OptimusPrime.Factory
 {
     public static partial class FactoryExtensions
     {
+
+        public static IChain<TExternalInput, TExternalOutput>
+            Link<TExternalInput, TExternalOutput, TMiddle>
+            (this IChain<TExternalInput, TMiddle> firstChain, Func<TMiddle,TExternalOutput> lambda, string pseudoName=null)
+        {
+            return firstChain.Link(firstChain.Factory.CreateChain(new Func<TMiddle, TExternalOutput>(lambda), pseudoName));
+      }
+     
+
         public static IChain<TExternalInput, TExternalOutput>
             Link<TExternalInput, TExternalOutput, TMiddle>
             (this IChain<TExternalInput, TMiddle> firstChain, IChain<TMiddle, TExternalOutput> secondChain)
