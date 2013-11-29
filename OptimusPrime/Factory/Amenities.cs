@@ -46,9 +46,11 @@ namespace OptimusPrime.Factory
             return source.Link(source.Factory.CreateChain(new Func<TFirstOutput, TSecondOutput>(chain), pseudoName));
         }
 
-        public static void DumpDb(this IFactory factory, string filename)
+        public static void DumpDb(this IFactory factory, string filename, bool overwrite=true)
         {
             var f = factory.DumpDb();
+            if (File.Exists(filename) && overwrite)
+                File.Delete(filename);
             File.Move(f, filename);
         }
 
