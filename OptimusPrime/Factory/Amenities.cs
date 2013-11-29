@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OptimusPrime.Templates;
 using System.IO;
+using Eurobot.Services;
 
 namespace OptimusPrime.Factory
 {
@@ -49,6 +50,13 @@ namespace OptimusPrime.Factory
         {
             var f = factory.DumpDb();
             File.Move(f, filename);
+        }
+
+        public static SourceBlock<T> CreateCustomLogger<T>(this IFactory factory, string loggingName)
+        {
+            var block = new SourceBlock<T>();
+            factory.CreateSource(block, loggingName);
+            return block;
         }
     } 
 }
