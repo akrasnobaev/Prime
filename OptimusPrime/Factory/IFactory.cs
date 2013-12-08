@@ -1,4 +1,5 @@
 ﻿using OptimusPrime.Generics;
+using OptimusPrime.OprimusPrimeCore.ConsoleLog;
 using OptimusPrime.Templates;
 using System;
 namespace OptimusPrime.Factory
@@ -80,6 +81,13 @@ namespace OptimusPrime.Factory
 
         
         void RegisterGenericService(IGenericService service);
+
+        /// <summary>
+        /// Вывод на консоль значений по указанному выходу.
+        /// </summary>
+        /// <param name="InputName">Имя выхода цепочки или источника.</param>
+        /// <param name="ToString">Способ преобразования в строку</param>
+        void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null);
     }
      
     public static partial class IFactoryExtensions

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using OptimusPrime.OprimusPrimeCore.ConsoleLog;
 using OptimusPrime.Templates;
 
 namespace OptimusPrime.Factory
@@ -8,7 +8,7 @@ namespace OptimusPrime.Factory
     {
         public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> func, string pseudoName = null)
         {
-            var logCollection = new List<object>();
+            var logCollection = new PrintableList<object>();
             var outputName = GetCollectionName<TOut>();
 
             // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.

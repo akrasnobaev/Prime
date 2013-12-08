@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BookSleeve;
 using OptimusPrime.Generics;
 using OptimusPrime.OprimusPrimeCore;
+using OptimusPrime.OprimusPrimeCore.ConsoleLog;
 using OptimusPrime.OprimusPrimeCore.Extension;
 using OptimusPrime.OprimusPrimeCore.Helpers;
 using OptimusPrime.OprimusPrimeCore.Logger;
@@ -118,6 +119,11 @@ namespace OptimusPrime.Factory
             });
             _threads.Add(serviceThread);
             _threadsStartSuccessed.Add(startSuccesed);
+        }
+
+        public void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null)
+        {
+            throw new NotImplementedException();
         }
     }
 }

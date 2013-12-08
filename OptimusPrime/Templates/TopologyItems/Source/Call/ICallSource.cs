@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using OptimusPrime.OprimusPrimeCore.ConsoleLog;
 
 namespace OptimusPrime.Templates
 {
@@ -7,7 +8,7 @@ namespace OptimusPrime.Templates
         /// <summary>
         /// Коллекция данных, полученных из ISource.
         /// </summary>
-        IList<object> Collection { get; }
+        PrintableList<object> Collection { get; }
 
         /// <summary>
         /// Уведомляет все SourceReader о возможности чтения из источника.

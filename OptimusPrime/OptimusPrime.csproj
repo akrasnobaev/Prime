@@ -74,6 +74,7 @@
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeFactory.cs" />
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeSourceFactory.cs" />
     <Compile Include="Generics\Repeater\FactoryExtensions.cs" />
+    <Compile Include="OprimusPrimeCore\ConsoleLog\PrintableList.cs" />
     <Compile Include="OprimusPrimeCore\Exception\OptimusPrimeException.cs" />
     <Compile Include="OprimusPrimeCore\Extension\SerializeExtension.cs" />
     <Compile Include="OprimusPrimeCore\Helpers\PathHelper.cs" />
@@ -123,9 +124,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factory\GenericFactory\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

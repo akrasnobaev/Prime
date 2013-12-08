@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using OptimusPrime.Generics;
+using OptimusPrime.OprimusPrimeCore;
+using OptimusPrime.OprimusPrimeCore.ConsoleLog;
 using OptimusPrime.OprimusPrimeCore.Helpers;
 using OptimusPrime.OprimusPrimeCore.Extension;
 using OptimusPrime.OprimusPrimeCore.Logger;
@@ -26,7 +28,7 @@ namespace OptimusPrime.Factory
         /// <summary>
         /// Список коллекций данных, порожденных топологическими единицами.
         /// </summary>
-        private readonly IDictionary<string, IList<object>> _collections;
+        private readonly IDictionary<string, PrintableList<object>> _collections;
 
         /// <summary>
         /// Коллекция псевдонимов имен.
@@ -37,7 +39,7 @@ namespace OptimusPrime.Factory
         {
             _threads = new List<Thread>();
             _threadsStartSuccessed = new List<AutoResetEvent>();
-            _collections = new Dictionary<string, IList<object>>();
+            _collections = new Dictionary<string, PrintableList<object>>();
             _pseudoNames = new Dictionary<string, string>();
         }
 
@@ -82,6 +84,17 @@ namespace OptimusPrime.Factory
 
             _threads.Add(newSourceThread);
             _threadsStartSuccessed.Add(startSuccesed);
+        }
+
+        public void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null)
+        {
+            if (_pseudoNames.ContainsKey(InputName))
+                InputName = _pseudoNames[InputName];
+
+            if (!_collections.ContainsKey(InputName))
+                throw new OptimusPrimeException(string.Format("Not fount input wint name {0}", InputName));
+
+            _collections[InputName].Print(t => ToString((T)t));
         }
 
         /// <summary>
