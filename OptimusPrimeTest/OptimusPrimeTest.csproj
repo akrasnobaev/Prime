@@ -63,6 +63,10 @@
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterBaseTest.cs" />
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterCallTest.cs" />
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterOptimusPrimeTest.cs" />
+    <Compile Include="Factory\RegisterGenericService\RegisterGenericServiceBaseTest.cs" />
+    <Compile Include="Factory\RegisterGenericService\RegisterGenericServiceLibertyTest.cs" />
+    <Compile Include="Factory\RegisterGenericService\RegisterGenericServicePrimeTest.cs" />
+    <Compile Include="Factory\RegisterGenericService\TestGenericService.cs" />
     <Compile Include="Generics\CombinedCollectorTest.cs" />
     <Compile Include="Generics\EnumerableLinkTest.cs" />
     <Compile Include="Generics\ForkRepeaterTest.cs" />
