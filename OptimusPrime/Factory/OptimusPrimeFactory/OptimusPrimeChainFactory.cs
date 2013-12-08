@@ -4,7 +4,7 @@ using OptimusPrime.OprimusPrimeCore.Helpers;
 
 namespace OptimusPrime.Factory
 {
-    public partial class OptimusPrimeFactory : IFactory
+    public partial class OptimusPrimeFactory
     {
         public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> functionalBlock, string pseudoName = null)
         {

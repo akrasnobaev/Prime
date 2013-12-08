@@ -34,13 +34,19 @@ namespace OptimusPrime.Factory
         /// Коллекция сервисов.
         /// </summary>
         private static IList<IOptimusPrimeService> Services { get; set; }
-        
+
+        /// <summary>
+        /// Коллекция AutoResetEvent, которые релизятся в тот момент,
+        /// когда соответствующий поток успешно стартовал.
+        /// </summary>
+        private readonly IList<AutoResetEvent> _threadsStartSuccessed;
 
         public OptimusPrimeFactory()
         {
             Services = new List<IOptimusPrimeService>();
             _threads = new List<Thread>();
             _pseudoNames = new Dictionary<string, string>();
+            _threadsStartSuccessed = new List<AutoResetEvent>();
         }
 
         public void Start()
@@ -56,14 +62,24 @@ namespace OptimusPrime.Factory
             // Инициализируем все сервисы и создаем исполняющие потоки для каждого сервиса.
             foreach (var service in Services)
             {
-                service.Initialize();
-                var serviceThread = new Thread(service.DoWork);
+                var startSuccesed = new AutoResetEvent(false);
+                var serviceThread = new Thread(() =>
+                {
+                    service.Initialize();
+                    startSuccesed.Set();
+                    service.DoWork();
+                });
                 _threads.Add(serviceThread);
+                _threadsStartSuccessed.Add(startSuccesed);
             }
 
-            // Запуск исолняющий потоков для всех сервисов.
+            // Запуск исолняющий потоков для всех сервисов и добавленных Generic-серисов.
             foreach (var thread in _threads)
                 thread.Start();
+
+            // Ожидание того, что все потоки стартовали успешно.
+            foreach (var resetEvent in _threadsStartSuccessed)
+                resetEvent.WaitOne();
         }
 
         public void Stop()
@@ -90,10 +106,18 @@ namespace OptimusPrime.Factory
             File.WriteAllBytes(filePath, data);
             return filePath;
         }
-        
+
         public void RegisterGenericService(IGenericService service)
         {
-            throw new NotImplementedException();
+            var startSuccesed = new AutoResetEvent(false);
+            var serviceThread = new Thread(() =>
+            {
+                service.Initialize();
+                startSuccesed.Set();
+                service.DoWork();
+            });
+            _threads.Add(serviceThread);
+            _threadsStartSuccessed.Add(startSuccesed);
         }
     }
 }
