@@ -6,7 +6,7 @@ using OptimusPrime.Templates;
 
 namespace OptimusPrime.Factory
 {
-    public class FlaggedValue<TOut>
+    public class SafeFlaggedValue<TOut>
     {
         public bool NotSafe;
         public TOut SubstituteValue;
@@ -16,7 +16,7 @@ namespace OptimusPrime.Factory
     {
         public static IChain<TIn, TOut> SafetyFork<TIn, TOut>(
             this IChain<TIn, TOut> chain, 
-            Func<TIn, FlaggedValue<TOut>> predicate,
+            Func<TIn, SafeFlaggedValue<TOut>> predicate,
             string pseudoName=null)
         {
             var block=chain.ToFunctionalBlock();
