@@ -84,9 +84,9 @@ namespace OptimusPrime.Factory
      
     public static partial class IFactoryExtensions
     {
-        public static IChain<TIn, TOut> CreateChain<TIn, TOut>(this IFactory factory, IFunctionalBlock<TIn, TOut> function)
+        public static IChain<TIn, TOut> CreateChain<TIn, TOut>(this IFactory factory, IFunctionalBlock<TIn, TOut> function, string pseudoName=null)
         {
-           return factory.CreateChain<TIn, TOut>(function.Process);
+           return factory.CreateChain<TIn, TOut>(function.Process,pseudoName);
         }
 
         public static ISourceReader<TOut> CreateReader<TOut>(this IFactory factory, ISource<TOut> source)

@@ -13,6 +13,10 @@ namespace OptimusPrime.Templates
         public bool SkipFirstGet = true;
         bool firstGet = true;
 
+        public void Reset()
+        {
+            firstGet = true;
+        }
 
         public SyncSourceCollector(ISourceReader[] sourceReaders)
         {

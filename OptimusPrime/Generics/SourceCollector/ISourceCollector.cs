@@ -3,5 +3,6 @@
     public interface ISourceCollector<TDataCollection>
     {
         TDataCollection Get();
+        void Reset();
     }
 }

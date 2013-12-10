@@ -22,6 +22,12 @@ namespace OptimusPrime.Templates
             this.collector1 = collector1;
             this.collector2 = collector2;
         }
+
+        public void Reset()
+        {
+            collector1.Reset();
+            collector2.Reset();
+        }
     }
 
     public class CombinedCollector

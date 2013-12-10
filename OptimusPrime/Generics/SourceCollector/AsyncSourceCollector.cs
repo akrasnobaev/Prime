@@ -21,5 +21,7 @@ namespace OptimusPrime.Templates
             return collection;
             
         }
+
+        public void Reset() { }
     }
 }

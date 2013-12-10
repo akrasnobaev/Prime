@@ -15,6 +15,7 @@ namespace OptimusPrime.Factory
             {
                 var functionalBlock = privateChaine.ToFunctionalBlock();
                 repeaterBlock.Start(input);
+                sourceCollector.Reset();
                 TChainSmallIn smallIn;
                 TChainSmallOut smallOut = default(TChainSmallOut);
 
