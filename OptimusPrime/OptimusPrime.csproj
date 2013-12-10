@@ -67,6 +67,7 @@
     <Compile Include="Generics\IGenericService.cs" />
     <Compile Include="Generics\Listener\FactoryExtensions.cs" />
     <Compile Include="Generics\Listener\ListenerService.cs" />
+    <Compile Include="Generics\SafetyFork\FactoryExtensions.cs" />
     <Compile Include="Generics\SourceCollector\SourceCollectorHelper.cs" />
     <Compile Include="Generics\SourceCollector\Codegen.cs" />
     <Compile Include="Factory\IFactory.cs" />
