@@ -67,6 +67,15 @@
     <Compile Include="Generics\IGenericService.cs" />
     <Compile Include="Generics\Listener\FactoryExtensions.cs" />
     <Compile Include="Generics\Listener\ListenerService.cs" />
+    <Compile Include="Generics\NewCollectors\Async\AsyncCollector.cs" />
+    <Compile Include="Generics\NewCollectors\Async\AsyncRepeaterAdapter.cs" />
+    <Compile Include="Generics\NewCollectors\Async\FactoryExtension.cs" />
+    <Compile Include="Generics\NewCollectors\CollectorRequest.cs" />
+    <Compile Include="Generics\NewCollectors\Sync\SyncCollector.cs" />
+    <Compile Include="Generics\NewCollectors\Sync\SyncRepeaterAdapter.cs" />
+    <Compile Include="Generics\NewCollectors\Sync\FactoryExtension.cs" />
+    <Compile Include="Generics\NewCollectors\TestUnion.cs" />
+    <Compile Include="Generics\NewCollectors\Token.cs" />
     <Compile Include="Generics\SourceCollector\SourceCollectorHelper.cs" />
     <Compile Include="Generics\SourceCollector\Codegen.cs" />
     <Compile Include="Factory\IFactory.cs" />
