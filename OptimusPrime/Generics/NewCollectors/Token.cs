@@ -5,6 +5,7 @@ using System.Text;
 
 namespace OptimusPrime.Generics
 {
+    [Serializable]
     public class Token
     {
         private Token() { }

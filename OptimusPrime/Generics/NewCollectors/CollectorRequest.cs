@@ -5,6 +5,7 @@ using System.Text;
 
 namespace OptimusPrime.Generics
 {
+    [Serializable]
     public enum CollectorRequest
     {
         Get,
