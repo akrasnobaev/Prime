@@ -85,7 +85,7 @@ namespace OptimusPrimeTests.Generics
                 source.CreateAsyncCollector().CreateRepeaterAdapter(),
                 source.CreateSyncCollector().CreateRepeaterAdapter());
 
-            var repeater = factory.CreateNewRepeater(new RepeaterBlock(), combined, fork.Chain);
+            var repeater = factory.CreateRepeater(new RepeaterBlock(), combined, fork.Chain);
             factory.Start();
             producer.Start(100);
             repeater.ToFunctionalBlock().Process(100);

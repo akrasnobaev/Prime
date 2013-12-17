@@ -101,7 +101,7 @@ namespace OptimusPrimeTest
                     source.CreateAsyncCollector().CreateRepeaterAdapter(),
                     source.CreateAsyncCollector().CreateRepeaterAdapter());
 
-            var rep = factory.CreateNewRepeater(new Repeater(), collector, smallChain);
+            var rep = factory.CreateRepeater(new Repeater(), collector, smallChain);
 
             factory.Start();
             Assert.AreEqual(10, rep.ToFunctionalBlock().Process(10));

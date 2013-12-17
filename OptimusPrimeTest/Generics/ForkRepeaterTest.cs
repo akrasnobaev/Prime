@@ -54,7 +54,7 @@ namespace OptimusPrimeTests.Generics
             var privateChain = factory.CreateChain(new Func<char, char>(c => c));
             var fork = privateChain.Fork();
             var collector = fork.Source.CreateSyncCollector().CreateRepeaterAdapter();
-            var repeater = factory.CreateNewRepeater(new RepeaterForFork(), collector, fork.Chain);
+            var repeater = factory.CreateRepeater(new RepeaterForFork(), collector, fork.Chain);
             factory.Start();
             repeater.ToFunctionalBlock().Process("abcdefghij");
             factory.Stop();

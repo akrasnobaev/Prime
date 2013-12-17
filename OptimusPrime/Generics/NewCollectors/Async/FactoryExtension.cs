@@ -1,10 +1,11 @@
-﻿using OptimusPrime.Templates;
+﻿using OptimusPrime.Generics;
+using OptimusPrime.Templates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace OptimusPrime.Generics
+namespace OptimusPrime.Factory
 {
     public static partial class FactoryExtension
     {

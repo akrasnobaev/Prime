@@ -9,7 +9,7 @@ namespace OptimusPrime.Factory
        
 
 
-        public static IChain<TRepeaterBigIn, TRepeaterBigOut> CreateNewRepeater
+        public static IChain<TRepeaterBigIn, TRepeaterBigOut> CreateRepeater
   <TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TDataCollection>(this IFactory factory,
   IRepeaterBlock<TRepeaterBigIn, TRepeaterBigOut, TChainSmallIn, TChainSmallOut, TDataCollection> repeaterBlock,
   IChain<CollectorRequest,TDataCollection> sourceCollector, IChain<TChainSmallIn, TChainSmallOut> privateChaine)
