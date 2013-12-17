@@ -76,8 +76,6 @@
     <Compile Include="Generics\NewCollectors\Sync\FactoryExtension.cs" />
     <Compile Include="Generics\NewCollectors\TestUnion.cs" />
     <Compile Include="Generics\NewCollectors\Token.cs" />
-    <Compile Include="Generics\SourceCollector\SourceCollectorHelper.cs" />
-    <Compile Include="Generics\SourceCollector\Codegen.cs" />
     <Compile Include="Factory\IFactory.cs" />
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeChainFactory.cs" />
     <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeFactory.cs" />
@@ -107,13 +105,6 @@
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeSourceService.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\SourceBlock.cs" />
     <Compile Include="Generics\Repeater\IRepeaterBlock.cs" />
-    <Compile Include="Generics\SourceCollector\CombinedCollector.cs" />
-    <Compile Include="Generics\SourceCollector\ISourceCollector.cs" />
-    <Compile Include="Generics\SourceCollector\ISourceDataCollection.cs" />
-    <Compile Include="Generics\SourceCollector\ISourceDataCollectionFactory.cs" />
-    <Compile Include="Generics\SourceCollector\AsyncSourceCollector.cs" />
-    <Compile Include="Generics\SourceCollector\ISyncronousDataCollection.cs" />
-    <Compile Include="Generics\SourceCollector\SyncSourceCollector.cs" />
     <Compile Include="Templates\FunctionalItems\SourceReader\ISourceReader.cs" />
     <Compile Include="Templates\FunctionalItems\SourceReader\OptimusPrimeReader.cs" />
     <Compile Include="Templates\FunctionalItems\SourceReader\SourceReader.cs" />
