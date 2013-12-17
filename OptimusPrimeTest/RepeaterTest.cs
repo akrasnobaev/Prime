@@ -98,8 +98,8 @@ namespace OptimusPrimeTest
             var source = factory.CreateSource(emulator.Source);
 
             var collector = factory.Union(
-                    source.CreateCollector().CreateRepeaterAdapter(),
-                    source.CreateCollector().CreateRepeaterAdapter());
+                    source.CreateAsyncCollector().CreateRepeaterAdapter(),
+                    source.CreateAsyncCollector().CreateRepeaterAdapter());
 
             var rep = factory.CreateNewRepeater(new Repeater(), collector, smallChain);
 

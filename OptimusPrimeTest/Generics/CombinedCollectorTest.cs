@@ -8,6 +8,7 @@ using OptimusPrime.Templates;
 using Eurobot.Services;
 using System.Threading;
 using OptimusPrime;
+using OptimusPrime.Generics;
 
 namespace OptimusPrimeTests.Generics
 {
@@ -15,10 +16,7 @@ namespace OptimusPrimeTests.Generics
     {
         
 
-        class Async : SourceDataCollection<int> { public List<int> Ints { get { return List0; } } }
-
-        class Sync : SyncronousSourceDataCollection<int> { }
-
+     
         class IntProducer
         {
             Random rnd=new Random();
@@ -39,7 +37,7 @@ namespace OptimusPrimeTests.Generics
             }
         }
 
-        class RepeaterBlock : IRepeaterBlock<int,bool,int,int,Tuple<Async,Sync>>
+        class RepeaterBlock : IRepeaterBlock<int,bool,int,int,Tuple<int[],int>>
         {
             int Max;
             int expectedAsync = 0;
@@ -59,15 +57,15 @@ namespace OptimusPrimeTests.Generics
             }
 
 
-            public bool MakeIteration(Tuple<Async, Sync> sourceDatas, int oldPrivateOut, out int privateIn)
+            public bool MakeIteration(Tuple<int[], int> sourceDatas, int oldPrivateOut, out int privateIn)
             {
-                foreach (var e in sourceDatas.Item1.Ints)
+                foreach (var e in sourceDatas.Item1)
                 {
                     Assert.AreEqual(expectedAsync, e);
                     expectedAsync++;
                 }
                 if (position > 0)
-                    Assert.AreEqual(oldPrivateOut, sourceDatas.Item2.Data0);
+                    Assert.AreEqual(oldPrivateOut, sourceDatas.Item2);
                 
                 privateIn = position;
                 position++; 
@@ -80,12 +78,14 @@ namespace OptimusPrimeTests.Generics
             var rnd=new Random();
             var chain = factory.CreateChain(new Func<int, int>(z => { Thread.Sleep(rnd.Next(10)); return z; }));
             var fork = chain.Fork();
-            var syncCollector = factory.BindSources(fork.Source).CreateSyncCollector<Sync>();
             var producer = new IntProducer();
             var source = factory.CreateSource(producer.Block);
-            var asyncCollector = factory.BindSources(source).CreateAsyncCollector<Async>();
-            var combined = CombinedCollector.Create(asyncCollector, syncCollector);
-            var repeater = factory.CreateRepeater(new RepeaterBlock(), combined, fork.Chain);
+
+            var combined = factory.Union(
+                source.CreateAsyncCollector().CreateRepeaterAdapter(),
+                source.CreateSyncCollector().CreateRepeaterAdapter());
+
+            var repeater = factory.CreateNewRepeater(new RepeaterBlock(), combined, fork.Chain);
             factory.Start();
             producer.Start(100);
             repeater.ToFunctionalBlock().Process(100);
