@@ -54,7 +54,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Call\CallSourceTest.cs" />
     <Compile Include="CommonClasses.cs" />
     <Compile Include="Factory\FactoryTest.cs" />
     <Compile Include="Factory\LinkSourceToChain\LinkSourceToChainCallTest.cs" />
@@ -81,6 +80,9 @@
     <Compile Include="OptimusPrime\OptimusPrimeServiceTest.cs" />
     <Compile Include="OptimusPrime\OptimusPrimeSourseTest.cs" />
     <Compile Include="RepeaterTest.cs" />
+    <Compile Include="Templates\FunctionalItems\SourceReader\LibertySourceReaderTest.cs" />
+    <Compile Include="Templates\FunctionalItems\SourceReader\PrimeSourceReaderTest.cs" />
+    <Compile Include="Templates\FunctionalItems\SourceReader\SourceReaderTestBase.cs" />
     <Compile Include="TestClasses\ReadSetvice.cs" />
     <Compile Include="TestClasses\TestConstants.cs" />
     <Compile Include="TestClasses\TestData.cs" />

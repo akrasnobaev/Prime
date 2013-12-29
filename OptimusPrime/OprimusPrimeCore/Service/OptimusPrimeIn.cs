@@ -19,7 +19,7 @@ namespace OptimusPrime.OprimusPrimeCore
             Name = storageKey;
             Service = service;
             ReadCounter = 0;
-            semaphore = new Semaphore(0, int.MaxValue);
+            semaphore = initSemaphore(storageKey);
 
             subscriberChannel = Service.Connection.GetOpenSubscriberChannel();
             var subscribe = subscriberChannel.Subscribe(Name, OnMessageReceived);
@@ -32,15 +32,24 @@ namespace OptimusPrime.OprimusPrimeCore
             subscriberChannel.Wait(unsubscribe);
 
             ReadCounter = readCounter;
-
-            var lengthTask = Service.Connection.Lists.GetLength(Service.DbPage, newName);
-            var initialCount = (int) Service.Connection.Wait(lengthTask);
-            semaphore = new Semaphore(initialCount, int.MaxValue);
+            semaphore = initSemaphore(newName);
 
             var subscribe = subscriberChannel.Subscribe(newName, OnMessageReceived);
             subscriberChannel.Wait(subscribe);
 
             Name = newName;
+        }
+
+        /// <summary>
+        /// Устанавливает синхронизатору начальное количество данных, которые имеются в прослушиваемом списке.
+        /// </summary>
+        /// <param name="listName">Имя списка данных</param>
+        /// <returns>Синхронизатор</returns>
+        private Semaphore initSemaphore(string listName)
+        {
+            var lengthTask = Service.Connection.Lists.GetLength(Service.DbPage, listName);
+            var initialCount = (int)Service.Connection.Wait(lengthTask);
+            return new Semaphore(initialCount, int.MaxValue);
         }
 
         ~OptimusPrimeIn()

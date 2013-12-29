@@ -6,17 +6,21 @@ using Eurobot.Services;
 using NUnit.Framework;
 using OptimusPrime.Factory;
 using OptimusPrime.Templates;
+using OptimusPrimeTest;
 
-namespace OptimusPrimeTest.Call
+namespace OptimusPrimeTests.Templates.FunctionalItems.SourceReader
 {
     [TestFixture]
-    public class CallSourceTest
+    public abstract class SourceReaderTestBase
     {
+        private const int DataCount = 3;
+        protected abstract IFactory CreateFactory();
+
         [SetUp]
         public void Setup()
         {
             isReadEnd = new AutoResetEvent(false);
-            factory = new CallFactory();
+            factory = CreateFactory();
             sourceBlock = new SourceBlock<TestData>();
             callSource = factory.CreateSource(sourceBlock);
             firstCallReader = callSource.CreateReader();
@@ -31,7 +35,7 @@ namespace OptimusPrimeTest.Call
         }
 
         private AutoResetEvent isReadEnd;
-        private CallFactory factory;
+        private IFactory factory;
         private SourceBlock<TestData> sourceBlock;
         private ISourceReader<TestData> firstCallReader;
         private TestData outTestData;
@@ -63,7 +67,7 @@ namespace OptimusPrimeTest.Call
 
         private void Get()
         {
-            List<TestData> testDatas = TestData.CreateData(1000);
+            List<TestData> testDatas = TestData.CreateData(DataCount);
 
             new Thread(() => WriteData(sourceBlock, testDatas, true)).Start();
             new Thread(() => ReadData(firstCallReader, testDatas, true)).Start();
@@ -74,7 +78,7 @@ namespace OptimusPrimeTest.Call
 
         private void GetRange()
         {
-            List<TestData> testDatas = TestData.CreateData(1000);
+            List<TestData> testDatas = TestData.CreateData(DataCount);
 
             WriteData(sourceBlock, testDatas);
             TestData[] actual = firstCallReader.GetCollection().ToArray();
@@ -88,7 +92,7 @@ namespace OptimusPrimeTest.Call
 
         private void TryGet()
         {
-            List<TestData> testDatas = TestData.CreateData(1000);
+            List<TestData> testDatas = TestData.CreateData(DataCount);
 
             WriteData(sourceBlock, testDatas);
             foreach (TestData testData in testDatas)
@@ -103,7 +107,7 @@ namespace OptimusPrimeTest.Call
         [Test]
         public void TestGetUsingSeveralReaders()
         {
-            List<TestData> testDatas = TestData.CreateData(1000);
+            List<TestData> testDatas = TestData.CreateData(DataCount);
 
             new Thread(() => WriteData(sourceBlock, testDatas, true)).Start();
             new Thread(() => ReadData(firstCallReader, testDatas, true)).Start();
@@ -118,7 +122,7 @@ namespace OptimusPrimeTest.Call
         [Test]
         public void TestGetWhenCallReaderCreateAfterWrite()
         {
-            List<TestData> testDatas = TestData.CreateData(1000);
+            List<TestData> testDatas = TestData.CreateData(DataCount);
             WriteData(sourceBlock, testDatas);
 
             var thirdReader = callSource.CreateReader();
