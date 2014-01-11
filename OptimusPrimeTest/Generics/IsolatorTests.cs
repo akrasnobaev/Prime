@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OptimusPrime.Factory;
+using OptimusPrime.Generics;
 using OptimusPrime;
 using OptimusPrime.Templates;
 using System;
@@ -41,14 +42,20 @@ namespace OptimusPrimeTests.Generics
             var out1 = source.Link(iso.CreateIsolated());
             var out2 = source.Link(iso.CreateIsolated());
             var out3 = source.Link(iso.CreateIsolated());
-            var collector = factory.BindSources(out1, out2, out3).CreateSyncCollector<SyncronousSourceDataCollection<int,int,int>>();
-            factory.Start();
+
+            var collector = factory.Union(
+                out1.CreateSyncCollector().CollectorChain,
+                out2.CreateSyncCollector().CollectorChain,
+                out3.CreateSyncCollector().CollectorChain
+                ).ToFunctionalBlock();
+
+             factory.Start();
 
             producer.Start(NumPack, 1, z => z);
             var watch = new Stopwatch();
             watch.Start();
             for (int i = 0; i < NumPack; i++)
-                collector.Get();
+                collector.Process(Token.Empty);
             factory.Stop();
             
         }

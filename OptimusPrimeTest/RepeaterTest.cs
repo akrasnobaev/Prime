@@ -5,6 +5,8 @@ using OptimusPrime.Factory;
 using System.Linq;
 using System.Collections.Generic;
 using OptimusPrime;
+using System;
+using OptimusPrime.Generics;
 
 namespace OptimusPrimeTest
 {
@@ -12,11 +14,8 @@ namespace OptimusPrimeTest
     public class RepeaterTest
     {
         static int SourceRepetition = 10; 
-        public class Int2Collector : SourceDataCollection<int,int>
-        {
-            public List<int> List_0 { get { return List0; } }
-            public List<int> List_1 { get { return List0; } }
-        }
+      
+
 
         public class Emulator : IFunctionalBlock<int, int>
         {
@@ -30,7 +29,7 @@ namespace OptimusPrimeTest
             }
         }
 
-        public class Repeater : IRepeaterBlock<int, int, int, int, Int2Collector>
+        public class Repeater : IRepeaterBlock<int, int, int, int, Tuple<int[],int[]>>
         {
             int Count;
             int current;
@@ -41,12 +40,12 @@ namespace OptimusPrimeTest
                 current = 0;
             }
 
-            public bool MakeIteration(Int2Collector sourceDatas, int oldPrivateOut, out int privateIn)
+            public bool MakeIteration(Tuple<int[],int[]> sourceDatas, int oldPrivateOut, out int privateIn)
             {
                 Assert.AreEqual(current, oldPrivateOut);
                 if (current>0)
-                    Assert.AreEqual(SourceRepetition, sourceDatas.List_0.Count);
-                foreach (var e in sourceDatas.List_0)
+                    Assert.AreEqual(SourceRepetition, sourceDatas.Item1.Length);
+                foreach (var e in sourceDatas.Item1)
                     Assert.AreEqual(current, e);
                 current++;
                 privateIn = current;
@@ -97,7 +96,11 @@ namespace OptimusPrimeTest
 
             var smallChain = factory.CreateChain(emulator);
             var source = factory.CreateSource(emulator.Source);
-            var collector = factory.BindSources(source, source).CreateCollector<Int2Collector>();
+
+            var collector = factory.Union(
+                    source.CreateAsyncCollector().CreateRepeaterAdapter(),
+                    source.CreateAsyncCollector().CreateRepeaterAdapter());
+
             var rep = factory.CreateRepeater(new Repeater(), collector, smallChain);
 
             factory.Start();

@@ -13,15 +13,9 @@ namespace OptimusPrime.Templates
             _input = new OptimusPrimeIn(storageKey, inputService);
         }
 
-        public IEnumerable GetCollectionNonTypized()
-        {
-            return GetCollection();
-        }
 
-        public object GetNotTypized()
-        {
-            return Get();
-        }
+
+
 
         public T Get()
         {

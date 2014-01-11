@@ -10,39 +10,9 @@ namespace OptimusPrime.Codegen
 
 
 
-    static class SourceCollectorCodegen
+    class SourceCollectorCodegen : GenerationBase
     {
-        static string GenerateBasic(int N, Func<int, string> element, int from, string delimiter)
-        {
-            string result = "";
-            for (int i = from; i < N; i++)
-            {
-                if (i != 0) result += delimiter;
-                result += element(i);
-            }
-            return result;
-        }
-
-        static string Generate(int N, Func<int, string> element, string delimiter = "\n")
-        {
-            return GenerateBasic(N, element, 0, delimiter);
-        }
-
-        static string GenerateFrom1(int N, Func<int, string> element, string delimiter = "\n")
-        {
-            return GenerateBasic(N, element, 1, delimiter);
-        }
-
-        static string GenerateByTemplate(int N, string template, string delimiter = "\n")
-        {
-            return GenerateBasic(N, z => template.Replace("#", z.ToString()), 0, delimiter);
-        }
-
-
-        static string GenericParam(int N) { return "<" + GenerateByTemplate(N, "T#", ",") + ">"; }
-
-        const int Max = 6;
-
+       
         static string FactoryExtensions()
         {
 
@@ -145,7 +115,7 @@ public static SourceCollectorHelper{0} BindSources{0}(this IFactory factory, {1}
 
 
         [STAThread]
-        public static void Main()
+        public static void Main1()
         {
             var result = string.Format(@"
 using OptimusPrime.Templates;
