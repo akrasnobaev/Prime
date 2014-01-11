@@ -1,9 +1,8 @@
 ﻿using System.Threading;
 using NUnit.Framework;
 using OptimusPrime.Factory;
-using OptimusPrime.Generics;
 
-namespace OptimusPrimeTest.Factory.RegisterGenericService
+namespace OptimusPrimeTest.Factory
 {
     public abstract class RegisterGenericServiceBaseTest
     {

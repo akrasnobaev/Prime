@@ -1,8 +1,8 @@
 ﻿using OptimusPrime.Factory;
 
-namespace OptimusPrimeTest.Logger
+namespace OptimusPrimeTests.Generics
 {
-    public class OptimusPrimeLoggerTest : LoggerTestBase
+    public class PrimeCombinedCollectorTest : CombinedCollectorTestBase
     {
         protected override IFactory CreateFactory()
         {

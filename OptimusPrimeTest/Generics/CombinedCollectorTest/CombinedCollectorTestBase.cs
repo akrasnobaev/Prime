@@ -1,30 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
+using Eurobot.Services;
 using NUnit.Framework;
 using OptimusPrime.Factory;
 using OptimusPrime.Templates;
-using Eurobot.Services;
-using System.Threading;
-using OptimusPrime;
 
 namespace OptimusPrimeTests.Generics
 {
-    public class CombinedCollectorTest
+    public abstract class CombinedCollectorTestBase
     {
-        
-
-        class Async : SourceDataCollection<int> { public List<int> Ints { get { return List0; } } }
-
-        class Sync : SyncronousSourceDataCollection<int> { }
-
-        class IntProducer
+        private class Async : SourceDataCollection<int>
         {
-            Random rnd=new Random();
-            public SourceBlock<int> Block=new SourceBlock<int>();
-            int Max;
-            void WorkThread()
+            public List<int> Ints
+            {
+                get { return List0; }
+            }
+        }
+
+        private class Sync : SyncronousSourceDataCollection<int>
+        {
+        }
+
+        private class IntProducer
+        {
+            private Random rnd = new Random();
+            public SourceBlock<int> Block = new SourceBlock<int>();
+            private int Max;
+
+            private void WorkThread()
             {
                 for (int i = 0; i < Max; i++)
                 {
@@ -32,6 +36,7 @@ namespace OptimusPrimeTests.Generics
                     Thread.Sleep(rnd.Next(10));
                 }
             }
+
             public void Start(int max)
             {
                 Max = max;
@@ -39,12 +44,12 @@ namespace OptimusPrimeTests.Generics
             }
         }
 
-        class RepeaterBlock : IRepeaterBlock<int,bool,int,int,Tuple<Async,Sync>>
+        private class RepeaterBlock : IRepeaterBlock<int, bool, int, int, Tuple<Async, Sync>>
         {
-            int Max;
-            int expectedAsync = 0;
+            private int Max;
+            private int expectedAsync = 0;
 
-            int position = 0;
+            private int position = 0;
 
             public void Start(int max)
             {
@@ -68,17 +73,23 @@ namespace OptimusPrimeTests.Generics
                 }
                 if (position > 0)
                     Assert.AreEqual(oldPrivateOut, sourceDatas.Item2.Data0);
-                
+
                 privateIn = position;
-                position++; 
+                position++;
                 return position < Max;
             }
         }
 
-        void Test(IFactory factory)
+        [Test]
+        public void TestCombinedCollector()
         {
-            var rnd=new Random();
-            var chain = factory.CreateChain(new Func<int, int>(z => { Thread.Sleep(rnd.Next(10)); return z; }));
+            var factory = CreateFactory();
+            var rnd = new Random();
+            var chain = factory.CreateChain(new Func<int, int>(z =>
+            {
+                Thread.Sleep(rnd.Next(10));
+                return z;
+            }));
             var fork = chain.Fork();
             var syncCollector = factory.BindSources(fork.Source).CreateSyncCollector<Sync>();
             var producer = new IntProducer();
@@ -91,16 +102,6 @@ namespace OptimusPrimeTests.Generics
             repeater.ToFunctionalBlock().Process(100);
         }
 
-        [Test]
-        public void CombinedCollectorLiberty()
-        {
-            Test(new CallFactory());
-        }
-
-        [Test]
-        public void CombinedCollectorOptimus()
-        {
-            Test(new OptimusPrimeFactory());
-        }
+        protected abstract IFactory CreateFactory();
     }
 }

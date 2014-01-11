@@ -1,6 +1,6 @@
 ﻿using OptimusPrime.Factory;
 
-namespace OptimusPrimeTests.Templates.FunctionalItems.SourceReader
+namespace OptimusPrimeTests.Templates.SourceReader
 {
     public class PrimeSourceReaderTest : SourceReaderTestBase
     {

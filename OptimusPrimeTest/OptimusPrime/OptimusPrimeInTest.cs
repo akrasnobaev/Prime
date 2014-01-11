@@ -6,15 +6,17 @@ using BookSleeve;
 using NUnit.Framework;
 using OptimusPrime.OprimusPrimeCore;
 
-namespace OptimusPrimeTest
+namespace OptimusPrimeTest.Prime
 {
     [TestFixture]
     public class OptimusPrimeInTest
     {
+        private const int DataCount = 3;
+
         [SetUp]
         public void Setup()
         {
-            testData = TestData.CreateData(100);
+            testData = TestData.CreateData(DataCount);
             var connection = new RedisConnection("localhost", allowAdmin: true);
 
             Task openTask = connection.Open();
@@ -63,16 +65,16 @@ namespace OptimusPrimeTest
         public void TestChangeNameSetDataAfterChangeName()
         {
             const string otherKey = "otherStorageKye";
-            List<TestData> otherData = TestData.CreateData(100);
+            List<TestData> otherData = TestData.CreateData(DataCount);
 
             var otherIn = new OptimusPrimeIn(otherKey, stabService);
-            new Thread(() => WriteData(otherKey, otherData, true)).Start();
-            new Thread(() => ReadData(otherIn, otherData, true)).Start();
+            new Thread(() => WriteData(otherKey, otherData)).Start();
+            new Thread(() => ReadData(otherIn, otherData)).Start();
             isGetFinished.WaitOne();
 
             otherIn.ChangeName(storageKey);
-            new Thread(() => WriteData(storageKey, testData, true)).Start();
-            new Thread(() => ReadData(otherIn, testData, true)).Start();
+            new Thread(() => WriteData(storageKey, testData)).Start();
+            new Thread(() => ReadData(otherIn, testData)).Start();
             isGetFinished.WaitOne();
 
             Assert.IsFalse(otherIn.TryGet(out outTestData));
@@ -82,13 +84,13 @@ namespace OptimusPrimeTest
         public void TestChangeNameSetDataBeforeChangeName()
         {
             const string otherKey = "otherStorageKye";
-            List<TestData> otherData = TestData.CreateData(100);
+            List<TestData> otherData = TestData.CreateData(DataCount);
 
             WriteData(storageKey, testData);
 
             var otherIn = new OptimusPrimeIn(otherKey, stabService);
-            new Thread(() => WriteData(otherKey, otherData, true)).Start();
-            new Thread(() => ReadData(otherIn, otherData, true)).Start();
+            new Thread(() => WriteData(otherKey, otherData)).Start();
+            new Thread(() => ReadData(otherIn, otherData)).Start();
             isGetFinished.WaitOne();
 
             otherIn.ChangeName(storageKey);
@@ -100,8 +102,8 @@ namespace OptimusPrimeTest
         [Test]
         public void TestGet()
         {
-            new Thread(() => WriteData(storageKey, testData, true)).Start();
-            new Thread(() => ReadData(optimusPrimeIn, testData, true)).Start();
+            new Thread(() => WriteData(storageKey, testData)).Start();
+            new Thread(() => ReadData(optimusPrimeIn, testData)).Start();
             isGetFinished.WaitOne();
 
             Assert.IsFalse(optimusPrimeIn.TryGet(out outTestData));
@@ -117,9 +119,9 @@ namespace OptimusPrimeTest
                 data.AssertAreEqual(outTestData);
             }
 
-            var otherData = TestData.CreateData(100);
-            new Thread(() => WriteData(storageKey, otherData, true)).Start();
-            new Thread(() => ReadData(optimusPrimeIn, otherData, true)).Start();
+            var otherData = TestData.CreateData(DataCount);
+            new Thread(() => WriteData(storageKey, otherData)).Start();
+            new Thread(() => ReadData(optimusPrimeIn, otherData)).Start();
             isGetFinished.WaitOne();
 
             Assert.IsFalse(optimusPrimeIn.TryGet(out outTestData));
@@ -134,9 +136,9 @@ namespace OptimusPrimeTest
             for (int i = 0; i < testData.Count; i++)
                 testData[i].AssertAreEqual(actual[i]);
 
-            var otherData = TestData.CreateData(100);
-            new Thread(() => WriteData(storageKey, otherData, true)).Start();
-            new Thread(() => ReadData(optimusPrimeIn, otherData, true)).Start();
+            var otherData = TestData.CreateData(DataCount);
+            new Thread(() => WriteData(storageKey, otherData)).Start();
+            new Thread(() => ReadData(optimusPrimeIn, otherData)).Start();
             isGetFinished.WaitOne();
 
             Assert.IsFalse(optimusPrimeIn.TryGet(out outTestData));
@@ -157,9 +159,9 @@ namespace OptimusPrimeTest
         [Test]
         public void TestGetRangeAfterGet()
         {
-            var otherData = TestData.CreateData(100);
-            new Thread(() => WriteData(storageKey, otherData, true)).Start();
-            new Thread(() => ReadData(optimusPrimeIn, otherData, true)).Start();
+            var otherData = TestData.CreateData(DataCount);
+            new Thread(() => WriteData(storageKey, otherData)).Start();
+            new Thread(() => ReadData(optimusPrimeIn, otherData)).Start();
             isGetFinished.WaitOne();
 
             WriteData(storageKey, testData);
@@ -174,7 +176,7 @@ namespace OptimusPrimeTest
         [Test]
         public void TestGetRangeAfterTryGet()
         {
-            var otherData = TestData.CreateData(100);
+            var otherData = TestData.CreateData(DataCount);
             WriteData(storageKey, otherData);
             foreach (TestData data in otherData)
             {
@@ -207,9 +209,9 @@ namespace OptimusPrimeTest
         [Test]
         public void TestTryGetAfterGet()
         {
-            var otherData = TestData.CreateData(100);
-            new Thread(() => WriteData(storageKey, otherData, true)).Start();
-            new Thread(() => ReadData(optimusPrimeIn, otherData, true)).Start();
+            var otherData = TestData.CreateData(DataCount);
+            new Thread(() => WriteData(storageKey, otherData)).Start();
+            new Thread(() => ReadData(optimusPrimeIn, otherData)).Start();
             isGetFinished.WaitOne();
 
             WriteData(storageKey, testData);
@@ -225,7 +227,7 @@ namespace OptimusPrimeTest
         [Test]
         public void TestTryGetAfterGetGange()
         {
-            var otherData = TestData.CreateData(100);
+            var otherData = TestData.CreateData(DataCount);
             WriteData(storageKey, otherData);
             TestData[] actual = optimusPrimeIn.GetRange<TestData>();
 

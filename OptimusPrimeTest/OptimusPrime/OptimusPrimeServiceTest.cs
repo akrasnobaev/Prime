@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using BookSleeve;
 using NUnit.Framework;
 
-namespace OptimusPrimeTest
+namespace OptimusPrimeTest.Prime
 {
     [TestFixture]
     public class OptimusPrimeServiceTest
     {
-        [SetUp]
+        private const int DataCount = 3;
+
+        [Test]
         public void TestSendAndReceiveInt()
         {
             var testData = new[] {10, 8, 27};
@@ -29,22 +31,14 @@ namespace OptimusPrimeTest
         [Test]
         public void TestSendAndReceiveComplexData()
         {
-            var testData = new[]
-                {
-                    new TestData {Name = "first", Number = 1},
-                    new TestData {Name = "second", Number = 2},
-                    new TestData {Name = "third", Number = 3}
-                };
-            IList<TestData> actual = TestSendAndReceiveDataInternal(testData);
-            for (int i = 0; i < actual.Count; i++)
-            {
-                Assert.AreEqual(testData[i].Id, actual[i].Id);
-                Assert.AreEqual(testData[i].Name, actual[i].Name);
-                Assert.AreEqual(testData[i].Number, actual[i].Number);
-            }
+            var testData = TestData.CreateData(DataCount);
+            var actual = TestSendAndReceiveDataInternal(testData);
+            Assert.AreEqual(testData.Count, actual.Count);
+            for (var i = 0; i < testData.Count; i++)
+                testData[i].AssertAreEqual(actual[i]);
         }
 
-        private static IList<T> TestSendAndReceiveDataInternal<T>(T[] testData)
+        private static IList<T> TestSendAndReceiveDataInternal<T>(IEnumerable<T> testData)
         {
             var connection = new RedisConnection(TestConstants.Host, allowAdmin: true);
 
@@ -57,7 +51,7 @@ namespace OptimusPrimeTest
             var firstService = new WriteService<T>(testData);
             var firstThread = new Thread(firstService.DoWork);
 
-            var secondService = new ReadService<T>(testData.Length);
+            var secondService = new ReadService<T>(testData.Count());
             var secondThread = new Thread(secondService.DoWork);
 
             firstThread.Start();

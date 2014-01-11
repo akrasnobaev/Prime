@@ -7,7 +7,7 @@ using OptimusPrime.Factory;
 using OptimusPrime.Templates;
 using OptimusPrimeTest;
 
-namespace OptimusPrimeTests.Factory.LinkSourceToChain
+namespace OptimusPrimeTest.Factory
 {
     [TestFixture]
     public abstract class LinkSourceToChainBaseTest
@@ -18,9 +18,11 @@ namespace OptimusPrimeTests.Factory.LinkSourceToChain
         private TestData outTestData;
         private List<TestData> testDatas;
         private ISourceReader<TestData> sourceReader;
+        private const int DataCount = 3;
 
         protected abstract IFactory CreaFactory();
-        
+
+        [SetUp]
         public void SetUp()
         {
             factory = CreaFactory();
@@ -35,13 +37,13 @@ namespace OptimusPrimeTests.Factory.LinkSourceToChain
             var source = factory.CreateSource(sourceBlock);
 
             var testSource = factory.LinkSourceToChain(source, chain);
-            testDatas = TestData.CreateData(100);
+            testDatas = TestData.CreateData(DataCount);
             sourceReader = testSource.CreateReader();
 
             factory.Start();
 
-            new Thread(() => WriteData(true)).Start();
-            new Thread(() => ReadData(true)).Start();
+            new Thread(() => WriteData()).Start();
+            new Thread(() => ReadData()).Start();
             isReadFinished.WaitOne();
 
             Assert.IsFalse(sourceReader.TryGet(out outTestData));
@@ -49,12 +51,12 @@ namespace OptimusPrimeTests.Factory.LinkSourceToChain
             Assert.AreEqual(testSource.Name, chain.OutputName);
         }
 
-        private void ReadData(bool isWait)
+        private void ReadData(bool isWait = false)
         {
             var random = new Random();
             foreach (var testData in testDatas)
             {
-                if(isWait)
+                if (isWait)
                     Thread.Sleep(random.Next(10));
                 var actual = sourceReader.Get();
                 actual.Number--;
@@ -68,7 +70,7 @@ namespace OptimusPrimeTests.Factory.LinkSourceToChain
             var random = new Random();
             foreach (var data in testDatas)
             {
-                if(isWait)
+                if (isWait)
                     Thread.Sleep(random.Next(10));
                 sourceBlock.Publish(data);
             }

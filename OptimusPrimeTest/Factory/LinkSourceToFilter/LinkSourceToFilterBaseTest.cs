@@ -6,9 +6,8 @@ using Eurobot.Services;
 using NUnit.Framework;
 using OptimusPrime.Factory;
 using OptimusPrime.Templates;
-using OptimusPrimeTest;
 
-namespace OptimusPrimeTests.Factory.LinkSourceToFilter
+namespace OptimusPrimeTest.Factory
 {
     [TestFixture]
     public abstract class LinkSourceToFilterBaseTest
@@ -19,9 +18,11 @@ namespace OptimusPrimeTests.Factory.LinkSourceToFilter
         private List<TestData> sourseData;
         private List<TestData> resultData;
         private ISourceReader<TestData> sourceReader;
+        private const int DataCount = 6;
 
         protected abstract IFactory CreaFactory();
 
+        [SetUp]
         public void SetUp()
         {
             factory = CreaFactory();
@@ -36,26 +37,26 @@ namespace OptimusPrimeTests.Factory.LinkSourceToFilter
             var source = factory.CreateSource(sourceBlock);
 
             var testSource = factory.LinkSourceToFilter(source, chain);
-            sourseData = TestData.CreateData(20);
+            sourseData = TestData.CreateData(DataCount);
             sourceReader = testSource.CreateReader();
-            resultData = sourseData.Where(z => z.Number % 2 == 0).ToList();
+            resultData = sourseData.Where(z => z.Number%2 == 0).ToList();
 
             factory.Start();
 
-            new Thread(() => WriteData(true)).Start();
-            new Thread(() => ReadData(true)).Start();
+            new Thread(() => WriteData()).Start();
+            new Thread(() => ReadData()).Start();
             isReadFinished.WaitOne();
 
             TestData outTestData;
             Assert.IsFalse(sourceReader.TryGet(out outTestData));
         }
 
-        private void ReadData(bool isWait)
+        private void ReadData(bool isWait = false)
         {
             var random = new Random();
             foreach (var testData in resultData)
             {
-                if(isWait)
+                if (isWait)
                     Thread.Sleep(random.Next(10));
                 var actual = sourceReader.Get();
                 testData.AssertAreEqual(actual);
@@ -68,7 +69,7 @@ namespace OptimusPrimeTests.Factory.LinkSourceToFilter
             var random = new Random();
             foreach (var data in sourseData)
             {
-                if(isWait)
+                if (isWait)
                     Thread.Sleep(random.Next(10));
                 sourceBlock.Publish(data);
             }
@@ -77,7 +78,7 @@ namespace OptimusPrimeTests.Factory.LinkSourceToFilter
         private static bool IsEven(TestData input)
         {
             var result = input.Clone();
-            return result.Number % 2 == 0;
+            return result.Number%2 == 0;
         }
 
         [TearDown]

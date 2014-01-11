@@ -4,14 +4,15 @@ using Eurobot.Services;
 using OptimusPrime.Factory;
 using System.Linq;
 using System.Collections.Generic;
-using OptimusPrime;
 
 namespace OptimusPrimeTest
 {
     [TestFixture]
+    //FIXME: issue #109
     public class RepeaterTest
     {
-        static int SourceRepetition = 10; 
+        private const int SourceRepetition = 10;
+
         public class Int2Collector : SourceDataCollection<int,int>
         {
             public List<int> List_0 { get { return List0; } }
@@ -20,11 +21,11 @@ namespace OptimusPrimeTest
 
         public class Emulator : IFunctionalBlock<int, int>
         {
-           public SourceBlock<int> Source = new SourceBlock<int>();
+            public SourceBlock<int> Source = new SourceBlock<int>();
 
             public int Process(int input)
             {
-                for (int i=0;i<SourceRepetition;i++)
+                for (int i = 0; i < SourceRepetition; i++)
                     Source.Publish(input);
                 return input;
             }

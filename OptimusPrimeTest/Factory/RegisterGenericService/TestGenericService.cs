@@ -1,6 +1,6 @@
 ﻿using OptimusPrime.Generics;
 
-namespace OptimusPrimeTest.Factory.RegisterGenericService
+namespace OptimusPrimeTest.Factory
 {
     public class TestGenericService : IGenericService
     {

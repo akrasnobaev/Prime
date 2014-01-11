@@ -1,8 +1,8 @@
 ﻿using OptimusPrime.Factory;
 
-namespace OptimusPrimeTest.Factory.RegisterGenericService
+namespace OptimusPrimeTest.Factory
 {
-    public class RegisterGenericServiceLibertyTest : RegisterGenericServiceBaseTest
+    public class LibertyFactoryTest : FactoryTestBase
     {
         protected override IFactory CreateFactory()
         {

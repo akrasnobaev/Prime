@@ -7,8 +7,13 @@ using OptimusPrime.Factory;
 namespace OptimusPrimeTest.Factory
 {
     [TestFixture]
-    public class FactoryTest
+    public abstract class FactoryTestBase
     {
+        /// <summary>
+        /// Размер коллекции данных для тестирования.
+        /// </summary>
+        private const int DataCount = 3;
+
         /// <summary>
         /// Максимальное число попыток чтения из источника данных,
         /// поче чего тест фэйлится.
@@ -18,38 +23,23 @@ namespace OptimusPrimeTest.Factory
         /// <summary>
         /// Количество итерраций работы фабрики.
         /// </summary>
-        private const int RepeatFactoryCount = 10;
+        private const int RepeatFactoryCount = 3;
+
+        protected abstract IFactory CreateFactory();
 
         [Test]
-        public void TestOptimusPrimeFactorySingleStart()
+        public void TestFactorySingleStart()
         {
-            var factory = new OptimusPrimeFactory();
+            var factory = CreateFactory();
             FactoryWork(factory);
         }
 
         [Test]
-        public void TestOptimusPrimeFactoryMultipleStart()
+        public void TestFactoryMultipleStart()
         {
             for (int i = 0; i < RepeatFactoryCount; i++)
             {
-                var factory = new OptimusPrimeFactory();
-                FactoryWork(factory);
-            }
-        }
-
-        [Test]
-        public void TestCallFactorySingleStart()
-        {
-            var factory = new CallFactory();
-            FactoryWork(factory);
-        }
-
-        [Test]
-        public void TestCallFactoryMultipleStart()
-        {
-            for (int i = 0; i < RepeatFactoryCount; i++)
-            {
-                var factory = new CallFactory();
+                var factory = CreateFactory();
                 FactoryWork(factory);
             }
         }
@@ -63,10 +53,10 @@ namespace OptimusPrimeTest.Factory
 
             var source = factory.CreateSource(sourceBlock);
             var chain = factory.CreateChain<TestData, TestData>(inputData =>
-                {
-                    inputData.Number *= 2;
-                    return inputData;
-                });
+            {
+                inputData.Number *= 2;
+                return inputData;
+            });
             var secondChain = factory.CreateChain<TestData, TestData>(inputData =>
             {
                 inputData.Number *= 2;
@@ -78,7 +68,7 @@ namespace OptimusPrimeTest.Factory
 
             factory.Start();
 
-            var testDatas = TestData.CreateData(3);
+            var testDatas = TestData.CreateData(DataCount);
             foreach (var testData in testDatas)
                 sourceBlock.Publish(testData);
 
@@ -88,7 +78,7 @@ namespace OptimusPrimeTest.Factory
                 var tryCout = 0;
 
                 while (!reader.TryGet(out result) && ++tryCout < MaxTryReadCount)
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
 
                 Debug.WriteLine("Попыток чтения из источника {0}", tryCout);
 

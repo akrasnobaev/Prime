@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using NUnit.Framework;
 using OptimusPrime.OprimusPrimeCore;
 
-namespace OptimusPrimeTest
+namespace OptimusPrimeTest.Prime
 {
     [TestFixture]
     public class OptimusPrimeOutTest
@@ -9,6 +10,7 @@ namespace OptimusPrimeTest
         private OptimusPrimeIn optimusPrimeIn;
         private OptimusPrimeOut optimusPrimeOut;
         private const string storageKey = "storageKey";
+        private const int DataCount = 3;
 
         [SetUp]
         public void Setup()
@@ -22,16 +24,14 @@ namespace OptimusPrimeTest
         public void TestSet()
         {
             TestData testData;
-            var first = new TestData {Name = "first", Number = 1};
-            var second = new TestData {Name = "first", Number = 1};
+            var datas = TestData.CreateData(DataCount);
 
             Assert.IsFalse(optimusPrimeIn.TryGet(out testData));
+            foreach (var data in datas)
+                optimusPrimeOut.Set(data);
 
-            optimusPrimeOut.Set(first);
-            optimusPrimeOut.Set(second);
-
-            first.AssertAreEqual(optimusPrimeIn.Get<TestData>());
-            second.AssertAreEqual(optimusPrimeIn.Get<TestData>());
+            foreach (var data in datas)
+                optimusPrimeIn.Get<TestData>().AssertAreEqual(data);
 
             Assert.IsFalse(optimusPrimeIn.TryGet(out testData));
         }

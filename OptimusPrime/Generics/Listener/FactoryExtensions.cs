@@ -12,7 +12,5 @@ namespace OptimusPrime.Factory
             var service = new ListenerService<TInput>(input, process);
             input.Factory.RegisterGenericService(service);
         }
-
-       
     }
 }

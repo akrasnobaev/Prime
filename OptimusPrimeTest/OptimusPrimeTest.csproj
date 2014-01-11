@@ -54,25 +54,38 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="CommonClasses.cs" />
-    <Compile Include="Factory\FactoryTest.cs" />
-    <Compile Include="Factory\LinkSourceToChain\LinkSourceToChainCallTest.cs" />
+    <Compile Include="Factory\FactoryTest\FactoryTestBase.cs" />
+    <Compile Include="Factory\FactoryTest\LibertyFactoryTest.cs" />
+    <Compile Include="Factory\FactoryTest\PrimeFactoryTest.cs" />
+    <Compile Include="Factory\LinkSourceToChain\LibertyLinkSourceToChainTest.cs" />
     <Compile Include="Factory\LinkSourceToChain\LinkSourceToChainBaseTest.cs" />
-    <Compile Include="Factory\LinkSourceToChain\LinkSourceToChainOptimusPrimeTest.cs" />
+    <Compile Include="Factory\LinkSourceToChain\PrimeLinkSourceToChainTest.cs" />
     <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterBaseTest.cs" />
-    <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterCallTest.cs" />
-    <Compile Include="Factory\LinkSourceToFilter\LinkSourceToFilterOptimusPrimeTest.cs" />
+    <Compile Include="Factory\LinkSourceToFilter\LibertyLinkSourceToFilterTest.cs" />
+    <Compile Include="Factory\LinkSourceToFilter\PrimeLinkSourceToFilterTest.cs" />
     <Compile Include="Factory\RegisterGenericService\RegisterGenericServiceBaseTest.cs" />
-    <Compile Include="Factory\RegisterGenericService\RegisterGenericServiceLibertyTest.cs" />
-    <Compile Include="Factory\RegisterGenericService\RegisterGenericServicePrimeTest.cs" />
+    <Compile Include="Factory\RegisterGenericService\LibertyRegisterGenericServiceTest.cs" />
+    <Compile Include="Factory\RegisterGenericService\PrimeRegisterGenericServiceTest.cs" />
     <Compile Include="Factory\RegisterGenericService\TestGenericService.cs" />
-    <Compile Include="Generics\CombinedCollectorTest.cs" />
-    <Compile Include="Generics\EnumerableLinkTest.cs" />
-    <Compile Include="Generics\ForkRepeaterTest.cs" />
-    <Compile Include="Generics\ForkTest.cs" />
-    <Compile Include="Generics\IsolatorTests.cs" />
-    <Compile Include="Generics\ListenerTest.cs" />
-    <Compile Include="Logger\CallLoggerTest.cs" />
+    <Compile Include="Generics\CombinedCollectorTest\CombinedCollectorTestBase.cs" />
+    <Compile Include="Generics\CombinedCollectorTest\LibertyCombinedCollectorTest.cs" />
+    <Compile Include="Generics\CombinedCollectorTest\PrimeCombinedCollectorTest.cs" />
+    <Compile Include="Generics\ForkRepeaterTest\ForkRepeaterTestBase.cs" />
+    <Compile Include="Generics\ForkRepeaterTest\LibertyForkRepeaterTestBase.cs" />
+    <Compile Include="Generics\ForkRepeaterTest\PrimeForkRepeaterTest.cs" />
+    <Compile Include="Generics\Fork\ForkTestBase.cs" />
+    <Compile Include="Generics\Fork\LibertyForkTest.cs" />
+    <Compile Include="Generics\Fork\PrimeForkTest.cs" />
+    <Compile Include="Generics\Isolator\IsolatorTestBase.cs" />
+    <Compile Include="Generics\Isolator\LibertyIsolatorTest.cs" />
+    <Compile Include="Generics\Isolator\PrimeIsolateTest.cs" />
+    <Compile Include="Generics\LinkToEnumerable\LibertyLinkToEnumerableTest.cs" />
+    <Compile Include="Generics\LinkToEnumerable\LinkToEnumerableTestBase.cs" />
+    <Compile Include="Generics\LinkToEnumerable\PrimeLinkToEnumerableTest.cs" />
+    <Compile Include="Generics\Listener\LibertyListenerTest.cs" />
+    <Compile Include="Generics\Listener\ListenerTestBase.cs" />
+    <Compile Include="Generics\Listener\PrimeListenerTest.cs" />
+    <Compile Include="Logger\LibertyLoggerTest.cs" />
     <Compile Include="Logger\LoggerTestBase.cs" />
     <Compile Include="Logger\OptimusPrimeLoggerTest.cs" />
     <Compile Include="OptimusPrime\OptimusPrimeInTest.cs" />
@@ -95,6 +108,7 @@
       <Name>OptimusPrime %28OptimusPrime\OptimusPrime%29</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

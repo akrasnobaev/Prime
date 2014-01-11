@@ -1,12 +1,13 @@
-﻿using OptimusPrime.OprimusPrimeCore;
+﻿using System.Collections.Generic;
+using OptimusPrime.OprimusPrimeCore;
 
 namespace OptimusPrimeTest
 {
     public class WriteService<T> : OptimusPrimeService
     {
-        private readonly T[] _testDatCollection;
+        private readonly IEnumerable<T> _testDatCollection;
 
-        public WriteService(T[] testDatCollection)
+        public WriteService(IEnumerable<T> testDatCollection)
             : base(TestConstants.Host, TestConstants.DbPage)
         {
             _testDatCollection = testDatCollection;

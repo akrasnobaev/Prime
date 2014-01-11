@@ -16,30 +16,36 @@ namespace OptimusPrimeTest.Logger
         private OptimusPrimeLogger _logger;
         private ISource<TestData> _source;
         private IChain<TestData, TestData> _chain;
-        protected abstract IFactory Factory { get; }
         private const int DataCount = 3;
         private const string SourcePseudoName = "sourcePseudoName";
         private const string ChainPseudoName = "chainPseudoName";
 
-        protected void Setup()
-        {
-            var sourceBlock = new SourceBlock<TestData>();
-            _source = Factory.CreateSource(sourceBlock, SourcePseudoName);
-            _chain = Factory.CreateChain<TestData, TestData>(MultipleNumber, ChainPseudoName);
-            Factory.LinkSourceToChain(_source, _chain);
+        protected abstract IFactory CreateFactory();
 
-            Factory.Start();
+        [SetUp]
+        public void Setup()
+        {
+            var factory = CreateFactory();
+            var sourceBlock = new SourceBlock<TestData>();
+            _source = factory.CreateSource(sourceBlock, SourcePseudoName);
+            _chain = factory.CreateChain<TestData, TestData>(MultipleNumber, ChainPseudoName);
+            factory.LinkSourceToChain(_source, _chain);
+
+            factory.Start();
 
             _testDatas = TestData.CreateData(DataCount);
             foreach (TestData data in _testDatas)
                 sourceBlock.Publish(data);
 
+            /// ќжидание окончани€ работы всех цепочек.
+            /// ƒелать общий механизм опоыещени€ об оконцании работы цепочек пока нет смысла.
             Thread.Sleep(100);
-            Factory.Stop();
+
+            factory.Stop();
 
             _logger = new OptimusPrimeLogger();
 
-            string filePath = Factory.DumpDb();
+            string filePath = factory.DumpDb();
             _logger.LoadFile(filePath);
         }
 
@@ -65,6 +71,10 @@ namespace OptimusPrimeTest.Logger
         {
             var sourceDatas = _logger.GetRange<TestData>(_source.Name).ToArray();
             var chainDatas = _logger.GetRange<TestData>(_chain.OutputName).ToArray();
+
+            Assert.AreEqual(_testDatas.Count, sourceDatas.Count());
+            Assert.AreEqual(_testDatas.Count, chainDatas.Count());
+
             for (int i = 0; i < _testDatas.Count; i++)
             {
                 _testDatas[i].AssertAreEqual(sourceDatas[i]);
@@ -85,6 +95,10 @@ namespace OptimusPrimeTest.Logger
 
             var sourceDatas = _logger.GetRange<TestData>(_source.Name).ToArray();
             var chainDatas = _logger.GetRange<TestData>(_chain.OutputName).ToArray();
+
+            Assert.AreEqual(_testDatas.Count - start, sourceDatas.Count());
+            Assert.AreEqual(_testDatas.Count - start, chainDatas.Count());
+
             for (int i = start; i < _testDatas.Count; i++)
             {
                 _testDatas[i].AssertAreEqual(sourceDatas[i - start]);

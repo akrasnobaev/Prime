@@ -8,7 +8,7 @@ using OptimusPrime.Factory;
 using OptimusPrime.Templates;
 using OptimusPrimeTest;
 
-namespace OptimusPrimeTests.Templates.FunctionalItems.SourceReader
+namespace OptimusPrimeTests.Templates.SourceReader
 {
     [TestFixture]
     public abstract class SourceReaderTestBase

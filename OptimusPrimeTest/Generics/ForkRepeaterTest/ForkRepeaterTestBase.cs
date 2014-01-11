@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using OptimusPrime.Factory;
 using OptimusPrime.Templates;
-using OptimusPrime;
 
 namespace OptimusPrimeTests.Generics
 {
     [TestFixture]
-    class ForkRepeaterTest
+    public abstract class ForkRepeaterTestBase
     {
-        class CharSourceCollection : SyncronousSourceDataCollection<char> {}
-
-        class RepeaterForFork : IRepeaterBlock<string, string, char, char, CharSourceCollection>
+        private class CharSourceCollection : SyncronousSourceDataCollection<char>
         {
-            string input;
-            int position;
-            
+        }
+
+        private class RepeaterForFork : IRepeaterBlock<string, string, char, char, CharSourceCollection>
+        {
+            private string input;
+            private int position;
+
 
             public void Start(string publicIn)
             {
@@ -31,7 +29,7 @@ namespace OptimusPrimeTests.Generics
                 Assert.NotNull(sourceDatas);
                 if (position != 0)
                     Assert.AreEqual(oldPrivateOut, sourceDatas.Data0);
-                
+
                 if (position >= input.Length)
                 {
                     privateIn = '\0';
@@ -49,8 +47,10 @@ namespace OptimusPrimeTests.Generics
             }
         }
 
-        void TestForkRepeater(IFactory factory)
+        [Test]
+        public void TestForkRepeater()
         {
+            var factory = CreateFactory();
             var privateChain = factory.CreateChain(new Func<char, char>(c => c));
             var fork = privateChain.Fork();
             var collector = factory.BindSources(fork.Source).CreateSyncCollector<CharSourceCollection>();
@@ -60,16 +60,6 @@ namespace OptimusPrimeTests.Generics
             factory.Stop();
         }
 
-        [Test]
-        public void ForkRepeaterLiberty()
-        {
-            TestForkRepeater(new CallFactory());
-        }
-
-        [Test]
-        public void ForkRepeaterOptimus()
-        {
-            TestForkRepeater(new OptimusPrimeFactory());
-        }
+        protected abstract IFactory CreateFactory();
     }
 }

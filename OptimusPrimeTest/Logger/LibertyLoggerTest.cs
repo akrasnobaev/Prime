@@ -1,8 +1,8 @@
 ﻿using OptimusPrime.Factory;
 
-namespace OptimusPrimeTests.Templates.SourceReader
+namespace OptimusPrimeTest.Logger
 {
-    public class LibertySourceReaderTest : SourceReaderTestBase
+    public class LibertyLoggerTest : LoggerTestBase
     {
         protected override IFactory CreateFactory()
         {
