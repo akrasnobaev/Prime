@@ -3,21 +3,16 @@ using OptimusPrime.Templates;
 using Eurobot.Services;
 using OptimusPrime.Factory;
 using System.Linq;
-using System.Collections.Generic;
+using System;
+using OptimusPrime.Generics;
 
 namespace OptimusPrimeTest
 {
     [TestFixture]
-    //FIXME: issue #109
     public class RepeaterTest
     {
-        private const int SourceRepetition = 10;
+        private static int SourceRepetition = 10;
 
-        public class Int2Collector : SourceDataCollection<int,int>
-        {
-            public List<int> List_0 { get { return List0; } }
-            public List<int> List_1 { get { return List0; } }
-        }
 
         public class Emulator : IFunctionalBlock<int, int>
         {
@@ -31,10 +26,10 @@ namespace OptimusPrimeTest
             }
         }
 
-        public class Repeater : IRepeaterBlock<int, int, int, int, Int2Collector>
+        public class Repeater : IRepeaterBlock<int, int, int, int, Tuple<int[], int[]>>
         {
-            int Count;
-            int current;
+            private int Count;
+            private int current;
 
             public void Start(int publicIn)
             {
@@ -42,12 +37,12 @@ namespace OptimusPrimeTest
                 current = 0;
             }
 
-            public bool MakeIteration(Int2Collector sourceDatas, int oldPrivateOut, out int privateIn)
+            public bool MakeIteration(Tuple<int[], int[]> sourceDatas, int oldPrivateOut, out int privateIn)
             {
                 Assert.AreEqual(current, oldPrivateOut);
-                if (current>0)
-                    Assert.AreEqual(SourceRepetition, sourceDatas.List_0.Count);
-                foreach (var e in sourceDatas.List_0)
+                if (current > 0)
+                    Assert.AreEqual(SourceRepetition, sourceDatas.Item1.Length);
+                foreach (var e in sourceDatas.Item1)
                     Assert.AreEqual(current, e);
                 current++;
                 privateIn = current;
@@ -85,20 +80,23 @@ namespace OptimusPrimeTest
             var block = new SourceBlock<int>();
             var source = factory.CreateSource(block);
             var reader = source.CreateReader();
-            for (int i=0;i<10;i++)
+            for (int i = 0; i < 10; i++)
                 block.Publish(10);
             var col = reader.GetCollection().ToList();
             Assert.AreEqual(10, col.Count);
         }
 
-        void MakeRepeaterTest(IFactory factory)
+        private void MakeRepeaterTest(IFactory factory)
         {
-
             var emulator = new Emulator();
 
             var smallChain = factory.CreateChain(emulator);
             var source = factory.CreateSource(emulator.Source);
-            var collector = factory.BindSources(source, source).CreateCollector<Int2Collector>();
+
+            var collector = factory.Union(
+                source.CreateAsyncCollector().CreateRepeaterAdapter(),
+                source.CreateAsyncCollector().CreateRepeaterAdapter());
+
             var rep = factory.CreateRepeater(new Repeater(), collector, smallChain);
 
             factory.Start();

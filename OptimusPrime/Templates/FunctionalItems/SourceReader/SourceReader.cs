@@ -51,14 +51,7 @@ namespace OptimusPrime.Templates
             return result;
         }
 
-        public IEnumerable GetCollectionNonTypized()
-        {
-            return GetCollection();
-        }
-        public object GetNotTypized()
-        {
-            return Get();
-        }
+
         public Semaphore AvailableData { get; private set; }
     }
 }

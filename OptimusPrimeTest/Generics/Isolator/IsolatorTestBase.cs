@@ -2,6 +2,7 @@
 using Eurobot.Services;
 using NUnit.Framework;
 using OptimusPrime.Factory;
+using OptimusPrime.Generics;
 using OptimusPrime.Templates;
 using OptimusPrimeTest;
 
@@ -40,24 +41,23 @@ namespace OptimusPrimeTests.Generics
             var out1 = source.Link(iso.CreateIsolated());
             var out2 = source.Link(iso.CreateIsolated());
             var out3 = source.Link(iso.CreateIsolated());
-            var collector =
-                factory.BindSources(out1, out2, out3)
-                    .CreateSyncCollector<SyncronousSourceDataCollection<TestData, TestData, TestData>>();
+            var collector = factory.Union(
+                out1.CreateSyncCollector().CollectorChain,
+                out2.CreateSyncCollector().CollectorChain,
+                out3.CreateSyncCollector().CollectorChain
+                ).ToFunctionalBlock();
             var testData = TestData.CreateData(DataCount);
 
             factory.Start();
 
-            /// FIXME Issue #135
-            collector.SkipFirstGet = false;
-
             foreach (var data in testData)
             {
                 sourceBlock.Publish(data);
-                var actual = collector.Get();
+                var actual = collector.Process(Token.Empty);
 
-                actual.Data0.AssertAreEqual(data);
-                actual.Data1.AssertAreEqual(data);
-                actual.Data2.AssertAreEqual(data);
+                actual.Item1.AssertAreEqual(data);
+                actual.Item2.AssertAreEqual(data);
+                actual.Item3.AssertAreEqual(data);
             }
 
             factory.Stop();

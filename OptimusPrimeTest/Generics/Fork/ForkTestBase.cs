@@ -4,7 +4,7 @@ using NUnit.Framework;
 using OptimusPrime.Factory;
 using OptimusPrimeTest;
 
-namespace OptimusPrimeTests.Generics.Fork
+namespace OptimusPrimeTests.Generics
 {
     [TestFixture]
     public abstract class ForkTestBase

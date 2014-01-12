@@ -51,8 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenerationBase.cs" />
     <Compile Include="SourceCollector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Union.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

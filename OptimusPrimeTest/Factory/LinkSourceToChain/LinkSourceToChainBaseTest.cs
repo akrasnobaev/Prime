@@ -5,7 +5,6 @@ using Eurobot.Services;
 using NUnit.Framework;
 using OptimusPrime.Factory;
 using OptimusPrime.Templates;
-using OptimusPrimeTest;
 
 namespace OptimusPrimeTest.Factory
 {

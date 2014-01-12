@@ -1,6 +1,6 @@
 ﻿using OptimusPrime.Factory;
 
-namespace OptimusPrimeTests.Generics.Fork
+namespace OptimusPrimeTests.Generics
 {
     public class PrimeForkTest : ForkTestBase
     {

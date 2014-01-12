@@ -8,11 +8,9 @@ namespace OptimusPrimeTests.Generics
     [TestFixture]
     public abstract class ForkRepeaterTestBase
     {
-        private class CharSourceCollection : SyncronousSourceDataCollection<char>
-        {
-        }
 
-        private class RepeaterForFork : IRepeaterBlock<string, string, char, char, CharSourceCollection>
+     
+        class RepeaterForFork : IRepeaterBlock<string, string, char, char, char>
         {
             private string input;
             private int position;
@@ -24,11 +22,11 @@ namespace OptimusPrimeTests.Generics
                 position = 0;
             }
 
-            public bool MakeIteration(CharSourceCollection sourceDatas, char oldPrivateOut, out char privateIn)
+            public bool MakeIteration(char sourceDatas, char oldPrivateOut, out char privateIn)
             {
                 Assert.NotNull(sourceDatas);
                 if (position != 0)
-                    Assert.AreEqual(oldPrivateOut, sourceDatas.Data0);
+                    Assert.AreEqual(oldPrivateOut, sourceDatas);
 
                 if (position >= input.Length)
                 {
@@ -53,7 +51,7 @@ namespace OptimusPrimeTests.Generics
             var factory = CreateFactory();
             var privateChain = factory.CreateChain(new Func<char, char>(c => c));
             var fork = privateChain.Fork();
-            var collector = factory.BindSources(fork.Source).CreateSyncCollector<CharSourceCollection>();
+            var collector = fork.Source.CreateSyncCollector().CreateRepeaterAdapter();
             var repeater = factory.CreateRepeater(new RepeaterForFork(), collector, fork.Chain);
             factory.Start();
             repeater.ToFunctionalBlock().Process("abcdefghij");
