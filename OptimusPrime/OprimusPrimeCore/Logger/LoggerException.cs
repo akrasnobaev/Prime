@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OptimusPrime.OprimusPrimeCore
+namespace Prime
 {
     public class LoggerException : Exception
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OptimusPrime.OprimusPrimeCore.Helpers
+namespace Prime
 {
     public static class ServiceNameHelper
     {

@@ -1,4 +1,4 @@
-﻿using OptimusPrime.Generics;
+﻿using Prime;
 
 namespace OptimusPrimeTest.Factory
 {

@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Eurobot.Services;
 using NUnit.Framework;
-using OptimusPrime.Factory;
-using OptimusPrime.Templates;
+using Prime;
 
 namespace OptimusPrimeTest.Factory
 {
     [TestFixture]
     public abstract class LinkSourceToFilterBaseTest
     {
-        private IFactory factory;
+        private IPrimeFactory factory;
         private SourceBlock<TestData> sourceBlock;
         private AutoResetEvent isReadFinished;
         private List<TestData> sourseData;
@@ -20,7 +18,7 @@ namespace OptimusPrimeTest.Factory
         private ISourceReader<TestData> sourceReader;
         private const int DataCount = 6;
 
-        protected abstract IFactory CreaFactory();
+        protected abstract IPrimeFactory CreaFactory();
 
         [SetUp]
         public void SetUp()

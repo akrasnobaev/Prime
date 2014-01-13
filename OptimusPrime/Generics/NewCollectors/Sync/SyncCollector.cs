@@ -1,13 +1,6 @@
-﻿using OptimusPrime.Templates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using OptimusPrime.Factory;
-
-namespace OptimusPrime.Generics
+﻿namespace Prime
 {
-    public class SyncCollector<T> 
+    public class SyncCollector<T>
     {
         public readonly IChain<Token, T> CollectorChain;
 
@@ -18,10 +11,10 @@ namespace OptimusPrime.Generics
 
         public IChain<CollectorRequest, T> CreateRepeaterAdapter(string pseudoName = null)
         {
-            return CollectorChain.Factory.CreateChain<CollectorRequest,T>(
+            return CollectorChain.Factory.CreateChain<CollectorRequest, T>(
                 new SyncRepeaterAdapter<T>(
                     CollectorChain.ToFunctionalBlock()),
-                    pseudoName);
+                pseudoName);
         }
     }
 }

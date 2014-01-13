@@ -1,8 +1,6 @@
-﻿using OptimusPrime.Generics;
-using OptimusPrime.Templates;
-using System;
+﻿using System;
 
-namespace OptimusPrime.Factory
+namespace Prime
 {
     public static partial class FactoryExtensions
     {

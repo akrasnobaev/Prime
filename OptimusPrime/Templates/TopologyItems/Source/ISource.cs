@@ -1,13 +1,11 @@
-﻿using OptimusPrime.Factory;
-
-namespace OptimusPrime.Templates
+﻿namespace Prime
 {
     public interface ISource<TPublic>
     {
         /// <summary>
         ///     Ссылка на фабрику, от которой поражден ISource.
         /// </summary>
-        IFactory Factory { get; }
+        IPrimeFactory Factory { get; }
 
         /// <summary>
         ///     Создает ISourceReader для чтения данных из ISource.

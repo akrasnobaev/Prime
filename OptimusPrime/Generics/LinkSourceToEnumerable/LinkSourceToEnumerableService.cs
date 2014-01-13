@@ -1,18 +1,16 @@
-﻿using Eurobot.Services;
-using OptimusPrime.Templates;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace OptimusPrime.Generics
+namespace Prime
 {
-    public class LinkSourceToEnumerableService<TInput,TOutput> : IGenericService
+    public class LinkSourceToEnumerableService<TInput, TOutput> : IGenericService
     {
-        Func<TInput, IEnumerable<TOutput>> process;
+        private Func<TInput, IEnumerable<TOutput>> process;
         public readonly SourceBlock<TOutput> SourceBlock = new SourceBlock<TOutput>();
-        ISource<TInput> input;
-        ISourceReader<TInput> reader;
-        
-        public LinkSourceToEnumerableService(ISource<TInput> input, Func<TInput,IEnumerable<TOutput>> process)
+        private ISource<TInput> input;
+        private ISourceReader<TInput> reader;
+
+        public LinkSourceToEnumerableService(ISource<TInput> input, Func<TInput, IEnumerable<TOutput>> process)
         {
             this.input = input;
             this.process = process;

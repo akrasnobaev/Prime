@@ -1,18 +1,12 @@
-﻿using OptimusPrime.Templates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OptimusPrime.Generics
+﻿namespace Prime
 {
     public class SyncRepeaterAdapter<T> : IFunctionalBlock<CollectorRequest, T>
     {
-        T storedData = default(T);
+        private T storedData = default(T);
 
-        bool pushedBack = true;
+        private bool pushedBack = true;
 
-        IFunctionalBlock<Token, T> Collector;
+        private IFunctionalBlock<Token, T> Collector;
 
         public SyncRepeaterAdapter(IFunctionalBlock<Token, T> collector)
         {

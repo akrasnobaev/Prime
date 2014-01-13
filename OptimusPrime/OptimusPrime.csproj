@@ -52,9 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factory\Amenities.cs" />
-    <Compile Include="Factory\CallFactory\CallChainFactory.cs" />
-    <Compile Include="Factory\CallFactory\CallFactory.cs" />
-    <Compile Include="Factory\CallFactory\CallSourceFactory.cs" />
+    <Compile Include="Factory\LibertyFactory\LibertyChainFactory.cs" />
+    <Compile Include="Factory\LibertyFactory\LibertyFactory.cs" />
+    <Compile Include="Factory\LibertyFactory\LibertySourceFactory.cs" />
     <Compile Include="Generics\Isolator\ChainExtension.cs" />
     <Compile Include="Generics\Isolator\Isolator.cs" />
     <Compile Include="Generics\LinkSourceToChain\FactoryExtensions.cs" />
@@ -77,57 +77,55 @@
     <Compile Include="Generics\NewCollectors\Sync\FactoryExtension.cs" />
     <Compile Include="Generics\NewCollectors\TestUnion.cs" />
     <Compile Include="Generics\NewCollectors\Token.cs" />
-    <Compile Include="Factory\IFactory.cs" />
-    <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeChainFactory.cs" />
-    <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeFactory.cs" />
-    <Compile Include="Factory\OptimusPrimeFactory\OptimusPrimeSourceFactory.cs" />
+    <Compile Include="Factory\IPrimeFactory.cs" />
+    <Compile Include="Factory\OptimusFactory\PrimeChainFactory.cs" />
+    <Compile Include="Factory\OptimusFactory\PrimeFactory.cs" />
+    <Compile Include="Factory\OptimusFactory\PrimeSourceFactory.cs" />
     <Compile Include="Generics\Repeater\FactoryExtensions.cs" />
     <Compile Include="OprimusPrimeCore\ConsoleLog\PrintableList.cs" />
-    <Compile Include="OprimusPrimeCore\Exception\OptimusPrimeException.cs" />
+    <Compile Include="OprimusPrimeCore\Exception\PrimeException.cs" />
     <Compile Include="OprimusPrimeCore\Extension\SerializeExtension.cs" />
     <Compile Include="OprimusPrimeCore\Helpers\PathHelper.cs" />
     <Compile Include="OprimusPrimeCore\Helpers\ServiceNameHelper.cs" />
     <Compile Include="OprimusPrimeCore\Logger\LogData.cs" />
     <Compile Include="OprimusPrimeCore\Logger\LoggerException.cs" />
-    <Compile Include="OprimusPrimeCore\Logger\IOptimusPrimeLogger.cs" />
-    <Compile Include="OprimusPrimeCore\Logger\OptimusPrimeLogger.cs" />
-    <Compile Include="OprimusPrimeCore\Service\IOptimusPrimeService.cs" />
-    <Compile Include="OprimusPrimeCore\Service\IOptimusPrimeIn.cs" />
-    <Compile Include="OprimusPrimeCore\Service\IOptimusPrimeOut.cs" />
-    <Compile Include="OprimusPrimeCore\Service\OptimusPrimeService.cs" />
-    <Compile Include="OprimusPrimeCore\Service\OptimusPrimeIn.cs" />
-    <Compile Include="OprimusPrimeCore\Service\OptimusPrimeOut.cs" />
-    <Compile Include="OprimusPrimeCore\Service\OptimusPrimeStabService.cs" />
+    <Compile Include="OprimusPrimeCore\Logger\IPrimeLogger.cs" />
+    <Compile Include="OprimusPrimeCore\Logger\PrimeLogger.cs" />
+    <Compile Include="OprimusPrimeCore\Service\IOptimusService.cs" />
+    <Compile Include="OprimusPrimeCore\Service\IOptimusIn.cs" />
+    <Compile Include="OprimusPrimeCore\Service\IOptimusOut.cs" />
+    <Compile Include="OprimusPrimeCore\Service\OptimusFilterService.cs" />
+    <Compile Include="OprimusPrimeCore\Service\OptimusFunctionalService.cs" />
+    <Compile Include="OprimusPrimeCore\Service\OptimusService.cs" />
+    <Compile Include="OprimusPrimeCore\Service\OptimusIn.cs" />
+    <Compile Include="OprimusPrimeCore\Service\OptimusOut.cs" />
+    <Compile Include="OprimusPrimeCore\Service\OptimusSourceService.cs" />
+    <Compile Include="OprimusPrimeCore\Service\OptimusStabService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\FunctionalBlock.cs" />
     <Compile Include="Templates\FunctionalItems\FunctionalBlock\IFunctionalBlock.cs" />
-    <Compile Include="Templates\FunctionalItems\FunctionalBlock\ISourceBlock.cs" />
-    <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeFilterService.cs" />
-    <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeFunctionalService.cs" />
-    <Compile Include="Templates\FunctionalItems\FunctionalBlock\OptimusPrimeSourceService.cs" />
-    <Compile Include="Templates\FunctionalItems\FunctionalBlock\SourceBlock.cs" />
     <Compile Include="Generics\Repeater\IRepeaterBlock.cs" />
+    <Compile Include="Templates\FunctionalItems\SourceBlock\ISourceBlock.cs" />
+    <Compile Include="Templates\FunctionalItems\SourceBlock\SourceBlock.cs" />
     <Compile Include="Templates\FunctionalItems\SourceReader\ISourceReader.cs" />
-    <Compile Include="Templates\FunctionalItems\SourceReader\OptimusPrimeReader.cs" />
-    <Compile Include="Templates\FunctionalItems\SourceReader\SourceReader.cs" />
-    <Compile Include="Templates\TopologyItems\Chain\Call\CallChain.cs" />
-    <Compile Include="Templates\TopologyItems\Chain\Call\ICallChain.cs" />
+    <Compile Include="Templates\FunctionalItems\SourceReader\OptimusSourceReader.cs" />
+    <Compile Include="Templates\FunctionalItems\SourceReader\LibertySourceReader.cs" />
+    <Compile Include="Templates\TopologyItems\Chain\Liberty\LibertyChain.cs" />
+    <Compile Include="Templates\TopologyItems\Chain\Liberty\ILibertyChain.cs" />
     <Compile Include="Templates\TopologyItems\Chain\IChain.cs" />
-    <Compile Include="Templates\TopologyItems\Chain\OptimusPrime\IOptimusPrimeChane.cs" />
-    <Compile Include="Templates\TopologyItems\Chain\OptimusPrime\OptimusPrimeChain.cs" />
-    <Compile Include="Templates\TopologyItems\Source\Call\CallSource.cs" />
-    <Compile Include="Templates\TopologyItems\Source\Call\ICallSource.cs" />
+    <Compile Include="Templates\TopologyItems\Chain\Optimus\IOptimusChane.cs" />
+    <Compile Include="Templates\TopologyItems\Chain\Optimus\OptimusChain.cs" />
+    <Compile Include="Templates\TopologyItems\Source\Liberty\LibertySource.cs" />
+    <Compile Include="Templates\TopologyItems\Source\Liberty\ILibertySource.cs" />
     <Compile Include="Templates\TopologyItems\Source\ISource.cs" />
-    <Compile Include="Templates\TopologyItems\Source\OptimusPrime\IOptimusPrimeSource.cs" />
-    <Compile Include="Templates\TopologyItems\Source\OptimusPrime\OptimusPrimeSource.cs" />
+    <Compile Include="Templates\TopologyItems\Source\Optimus\IOptimusSource.cs" />
+    <Compile Include="Templates\TopologyItems\Source\Optimus\OptimusSource.cs" />
     <Compile Include="Toolbox\ArrayRepeater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Generics\SourceCollector\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

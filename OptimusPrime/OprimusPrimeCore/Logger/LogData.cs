@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OptimusPrime.OprimusPrimeCore.Logger
+namespace Prime
 {
     [Serializable]
     public class LogData

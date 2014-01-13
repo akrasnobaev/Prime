@@ -1,7 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using OptimusPrime.Factory;
-using OptimusPrime.Templates;
+using Prime;
 
 namespace OptimusPrimeTests.Generics
 {
@@ -58,6 +57,6 @@ namespace OptimusPrimeTests.Generics
             factory.Stop();
         }
 
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
     }
 }

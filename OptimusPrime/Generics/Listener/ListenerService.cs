@@ -1,13 +1,13 @@
-﻿using OptimusPrime.Templates;
-using System;
+﻿using System;
 
-namespace OptimusPrime.Generics
+namespace Prime
 {
-    public class ListenerService<T> : IGenericService 
+    public class ListenerService<T> : IGenericService
     {
-        ISource<T> input;
-        ISourceReader<T> reader;
-        Action<T> action;
+        private ISource<T> input;
+        private ISourceReader<T> reader;
+        private Action<T> action;
+
         public ListenerService(ISource<T> input, Action<T> action)
         {
             this.input = input;

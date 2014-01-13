@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Threading;
-using Eurobot.Services;
 using NUnit.Framework;
-using OptimusPrime.Factory;
-using OptimusPrime.Templates;
-using OptimusPrime.Generics;
+using Prime;
 
 namespace OptimusPrimeTests.Generics
 {
@@ -92,6 +89,6 @@ namespace OptimusPrimeTests.Generics
             repeater.ToFunctionalBlock().Process(100);
         }
 
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
     }
 }

@@ -1,12 +1,12 @@
-﻿using OptimusPrime.Factory;
+﻿using Prime;
 
 namespace OptimusPrimeTest.Factory
 {
     public class PrimeFactoryTest : FactoryTestBase
     {
-        protected override IFactory CreateFactory()
+        protected override IPrimeFactory CreateFactory()
         {
-            return new OptimusPrimeFactory();
+            return new PrimeFactory();
         }
     }
 }

@@ -1,15 +1,13 @@
-﻿using Eurobot.Services;
-using OptimusPrime.Templates;
-using System;
+﻿using System;
 
-namespace OptimusPrime.Generics
+namespace Prime
 {
-    public class LinkSourceToChainService<TInput,TOutput> : IGenericService
+    public class LinkSourceToChainService<TInput, TOutput> : IGenericService
     {
-        Func<TInput, TOutput> process;
+        private Func<TInput, TOutput> process;
         public readonly SourceBlock<TOutput> SourceBlock = new SourceBlock<TOutput>();
-        ISource<TInput> input;
-        ISourceReader<TInput> reader;
+        private ISource<TInput> input;
+        private ISourceReader<TInput> reader;
 
         public LinkSourceToChainService(ISource<TInput> input, Func<TInput, TOutput> process)
         {

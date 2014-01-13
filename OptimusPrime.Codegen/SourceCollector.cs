@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OptimusPrime.Codegen
+namespace Prime
 {
 
 
@@ -118,14 +115,14 @@ public static SourceCollectorHelper{0} BindSources{0}(this IFactory factory, {1}
         public static void Main1()
         {
             var result = string.Format(@"
-using OptimusPrime.Templates;
+using Prime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OptimusPrime.Factory
+namespace Prime
 {{
   
     partial class IFactoryExtensions

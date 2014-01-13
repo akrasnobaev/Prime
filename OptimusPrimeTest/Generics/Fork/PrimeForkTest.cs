@@ -1,12 +1,12 @@
-﻿using OptimusPrime.Factory;
+﻿using Prime;
 
 namespace OptimusPrimeTests.Generics
 {
     public class PrimeForkTest : ForkTestBase
     {
-        protected override IFactory CreateFactory()
+        protected override IPrimeFactory CreateFactory()
         {
-            return new OptimusPrimeFactory();
+            return new PrimeFactory();
         }
     }
 }

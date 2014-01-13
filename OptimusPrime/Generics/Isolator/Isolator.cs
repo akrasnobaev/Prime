@@ -1,7 +1,6 @@
-﻿using OptimusPrime.Templates;
-using System;
+﻿using System;
 
-namespace OptimusPrime.Factory
+namespace Prime
 {
     public class Isolator<TIn, TOut>
     {

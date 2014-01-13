@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OptimusPrime.Templates;
-
-namespace OptimusPrime.Toolbox
+﻿namespace Prime
 {
-    public class ArrayRepeater<TIn,TOut> : IRepeaterBlock<TIn[],TOut[],TIn,TOut>
+    public class ArrayRepeater<TIn, TOut> : IRepeaterBlock<TIn[], TOut[], TIn, TOut>
     {
-        TIn[] publicIn;
-        TOut[] publicOut;
-        int counter = 0;
+        private TIn[] publicIn;
+        private TOut[] publicOut;
+        private int counter = 0;
 
         public void Start(TIn[] publicIn)
         {

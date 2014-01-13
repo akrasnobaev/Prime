@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Eurobot.Services;
 using NUnit.Framework;
-using OptimusPrime.Factory;
-using OptimusPrime.Templates;
+using Prime;
+using Prime.Optimus;
 
 namespace OptimusPrimeTest.Prime
 {
@@ -41,9 +40,9 @@ namespace OptimusPrimeTest.Prime
 
         private static IList<T> TestSourse<T>(IEnumerable<T> sourceData)
         {
-            var factory = new OptimusPrimeFactory();
+            var factory = new PrimeFactory();
             var sourceBlock = new SourceBlock<T>();
-            var optimusPrimeSource = factory.CreateSource(sourceBlock) as OptimusPrimeSource<T>;
+            var optimusPrimeSource = factory.CreateSource(sourceBlock) as OptimusSource<T>;
 
             factory.Start();
             var readService = new ReadService<T>(sourceData.Count(), optimusPrimeSource.Output.Name);

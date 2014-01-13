@@ -1,10 +1,6 @@
-﻿using System.Collections;
-
-namespace OptimusPrime.Templates
+﻿namespace Prime
 {
-
-
-    public interface ISourceReader<T> 
+    public interface ISourceReader<T>
     {
         T Get();
         bool TryGet(out T data);

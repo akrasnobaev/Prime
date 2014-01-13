@@ -1,4 +1,4 @@
-﻿namespace OptimusPrime.Generics
+﻿namespace Prime
 {
     public interface IGenericService
     {

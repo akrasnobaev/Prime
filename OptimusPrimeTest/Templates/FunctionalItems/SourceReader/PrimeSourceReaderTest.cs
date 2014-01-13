@@ -1,12 +1,12 @@
-﻿using OptimusPrime.Factory;
+﻿using Prime;
 
 namespace OptimusPrimeTests.Templates.SourceReader
 {
     public class PrimeSourceReaderTest : SourceReaderTestBase
     {
-        protected override IFactory CreateFactory()
+        protected override IPrimeFactory CreateFactory()
         {
-            return new OptimusPrimeFactory();
+            return new PrimeFactory();
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace OptimusPrime.OprimusPrimeCore.Helpers
+namespace Prime
 {
     public class PathHelper
     {
@@ -15,9 +15,9 @@ namespace OptimusPrime.OprimusPrimeCore.Helpers
         public static string GetFolderPath()
         {
             var folder = String.Format("{0}\\{1}\\{2}",
-                                       Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                                       OptimusPrimeHomeDirectory,
-                                       DateTime.Now.ToShortDateString());
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                OptimusPrimeHomeDirectory,
+                DateTime.Now.ToShortDateString());
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
             return folder;

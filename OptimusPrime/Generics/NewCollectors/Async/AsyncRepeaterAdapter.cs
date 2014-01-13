@@ -1,18 +1,14 @@
-﻿using OptimusPrime.Templates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
-namespace OptimusPrime.Generics
+namespace Prime
 {
     public class AsyncRepeaterAdapter<T> : IFunctionalBlock<CollectorRequest, T[]>
     {
-        T[] storedData = new T[0];
+        private T[] storedData = new T[0];
 
-        bool pushedBack = true;
+        private bool pushedBack = true;
 
-        IFunctionalBlock<Token, T[]> Collector;
+        private IFunctionalBlock<Token, T[]> Collector;
 
         public AsyncRepeaterAdapter(IFunctionalBlock<Token, T[]> collector)
         {
@@ -36,5 +32,4 @@ namespace OptimusPrime.Generics
             return data;
         }
     }
-
 }

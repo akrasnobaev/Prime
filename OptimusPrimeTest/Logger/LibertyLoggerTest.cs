@@ -1,12 +1,12 @@
-﻿using OptimusPrime.Factory;
+﻿using Prime;
 
 namespace OptimusPrimeTest.Logger
 {
     public class LibertyLoggerTest : LoggerTestBase
     {
-        protected override IFactory CreateFactory()
+        protected override IPrimeFactory CreateFactory()
         {
-            return new CallFactory();
+            return new LibertyFactory();
         }
     }
 }

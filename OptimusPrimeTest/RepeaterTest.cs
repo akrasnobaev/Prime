@@ -1,10 +1,7 @@
 ﻿using NUnit.Framework;
-using OptimusPrime.Templates;
-using Eurobot.Services;
-using OptimusPrime.Factory;
+using Prime;
 using System.Linq;
 using System;
-using OptimusPrime.Generics;
 
 namespace OptimusPrimeTest
 {
@@ -58,10 +55,10 @@ namespace OptimusPrimeTest
         [Test]
         public void CallSourceReaderWithSingleData()
         {
-            MakeCallTest(new CallFactory());
+            MakeCallTest(new LibertyFactory());
         }
 
-        private static void MakeCallTest(IFactory factory)
+        private static void MakeCallTest(IPrimeFactory factory)
         {
             var block = new SourceBlock<int>();
             var source = factory.CreateSource(block);
@@ -76,7 +73,7 @@ namespace OptimusPrimeTest
         [Test]
         public void CallSourceReaderWithCollection()
         {
-            var factory = new CallFactory();
+            var factory = new LibertyFactory();
             var block = new SourceBlock<int>();
             var source = factory.CreateSource(block);
             var reader = source.CreateReader();
@@ -86,7 +83,7 @@ namespace OptimusPrimeTest
             Assert.AreEqual(10, col.Count);
         }
 
-        private void MakeRepeaterTest(IFactory factory)
+        private void MakeRepeaterTest(IPrimeFactory factory)
         {
             var emulator = new Emulator();
 
@@ -107,13 +104,13 @@ namespace OptimusPrimeTest
         [Test]
         public void RepeaterTestCall()
         {
-            MakeRepeaterTest(new CallFactory());
+            MakeRepeaterTest(new LibertyFactory());
         }
 
         [Test]
         public void RepeaterTestOP()
         {
-            MakeRepeaterTest(new OptimusPrimeFactory());
+            MakeRepeaterTest(new PrimeFactory());
         }
     }
 }

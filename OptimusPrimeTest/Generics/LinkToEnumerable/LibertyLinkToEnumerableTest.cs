@@ -1,12 +1,12 @@
-﻿using OptimusPrime.Factory;
+﻿using Prime;
 
 namespace OptimusPrimeTests.Generics
 {
     public class LibertyLinkToEnumerableTest : LinkToEnumerableTestBase
     {
-        protected override IFactory CreateFactory()
+        protected override IPrimeFactory CreateFactory()
         {
-            return new CallFactory();
+            return new LibertyFactory();
         }
     }
 }

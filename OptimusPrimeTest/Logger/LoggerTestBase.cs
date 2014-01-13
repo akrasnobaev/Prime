@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
-using Eurobot.Services;
 using NUnit.Framework;
-using OptimusPrime.Factory;
-using OptimusPrime.OprimusPrimeCore;
-using OptimusPrime.Templates;
+using Prime;
 using System.Linq;
 
 namespace OptimusPrimeTest.Logger
@@ -13,14 +10,14 @@ namespace OptimusPrimeTest.Logger
     public abstract class LoggerTestBase
     {
         private List<TestData> _testDatas;
-        private OptimusPrimeLogger _logger;
+        private PrimeLogger _logger;
         private ISource<TestData> _source;
         private IChain<TestData, TestData> _chain;
         private const int DataCount = 3;
         private const string SourcePseudoName = "sourcePseudoName";
         private const string ChainPseudoName = "chainPseudoName";
 
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
 
         [SetUp]
         public void Setup()
@@ -43,7 +40,7 @@ namespace OptimusPrimeTest.Logger
 
             factory.Stop();
 
-            _logger = new OptimusPrimeLogger();
+            _logger = new PrimeLogger();
 
             string filePath = factory.DumpDb();
             _logger.LoadFile(filePath);

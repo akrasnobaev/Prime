@@ -1,4 +1,4 @@
-namespace OptimusPrime.Templates
+namespace Prime
 {
     public interface IFunctionalBlock<TIn, TOut>
     {

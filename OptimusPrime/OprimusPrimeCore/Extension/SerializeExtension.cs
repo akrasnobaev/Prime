@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace OptimusPrime.OprimusPrimeCore.Extension
+namespace Prime
 {
     public static class SerializeExtension
     {
@@ -11,7 +11,7 @@ namespace OptimusPrime.OprimusPrimeCore.Extension
             var binaryFormatter = new BinaryFormatter();
             memoryStream.Write(bytes, 0, bytes.Length);
             memoryStream.Seek(0, SeekOrigin.Begin);
-            return (T)binaryFormatter.Deserialize(memoryStream);
+            return (T) binaryFormatter.Deserialize(memoryStream);
         }
 
         public static byte[] Serialize(this object value)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OptimusPrime.OprimusPrimeCore.ConsoleLog
+namespace Prime
 {
     public class PrintableList<T> : List<T>
     {

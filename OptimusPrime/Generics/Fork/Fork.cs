@@ -1,6 +1,4 @@
-﻿using OptimusPrime.Templates;
-
-namespace OptimusPrime.Factory
+﻿namespace Prime
 {
     public class Fork<T, Q>
     {

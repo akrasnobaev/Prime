@@ -1,6 +1,6 @@
 using System;
 
-namespace OptimusPrime.Templates
+namespace Prime
 {
     public class FunctionalBlock<TIn, TOut> : IFunctionalBlock<TIn, TOut>
     {

@@ -1,9 +1,6 @@
 ﻿using System.Threading;
-using Eurobot.Services;
 using NUnit.Framework;
-using OptimusPrime.Factory;
-using OptimusPrime.Generics;
-using OptimusPrime.Templates;
+using Prime;
 using OptimusPrimeTest;
 
 namespace OptimusPrimeTests.Generics
@@ -29,7 +26,7 @@ namespace OptimusPrimeTests.Generics
             }
         }
 
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
 
         [Test]
         public void IsolatorTest()

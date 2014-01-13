@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using NUnit.Framework;
-using OptimusPrime.Factory;
+using Prime;
 using OptimusPrimeTest;
 
 namespace OptimusPrimeTests.Generics
@@ -10,7 +10,7 @@ namespace OptimusPrimeTests.Generics
     public abstract class ForkTestBase
     {
         private const int DataCount = 3;
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
 
         [Test]
         public void TestFork()

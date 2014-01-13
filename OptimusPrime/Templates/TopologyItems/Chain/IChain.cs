@@ -1,5 +1,4 @@
-﻿using OptimusPrime.Factory;
-namespace OptimusPrime.Templates
+﻿namespace Prime
 {
     public interface IChain<TIn, TOut>
     {
@@ -8,12 +7,12 @@ namespace OptimusPrime.Templates
         /// </summary>
         /// <returns>Функциональный блок</returns>
         IFunctionalBlock<TIn, TOut> ToFunctionalBlock();
-        
+
         /// <summary>
         /// Фабрика, которой пораждена данныя цепочка.
         /// </summary>
-        IFactory Factory { get; }
-        
+        IPrimeFactory Factory { get; }
+
         /// <summary>
         /// Имя коллекции данных типа TIn поступающих на вход в цепочку.
         /// </summary>

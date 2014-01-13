@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Threading;
-using Eurobot.Services;
 using NUnit.Framework;
-using OptimusPrime.Factory;
+using Prime;
 
 namespace OptimusPrimeTest.Factory
 {
@@ -25,7 +24,7 @@ namespace OptimusPrimeTest.Factory
         /// </summary>
         private const int RepeatFactoryCount = 3;
 
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
 
         [Test]
         public void TestFactorySingleStart()
@@ -47,7 +46,7 @@ namespace OptimusPrimeTest.Factory
         /// <summary>
         /// Один цикл работы фабрики.
         /// </summary>
-        private void FactoryWork(IFactory factory)
+        private void FactoryWork(IPrimeFactory factory)
         {
             var sourceBlock = new SourceBlock<TestData>();
 

@@ -1,12 +1,12 @@
-﻿using OptimusPrime.Factory;
+﻿using Prime;
 
 namespace OptimusPrimeTest.Factory
 {
     public class PrimeLinkSourceToFilterTest : LinkSourceToFilterBaseTest
     {
-        protected override IFactory CreaFactory()
+        protected override IPrimeFactory CreaFactory()
         {
-            return new OptimusPrimeFactory();
+            return new PrimeFactory();
         }
     }
 }

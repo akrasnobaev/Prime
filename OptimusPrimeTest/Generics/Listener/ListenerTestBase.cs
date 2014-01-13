@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using Eurobot.Services;
 using NUnit.Framework;
-using OptimusPrime.Factory;
-using OptimusPrime.Templates;
+using Prime;
 using OptimusPrimeTest;
 
 namespace OptimusPrimeTests.Generics
@@ -14,11 +12,11 @@ namespace OptimusPrimeTests.Generics
         private const int DataCount = 3;
 
         private SourceBlock<TestData> sourceBlock;
-        private IFactory factory;
+        private IPrimeFactory factory;
         private ISource<TestData> source;
         private List<TestData> testData;
 
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
 
         [Test]
         public void TestListener()

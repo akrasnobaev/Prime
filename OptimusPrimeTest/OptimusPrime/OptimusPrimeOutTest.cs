@@ -1,22 +1,22 @@
 using NUnit.Framework;
-using OptimusPrime.OprimusPrimeCore;
+using Prime.Optimus;
 
 namespace OptimusPrimeTest.Prime
 {
     [TestFixture]
     public class OptimusPrimeOutTest
     {
-        private OptimusPrimeIn optimusPrimeIn;
-        private OptimusPrimeOut optimusPrimeOut;
+        private OptimusIn _optimusIn;
+        private OptimusOut _optimusOut;
         private const string storageKey = "storageKey";
         private const int DataCount = 3;
 
         [SetUp]
         public void Setup()
         {
-            var stabService = new OptimusPrimeStabService(dbPage: 2);
-            optimusPrimeIn = new OptimusPrimeIn(storageKey, stabService);
-            optimusPrimeOut = new OptimusPrimeOut(storageKey, stabService);
+            var stabService = new OptimusStabService(dbPage: 2);
+            _optimusIn = new OptimusIn(storageKey, stabService);
+            _optimusOut = new OptimusOut(storageKey, stabService);
         }
 
         [Test]
@@ -25,14 +25,14 @@ namespace OptimusPrimeTest.Prime
             TestData testData;
             var datas = TestData.CreateData(DataCount);
 
-            Assert.IsFalse(optimusPrimeIn.TryGet(out testData));
+            Assert.IsFalse(_optimusIn.TryGet(out testData));
             foreach (var data in datas)
-                optimusPrimeOut.Set(data);
+                _optimusOut.Set(data);
 
             foreach (var data in datas)
-                optimusPrimeIn.Get<TestData>().AssertAreEqual(data);
+                _optimusIn.Get<TestData>().AssertAreEqual(data);
 
-            Assert.IsFalse(optimusPrimeIn.TryGet(out testData));
+            Assert.IsFalse(_optimusIn.TryGet(out testData));
         }
     }
 }

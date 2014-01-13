@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using OptimusPrime.OprimusPrimeCore;
+using Prime.Optimus;
 
 namespace OptimusPrimeTest
 {
-    public class WriteService<T> : OptimusPrimeService
+    public class WriteService<T> : OptimusService
     {
         private readonly IEnumerable<T> _testDatCollection;
 
@@ -11,7 +11,7 @@ namespace OptimusPrimeTest
             : base(TestConstants.Host, TestConstants.DbPage)
         {
             _testDatCollection = testDatCollection;
-            OptimusPrimeOut = new IOptimusPrimeOut[] { new OptimusPrimeOut(TestConstants.StorageKey, this) };
+            OptimusOut = new IOptimusOut[] { new OptimusOut(TestConstants.StorageKey, this) };
         }
 
         public override void Initialize()
@@ -21,7 +21,7 @@ namespace OptimusPrimeTest
         public override void DoWork()
         {
             foreach (T testData in _testDatCollection)
-                OptimusPrimeOut[0].Set(testData);
+                OptimusOut[0].Set(testData);
         }
     }
 }

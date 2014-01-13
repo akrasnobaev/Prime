@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-namespace OptimusPrime.Codegen
+namespace Prime
 {
     class Union : GenerationBase
     {
@@ -31,14 +28,13 @@ public static IChain<TIn, Tuple<{0}>> Union<TIn, {0}>(this IFactory factory, {1}
         public static void Main()
         {
             string result = string.Format(@"
-using OptimusPrime.Factory;
-using OptimusPrime.Templates;
+using Prime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace OptimusPrime.Generics
+namespace Prime
 {{
     public static partial class FactoryExtension
     {{

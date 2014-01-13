@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Eurobot.Services;
 using NUnit.Framework;
-using OptimusPrime.Factory;
+using Prime;
 using OptimusPrimeTest;
 
 namespace OptimusPrimeTests.Generics
@@ -10,7 +9,7 @@ namespace OptimusPrimeTests.Generics
     public abstract class LinkToEnumerableTestBase
     {
         private const int DataCount = 3;
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
 
         [Test]
         public void TestLinkToEnumerable()

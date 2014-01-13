@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using OptimusPrime.OprimusPrimeCore;
+using Prime.Optimus;
 
 namespace OptimusPrimeTest
 {
-    public class ReadService<T> : OptimusPrimeService
+    public class ReadService<T> : OptimusService
     {
         public IList<T> TestDataCollection;
         public AutoResetEvent AutoResetEvent;
@@ -16,7 +16,7 @@ namespace OptimusPrimeTest
             _testDataCount = testDataCount;
 
             TestDataCollection = new List<T>();
-            OptimusPrimeIn = new IOptimusPrimeIn[] { new OptimusPrimeIn(storageKey, this) };
+            OptimusIn = new IOptimusIn[] { new OptimusIn(storageKey, this) };
             AutoResetEvent = new AutoResetEvent(false);
         }
 
@@ -27,7 +27,7 @@ namespace OptimusPrimeTest
         public override void DoWork()
         {
             for (int i = 0; i < _testDataCount; i++)
-                TestDataCollection.Add(OptimusPrimeIn[0].Get<T>());
+                TestDataCollection.Add(OptimusIn[0].Get<T>());
             AutoResetEvent.Set();
         }
     }

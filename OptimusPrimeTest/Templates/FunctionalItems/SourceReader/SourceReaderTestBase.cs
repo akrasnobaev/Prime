@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Eurobot.Services;
 using NUnit.Framework;
-using OptimusPrime.Factory;
-using OptimusPrime.Templates;
+using Prime;
 using OptimusPrimeTest;
 
 namespace OptimusPrimeTests.Templates.SourceReader
@@ -14,7 +12,7 @@ namespace OptimusPrimeTests.Templates.SourceReader
     public abstract class SourceReaderTestBase
     {
         private const int DataCount = 3;
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
 
         [SetUp]
         public void Setup()
@@ -35,7 +33,7 @@ namespace OptimusPrimeTests.Templates.SourceReader
         }
 
         private AutoResetEvent isReadEnd;
-        private IFactory factory;
+        private IPrimeFactory factory;
         private SourceBlock<TestData> sourceBlock;
         private ISourceReader<TestData> firstCallReader;
         private TestData outTestData;

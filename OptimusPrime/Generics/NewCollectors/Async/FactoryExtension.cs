@@ -1,11 +1,4 @@
-﻿using OptimusPrime.Generics;
-using OptimusPrime.Templates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OptimusPrime.Factory
+﻿namespace Prime
 {
     public static partial class FactoryExtension
     {
@@ -13,7 +6,6 @@ namespace OptimusPrime.Factory
         {
             var reader = source.CreateReader();
             return new AsyncCollector<T>(source.Factory.CreateChain<Token, T[]>(z => reader.GetCollection()));
-
         }
     }
 }

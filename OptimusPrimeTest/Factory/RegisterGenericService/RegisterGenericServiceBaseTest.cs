@@ -1,14 +1,14 @@
 ﻿using System.Threading;
 using NUnit.Framework;
-using OptimusPrime.Factory;
+using Prime;
 
 namespace OptimusPrimeTest.Factory
 {
     public abstract class RegisterGenericServiceBaseTest
     {
-        private IFactory factory;
+        private IPrimeFactory factory;
         private TestGenericService genericService;
-        protected abstract IFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory();
 
         [SetUp]
         public void SetUp()
