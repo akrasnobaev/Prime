@@ -55,7 +55,7 @@
     <Compile Include="Common\Extension\SerializeExtension.cs" />
     <Compile Include="Templates\Factory\Foreach.cs" />
     <Compile Include="Templates\Factory\Logging.cs" />
-    <Compile Include="Templates\Factory\Links.cs" />
+    <Compile Include="Templates\Factory\LinkChainToChain.cs" />
     <Compile Include="Templates\Fork\FactoryExtensions.cs" />
     <Compile Include="Templates\Fork\Fork.cs" />
     <Compile Include="Templates\Fork\ForkBlock.cs" />
