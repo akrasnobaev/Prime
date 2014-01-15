@@ -1,5 +1,7 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Prime
 {
@@ -54,20 +56,6 @@ namespace Prime
         {
             return source.Link(source.Factory.CreateChain(new Func<TFirstOutput, TSecondOutput>(chain), pseudoName));
         }
-
-        public static void DumpDb(this IPrimeFactory factory, string filename, bool overwrite = true)
-        {
-            var f = factory.DumpDb();
-            if (File.Exists(filename) && overwrite)
-                File.Delete(filename);
-            File.Move(f, filename);
-        }
-
-        public static SourceBlock<T> CreateCustomLogger<T>(this IPrimeFactory factory, string loggingName)
-        {
-            var block = new SourceBlock<T>();
-            factory.CreateSource(block, loggingName);
-            return block;
-        }
     }
 }
+

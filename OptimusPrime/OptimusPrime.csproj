@@ -53,7 +53,9 @@
   <ItemGroup>
     <Compile Include="Common\Exception\PrimeException.cs" />
     <Compile Include="Common\Extension\SerializeExtension.cs" />
-    <Compile Include="Common\Factory\Amenities.cs" />
+    <Compile Include="Templates\Factory\Foreach.cs" />
+    <Compile Include="Templates\Factory\Logging.cs" />
+    <Compile Include="Templates\Factory\Links.cs" />
     <Compile Include="Common\Generics\Fork\FactoryExtensions.cs" />
     <Compile Include="Common\Generics\Fork\Fork.cs" />
     <Compile Include="Common\Generics\Fork\ForkBlock.cs" />
@@ -85,7 +87,6 @@
     <Compile Include="Common\Logger\LogData.cs" />
     <Compile Include="Common\Logger\LoggerException.cs" />
     <Compile Include="Common\Logger\PrimeLogger.cs" />
-    <Compile Include="Common\Toolbox\ArrayRepeater.cs" />
     <Compile Include="LibertyPrime\Chain\ILibertyChain.cs" />
     <Compile Include="LibertyPrime\Chain\LibertyChain.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyChainFactory.cs" />
