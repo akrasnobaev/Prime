@@ -15,10 +15,11 @@ namespace Prime
                 _pseudoNames.Add(pseudoName, outputName);
 
             _collections.Add(outputName, logCollection);
-
+            
+            var smartClone = new SmartClone<TOut>();
             return new LibertyChain<TIn, TOut>(this, inputData =>
             {
-                var result = func(inputData);
+                var result = smartClone.Clone(func(inputData));
                 // логирование результата работы цепочки.
                 logCollection.Add(result);
                 return result;
