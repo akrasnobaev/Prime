@@ -67,6 +67,11 @@
     <Compile Include="Factory\RegisterGenericService\LibertyRegisterGenericServiceTest.cs" />
     <Compile Include="Factory\RegisterGenericService\PrimeRegisterGenericServiceTest.cs" />
     <Compile Include="Factory\RegisterGenericService\TestGenericService.cs" />
+    <Compile Include="Factory\SmartClone\ISmartCloneTestData.cs" />
+    <Compile Include="Factory\SmartClone\NonClonableTestData.cs" />
+    <Compile Include="Factory\SmartClone\SmartCloneTest.cs" />
+    <Compile Include="Factory\SmartClone\TestClonableData.cs" />
+    <Compile Include="Factory\SmartClone\TestSerializationData.cs" />
     <Compile Include="Generics\CombinedCollector\CombinedCollectorTestBase.cs" />
     <Compile Include="Generics\CombinedCollector\LibertyCombinedCollectorTest.cs" />
     <Compile Include="Generics\CombinedCollector\PrimeCombinedCollectorTest.cs" />

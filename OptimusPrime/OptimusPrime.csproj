@@ -51,6 +51,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Exception\DataCanNotBeClonnedPrimeException.cs" />
     <Compile Include="Common\Exception\PrimeException.cs" />
     <Compile Include="Common\Extension\SerializeExtension.cs" />
     <Compile Include="Common\Factory\Amenities.cs" />
