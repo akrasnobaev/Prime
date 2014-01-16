@@ -1,16 +1,19 @@
-﻿namespace Prime
-{
-public class SmartClone<T>
-{
-    public SmartClone()
-    {
-        //TODO: проверка на то, что с типом можно работать
-    }
+﻿using System;
 
-    public T Clone(T input)
+namespace Prime
+{
+    public class SmartClone<T>
     {
-        //TODO: реализация умного клонирования
-        return input;
+        public SmartClone()
+        {
+            //TODO: проверка на то, что с типом можно работать
+        }
+
+        public T Clone(T input)
+        {
+            if (input is ICloneable)
+                return (T) ((ICloneable) input).Clone();
+            return input;
+        }
     }
-}
 }

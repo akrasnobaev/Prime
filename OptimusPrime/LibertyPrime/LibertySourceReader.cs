@@ -5,7 +5,6 @@ namespace Prime.Liberty
     public class LibertySourceReader<T> : ISourceReader<T>
     {
         private readonly ILibertySource<T> libertySource;
-        private readonly SmartClone<T> smartClone;
         private int readCount;
 
         public LibertySourceReader(ILibertySource<T> libertySource)
@@ -13,7 +12,6 @@ namespace Prime.Liberty
             this.libertySource = libertySource;
             readCount = 0;
             AvailableData = new Semaphore(libertySource.Collection.Count, int.MaxValue);
-            smartClone = new SmartClone<T>();
         }
 
         public T Get()
@@ -55,7 +53,7 @@ namespace Prime.Liberty
 
         private T get()
         {
-            return smartClone.Clone((T) libertySource.Collection[readCount++]);
+            return (T) libertySource.Collection[readCount++];
         }
     }
 }

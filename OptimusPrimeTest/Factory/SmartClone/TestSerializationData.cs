@@ -9,7 +9,7 @@ namespace OptimusPrimeTest.Factory
     {
         public TestSerializationData()
         {
-            ValueMember = new Guid();
+            ValueMember = Guid.NewGuid();
             LinkedMember = TestData.CreateData(1)[0];
         }
 
@@ -24,7 +24,7 @@ namespace OptimusPrimeTest.Factory
 
         public ISmartCloneTestData CreateCopy()
         {
-            return new TestSerializationData(ValueMember, LinkedMember);
+            return new TestSerializationData(ValueMember, LinkedMember.Clone());
         }
 
         public void AssertAreEquals(ISmartCloneTestData actual)

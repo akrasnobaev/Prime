@@ -17,8 +17,8 @@ namespace OptimusPrimeTest.Factory
 
             factory.Start();
             // publish data
-            foreach (var testClonableData in testDatas)
-                sourceBlock.Publish(testClonableData);
+            foreach (var testData in testDatas)
+                sourceBlock.Publish(testData);
 
             // copy and change data
             var copyTestDatas = new List<T>();
