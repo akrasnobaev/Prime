@@ -124,7 +124,7 @@ namespace OptimusPrimeTest.Factory
         public void TestSmartCloneFailInLibertyChain()
         {
             var factory = new LibertyFactory();
-            factory.CreateChain<NonClonableTestData, int>(data => 1);
+            factory.CreateChain<int, NonClonableTestData>(a => new NonClonableTestData());
         }
     }
 }
