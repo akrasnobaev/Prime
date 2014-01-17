@@ -71,6 +71,7 @@
     <Compile Include="Factory\SmartClone\NonClonableTestData.cs" />
     <Compile Include="Factory\SmartClone\SmartCloneTest.cs" />
     <Compile Include="Factory\SmartClone\TestClonableData.cs" />
+    <Compile Include="Factory\SmartClone\TestImmutableData.cs" />
     <Compile Include="Factory\SmartClone\TestSerializationData.cs" />
     <Compile Include="Generics\CombinedCollector\CombinedCollectorTestBase.cs" />
     <Compile Include="Generics\CombinedCollector\LibertyCombinedCollectorTest.cs" />

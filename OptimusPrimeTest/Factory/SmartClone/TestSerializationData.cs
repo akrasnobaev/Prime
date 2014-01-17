@@ -13,7 +13,7 @@ namespace OptimusPrimeTest.Factory
             LinkedMember = TestData.CreateData(1)[0];
         }
 
-        public TestSerializationData(Guid valueMember, TestData linkedMember)
+        private TestSerializationData(Guid valueMember, TestData linkedMember)
         {
             ValueMember = valueMember;
             LinkedMember = linkedMember;

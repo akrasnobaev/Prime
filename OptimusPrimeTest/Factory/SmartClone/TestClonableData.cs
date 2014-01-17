@@ -12,7 +12,7 @@ namespace OptimusPrimeTest.Factory
             LinkedMember = TestData.CreateData(1)[0];
         }
 
-        public TestClonableData(Guid valueMember, TestData linkedMember)
+        private TestClonableData(Guid valueMember, TestData linkedMember)
         {
             ValueMember = valueMember;
             LinkedMember = linkedMember;
@@ -20,7 +20,7 @@ namespace OptimusPrimeTest.Factory
 
         public object Clone()
         {
-            return new TestClonableData(ValueMember, LinkedMember.Clone());
+            return CreateCopy();
         }
 
         public Guid ValueMember { get; set; }

@@ -62,6 +62,13 @@ namespace OptimusPrimeTest.Factory
             testSmartCloneInSourceReader(testSerializationDatas);
         }
 
+        [Test]
+        public void TestSmartCloneImmutableDataInSourseReader()
+        {
+            var datas = TestImmutableData.CreateDataList(4);
+            testSmartCloneInSourceReader(datas);
+        }
+
         private void testSmartCloneInLibertyChain<T>(T testData)
             where T : ISmartCloneTestData
         {
@@ -94,6 +101,13 @@ namespace OptimusPrimeTest.Factory
         public void TestSmartCloneSerializableDataInLibertyChain()
         {
             var testData = new TestSerializationData();
+            testSmartCloneInLibertyChain(testData);
+        }
+
+        [Test]
+        public void TestSmartCloneImmutableDataInLibertyChain()
+        {
+            var testData = new TestImmutableData();
             testSmartCloneInLibertyChain(testData);
         }
 
