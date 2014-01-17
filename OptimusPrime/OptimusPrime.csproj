@@ -51,6 +51,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Exception\DataCanNotBeClonnedPrimeException.cs" />
     <Compile Include="Common\Exception\PrimeException.cs" />
     <Compile Include="Common\Extension\SerializeExtension.cs" />
     <Compile Include="Templates\Factory\Foreach.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Common\Helpers\PathHelper.cs" />
     <Compile Include="Common\Helpers\PrintableList.cs" />
     <Compile Include="Common\Helpers\ServiceNameHelper.cs" />
+    <Compile Include="Common\Helpers\SmartClone.cs" />
     <Compile Include="Common\Logger\IPrimeLogger.cs" />
     <Compile Include="Common\Logger\LogData.cs" />
     <Compile Include="Common\Logger\LoggerException.cs" />

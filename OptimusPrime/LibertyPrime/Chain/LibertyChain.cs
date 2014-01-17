@@ -23,7 +23,8 @@ namespace Prime.Liberty
 
         public IFunctionalBlock<T1, T2> ToFunctionalBlock()
         {
-            return new FunctionalBlock<T1, T2>(Action);
+            var smartClone = new SmartClone<T1>();
+            return new FunctionalBlock<T1, T2>(data => Action(smartClone.Clone(data)));
         }
 
         public IPrimeFactory Factory { get; private set; }

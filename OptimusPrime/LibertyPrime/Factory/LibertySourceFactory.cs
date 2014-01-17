@@ -16,9 +16,10 @@ namespace Prime
             if (!string.IsNullOrEmpty(pseudoName))
                 _pseudoNames.Add(pseudoName, collectionName);
 
-            sourceBlock.Event += (sender, e) =>
+            var smartClone = new SmartClone<T>();
+            sourceBlock.Event += (sender, inputData) =>
             {
-                callSource.Collection.Add(e);
+                callSource.Collection.Add(smartClone.Clone(inputData));
                 callSource.Release();
             };
 
@@ -42,6 +43,7 @@ namespace Prime
             var newSourceThread = new Thread(() =>
             {
                 var sourceReader = source.CreateReader();
+                var smartClone = new SmartClone<T2>();
                 startSuccesed.Set();
 
                 while (true)
@@ -49,7 +51,7 @@ namespace Prime
                     T1 inputData = sourceReader.Get();
                     T2 outputData = callChain.Action(inputData);
 
-                    newSource.Collection.Add(outputData);
+                    newSource.Collection.Add(smartClone.Clone(outputData));
                     newSource.Release();
                 }
             });
@@ -76,6 +78,7 @@ namespace Prime
             var newSourceThread = new Thread(() =>
             {
                 var sourceReader = source.CreateReader();
+                var smartClone = new SmartClone<T>();
                 startSuccesed.Set();
 
                 while (true)
@@ -83,7 +86,7 @@ namespace Prime
                     T inputData = sourceReader.Get();
                     var filteringResult = filterBlock.Process(inputData);
                     if (!filteringResult) continue;
-                    newSource.Collection.Add(inputData);
+                    newSource.Collection.Add(smartClone.Clone(inputData));
                     newSource.Release();
                 }
             });
