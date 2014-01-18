@@ -12,14 +12,21 @@ namespace Prime
         public Dictionary<string, string> PseudoNames { get; private set; }
 
         /// <summary>
-        /// Коллекция данных.
+        /// Список коллекций данных.
         /// </summary>
         public Dictionary<string, object[]> Data { get; private set; }
 
-        public LogData(Dictionary<string, string> pseudoNames, Dictionary<string, object[]> data)
+        /// <summary>
+        /// Список коллекций отпечатков времени создания данных.
+        /// </summary>
+        public Dictionary<string, List<TimeSpan>> Timestamps { get; set; }
+
+        public LogData(Dictionary<string, string> pseudoNames, Dictionary<string, object[]> data,
+            Dictionary<string, List<TimeSpan>> timestamps)
         {
             PseudoNames = pseudoNames;
             Data = data;
+            Timestamps = timestamps;
         }
     }
 }

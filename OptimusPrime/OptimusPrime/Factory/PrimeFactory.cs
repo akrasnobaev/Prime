@@ -97,7 +97,8 @@ namespace Prime
                     db.Add(output.Name, result);
                 }
             var filePath = PathHelper.GetFilePath();
-            var logData = new LogData(_pseudoNames, db);
+            //FIXME: Issue #142
+            var logData = new LogData(_pseudoNames, db, new Dictionary<string, List<TimeSpan>>());
             var data = logData.Serialize();
             File.WriteAllBytes(filePath, data);
             return filePath;

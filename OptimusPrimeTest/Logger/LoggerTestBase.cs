@@ -1,3 +1,4 @@
+п»їusing System;
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
@@ -16,6 +17,7 @@ namespace OptimusPrimeTest.Logger
         private const int DataCount = 3;
         private const string SourcePseudoName = "sourcePseudoName";
         private const string ChainPseudoName = "chainPseudoName";
+        private const int waitTime = 5;
 
         protected abstract IPrimeFactory CreateFactory();
 
@@ -32,10 +34,13 @@ namespace OptimusPrimeTest.Logger
 
             _testDatas = TestData.CreateData(DataCount);
             foreach (TestData data in _testDatas)
+            {
+                Thread.Sleep(waitTime);
                 sourceBlock.Publish(data);
+            }
 
-            /// Ожидание окончания работы всех цепочек.
-            /// Делать общий механизм опоыещения об оконцании работы цепочек пока нет смысла.
+            /// РћР¶РёРґР°РЅРёРµ РѕРєРѕРЅС‡Р°РЅРёСЏ СЂР°Р±РѕС‚С‹ РІСЃРµС… С†РµРїРѕС‡РµРє.
+            /// Р”РµР»Р°С‚СЊ РѕР±С‰РёР№ РјРµС…Р°РЅРёР·Рј РѕРїРѕС‹РµС‰РµРЅРёСЏ РѕР± РѕРєРѕРЅС†Р°РЅРёРё СЂР°Р±РѕС‚С‹ С†РµРїРѕС‡РµРє РїРѕРєР° РЅРµС‚ СЃРјС‹СЃР»Р°.
             Thread.Sleep(100);
 
             factory.Stop();
@@ -88,7 +93,7 @@ namespace OptimusPrimeTest.Logger
         {
             _testDatas[0].AssertAreEqual(_logger.Get<TestData>(_source.Name));
             MultipleNumber(_testDatas[0]).AssertAreEqual(_logger.Get<TestData>(_chain.OutputName));
-            var start = 1; // количетво прочитанных данных;
+            var start = 1; // РєРѕР»РёС‡РµС‚РІРѕ РїСЂРѕС‡РёС‚Р°РЅРЅС‹С… РґР°РЅРЅС‹С…;
 
             var sourceDatas = _logger.GetRange<TestData>(_source.Name).ToArray();
             var chainDatas = _logger.GetRange<TestData>(_chain.OutputName).ToArray();
@@ -142,6 +147,71 @@ namespace OptimusPrimeTest.Logger
             TestData testData;
             Assert.IsFalse(_logger.TryGet(SourcePseudoName, out testData));
             Assert.IsFalse(_logger.TryGet(ChainPseudoName, out testData));
+        }
+
+        [Test]
+        public void TestGetWithTimeSpan()
+        {
+            var dataCout = 0;
+            foreach (var data in _testDatas)
+            {
+                var sourceData = _logger.GetWithTimeSpan<TestData>(_source.Name);
+                var chainData = _logger.GetWithTimeSpan<TestData>(_chain.OutputName);
+
+                data.AssertAreEqual(sourceData.Item1);
+                MultipleNumber(data).AssertAreEqual(chainData.Item1);
+
+                dataCout += waitTime;
+                Assert.Less(dataCout, sourceData.Item2.TotalMilliseconds);
+                Assert.Less(dataCout, chainData.Item2.TotalMilliseconds);
+            }
+
+            Tuple<TestData, TimeSpan> result;
+            Assert.IsFalse(_logger.TryGetWithTimeSpan(_source.Name, out result));
+            Assert.IsFalse(_logger.TryGetWithTimeSpan(_chain.OutputName, out result));
+        }
+
+        [Test]
+        public void TestGetRangeWithTimeSpan()
+        {
+            var sourceDatas = _logger.GetRangeWithTimeSpan<TestData>(_source.Name).ToArray();
+            Assert.AreEqual(_testDatas.Count, sourceDatas.Length);
+
+            var chainDatas = _logger.GetRangeWithTimeSpan<TestData>(_chain.OutputName).ToArray();
+            Assert.AreEqual(_testDatas.Count, chainDatas.Length);
+
+            var dataCout = 0;
+            for (var i = 0; i < _testDatas.Count; i++)
+            {
+                _testDatas[i].AssertAreEqual(sourceDatas[i].Item1);
+                MultipleNumber(_testDatas[i]).AssertAreEqual(chainDatas[i].Item1);
+
+                dataCout += waitTime;
+                Assert.Less(dataCout, sourceDatas[i].Item2.TotalMilliseconds);
+                Assert.Less(dataCout, chainDatas[i].Item2.TotalMilliseconds);
+            }
+        }
+
+        [Test]
+        public void TestTryGetWithTimeSpan()
+        {
+            var dataCout = 0;
+            Tuple<TestData, TimeSpan> result;
+            foreach (var data in _testDatas)
+            {
+                dataCout += waitTime;
+
+                Assert.IsTrue(_logger.TryGetWithTimeSpan(_source.Name, out result));
+                data.AssertAreEqual(result.Item1);
+                Assert.Less(dataCout, result.Item2.TotalMilliseconds);
+
+                Assert.IsTrue(_logger.TryGetWithTimeSpan(_chain.OutputName, out result));
+                MultipleNumber(data).AssertAreEqual(result.Item1);
+                Assert.Less(dataCout, result.Item2.TotalMilliseconds);
+            }
+
+            Assert.IsFalse(_logger.TryGetWithTimeSpan(_source.Name, out result));
+            Assert.IsFalse(_logger.TryGetWithTimeSpan(_chain.OutputName, out result));
         }
 
         private TestData MultipleNumber(TestData data)

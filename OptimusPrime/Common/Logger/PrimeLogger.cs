@@ -10,6 +10,7 @@ namespace Prime
         private Dictionary<string, object[]> _data;
         private Dictionary<string, int> _readCounter;
         private Dictionary<string, string> _pseudoNames;
+        private Dictionary<string, List<TimeSpan>> _timestamps;
 
         //TODO: зачем здесь пустой конструктор? Он вводит в заблуждение, потому что без вызова дополнительных методов 
         //класс не работоспособен
@@ -47,6 +48,7 @@ namespace Prime
 
             _data = logData.Data;
             _pseudoNames = logData.PseudoNames;
+            _timestamps = logData.Timestamps;
             _readCounter = new Dictionary<string, int>();
 
             foreach (var set in _data)
@@ -105,6 +107,21 @@ namespace Prime
         {
             string message;
             return tryGet(key, out result, out message);
+        }
+
+        public Tuple<T, TimeSpan> GetWithTimeSpan<T>(string key) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Tuple<T, TimeSpan>> GetRangeWithTimeSpan<T>(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetWithTimeSpan<T>(string key, out Tuple<T, TimeSpan> result) where T : class
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Prime
 {
@@ -36,5 +37,9 @@ namespace Prime
         /// <param name="result">Данные типа T.</param>
         /// <returns>Результат запроса.</returns>
         bool TryGet<T>(string key, out T result) where T : class;
+
+        Tuple<T, TimeSpan> GetWithTimeSpan<T>(string key) where T : class;
+        IEnumerable<Tuple<T, TimeSpan>> GetRangeWithTimeSpan<T>(string key);
+        bool TryGetWithTimeSpan<T>(string key, out Tuple<T, TimeSpan> result) where T : class;
     }
 }

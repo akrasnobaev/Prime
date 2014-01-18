@@ -33,7 +33,7 @@ namespace Prime
         /// <summary>
         /// Список коллекций отпечатков времени от старта фобрики, который определяет момент возникновения данных.
         /// </summary>
-        private readonly IDictionary<string, List<TimeSpan>> timestamps;
+        private readonly Dictionary<string, List<TimeSpan>> timestamps;
 
         /// <summary>
         /// Секундомер, стартующий вместе со стартом фабрики
@@ -74,10 +74,10 @@ namespace Prime
         public string DumpDb()
         {
             var filePath = PathHelper.GetFilePath();
-            var serialozableCollections = collections.ToDictionary(
+            var serialozableDataCollections = collections.ToDictionary(
                 collection => collection.Key,
                 collection => collection.Value.ToArray());
-            var logData = new LogData(pseudoNames, serialozableCollections);
+            var logData = new LogData(pseudoNames, serialozableDataCollections, timestamps);
             var data = logData.Serialize();
             File.WriteAllBytes(filePath, data);
             return filePath;
