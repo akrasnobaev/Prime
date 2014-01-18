@@ -1,5 +1,6 @@
 ﻿namespace Prime.Optimus
 {
+    //TODO: kill me
     public class OptimusStabService : OptimusService
     {
         public OptimusStabService(string host = "localhost", int dbPage = 1) : base(host, dbPage)

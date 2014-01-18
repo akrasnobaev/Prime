@@ -13,5 +13,10 @@ namespace Prime
         {
             return Guid.NewGuid().ToString();
         }
+
+        public static string GetTimeStampName(string key)
+        {
+            return string.Format("{0}_timestamp", key);
+        }
     }
 }

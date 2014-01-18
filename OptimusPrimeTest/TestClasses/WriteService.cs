@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using Prime.Optimus;
 
 namespace OptimusPrimeTest
@@ -11,7 +12,7 @@ namespace OptimusPrimeTest
             : base(TestConstants.Host, TestConstants.DbPage)
         {
             _testDatCollection = testDatCollection;
-            OptimusOut = new IOptimusOut[] { new OptimusOut(TestConstants.StorageKey, this) };
+            OptimusOut = new IOptimusOut[] { new OptimusOut(TestConstants.StorageKey, this, new Stopwatch()) };
         }
 
         public override void Initialize()

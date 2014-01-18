@@ -1,10 +1,11 @@
 using System;
+using System.Diagnostics;
 
 namespace Prime.Optimus
 {
     public class OptimusFunctionalService<TIn, TOut> : OptimusService
     {
-        private readonly Func<TIn, TOut> _functionalBlock;
+        private readonly Func<TIn, TOut> functionalBlock;
 
         public IOptimusIn Input
         {
@@ -16,12 +17,13 @@ namespace Prime.Optimus
             get { return OptimusOut[0]; }
         }
 
-        public OptimusFunctionalService(Func<TIn, TOut> functionalBlock, string inputKey, string otputKey)
+        public OptimusFunctionalService(Func<TIn, TOut> functionalBlock, string inputKey, string outputKey,
+            Stopwatch stopwatch)
         {
-            _functionalBlock = functionalBlock;
+            this.functionalBlock = functionalBlock;
 
             OptimusIn = new IOptimusIn[] {new OptimusIn(inputKey, this)};
-            OptimusOut = new IOptimusOut[] {new OptimusOut(otputKey, this)};
+            OptimusOut = new IOptimusOut[] {new OptimusOut(outputKey, this, stopwatch)};
         }
 
         public override void Initialize()
@@ -32,9 +34,9 @@ namespace Prime.Optimus
         {
             while (true)
             {
-                var input = OptimusIn[0].Get<TIn>();
-                var output = _functionalBlock(input);
-                OptimusOut[0].Set(output);
+                var input = Input.Get<TIn>();
+                var output = functionalBlock(input);
+                Output.Set(output);
             }
         }
     }

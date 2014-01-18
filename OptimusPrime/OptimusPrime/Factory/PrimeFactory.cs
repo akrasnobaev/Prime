@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -14,17 +15,17 @@ namespace Prime
         /// <summary>
         /// Коллекция потоков, содержащих все сервисы.
         /// </summary>
-        private readonly List<Thread> _threads;
+        private readonly List<Thread> threads;
 
         /// <summary>
         /// Список коллекций данных, порожденных топологическими элементами.
         /// </summary>
-        private RedisConnection _connection;
+        private RedisConnection connection;
 
         /// <summary>
         /// Коллекция псевдонимов имен.
         /// </summary>
-        private readonly Dictionary<string, string> _pseudoNames;
+        private readonly Dictionary<string, string> pseudoNames;
 
         /// <summary>
         /// Коллекция сервисов.
@@ -35,25 +36,31 @@ namespace Prime
         /// Коллекция AutoResetEvent, которые релизятся в тот момент,
         /// когда соответствующий поток успешно стартовал.
         /// </summary>
-        private readonly IList<AutoResetEvent> _threadsStartSuccessed;
+        private readonly IList<AutoResetEvent> threadsStartSuccessed;
+
+        /// <summary>
+        /// Секундомер, стартующий вместе со стартом фабрики
+        /// </summary>
+        public Stopwatch Stopwatch { get; private set; }
 
         public PrimeFactory()
         {
             Services = new List<IOptimusService>();
-            _threads = new List<Thread>();
-            _pseudoNames = new Dictionary<string, string>();
-            _threadsStartSuccessed = new List<AutoResetEvent>();
+            threads = new List<Thread>();
+            pseudoNames = new Dictionary<string, string>();
+            threadsStartSuccessed = new List<AutoResetEvent>();
+            Stopwatch = new Stopwatch();
         }
 
         public void Start()
         {
-            _connection = new RedisConnection("localhost", allowAdmin: true);
+            connection = new RedisConnection("localhost", allowAdmin: true);
 
-            Task openTask = _connection.Open();
-            _connection.Wait(openTask);
+            Task openTask = connection.Open();
+            connection.Wait(openTask);
 
-            Task flushDbTask = _connection.Server.FlushAll();
-            _connection.Wait(flushDbTask);
+            Task flushDbTask = connection.Server.FlushAll();
+            connection.Wait(flushDbTask);
 
             // Инициализируем все сервисы и создаем исполняющие потоки для каждого сервиса.
             foreach (var service in Services)
@@ -65,40 +72,54 @@ namespace Prime
                     startSuccesed.Set();
                     service.DoWork();
                 });
-                _threads.Add(serviceThread);
-                _threadsStartSuccessed.Add(startSuccesed);
+                threads.Add(serviceThread);
+                threadsStartSuccessed.Add(startSuccesed);
             }
 
+            // Запускаем секундомер, который определяет время создания данных.
+            Stopwatch.Start();
+
             // Запуск исолняющий потоков для всех сервисов и добавленных Generic-серисов.
-            foreach (var thread in _threads)
+            foreach (var thread in threads)
                 thread.Start();
 
             // Ожидание того, что все потоки стартовали успешно.
-            foreach (var resetEvent in _threadsStartSuccessed)
+            foreach (var resetEvent in threadsStartSuccessed)
                 resetEvent.WaitOne();
         }
 
         public void Stop()
         {
-            foreach (var thread in _threads)
+            Stopwatch.Stop();
+
+            foreach (var thread in threads)
                 thread.Abort();
         }
 
         public string DumpDb()
         {
             var db = new Dictionary<string, object[]>();
+            var timeStampsCollection = new Dictionary<string, List<TimeSpan>>();
             foreach (var service in Services)
                 foreach (var output in service.OptimusOut)
                 {
-                    var range = _connection.Lists.Range(output.Service.DbPage, output.Name, 0, -1);
-                    var bytes = _connection.Wait(range);
+                    // Логирование данных.
+                    var range = connection.Lists.Range(output.Service.DbPage, output.Name, 0, -1);
+                    var bytes = connection.Wait(range);
                     var result = bytes.Select(SerializeExtension.Deserialize<object>).ToArray();
 
                     db.Add(output.Name, result);
+
+                    // Логирование отпечатков времени создания данных.
+                    range = connection.Lists.Range(output.Service.DbPage,
+                        ServiceNameHelper.GetTimeStampName(output.Name), 0, -1);
+                    bytes = connection.Wait(range);
+                    var timeStamps = bytes.Select(SerializeExtension.Deserialize<TimeSpan>).ToList();
+
+                    timeStampsCollection.Add(output.Name, timeStamps);
                 }
             var filePath = PathHelper.GetFilePath();
-            //FIXME: Issue #142
-            var logData = new LogData(_pseudoNames, db, new Dictionary<string, List<TimeSpan>>());
+            var logData = new LogData(pseudoNames, db, timeStampsCollection);
             var data = logData.Serialize();
             File.WriteAllBytes(filePath, data);
             return filePath;
@@ -113,8 +134,8 @@ namespace Prime
                 startSuccesed.Set();
                 service.DoWork();
             });
-            _threads.Add(serviceThread);
-            _threadsStartSuccessed.Add(startSuccesed);
+            threads.Add(serviceThread);
+            threadsStartSuccessed.Add(startSuccesed);
         }
 
         public void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null)

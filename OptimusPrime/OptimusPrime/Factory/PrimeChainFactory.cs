@@ -9,11 +9,11 @@ namespace Prime
         {
             var inputName = ServiceNameHelper.GetInName();
             var outputName = ServiceNameHelper.GetOutName();
-            var service = new OptimusFunctionalService<TIn, TOut>(functionalBlock, inputName, outputName);
+            var service = new OptimusFunctionalService<TIn, TOut>(functionalBlock, inputName, outputName, Stopwatch);
 
             // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
-                _pseudoNames.Add(pseudoName, outputName);
+                pseudoNames.Add(pseudoName, outputName);
 
             Services.Add(service);
 
@@ -21,11 +21,15 @@ namespace Prime
         }
 
         public IChain<TIn, T3> AddFunctionalBlockToChain<TIn, TOut, T3>(IOptimusChane<TIn, TOut> optimusChane,
-            IFunctionalBlock<TOut, T3> functionalBlock)
+            IFunctionalBlock<TOut, T3> functionalBlock, string pseudoName = null)
         {
             var inputName = optimusChane.Output.Name;
             var outputName = ServiceNameHelper.GetOutName();
-            var service = new OptimusFunctionalService<TOut, T3>(functionalBlock.Process, inputName, outputName);
+            var service = new OptimusFunctionalService<TOut, T3>(functionalBlock.Process, inputName, outputName, Stopwatch);
+
+            // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
+            if (!string.IsNullOrEmpty(pseudoName))
+                pseudoNames.Add(pseudoName, outputName);
 
             Services.Add(service);
 

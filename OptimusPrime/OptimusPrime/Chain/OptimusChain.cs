@@ -27,7 +27,7 @@ namespace Prime.Optimus
         public IFunctionalBlock<TIn, TOut> ToFunctionalBlock()
         {
             var inputService = new OptimusStabService();
-            inputService.OptimusOut = new IOptimusOut[] {new OptimusOut(Input.Name, inputService)};
+            inputService.OptimusOut = new IOptimusOut[] {new OptimusOut(Input.Name, inputService, Factory.Stopwatch)};
 
             var outputService = new OptimusStabService();
             outputService.OptimusIn = new IOptimusIn[] {new OptimusIn(Output.Name, outputService)};

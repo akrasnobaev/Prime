@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using BookSleeve;
@@ -39,7 +40,7 @@ namespace OptimusPrimeTest.Prime
 
         private void WriteData(string setStorageKey, IEnumerable<TestData> testDatas, bool isWait = false)
         {
-            var optimusPrimeOut = new OptimusOut(setStorageKey, stabService);
+            var optimusPrimeOut = new OptimusOut(setStorageKey, stabService, new Stopwatch());
             var random = new Random();
             foreach (TestData data in testDatas)
             {

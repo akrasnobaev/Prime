@@ -38,7 +38,7 @@ namespace Prime
         /// <summary>
         /// Секундомер, стартующий вместе со стартом фабрики
         /// </summary>
-        private readonly Stopwatch stopwatch;
+        public Stopwatch Stopwatch { get; private set; }
 
         public LibertyFactory()
         {
@@ -47,20 +47,20 @@ namespace Prime
             collections = new Dictionary<string, PrintableList<object>>();
             pseudoNames = new Dictionary<string, string>();
             timestamps = new Dictionary<string, List<TimeSpan>>();
-            stopwatch = new Stopwatch();
+            Stopwatch = new Stopwatch();
         }
 
         public void Start()
         {
+            // Стартуем секундомер, определяющий момент возникновения данных.
+            Stopwatch.Start();
+
             foreach (var thread in threads)
                 thread.Start();
 
             // Ожидание того, что все потоки стартовали успешно.
             foreach (var resetEvent in threadsStartSuccessed)
                 resetEvent.WaitOne();
-            
-            // Стартуем секундомер, определяющий момент возникновения данных.
-            stopwatch.Start();
         }
 
         public void Stop()
@@ -68,7 +68,7 @@ namespace Prime
             foreach (var thread in threads)
                 thread.Abort();
 
-            stopwatch.Stop();
+            Stopwatch.Stop();
         }
 
         public string DumpDb()

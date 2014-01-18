@@ -26,7 +26,7 @@ namespace Prime
                 // логирование результата работы цепочки.
                 logCollection.Add(result);
                 // логирование времени получения данных.
-                timestampCollection.Add(stopwatch.Elapsed);
+                timestampCollection.Add(Stopwatch.Elapsed);
                 return result;
             }, outputName);
         }

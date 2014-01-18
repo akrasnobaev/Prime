@@ -22,7 +22,7 @@ namespace Prime
             {
                 callSource.Collection.Add(smartClone.Clone(inputData));
                 // Логирование времени получения данных.
-                timestampCollection.Add(stopwatch.Elapsed);
+                timestampCollection.Add(Stopwatch.Elapsed);
                 callSource.Release();
             };
 

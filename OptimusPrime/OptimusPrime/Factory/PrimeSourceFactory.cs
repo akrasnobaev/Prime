@@ -7,13 +7,11 @@ namespace Prime
         public ISource<TPublic> CreateSource<TPublic>(ISourceBlock<TPublic> sourceBlock, string pseudoName = null)
         {
             string outputName = ServiceNameHelper.GetOutName();
-            var service = new OptimusSourceService<TPublic>(sourceBlock, outputName);
+            var service = new OptimusSourceService<TPublic>(sourceBlock, outputName, Stopwatch);
 
-            /**
-             * Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
-             */
+            //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
-                _pseudoNames.Add(pseudoName, outputName);
+                pseudoNames.Add(pseudoName, outputName);
 
             Services.Add(service);
 
@@ -27,11 +25,9 @@ namespace Prime
             var source = _source as IOptimusSource<T1>;
             chain.Input.ChangeName(source.Output.Name);
 
-            /**
-             * Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
-             */
+            //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
-                _pseudoNames.Add(pseudoName, chain.Output.Name);
+                pseudoNames.Add(pseudoName, chain.Output.Name);
 
             return new OptimusSource<T2>(this, chain.Output);
         }
@@ -40,13 +36,11 @@ namespace Prime
             string pseudoName = null)
         {
             string outputName = ServiceNameHelper.GetOutName();
-            var service = new OptimusFilterService<T>(filterBlock, source.Name, outputName);
+            var service = new OptimusFilterService<T>(filterBlock, source.Name, outputName, Stopwatch);
 
-            /**
-             * Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
-             */
+             //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
-                _pseudoNames.Add(pseudoName, outputName);
+                pseudoNames.Add(pseudoName, outputName);
 
             Services.Add(service);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Prime
 {
@@ -89,6 +90,8 @@ namespace Prime
         /// <param name="InputName">Имя выхода цепочки или источника.</param>
         /// <param name="ToString">Способ преобразования в строку</param>
         void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null);
+
+        Stopwatch Stopwatch { get; }
     }
 
     public static partial class IFactoryExtensions

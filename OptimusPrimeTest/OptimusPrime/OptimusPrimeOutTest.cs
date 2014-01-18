@@ -1,9 +1,11 @@
+using System.Diagnostics;
 using NUnit.Framework;
 using Prime.Optimus;
 
 namespace OptimusPrimeTest.Prime
 {
     [TestFixture]
+    // TODO: test time stamps
     public class OptimusPrimeOutTest
     {
         private OptimusIn _optimusIn;
@@ -16,7 +18,7 @@ namespace OptimusPrimeTest.Prime
         {
             var stabService = new OptimusStabService(dbPage: 2);
             _optimusIn = new OptimusIn(storageKey, stabService);
-            _optimusOut = new OptimusOut(storageKey, stabService);
+            _optimusOut = new OptimusOut(storageKey, stabService, new Stopwatch());
         }
 
         [Test]

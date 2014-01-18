@@ -1,4 +1,6 @@
-﻿namespace Prime.Optimus
+﻿using System.Diagnostics;
+
+namespace Prime.Optimus
 {
     public class OptimusFilterService<T> : OptimusService
     {
@@ -7,12 +9,12 @@
         public readonly OptimusOut Output;
 
         public OptimusFilterService(IFunctionalBlock<T, bool> filterBlock, string inputName,
-            string outputName, string host = "localhost", int dbPage = 1) : base(host, dbPage)
+            string outputName, Stopwatch stopwatch, string host = "localhost", int dbPage = 1) : base(host, dbPage)
         {
             this.filterBlock = filterBlock;
 
             input = new OptimusIn(inputName, this);
-            Output = new OptimusOut(outputName, this);
+            Output = new OptimusOut(outputName, this, stopwatch);
 
             OptimusOut = new IOptimusOut[] {Output};
             OptimusIn = new IOptimusIn[] {input};
