@@ -123,12 +123,34 @@ namespace Prime
 
         public IEnumerable<Tuple<T, TimeSpan>> GetRangeWithTimeSpan<T>(string key) where T : class
         {
-            string message;
-            var results = new List<Tuple<T, TimeSpan>>();
-            Tuple<T, TimeSpan> result;
-            while (tryGetWithTimeSpan(key, out result, out message))
-                results.Add(result);
-            return results;
+            // В случае обращения по псевдониму, берем значение из словаря псевдонимов.
+            if (_pseudoNames.ContainsKey(key))
+                key = _pseudoNames[key];
+
+            if (!_data.ContainsKey(key))
+                throw new LoggerException(string.Format("Данные по ключу '{0}' отсутствуют", key));
+
+            if (!_timestamps.ContainsKey(key))
+                throw new LoggerException(string.Format(
+                    "Отпечаток времени данных типа '{0}' по ключу '{1}' отсутствуют",
+                    typeof (T).Name, key));
+
+
+            var datas = _data[key].Skip(_readCounter[key]).Cast<T>().ToArray();
+            var timeSpans = _timestamps[key].Skip(_readCounter[key]).ToArray();
+
+            if (datas.Length != timeSpans.Length)
+                throw new LoggerException(
+                    string.Format("Данных типа '{0}' и отпечатков времени по ключу '{1}' различное количество",
+                        typeof (T).Name, key));
+
+            var result = new List<Tuple<T, TimeSpan>>();
+            for (int i = 0; i < datas.Length; i++)
+            {
+                _readCounter[key]++;
+                result.Add(new Tuple<T, TimeSpan>(datas[i], timeSpans[i]));
+            }
+            return result;
         }
 
         public bool TryGetWithTimeSpan<T>(string key, out Tuple<T, TimeSpan> result) where T : class

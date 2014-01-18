@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
+using OptimusPrime.Common.Exception;
 using Prime;
 using System.Linq;
 
@@ -19,6 +20,7 @@ namespace OptimusPrimeTest.Logger
         private const string SourcePseudoName = "sourcePseudoName";
         private const string ChainPseudoName = "chainPseudoName";
         private const int waitTime = 5;
+        private const string wrongKey = "wrongKey";
 
         protected abstract IPrimeFactory CreateFactory();
 
@@ -139,15 +141,16 @@ namespace OptimusPrimeTest.Logger
             foreach (TestData data in _testDatas)
             {
                 var sourceData = _logger.Get<TestData>(SourcePseudoName);
-                var chainData = _logger.Get<TestData>(ChainPseudoName);
+                var chainData = _logger.GetWithTimeSpan<TestData>(ChainPseudoName);
 
                 data.AssertAreEqual(sourceData);
-                MultipleNumber(data).AssertAreEqual(chainData);
+                MultipleNumber(data).AssertAreEqual(chainData.Item1);
             }
 
             TestData testData;
             Assert.IsFalse(_logger.TryGet(SourcePseudoName, out testData));
-            Assert.IsFalse(_logger.TryGet(ChainPseudoName, out testData));
+            Tuple<TestData, TimeSpan> testDataWithTimeSpan;
+            Assert.IsFalse(_logger.TryGetWithTimeSpan(ChainPseudoName, out testDataWithTimeSpan));
         }
 
         [Test]
@@ -213,6 +216,30 @@ namespace OptimusPrimeTest.Logger
 
             Assert.IsFalse(_logger.TryGetWithTimeSpan(_source.Name, out result));
             Assert.IsFalse(_logger.TryGetWithTimeSpan(_chain.OutputName, out result));
+        }
+
+        [Test, ExpectedException(typeof(LoggerException))]
+        public void TestGetNonExistingData()
+        {
+            _logger.Get<TestData>(wrongKey);
+        }
+
+        [Test, ExpectedException(typeof(LoggerException))]
+        public void TestGetRangeNonExistingData()
+        {
+            _logger.GetRange<TestData>(wrongKey);
+        }
+
+        [Test, ExpectedException(typeof(LoggerException))]
+        public void TestGetWithTimeSpanNonExistingData()
+        {
+            _logger.GetWithTimeSpan<TestData>(wrongKey);
+        }
+
+        [Test, ExpectedException(typeof(LoggerException))]
+        public void TestGetRangeWithTimeSpanNonExistingData()
+        {
+            _logger.GetRangeWithTimeSpan<TestData>(wrongKey);
         }
 
         private TestData MultipleNumber(TestData data)
