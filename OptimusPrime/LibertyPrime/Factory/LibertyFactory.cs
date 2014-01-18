@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -11,55 +12,72 @@ namespace Prime
         /// <summary>
         /// Коллекция потоков, которые запускают все источники данных.
         /// </summary>
-        private readonly IList<Thread> _threads;
+        private readonly IList<Thread> threads;
 
         /// <summary>
         /// Коллекция AutoResetEvent, которые релизятся в тот момент,
         /// когда соответствующий поток успешно стартовал.
         /// </summary>
-        private readonly IList<AutoResetEvent> _threadsStartSuccessed;
+        private readonly IList<AutoResetEvent> threadsStartSuccessed;
 
         /// <summary>
         /// Список коллекций данных, порожденных топологическими единицами.
         /// </summary>
-        private readonly IDictionary<string, PrintableList<object>> _collections;
+        private readonly IDictionary<string, PrintableList<object>> collections;
 
         /// <summary>
         /// Коллекция псевдонимов имен.
         /// </summary>
-        private readonly Dictionary<string, string> _pseudoNames;
+        private readonly Dictionary<string, string> pseudoNames;
+
+        /// <summary>
+        /// Список коллекций отпечатков времени от старта фобрики, который определяет момент возникновения данных.
+        /// </summary>
+        private readonly IDictionary<string, List<TimeSpan>> timestamps;
+
+        /// <summary>
+        /// Секундомер, стартующий вместе со стартом фабрики
+        /// </summary>
+        private readonly Stopwatch stopwatch;
 
         public LibertyFactory()
         {
-            _threads = new List<Thread>();
-            _threadsStartSuccessed = new List<AutoResetEvent>();
-            _collections = new Dictionary<string, PrintableList<object>>();
-            _pseudoNames = new Dictionary<string, string>();
+            threads = new List<Thread>();
+            threadsStartSuccessed = new List<AutoResetEvent>();
+            collections = new Dictionary<string, PrintableList<object>>();
+            pseudoNames = new Dictionary<string, string>();
+            timestamps = new Dictionary<string, List<TimeSpan>>();
+            stopwatch = new Stopwatch();
         }
 
         public void Start()
         {
-            foreach (var thread in _threads)
+            foreach (var thread in threads)
                 thread.Start();
 
             // Ожидание того, что все потоки стартовали успешно.
-            foreach (var resetEvent in _threadsStartSuccessed)
+            foreach (var resetEvent in threadsStartSuccessed)
                 resetEvent.WaitOne();
+            
+            // Стартуем секундомер, определяющий момент возникновения данных.
+            stopwatch.Start();
         }
 
         public void Stop()
         {
-            foreach (var thread in _threads)
+            foreach (var thread in threads)
                 thread.Abort();
+
+            stopwatch.Stop();
         }
 
         public string DumpDb()
         {
             var filePath = PathHelper.GetFilePath();
-            var serialozableCollections = _collections.ToDictionary(
+            var serialozableCollections = collections.ToDictionary(
                 collection => collection.Key,
                 collection => collection.Value.ToArray());
-            var logData = new LogData(_pseudoNames, serialozableCollections);
+            var logData = new LogData(pseudoNames, serialozableCollections);
             var data = logData.Serialize();
             File.WriteAllBytes(filePath, data);
             return filePath;
@@ -76,19 +94,19 @@ namespace Prime
                 service.DoWork();
             });
 
-            _threads.Add(newSourceThread);
-            _threadsStartSuccessed.Add(startSuccesed);
+            threads.Add(newSourceThread);
+            threadsStartSuccessed.Add(startSuccesed);
         }
 
         public void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null)
         {
-            if (_pseudoNames.ContainsKey(InputName))
-                InputName = _pseudoNames[InputName];
+            if (pseudoNames.ContainsKey(InputName))
+                InputName = pseudoNames[InputName];
 
-            if (!_collections.ContainsKey(InputName))
+            if (!collections.ContainsKey(InputName))
                 throw new PrimeException(string.Format("Not fount input wint name {0}", InputName));
 
-            _collections[InputName].Print(t => ToString((T) t));
+            collections[InputName].Print(t => ToString((T) t));
         }
 
         /// <summary>
@@ -97,7 +115,7 @@ namespace Prime
         /// </summary>
         /// <typeparam name="T">Тип коллекции данных</typeparam>
         /// <returns>Название для коллекции данных</returns>
-        private string GetCollectionName<T>()
+        private static string GetCollectionName<T>()
         {
             return typeof (T).Name + '_' + Guid.NewGuid();
         }

@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using Prime.Liberty;
 
 namespace Prime
@@ -8,22 +10,24 @@ namespace Prime
         public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock, string pseudoName = null)
         {
             var collectionName = GetCollectionName<T>();
-            var callSource = new LibertySource<T>(this, collectionName);
-
-            /**
-             * Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
-             */
+            
+            //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
-                _pseudoNames.Add(pseudoName, collectionName);
+                pseudoNames.Add(pseudoName, collectionName);
 
+            var callSource = new LibertySource<T>(this, collectionName);
+            var timestampCollection = new List<TimeSpan>();
             var smartClone = new SmartClone<T>();
             sourceBlock.Event += (sender, inputData) =>
             {
                 callSource.Collection.Add(smartClone.Clone(inputData));
+                // Логирование времени получения данных.
+                timestampCollection.Add(stopwatch.Elapsed);
                 callSource.Release();
             };
 
-            _collections.Add(collectionName, callSource.Collection);
+            collections.Add(collectionName, callSource.Collection);
+            timestamps.Add(collectionName, timestampCollection);
             return callSource;
         }
 
@@ -34,12 +38,10 @@ namespace Prime
             var newSource = new LibertySource<T2>(this, callChain.OutputName);
             var startSuccesed = new AutoResetEvent(false);
 
-            /**
-             * Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
-             */
+            //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
-                _pseudoNames.Add(pseudoName, callChain.OutputName);
-
+                pseudoNames.Add(pseudoName, callChain.OutputName);
+            
             var newSourceThread = new Thread(() =>
             {
                 var sourceReader = source.CreateReader();
@@ -56,8 +58,8 @@ namespace Prime
                 }
             });
 
-            _threads.Add(newSourceThread);
-            _threadsStartSuccessed.Add(startSuccesed);
+            threads.Add(newSourceThread);
+            threadsStartSuccessed.Add(startSuccesed);
 
             return newSource;
         }
@@ -69,11 +71,9 @@ namespace Prime
             var newSource = new LibertySource<T>(this, collectionName);
             var startSuccesed = new AutoResetEvent(false);
 
-            /**
-             * Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
-             */
+            //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
-                _pseudoNames.Add(pseudoName, collectionName);
+                pseudoNames.Add(pseudoName, collectionName);
 
             var newSourceThread = new Thread(() =>
             {
@@ -91,8 +91,8 @@ namespace Prime
                 }
             });
 
-            _threads.Add(newSourceThread);
-            _threadsStartSuccessed.Add(startSuccesed);
+            threads.Add(newSourceThread);
+            threadsStartSuccessed.Add(startSuccesed);
 
             return newSource;
         }
