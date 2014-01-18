@@ -8,6 +8,7 @@ using System.Linq;
 namespace OptimusPrimeTest.Logger
 {
     [TestFixture]
+    //TODO: Написать тест на Exceptions
     public abstract class LoggerTestBase
     {
         private List<TestData> _testDatas;

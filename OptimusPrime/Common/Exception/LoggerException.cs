@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Prime
+﻿namespace OptimusPrime.Common.Exception
 {
-    public class LoggerException : Exception
+    public class LoggerException : System.Exception
     {
         public LoggerException(string message) : base(message)
         {

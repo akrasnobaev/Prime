@@ -39,7 +39,7 @@ namespace Prime
         bool TryGet<T>(string key, out T result) where T : class;
 
         Tuple<T, TimeSpan> GetWithTimeSpan<T>(string key) where T : class;
-        IEnumerable<Tuple<T, TimeSpan>> GetRangeWithTimeSpan<T>(string key);
+        IEnumerable<Tuple<T, TimeSpan>> GetRangeWithTimeSpan<T>(string key) where T : class;
         bool TryGetWithTimeSpan<T>(string key, out Tuple<T, TimeSpan> result) where T : class;
     }
 }

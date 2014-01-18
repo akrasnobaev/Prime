@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Exception\DataCanNotBeClonnedPrimeException.cs" />
+    <Compile Include="Common\Exception\LoggerException.cs" />
     <Compile Include="Common\Exception\PrimeException.cs" />
     <Compile Include="Common\Extension\SerializeExtension.cs" />
     <Compile Include="Templates\Factory\Foreach.cs" />
@@ -87,7 +88,6 @@
     <Compile Include="Common\Helpers\SmartClone.cs" />
     <Compile Include="Common\Logger\IPrimeLogger.cs" />
     <Compile Include="Common\Logger\LogData.cs" />
-    <Compile Include="Common\Logger\LoggerException.cs" />
     <Compile Include="Common\Logger\PrimeLogger.cs" />
     <Compile Include="LibertyPrime\Chain\ILibertyChain.cs" />
     <Compile Include="LibertyPrime\Chain\LibertyChain.cs" />
