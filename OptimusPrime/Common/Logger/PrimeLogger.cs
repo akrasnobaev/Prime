@@ -13,12 +13,6 @@ namespace Prime
         private Dictionary<string, string> _pseudoNames;
         private Dictionary<string, List<TimeSpan>> _timestamps;
 
-        //TODO: зачем здесь пустой конструктор? Он вводит в заблуждение, потому что без вызова дополнительных методов 
-        //класс не работоспособен
-        public PrimeLogger()
-        {
-        }
-
         //TODO: добавил такой конструктор, но это какая-то хрень
         //Разве нельзя получить данные без сохранения на диск?
         public PrimeLogger(IPrimeFactory factory)
@@ -58,12 +52,6 @@ namespace Prime
             return true;
         }
 
-        /// <summary>
-        /// Возвращает данные типа T по ключу key.
-        /// </summary>
-        /// <typeparam name="T">Тип запрашиваемых данных.</typeparam>
-        /// <param name="key">Имя или псевдоним коллекции данных.</param>
-        /// <returns>Данные типа T.</returns>
         public T Get<T>(string key) where T : class
         {
             T result;
@@ -75,12 +63,6 @@ namespace Prime
             return result;
         }
 
-        /// <summary>
-        /// Возвращает коллекцию данных типа T.
-        /// </summary>
-        /// <typeparam name="T">Тип запрашиваемых данных.</typeparam>
-        /// <param name="key">Имя или псевдоним коллекции данных.</param>
-        /// <returns>Коллекция данных типа T.</returns>
         public IEnumerable<T> GetRange<T>(string key)
         {
             // В случае обращения по псевдониму, берем значение из словаря псевдонимов.
@@ -95,14 +77,6 @@ namespace Prime
             return result;
         }
 
-        /// <summary>
-        /// Запрос на данные типа T по ключу key. В случае успеха, возвращает true,
-        /// а значение возвращается в out параметре result.
-        /// </summary>
-        /// <typeparam name="T">Тип запрашиваемых данных</typeparam>
-        /// <param name="key">Имя или псевдоним коллекции данных.</param>
-        /// <param name="result">Данные типа T.</param>
-        /// <returns>Результат запроса.</returns>
         public bool TryGet<T>(string key, out T result)
             where T : class
         {
@@ -201,6 +175,14 @@ namespace Prime
             return true;
         }
 
+        /// <summary>
+        /// Запрос на пару: данные типа T и врменной отпечаток создания данных.
+        /// </summary>
+        /// <typeparam name="T">Тип запрашиваемых данных</typeparam>
+        /// <param name="key">Имя или псевдоним коллекции данных</param>
+        /// <param name="result">Пара: данные и временной отпечаток их создания</param>
+        /// <param name="message">Сообщение об ошибке, если она есть</param>
+        /// <returns>Имеются ли данные с временными отпечатками в коллекции</returns>
         private bool tryGetWithTimeSpan<T>(string key, out Tuple<T, TimeSpan> result, out string message)
             where T : class
         {

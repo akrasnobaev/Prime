@@ -38,8 +38,30 @@ namespace Prime
         /// <returns>Результат запроса.</returns>
         bool TryGet<T>(string key, out T result) where T : class;
 
+        /// <summary>
+        /// Возвращает данные типа T и временную метку, указывающую на время создания данных.
+        /// </summary>
+        /// <typeparam name="T">Тип запрашиваемых данных</typeparam>
+        /// <param name="key">Имя или псевдоним коллекции данных</param>
+        /// <returns>Пара, данные типа T и временная метка создания данных</returns>
         Tuple<T, TimeSpan> GetWithTimeSpan<T>(string key) where T : class;
+
+        /// <summary>
+        /// Возвращает коллекцию пар: данных типа T и временных отпечатков создания данных.
+        /// </summary>
+        /// <typeparam name="T">Тип запрашиваемых данных.</typeparam>
+        /// <param name="key">Имя или псевдоним коллекции данных</param>
+        /// <returns>Коллекция пар: данные типа T и временные отпечатки создания данных</returns>
         IEnumerable<Tuple<T, TimeSpan>> GetRangeWithTimeSpan<T>(string key) where T : class;
+
+        /// <summary>
+        /// Проверка на наличие данных типа T с временными отпечатками. В случае успеха пара данных
+        /// и отпечатков времени вернутся в параметре result.
+        /// </summary>
+        /// <typeparam name="T">Тип запрашиваемых данных</typeparam>
+        /// <param name="key">Имя или псевдоним коллекции данных</param>
+        /// <param name="result">Пара: данные типа T и временной отпечаток создания данных</param>
+        /// <returns>Имеются ли данные и временной отпечаток в коллекции</returns>
         bool TryGetWithTimeSpan<T>(string key, out Tuple<T, TimeSpan> result) where T : class;
     }
 }

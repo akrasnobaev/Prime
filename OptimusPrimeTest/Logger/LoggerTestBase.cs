@@ -48,10 +48,7 @@ namespace OptimusPrimeTest.Logger
 
             factory.Stop();
 
-            _logger = new PrimeLogger();
-
-            string filePath = factory.DumpDb();
-            _logger.LoadFile(filePath);
+            _logger = new PrimeLogger(factory);
         }
 
         [Test]
