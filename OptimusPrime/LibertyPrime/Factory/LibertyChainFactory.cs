@@ -8,7 +8,7 @@ namespace Prime
     {
         public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> func, string pseudoName = null)
         {
-            var outputName = GetCollectionName<TOut>();
+            var outputName = ServiceNameHelper.GetCollectionName<TOut>();
             // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
                 pseudoNames.Add(pseudoName, outputName);

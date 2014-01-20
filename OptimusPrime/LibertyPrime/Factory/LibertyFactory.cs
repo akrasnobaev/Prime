@@ -108,16 +108,5 @@ namespace Prime
 
             collections[InputName].Print(t => ToString((T) t));
         }
-
-        /// <summary>
-        /// Название для набора данных типа T. Используется для логирования.
-        /// TODO: Подумать как удобнее это делать.
-        /// </summary>
-        /// <typeparam name="T">Тип коллекции данных</typeparam>
-        /// <returns>Название для коллекции данных</returns>
-        private static string GetCollectionName<T>()
-        {
-            return typeof (T).Name + '_' + Guid.NewGuid();
-        }
     }
 }

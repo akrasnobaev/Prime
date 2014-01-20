@@ -9,7 +9,7 @@ namespace Prime
     {
         public ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock, string pseudoName = null)
         {
-            var collectionName = GetCollectionName<T>();
+            var collectionName = ServiceNameHelper.GetCollectionName<T>();
             
             //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
@@ -67,7 +67,7 @@ namespace Prime
         public ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T, bool> filterBlock,
             string pseudoName = null)
         {
-            var collectionName = GetCollectionName<T>();
+            var collectionName = ServiceNameHelper.GetCollectionName<T>();
             var newSource = new LibertySource<T>(this, collectionName);
             var startSuccesed = new AutoResetEvent(false);
 

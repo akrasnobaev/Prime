@@ -55,6 +55,9 @@
     <Compile Include="Common\Exception\LoggerException.cs" />
     <Compile Include="Common\Exception\PrimeException.cs" />
     <Compile Include="Common\Extension\SerializeExtension.cs" />
+    <Compile Include="Prime\Factory\IFactoryExtensions.cs" />
+    <Compile Include="Prime\Factory\IPrimeFactory.cs" />
+    <Compile Include="Prime\Factory\PrimeFactoryBase.cs" />
     <Compile Include="Templates\Factory\Foreach.cs" />
     <Compile Include="Templates\Factory\Logging.cs" />
     <Compile Include="Templates\Factory\LinkChainToChain.cs" />
@@ -120,7 +123,6 @@
     <Compile Include="Prime\FunctionalItems\ISourceReader.cs" />
     <Compile Include="Prime\FunctionalItems\SourceBlock\ISourceBlock.cs" />
     <Compile Include="Prime\FunctionalItems\SourceBlock\SourceBlock.cs" />
-    <Compile Include="Prime\IPrimeFactory.cs" />
     <Compile Include="Prime\TopologyItems\IChain.cs" />
     <Compile Include="Prime\TopologyItems\ISource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

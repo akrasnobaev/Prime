@@ -14,7 +14,7 @@ namespace Prime.Liberty
         public string InputName { get; private set; }
         public string OutputName { get; private set; }
 
-        public LibertyChain(LibertyFactory factory, Func<T1, T2> action, string outputName)
+        public LibertyChain(IPrimeFactory factory, Func<T1, T2> action, string outputName)
         {
             Action = action;
             OutputName = outputName;

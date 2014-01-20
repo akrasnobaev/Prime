@@ -18,5 +18,15 @@ namespace Prime
         {
             return string.Format("{0}_timestamp", key);
         }
+
+        /// <summary>
+        /// Название для набора данных типа T. Используется для логирования.
+        /// </summary>
+        /// <typeparam name="T">Тип коллекции данных</typeparam>
+        /// <returns>Название для коллекции данных</returns>
+        public static string GetCollectionName<T>()
+        {
+            return typeof(T).Name + '_' + Guid.NewGuid();
+        }
     }
 }
