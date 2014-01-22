@@ -44,8 +44,6 @@ namespace OptimusPrimeTest.Prime
             isReadFinished.WaitOne();
 
             Assert.IsFalse(sourceReader.TryGet(out outTestData));
-            Assert.AreEqual(source.Name, chain.InputName);
-            Assert.AreEqual(testSource.Name, chain.OutputName);
         }
 
         private void ReadData(bool isWait = false)

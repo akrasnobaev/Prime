@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Prime
 {
     public static partial class FactoryExtensions
     {
-        
-
-
         public static ISource<TSecondOutput>
             Link<TFirstOutput, TSecondOutput>
             (this ISource<TFirstOutput> source, IChain<TFirstOutput, TSecondOutput> chain)
@@ -33,4 +27,3 @@ namespace Prime
         }
     }
 }
-

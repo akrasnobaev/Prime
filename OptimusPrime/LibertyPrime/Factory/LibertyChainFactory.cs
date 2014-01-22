@@ -6,7 +6,7 @@ namespace Prime
 {
     public partial class LibertyFactory
     {
-        public IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> func, string pseudoName = null)
+        public override IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> func, string pseudoName = null)
         {
             var outputName = ServiceNameHelper.GetCollectionName<TOut>();
             // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
@@ -18,7 +18,7 @@ namespace Prime
 
             var timestampCollection = new List<TimeSpan>();
             timestamps.Add(outputName, timestampCollection);
-            
+
             var smartClone = new SmartClone<TOut>();
             return new LibertyChain<TIn, TOut>(this, inputData =>
             {
@@ -34,19 +34,6 @@ namespace Prime
         public IChain<TIn, TOut> CreateChain<TIn, TOut>(IFunctionalBlock<TIn, TOut> functionalBlock)
         {
             return CreateChain<TIn, TOut>(functionalBlock.Process);
-        }
-
-        public IChain<TIn, TOut> AddFunctionalBlockToChain<TIn, TOut, TMiddle>(ILibertyChain<TIn, TMiddle> chain,
-            IFunctionalBlock<TMiddle, TOut> functionalBlock)
-        {
-            return CreateChain<TIn, TOut>(input => functionalBlock.Process(chain.Action(input)));
-        }
-
-        public IChain<TIn, TOut> LinkChainToChain<TIn, TOut, TMiddle>(IChain<TIn, TMiddle> first,
-            IChain<TMiddle, TOut> second)
-        {
-            return AddFunctionalBlockToChain<TIn, TOut, TMiddle>(first as ILibertyChain<TIn, TMiddle>,
-                second.ToFunctionalBlock());
         }
     }
 }

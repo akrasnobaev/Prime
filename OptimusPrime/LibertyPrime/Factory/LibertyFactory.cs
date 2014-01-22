@@ -1,25 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading;
 
 namespace Prime
 {
-    public partial class LibertyFactory : IPrimeFactory
+    public partial class LibertyFactory : PrimeFactoryBase
     {
-        /// <summary>
-        /// Коллекция потоков, которые запускают все источники данных.
-        /// </summary>
-        private readonly IList<Thread> threads;
-
-        /// <summary>
-        /// Коллекция AutoResetEvent, которые релизятся в тот момент,
-        /// когда соответствующий поток успешно стартовал.
-        /// </summary>
-        private readonly IList<AutoResetEvent> threadsStartSuccessed;
-
         /// <summary>
         /// Список коллекций данных, порожденных топологическими единицами.
         /// </summary>
@@ -35,43 +22,14 @@ namespace Prime
         /// </summary>
         private readonly Dictionary<string, List<TimeSpan>> timestamps;
 
-        /// <summary>
-        /// Секундомер, стартующий вместе со стартом фабрики
-        /// </summary>
-        public Stopwatch Stopwatch { get; private set; }
-
         public LibertyFactory()
         {
-            threads = new List<Thread>();
-            threadsStartSuccessed = new List<AutoResetEvent>();
             collections = new Dictionary<string, PrintableList<object>>();
             pseudoNames = new Dictionary<string, string>();
             timestamps = new Dictionary<string, List<TimeSpan>>();
-            Stopwatch = new Stopwatch();
         }
 
-        public void Start()
-        {
-            // Стартуем секундомер, определяющий момент возникновения данных.
-            Stopwatch.Start();
-
-            foreach (var thread in threads)
-                thread.Start();
-
-            // Ожидание того, что все потоки стартовали успешно.
-            foreach (var resetEvent in threadsStartSuccessed)
-                resetEvent.WaitOne();
-        }
-
-        public void Stop()
-        {
-            foreach (var thread in threads)
-                thread.Abort();
-
-            Stopwatch.Stop();
-        }
-
-        public string DumpDb()
+        public override string DumpDb()
         {
             var filePath = PathHelper.GetFilePath();
             var serialozableDataCollections = collections.ToDictionary(
@@ -83,22 +41,7 @@ namespace Prime
             return filePath;
         }
 
-        public void RegisterGenericService(IGenericService service)
-        {
-            var startSuccesed = new AutoResetEvent(false);
-
-            var newSourceThread = new Thread(() =>
-            {
-                service.Initialize();
-                startSuccesed.Set();
-                service.DoWork();
-            });
-
-            threads.Add(newSourceThread);
-            threadsStartSuccessed.Add(startSuccesed);
-        }
-
-        public void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null)
+        public override void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null)
         {
             if (pseudoNames.ContainsKey(InputName))
                 InputName = pseudoNames[InputName];

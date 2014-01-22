@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -10,13 +9,8 @@ using Prime.Optimus;
 
 namespace Prime
 {
-    public partial class PrimeFactory : IPrimeFactory
+    public partial class PrimeFactory : PrimeFactoryBase
     {
-        /// <summary>
-        /// Коллекция потоков, содержащих все сервисы.
-        /// </summary>
-        private readonly List<Thread> threads;
-
         /// <summary>
         /// Список коллекций данных, порожденных топологическими элементами.
         /// </summary>
@@ -32,27 +26,13 @@ namespace Prime
         /// </summary>
         private static IList<IOptimusService> Services { get; set; }
 
-        /// <summary>
-        /// Коллекция AutoResetEvent, которые релизятся в тот момент,
-        /// когда соответствующий поток успешно стартовал.
-        /// </summary>
-        private readonly IList<AutoResetEvent> threadsStartSuccessed;
-
-        /// <summary>
-        /// Секундомер, стартующий вместе со стартом фабрики
-        /// </summary>
-        public Stopwatch Stopwatch { get; private set; }
-
         public PrimeFactory()
         {
             Services = new List<IOptimusService>();
-            threads = new List<Thread>();
             pseudoNames = new Dictionary<string, string>();
-            threadsStartSuccessed = new List<AutoResetEvent>();
-            Stopwatch = new Stopwatch();
         }
 
-        public void Start()
+        public override void Start()
         {
             connection = new RedisConnection("localhost", allowAdmin: true);
 
@@ -88,7 +68,7 @@ namespace Prime
                 resetEvent.WaitOne();
         }
 
-        public void Stop()
+        public override void Stop()
         {
             Stopwatch.Stop();
 
@@ -96,7 +76,7 @@ namespace Prime
                 thread.Abort();
         }
 
-        public string DumpDb()
+        public override string DumpDb()
         {
             var db = new Dictionary<string, object[]>();
             var timeStampsCollection = new Dictionary<string, List<TimeSpan>>();
@@ -125,20 +105,7 @@ namespace Prime
             return filePath;
         }
 
-        public void RegisterGenericService(IGenericService service)
-        {
-            var startSuccesed = new AutoResetEvent(false);
-            var serviceThread = new Thread(() =>
-            {
-                service.Initialize();
-                startSuccesed.Set();
-                service.DoWork();
-            });
-            threads.Add(serviceThread);
-            threadsStartSuccessed.Add(startSuccesed);
-        }
-
-        public void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null)
+        public override void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null)
         {
             throw new NotImplementedException();
         }

@@ -2,6 +2,7 @@
 
 namespace Prime.Optimus
 {
+    //TODO: реализовать интерфейс IGenericService, Issue #143
     public interface IOptimusService
     {
         string Name { get; }

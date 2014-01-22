@@ -68,9 +68,10 @@
     <Compile Include="Templates\Isolator\ChainExtension.cs" />
     <Compile Include="Templates\Isolator\Isolator.cs" />
     <Compile Include="Templates\LinkSourceToChain\FactoryExtensions.cs" />
-    <Compile Include="Templates\LinkSourceToChain\LinkSourceChainService.cs" />
+    <Compile Include="Templates\LinkSourceToChain\LinkSourceToChainGenericService.cs" />
     <Compile Include="Templates\LinkSourceToEnumerable\FactoryExtensions.cs" />
     <Compile Include="Templates\LinkSourceToEnumerable\LinkSourceToEnumerableService.cs" />
+    <Compile Include="Templates\LinkSourceToFilter\LinkSourceToFilterGenericService.cs" />
     <Compile Include="Templates\Listener\FactoryExtensions.cs" />
     <Compile Include="Templates\Listener\ListenerService.cs" />
     <Compile Include="Templates\NewCollectors\Async\AsyncCollector.cs" />

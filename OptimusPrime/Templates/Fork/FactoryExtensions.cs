@@ -1,5 +1,4 @@
 ﻿using System;
-using Prime.Templates;
 
 namespace Prime
 {
