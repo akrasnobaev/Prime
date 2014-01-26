@@ -21,6 +21,9 @@ namespace Prime
         public override ISource<T2> LinkSourceToChain<T1, T2>(ISource<T1> _source, IChain<T1, T2> _chain,
             string pseudoName = null)
         {
+            // Помечаем цепочку как использованную.
+            _chain.MarkUsed();
+
             var chain = _chain as IOptimusChane<T1, T2>;
             var source = _source as IOptimusSource<T1>;
             chain.Input.ChangeName(source.Output.Name);

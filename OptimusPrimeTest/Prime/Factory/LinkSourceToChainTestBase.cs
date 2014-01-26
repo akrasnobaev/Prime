@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
+using OptimusPrime.Common.Exception;
 using Prime;
 
 namespace OptimusPrimeTest.Prime
@@ -24,13 +25,13 @@ namespace OptimusPrimeTest.Prime
         {
             factory = CreaFactory();
             isReadFinished = new AutoResetEvent(false);
+            sourceBlock = new SourceBlock<TestData>();
         }
 
         [Test]
         public void TestGet()
         {
             var chain = factory.CreateChain<TestData, TestData>(AddOne);
-            sourceBlock = new SourceBlock<TestData>();
             var source = factory.CreateSource(sourceBlock);
 
             var testSource = factory.LinkSourceToChain(source, chain);
@@ -44,6 +45,18 @@ namespace OptimusPrimeTest.Prime
             isReadFinished.WaitOne();
 
             Assert.IsFalse(sourceReader.TryGet(out outTestData));
+        }
+
+        [Test, ExpectedException(typeof(ChainAlreadyUsedException))]
+        public void TestTryUseAlreadyUsedChain()
+        {
+            var chain = factory.CreateChain<TestData, TestData>(AddOne);
+            // first use
+            chain.ToFunctionalBlock();
+
+            var source = factory.CreateSource(sourceBlock);
+            // second use
+            factory.LinkSourceToChain(source, chain);
         }
 
         private void ReadData(bool isWait = false)

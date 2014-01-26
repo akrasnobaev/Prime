@@ -3,22 +3,21 @@
     public class LinkSourceToChainGenericService<TIn, TOut> : IGenericService
     {
         private readonly ISource<TIn> source;
-        private readonly IChain<TIn, TOut> chain;
         private readonly SourceBlock<TOut> sourceBlock;
         private ISourceReader<TIn> reader;
-        private IFunctionalBlock<TIn, TOut> functinalBlock;
+        private readonly IFunctionalBlock<TIn, TOut> functinalBlock;
 
-        public LinkSourceToChainGenericService(ISource<TIn> source, IChain<TIn, TOut> chain, SourceBlock<TOut> sourceBlock)
+        public LinkSourceToChainGenericService(ISource<TIn> source, IChain<TIn, TOut> chain,
+            SourceBlock<TOut> sourceBlock)
         {
             this.source = source;
-            this.chain = chain;
             this.sourceBlock = sourceBlock;
+            functinalBlock = chain.ToFunctionalBlock();
         }
 
         public void Initialize()
         {
             reader = source.CreateReader();
-            functinalBlock = chain.ToFunctionalBlock();
         }
 
         public void DoWork()

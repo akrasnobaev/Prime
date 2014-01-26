@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="LibertyPrime\Factory\LibertyFactoryTest.cs" />
+    <Compile Include="LibertyPrime\Factory\LibertyLinkChainToChainTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyLinkSourceToChainTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyLinkSourceToFilterTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyRegisterGenericServiceTest.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="LibertyPrime\LibertyRepeaterTest.cs" />
     <Compile Include="LibertyPrime\LibertySourceReaderTest.cs" />
     <Compile Include="OptimusPrime\Factory\OptimusFactoryTest.cs" />
+    <Compile Include="OptimusPrime\Factory\OptimusLinkChainToChainTest.cs" />
     <Compile Include="OptimusPrime\Factory\OptimusLinkSourceToChainTest.cs" />
     <Compile Include="OptimusPrime\Factory\OptimusLinkSourceToFilterTest.cs" />
     <Compile Include="OptimusPrime\Factory\OptimusRegisterGenericServiceTest.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Prime\Common\TestConstants.cs" />
     <Compile Include="Prime\Common\TestData.cs" />
     <Compile Include="Prime\Factory\FactoryTestBase.cs" />
+    <Compile Include="Prime\Factory\LinkChainToChainTestBase.cs" />
     <Compile Include="Prime\Factory\LinkSourceToChainTestBase.cs" />
     <Compile Include="Prime\Factory\LinkSourceToFilterBaseTest.cs" />
     <Compile Include="Prime\Factory\RegisterGenericService\RegisterGenericServiceBaseTest.cs" />

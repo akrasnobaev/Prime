@@ -51,6 +51,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Exception\ChainAlreadyUsedException.cs" />
     <Compile Include="Common\Exception\DataCanNotBeClonnedPrimeException.cs" />
     <Compile Include="Common\Exception\LoggerException.cs" />
     <Compile Include="Common\Exception\LoggingOffException.cs" />

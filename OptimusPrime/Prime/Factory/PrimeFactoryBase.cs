@@ -45,10 +45,12 @@ namespace Prime
         public virtual IChain<TIn, TOut> LinkChainToChain<TIn, TOut, TMiddle>(IChain<TIn, TMiddle> first,
             IChain<TMiddle, TOut> second)
         {
+            var firstBlock = first.ToFunctionalBlock();
+            var secondBlock = second.ToFunctionalBlock();
             return CreateChain<TIn, TOut>(input =>
             {
-                TMiddle middle = first.ToFunctionalBlock().Process(input);
-                TOut output = second.ToFunctionalBlock().Process(middle);
+                TMiddle middle = firstBlock.Process(input);
+                TOut output = secondBlock.Process(middle);
                 return output;
             });
         }

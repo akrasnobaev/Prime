@@ -5,7 +5,8 @@ namespace Prime
 {
     public partial class PrimeFactory
     {
-        public override IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> functionalBlock, string pseudoName = null)
+        public override IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> functionalBlock,
+            string pseudoName = null)
         {
             var inputName = ServiceNameHelper.GetInName();
             var outputName = ServiceNameHelper.GetOutName();
@@ -18,6 +19,19 @@ namespace Prime
             Services.Add(service);
 
             return new OptimusChain<TIn, TOut>(this, service.Input, service.Output);
+        }
+
+        public override IChain<TIn, TOut> LinkChainToChain<TIn, TOut, TMiddle>(IChain<TIn, TMiddle> first,
+            IChain<TMiddle, TOut> second)
+        {
+            // Помечаем цепочки как использованные.
+            first.MarkUsed();
+            second.MarkUsed();
+            
+            var firstChain = first as IOptimusChane<TIn, TMiddle>;
+            var secondChain = second as IOptimusChane<TMiddle, TOut>;
+            secondChain.Input.ChangeName(firstChain.Output.Name);
+            return new OptimusChain<TIn, TOut>(this, firstChain.Input, secondChain.Output);
         }
     }
 }

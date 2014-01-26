@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using NUnit.Framework;
 using OptimusPrime.Common.Exception;
@@ -51,6 +52,19 @@ namespace OptimusPrimeTest.Prime
             FactoryWork(factory);
 
             factory.DumpDb();
+        }
+
+        [Test, ExpectedException(typeof(ChainAlreadyUsedException))]
+        public void TestTryUseAlreadyUsedChain()
+        {
+            var factory = CreateFactory();
+            var chain = factory.CreateChain(new Func<TestData, TestData>(a => a));
+            
+            // first use
+            chain.ToFunctionalBlock();
+
+            // second use
+            chain.ToFunctionalBlock();
         }
 
         /// <summary>
