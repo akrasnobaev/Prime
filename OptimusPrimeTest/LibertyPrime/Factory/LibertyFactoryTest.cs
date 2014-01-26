@@ -5,9 +5,9 @@ namespace OptimusPrimeTest.LibertyPrime
 {
     public class LibertyFactoryTest : FactoryTestBase
     {
-        protected override IPrimeFactory CreateFactory()
+        protected override IPrimeFactory CreateFactory(bool isLogging = true)
         {
-            return new LibertyFactory();
+            return new LibertyFactory(isLogging);
         }
     }
 }

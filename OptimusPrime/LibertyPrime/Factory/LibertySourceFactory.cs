@@ -25,7 +25,9 @@ namespace Prime
                 callSource.Release();
             };
 
-            collections.Add(collectionName, callSource.Collection);
+            // Добавляем коллекцию источника в список логируемых коллекций, если логирование включено.
+            if (IsLogging)
+                collections.Add(collectionName, callSource.Collection);
             timestamps.Add(collectionName, timestampCollection);
             return callSource;
         }

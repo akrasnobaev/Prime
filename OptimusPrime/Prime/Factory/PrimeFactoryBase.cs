@@ -7,16 +7,18 @@ namespace Prime
 {
     public abstract class PrimeFactoryBase : IPrimeFactory
     {
+        internal bool IsLogging;
         public abstract string DumpDb();
         public abstract IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function, string pseudoName = null);
         public abstract ISource<TData> CreateSource<TData>(ISourceBlock<TData> block, string pseudoName = null);
         public abstract void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null);
 
-        protected PrimeFactoryBase()
+        protected PrimeFactoryBase(bool isLogging = true)
         {
             Stopwatch = new Stopwatch();
             threads = new List<Thread>();
             threadsStartSuccessed = new List<AutoResetEvent>();
+            IsLogging = isLogging;
         }
 
         public virtual void Start()

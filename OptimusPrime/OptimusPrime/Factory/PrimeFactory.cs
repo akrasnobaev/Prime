@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BookSleeve;
+using OptimusPrime.Common.Exception;
 using Prime.Optimus;
 
 namespace Prime
@@ -26,7 +27,7 @@ namespace Prime
         /// </summary>
         private static IList<IOptimusService> Services { get; set; }
 
-        public PrimeFactory()
+        public PrimeFactory(bool isLogging = true) : base (isLogging)
         {
             Services = new List<IOptimusService>();
             pseudoNames = new Dictionary<string, string>();
@@ -78,6 +79,8 @@ namespace Prime
 
         public override string DumpDb()
         {
+            if (!IsLogging)
+                throw new LoggingOffException();
             var db = new Dictionary<string, object[]>();
             var timeStampsCollection = new Dictionary<string, List<TimeSpan>>();
             foreach (var service in Services)

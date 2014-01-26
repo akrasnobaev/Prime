@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Threading;
 using NUnit.Framework;
+using OptimusPrime.Common.Exception;
 using Prime;
 
 namespace OptimusPrimeTest.Prime
@@ -24,7 +25,7 @@ namespace OptimusPrimeTest.Prime
         /// </summary>
         private const int RepeatFactoryCount = 3;
 
-        protected abstract IPrimeFactory CreateFactory();
+        protected abstract IPrimeFactory CreateFactory(bool isLogging = true);
 
         [Test]
         public void TestFactorySingleStart()
@@ -41,6 +42,15 @@ namespace OptimusPrimeTest.Prime
                 var factory = CreateFactory();
                 FactoryWork(factory);
             }
+        }
+
+        [Test, ExpectedException(typeof (LoggingOffException))]
+        public void TestLoggingOff()
+        {
+            var factory = CreateFactory(false);
+            FactoryWork(factory);
+
+            factory.DumpDb();
         }
 
         /// <summary>

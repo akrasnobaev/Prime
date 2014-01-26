@@ -13,8 +13,13 @@ namespace Prime
             if (!string.IsNullOrEmpty(pseudoName))
                 pseudoNames.Add(pseudoName, outputName);
 
-            var logCollection = new PrintableList<object>();
-            collections.Add(outputName, logCollection);
+            PrintableList<object> logCollection = null;
+            // Добавляем коллекцию для логирования только в том случае, если логирование включено.
+            if (IsLogging)
+            {
+                logCollection = new PrintableList<object>();
+                collections.Add(outputName, logCollection);
+            }
 
             var timestampCollection = new List<TimeSpan>();
             timestamps.Add(outputName, timestampCollection);
@@ -23,8 +28,9 @@ namespace Prime
             return new LibertyChain<TIn, TOut>(this, inputData =>
             {
                 var result = smartClone.Clone(func(inputData));
-                // логирование результата работы цепочки.
-                logCollection.Add(result);
+                // логирование результата работы цепочки, если логирование включенно.
+                if (IsLogging) 
+                    logCollection.Add(result);
                 // логирование времени получения данных.
                 timestampCollection.Add(Stopwatch.Elapsed);
                 return result;

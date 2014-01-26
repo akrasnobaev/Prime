@@ -5,9 +5,9 @@ namespace OptimusPrimeTest.OptimusPrime
 {
     public class OptimusFactoryTest : FactoryTestBase
     {
-        protected override IPrimeFactory CreateFactory()
+        protected override IPrimeFactory CreateFactory(bool isLogging = true)
         {
-            return new PrimeFactory();
+            return new PrimeFactory(isLogging);
         }
     }
 }

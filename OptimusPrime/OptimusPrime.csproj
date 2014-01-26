@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Common\Exception\DataCanNotBeClonnedPrimeException.cs" />
     <Compile Include="Common\Exception\LoggerException.cs" />
+    <Compile Include="Common\Exception\LoggingOffException.cs" />
     <Compile Include="Common\Exception\PrimeException.cs" />
     <Compile Include="Common\Extension\SerializeExtension.cs" />
     <Compile Include="Prime\Factory\IFactoryExtensions.cs" />

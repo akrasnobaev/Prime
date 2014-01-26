@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using OptimusPrime.Common.Exception;
 
 namespace Prime
 {
@@ -22,7 +23,7 @@ namespace Prime
         /// </summary>
         private readonly Dictionary<string, List<TimeSpan>> timestamps;
 
-        public LibertyFactory()
+        public LibertyFactory(bool isLogging = true) : base(isLogging)
         {
             collections = new Dictionary<string, PrintableList<object>>();
             pseudoNames = new Dictionary<string, string>();
@@ -31,6 +32,8 @@ namespace Prime
 
         public override string DumpDb()
         {
+            if (!IsLogging)
+                throw new LoggingOffException();
             var filePath = PathHelper.GetFilePath();
             var serialozableDataCollections = collections.ToDictionary(
                 collection => collection.Key,
