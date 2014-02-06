@@ -1,130 +1,72 @@
 ﻿using System;
-using System.Collections.Generic;
 using NUnit.Framework;
+using OptimusPrimeTest.LibertyPrime;
 using Prime;
 
-namespace OptimusPrimeTest.LibertyPrime
+namespace OptimusPrimeTests.LibertyPrime.Factory.SmartClone
 {
     [TestFixture]
     public class SmartCloneTest
     {
-        private void testSmartCloneInSourceReader<T>(List<T> testDatas)
-            where T : ISmartCloneTestData
+        [Test]
+        public void TestCloneString()
         {
-            var factory = new LibertyFactory();
-            var sourceBlock = new SourceBlock<T>();
-            var sourse = factory.CreateSource(sourceBlock);
+            var smartClone = new SmartClone<string>();
+            var data = "AnyString";
+            var actual = smartClone.Clone(data);
+            data = "OtherString";
 
-            factory.Start();
-            // publish data
-            foreach (var testData in testDatas)
-                sourceBlock.Publish(testData);
-
-            // copy and change data
-            var copyTestDatas = new List<T>();
-            foreach (var data in testDatas)
-            {
-                copyTestDatas.Add((T) data.CreateCopy());
-                data.ValueMember = Guid.NewGuid();
-                data.LinkedMember.Number++;
-            }
-
-            // test TryGet()
-            var reader = sourse.CreateReader();
-            T actual;
-            reader.TryGet(out actual);
-            copyTestDatas[0].AssertAreEquals(actual);
-
-            // test Get()
-            actual = reader.Get();
-            copyTestDatas[1].AssertAreEquals(actual);
-
-            // test GetCollection()
-            var actualCollections = reader.GetCollection();
-            Assert.AreEqual(copyTestDatas.Count - 2, actualCollections.Length);
-            for (int i = 2; i < copyTestDatas.Count; i++)
-                copyTestDatas[i].AssertAreEquals(actualCollections[i - 2]);
-
-            factory.Stop();
+            Assert.AreEqual("AnyString", actual);
         }
 
         [Test]
-        public void TestSmartCloneClonableDataInSourceReader()
+        public void TestCloneInteger()
         {
-            var testClonableDatas = TestClonableData.CreateDataList(4);
-            testSmartCloneInSourceReader(testClonableDatas);
+            var smartClone = new SmartClone<int>();
+            var data = 11;
+            var actual = smartClone.Clone(data);
+            data = 22;
+
+            Assert.AreEqual(11, actual);
         }
 
         [Test]
-        public void TestSmartCloneSerializableDataInSourseReader()
+        public void TestCloneImmutableData()
         {
-            var testSerializationDatas = TestSerializationData.CreateDataList(4);
-            testSmartCloneInSourceReader(testSerializationDatas);
+            var smartClone = new SmartClone<TestImmutableData>();
+            var data = new TestImmutableData();
+            var expected = data.CreateCopy();
+            var actual = smartClone.Clone(data);
+            data.ValueMember = new Guid();
+            data.LinkedMember.Name = "OtherName";
+
+            expected.AssertAreEquals(actual);
         }
 
         [Test]
-        public void TestSmartCloneImmutableDataInSourseReader()
+        public void TestCloneClonableData()
         {
-            var datas = TestImmutableData.CreateDataList(4);
-            testSmartCloneInSourceReader(datas);
-        }
+            var smartClone = new SmartClone<TestClonableData>();
+            var data = new TestClonableData();
+            var expected = data.CreateCopy();
+            var actual = smartClone.Clone(data);
+            data.ValueMember = new Guid();
+            data.LinkedMember.Name = "OtherName";
 
-        private void testSmartCloneInLibertyChain<T>(T testData)
-            where T : ISmartCloneTestData
-        {
-            var factory = new LibertyFactory();
-            var chain = factory.CreateChain<T, T>(data => data);
-            var function = chain.ToFunctionalBlock();
-
-
-            factory.Start();
-
-            var copyTestData = testData.CreateCopy();
-            var actual = function.Process(testData);
-
-            testData.ValueMember = Guid.NewGuid();
-            testData.LinkedMember.Number ++;
-
-            copyTestData.AssertAreEquals(actual);
-
-            factory.Stop();
+            expected.AssertAreEquals(actual);
         }
 
         [Test]
-        public void TestSmartCloneClonableDataInLibertyChain()
+        public void TestCloneSerializableData()
         {
-            var testData = new TestClonableData();
-            testSmartCloneInLibertyChain(testData);
-        }
+            var smartClone = new SmartClone<TestSerializationData>();
+            var data = new TestSerializationData();
+            var expected = data.CreateCopy();
+            var actual = smartClone.Clone(data);
+            data.ValueMember = new Guid();
+            data.LinkedMember.Name = "OtherName";
 
-        [Test]
-        public void TestSmartCloneSerializableDataInLibertyChain()
-        {
-            var testData = new TestSerializationData();
-            testSmartCloneInLibertyChain(testData);
-        }
-
-        [Test]
-        public void TestSmartCloneImmutableDataInLibertyChain()
-        {
-            var testData = new TestImmutableData();
-            testSmartCloneInLibertyChain(testData);
-        }
-
-        [Test, ExpectedException(typeof (DataCanNotBeClonnedPrimeException))]
-        public void TestSmartCloneFailInSourceReader()
-        {
-            var factory = new LibertyFactory();
-            var sourceBlock = new SourceBlock<NonClonableTestData>();
-            var source = factory.CreateSource(sourceBlock);
-            source.CreateReader();
-        }
-
-        [Test, ExpectedException(typeof (DataCanNotBeClonnedPrimeException))]
-        public void TestSmartCloneFailInLibertyChain()
-        {
-            var factory = new LibertyFactory();
-            factory.CreateChain<int, NonClonableTestData>(a => new NonClonableTestData());
+            expected.AssertAreEquals(actual);
         }
     }
 }

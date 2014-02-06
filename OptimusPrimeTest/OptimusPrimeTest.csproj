@@ -61,6 +61,7 @@
     <Compile Include="LibertyPrime\Factory\LibertyRegisterGenericServiceTest.cs" />
     <Compile Include="LibertyPrime\Factory\SmartClone\ISmartCloneTestData.cs" />
     <Compile Include="LibertyPrime\Factory\SmartClone\NonClonableTestData.cs" />
+    <Compile Include="LibertyPrime\Factory\SmartClone\SmartCloneFactoryTest.cs" />
     <Compile Include="LibertyPrime\Factory\SmartClone\SmartCloneTest.cs" />
     <Compile Include="LibertyPrime\Factory\SmartClone\TestClonableData.cs" />
     <Compile Include="LibertyPrime\Factory\SmartClone\TestImmutableData.cs" />
