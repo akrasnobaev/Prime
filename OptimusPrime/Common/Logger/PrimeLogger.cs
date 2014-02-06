@@ -52,7 +52,7 @@ namespace Prime
             return true;
         }
 
-        public T Get<T>(string key) where T : class
+        public T Get<T>(string key)
         {
             T result;
             string message;
@@ -78,13 +78,12 @@ namespace Prime
         }
 
         public bool TryGet<T>(string key, out T result)
-            where T : class
         {
             string message;
             return tryGet(key, out result, out message);
         }
 
-        public Tuple<T, TimeSpan> GetWithTimeSpan<T>(string key) where T : class
+        public Tuple<T, TimeSpan> GetWithTimeSpan<T>(string key)
         {
             string message;
             Tuple<T, TimeSpan> result;
@@ -95,7 +94,7 @@ namespace Prime
             return result;
         }
 
-        public IEnumerable<Tuple<T, TimeSpan>> GetRangeWithTimeSpan<T>(string key) where T : class
+        public IEnumerable<Tuple<T, TimeSpan>> GetRangeWithTimeSpan<T>(string key)
         {
             // В случае обращения по псевдониму, берем значение из словаря псевдонимов.
             if (_pseudoNames.ContainsKey(key))
@@ -127,7 +126,7 @@ namespace Prime
             return result;
         }
 
-        public bool TryGetWithTimeSpan<T>(string key, out Tuple<T, TimeSpan> result) where T : class
+        public bool TryGetWithTimeSpan<T>(string key, out Tuple<T, TimeSpan> result)
         {
             string message;
             return tryGetWithTimeSpan(key, out result, out message);
@@ -142,7 +141,6 @@ namespace Prime
         /// <param name="message">Сообщение об ошибке. Пусто, если значение получено без ошибок.</param>
         /// <returns>Результат запроса</returns>
         private bool tryGet<T>(string key, out T result, out string message)
-            where T : class
         {
             result = default(T);
             message = "";
@@ -171,7 +169,7 @@ namespace Prime
             }
 
             _readCounter[key]++;
-            result = data as T;
+            result = (T) data;
             return true;
         }
 
@@ -184,7 +182,6 @@ namespace Prime
         /// <param name="message">Сообщение об ошибке, если она есть</param>
         /// <returns>Имеются ли данные с временными отпечатками в коллекции</returns>
         private bool tryGetWithTimeSpan<T>(string key, out Tuple<T, TimeSpan> result, out string message)
-            where T : class
         {
             result = new Tuple<T, TimeSpan>(default(T), default(TimeSpan));
             message = "";
@@ -225,7 +222,7 @@ namespace Prime
                 message = string.Format("Значение по ключу {0} не может быть приведено к типу {1}", key, typeof (T).Name);
                 return false;
             }
-            result = new Tuple<T, TimeSpan>(data as T, _timestamps[key][_readCounter[key]]);
+            result = new Tuple<T, TimeSpan>((T)data, _timestamps[key][_readCounter[key]]);
 
             _readCounter[key]++;
             return true;
