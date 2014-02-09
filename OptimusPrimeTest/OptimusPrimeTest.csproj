@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1017F485-1965-4F77-8805-0E3F4848E39F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OptimusPrimeTests</RootNamespace>
+    <AssemblyName>OptimusPrimeTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BookSleeve">
+      <HintPath>..\..\packages\BookSleeve.1.3.35\lib\BookSleeve.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise />
+  </Choose>
+  <ItemGroup>
+    <Compile Include="LibertyPrime\Factory\LibertyFactoryTest.cs" />
+    <Compile Include="LibertyPrime\Factory\LibertyLinkChainToChainTest.cs" />
+    <Compile Include="LibertyPrime\Factory\LibertyLinkSourceToChainTest.cs" />
+    <Compile Include="LibertyPrime\Factory\LibertyLinkSourceToFilterTest.cs" />
+    <Compile Include="LibertyPrime\Factory\LibertyRegisterGenericServiceTest.cs" />
+    <Compile Include="LibertyPrime\Factory\SmartClone\ISmartCloneTestData.cs" />
+    <Compile Include="LibertyPrime\Factory\SmartClone\NonClonableTestData.cs" />
+    <Compile Include="LibertyPrime\Factory\SmartClone\SmartCloneFactoryTest.cs" />
+    <Compile Include="LibertyPrime\Factory\SmartClone\SmartCloneTest.cs" />
+    <Compile Include="LibertyPrime\Factory\SmartClone\TestClonableData.cs" />
+    <Compile Include="LibertyPrime\Factory\SmartClone\TestImmutableData.cs" />
+    <Compile Include="LibertyPrime\Factory\SmartClone\TestSerializationData.cs" />
+    <Compile Include="LibertyPrime\Generics\LibertyCombinedCollectorTest.cs" />
+    <Compile Include="LibertyPrime\Generics\LibertyForkRepeaterTestBase.cs" />
+    <Compile Include="LibertyPrime\Generics\LibertyForkTest.cs" />
+    <Compile Include="LibertyPrime\Generics\LibertyIsolatorTest.cs" />
+    <Compile Include="LibertyPrime\Generics\LibertyLinkToEnumerableTest.cs" />
+    <Compile Include="LibertyPrime\Generics\LibertyListenerTest.cs" />
+    <Compile Include="LibertyPrime\LibertyLoggerTest.cs" />
+    <Compile Include="LibertyPrime\LibertyRepeaterTest.cs" />
+    <Compile Include="LibertyPrime\LibertySourceReaderTest.cs" />
+    <Compile Include="OptimusPrime\Factory\OptimusFactoryTest.cs" />
+    <Compile Include="OptimusPrime\Factory\OptimusLinkChainToChainTest.cs" />
+    <Compile Include="OptimusPrime\Factory\OptimusLinkSourceToChainTest.cs" />
+    <Compile Include="OptimusPrime\Factory\OptimusLinkSourceToFilterTest.cs" />
+    <Compile Include="OptimusPrime\Factory\OptimusRegisterGenericServiceTest.cs" />
+    <Compile Include="OptimusPrime\Generics\OptimusCombinedCollectorTest.cs" />
+    <Compile Include="OptimusPrime\Generics\OptimusForkRepeaterTest.cs" />
+    <Compile Include="OptimusPrime\Generics\OptimusForkTest.cs" />
+    <Compile Include="OptimusPrime\Generics\OptimusIsolateTest.cs" />
+    <Compile Include="OptimusPrime\Generics\OptimusLinkToEnumerableTest.cs" />
+    <Compile Include="OptimusPrime\Generics\OptimusListenerTest.cs" />
+    <Compile Include="OptimusPrime\Media\OptimusInTest.cs" />
+    <Compile Include="OptimusPrime\Media\OptimusOutTest.cs" />
+    <Compile Include="OptimusPrime\OptimusLoggerTest.cs" />
+    <Compile Include="OptimusPrime\OptimusRepeaterTest.cs" />
+    <Compile Include="OptimusPrime\OptimusSourceReaderTest.cs" />
+    <Compile Include="OptimusPrime\Media\OptimusServiceTest.cs" />
+    <Compile Include="OptimusPrime\Media\OptimusPrimeSourseTest.cs" />
+    <Compile Include="OptimusPrime\Media\ReadSetvice.cs" />
+    <Compile Include="OptimusPrime\Media\WriteService.cs" />
+    <Compile Include="Prime\Common\TestConstants.cs" />
+    <Compile Include="Prime\Common\TestData.cs" />
+    <Compile Include="Prime\Factory\FactoryTestBase.cs" />
+    <Compile Include="Prime\Factory\LinkChainToChainTestBase.cs" />
+    <Compile Include="Prime\Factory\LinkSourceToChainTestBase.cs" />
+    <Compile Include="Prime\Factory\LinkSourceToFilterBaseTest.cs" />
+    <Compile Include="Prime\Factory\RegisterGenericService\RegisterGenericServiceBaseTest.cs" />
+    <Compile Include="Prime\Factory\RegisterGenericService\TestGenericService.cs" />
+    <Compile Include="Prime\Generics\CombinedCollectorTestBase.cs" />
+    <Compile Include="Prime\Generics\ForkRepeaterTestBase.cs" />
+    <Compile Include="Prime\Generics\ForkTestBase.cs" />
+    <Compile Include="Prime\Generics\IsolatorTestBase.cs" />
+    <Compile Include="Prime\Generics\LinkToEnumerableTestBase.cs" />
+    <Compile Include="Prime\Generics\ListenerTestBase.cs" />
+    <Compile Include="Prime\LoggerTestBase.cs" />
+    <Compile Include="Prime\RepeaterTestBase.cs" />
+    <Compile Include="Prime\SourceReaderTestBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OptimusPrime\OptimusPrime.csproj">
+      <Project>{12e65f04-c271-4707-a380-1e98b8b078be}</Project>
+      <Name>OptimusPrime %28OptimusPrime\OptimusPrime%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

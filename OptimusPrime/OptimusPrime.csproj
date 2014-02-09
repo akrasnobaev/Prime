@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{12E65F04-C271-4707-A380-1E98B8B078BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OptimusPrime</RootNamespace>
+    <AssemblyName>OptimusPrime</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BookSleeve">
+      <HintPath>..\..\packages\BookSleeve.1.3.35\lib\BookSleeve.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Exception\ChainAlreadyUsedException.cs" />
+    <Compile Include="Common\Exception\DataCanNotBeClonnedPrimeException.cs" />
+    <Compile Include="Common\Exception\LoggerException.cs" />
+    <Compile Include="Common\Exception\LoggingOffException.cs" />
+    <Compile Include="Common\Exception\PrimeException.cs" />
+    <Compile Include="Common\Extension\SerializeExtension.cs" />
+    <Compile Include="Prime\Factory\IFactoryExtensions.cs" />
+    <Compile Include="Prime\Factory\IPrimeFactory.cs" />
+    <Compile Include="Prime\Factory\PrimeFactoryBase.cs" />
+    <Compile Include="Templates\Factory\Foreach.cs" />
+    <Compile Include="Templates\Factory\Logging.cs" />
+    <Compile Include="Templates\Factory\LinkChainToChain.cs" />
+    <Compile Include="Templates\Fork\FactoryExtensions.cs" />
+    <Compile Include="Templates\Fork\Fork.cs" />
+    <Compile Include="Templates\Fork\ForkBlock.cs" />
+    <Compile Include="Templates\IGenericService.cs" />
+    <Compile Include="Templates\Isolator\ChainExtension.cs" />
+    <Compile Include="Templates\Isolator\Isolator.cs" />
+    <Compile Include="Templates\LinkSourceToChain\FactoryExtensions.cs" />
+    <Compile Include="Templates\LinkSourceToChain\LinkSourceToChainGenericService.cs" />
+    <Compile Include="Templates\LinkSourceToEnumerable\FactoryExtensions.cs" />
+    <Compile Include="Templates\LinkSourceToEnumerable\LinkSourceToEnumerableService.cs" />
+    <Compile Include="Templates\LinkSourceToFilter\LinkSourceToFilterGenericService.cs" />
+    <Compile Include="Templates\Listener\FactoryExtensions.cs" />
+    <Compile Include="Templates\Listener\ListenerService.cs" />
+    <Compile Include="Templates\NewCollectors\Async\AsyncCollector.cs" />
+    <Compile Include="Templates\NewCollectors\Async\AsyncRepeaterAdapter.cs" />
+    <Compile Include="Templates\NewCollectors\Async\FactoryExtension.cs" />
+    <Compile Include="Templates\NewCollectors\CollectorRequest.cs" />
+    <Compile Include="Templates\NewCollectors\Sync\FactoryExtension.cs" />
+    <Compile Include="Templates\NewCollectors\Sync\SyncCollector.cs" />
+    <Compile Include="Templates\NewCollectors\Sync\SyncRepeaterAdapter.cs" />
+    <Compile Include="Templates\NewCollectors\TestUnion.cs" />
+    <Compile Include="Templates\NewCollectors\Token.cs" />
+    <Compile Include="Templates\Repeater\FactoryExtensions.cs" />
+    <Compile Include="Templates\Repeater\IRepeaterBlock.cs" />
+    <Compile Include="Templates\SafetyFork\FactoryExtensions.cs" />
+    <Compile Include="Common\Helpers\PathHelper.cs" />
+    <Compile Include="Common\Helpers\PrintableList.cs" />
+    <Compile Include="Common\Helpers\ServiceNameHelper.cs" />
+    <Compile Include="Common\Helpers\SmartClone.cs" />
+    <Compile Include="Common\Logger\IPrimeLogger.cs" />
+    <Compile Include="Common\Logger\LogData.cs" />
+    <Compile Include="Common\Logger\PrimeLogger.cs" />
+    <Compile Include="LibertyPrime\Chain\ILibertyChain.cs" />
+    <Compile Include="LibertyPrime\Chain\LibertyChain.cs" />
+    <Compile Include="LibertyPrime\Factory\LibertyChainFactory.cs" />
+    <Compile Include="LibertyPrime\Factory\LibertyFactory.cs" />
+    <Compile Include="LibertyPrime\Factory\LibertySourceFactory.cs" />
+    <Compile Include="LibertyPrime\LibertySourceReader.cs" />
+    <Compile Include="LibertyPrime\Source\ILibertySource.cs" />
+    <Compile Include="LibertyPrime\Source\LibertySource.cs" />
+    <Compile Include="OptimusPrime\Chain\IOptimusChane.cs" />
+    <Compile Include="OptimusPrime\Chain\OptimusChain.cs" />
+    <Compile Include="OptimusPrime\Factory\PrimeChainFactory.cs" />
+    <Compile Include="OptimusPrime\Factory\PrimeFactory.cs" />
+    <Compile Include="OptimusPrime\Factory\PrimeSourceFactory.cs" />
+    <Compile Include="OptimusPrime\OptimusIn\IOptimusIn.cs" />
+    <Compile Include="OptimusPrime\OptimusIn\OptimusIn.cs" />
+    <Compile Include="OptimusPrime\OptimusOut\IOptimusOut.cs" />
+    <Compile Include="OptimusPrime\OptimusOut\OptimusOut.cs" />
+    <Compile Include="OptimusPrime\OptimusSourceReader.cs" />
+    <Compile Include="OptimusPrime\Service\IOptimusService.cs" />
+    <Compile Include="OptimusPrime\Service\OptimusFilterService.cs" />
+    <Compile Include="OptimusPrime\Service\OptimusFunctionalService.cs" />
+    <Compile Include="OptimusPrime\Service\OptimusService.cs" />
+    <Compile Include="OptimusPrime\Service\OptimusSourceService.cs" />
+    <Compile Include="OptimusPrime\Service\OptimusStabService.cs" />
+    <Compile Include="OptimusPrime\Source\IOptimusSource.cs" />
+    <Compile Include="OptimusPrime\Source\OptimusSource.cs" />
+    <Compile Include="Prime\FunctionalItems\FunctionalBlock\FunctionalBlock.cs" />
+    <Compile Include="Prime\FunctionalItems\FunctionalBlock\IFunctionalBlock.cs" />
+    <Compile Include="Prime\FunctionalItems\ISourceReader.cs" />
+    <Compile Include="Prime\FunctionalItems\SourceBlock\ISourceBlock.cs" />
+    <Compile Include="Prime\FunctionalItems\SourceBlock\SourceBlock.cs" />
+    <Compile Include="Prime\TopologyItems\IChain.cs" />
+    <Compile Include="Prime\TopologyItems\ISource.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
