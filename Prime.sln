@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptimusPrime", "OptimusPrime\OptimusPrime.csproj", "{12E65F04-C271-4707-A380-1E98B8B078BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptimusPrime.Codegen", "OptimusPrime.Codegen\OptimusPrime.Codegen.csproj", "{3ABE51DB-8A00-42B4-B7AD-CAD6F42C29B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptimusPrimeTest", "OptimusPrimeTest\OptimusPrimeTest.csproj", "{1017F485-1965-4F77-8805-0E3F4848E39F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12E65F04-C271-4707-A380-1E98B8B078BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E65F04-C271-4707-A380-1E98B8B078BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E65F04-C271-4707-A380-1E98B8B078BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E65F04-C271-4707-A380-1E98B8B078BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ABE51DB-8A00-42B4-B7AD-CAD6F42C29B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ABE51DB-8A00-42B4-B7AD-CAD6F42C29B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ABE51DB-8A00-42B4-B7AD-CAD6F42C29B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ABE51DB-8A00-42B4-B7AD-CAD6F42C29B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1017F485-1965-4F77-8805-0E3F4848E39F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1017F485-1965-4F77-8805-0E3F4848E39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1017F485-1965-4F77-8805-0E3F4848E39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1017F485-1965-4F77-8805-0E3F4848E39F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
