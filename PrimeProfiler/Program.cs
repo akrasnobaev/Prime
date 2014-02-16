@@ -18,17 +18,18 @@ namespace PrimeProfiler
         static void Main(string[] args)
         {
             AppDomain.CurrentDomain.UnhandledException += (o, s) => { Console.Write("ER"); };
-            Console.WriteLine(new HardComputations().MeasureTime());
+          //  Console.WriteLine(new HardComputations().MeasureTime());
 
             var sets = new TestSet[]
             {
-                new TestSet<SmallData>(10,10,1000,new EasyComputations()),
-                new TestSet<MediumData>(10,10,1000,new EasyComputations()),
-                new TestSet<SmallData>(10,10,1000,new MediumComputations()),
-                new TestSet<MediumData>(10,10,1000,new MediumComputations()),
-                new TestSet<SmallData>(10,10,1000,new HardComputations()),
-                new TestSet<MediumData>(10,10,1000,new HardComputations()),
-               // new TestSet<BigData>(10,10,1000,new EasyComputations())
+                //new TestSet<SmallData>(20,20,100,new EasyComputations()),
+                //new TestSet<SmallData>(10,10,10000,new HardComputations()),
+                //new TestSet<SmallData>(10,10,10000,new MediumComputations()),
+                //new TestSet<MediumData>(10,10,1000,new EasyComputations()),
+                //new TestSet<MediumData>(10,10,1000,new MediumComputations()),
+   
+                //new TestSet<MediumData>(10,10,1000,new HardComputations()),
+                new TestSet<BigData>(10,10,1000,new EasyComputations())
             };
 
             TestSet.RunAll(sets);

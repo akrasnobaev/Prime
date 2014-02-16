@@ -51,6 +51,8 @@ namespace PrimeProfiler
         {
             taskQueue.Dispose();
             dr.Dispose();
+            InputPorts = null;
+
         }
 
         public override Type GetDataType

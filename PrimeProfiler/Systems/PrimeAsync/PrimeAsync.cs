@@ -16,7 +16,7 @@ namespace PrimeProfiler
 
         protected override void Initialize()
         {
-            factory=new LibertyFactory();
+            factory=new LibertyFactory(false);
             Inputs=new SourceBlock<T>[Count];
             Outputs = new ISourceReader<T>[Count];
             for (int i = 0; i < Count; i++)
@@ -50,6 +50,9 @@ namespace PrimeProfiler
         protected override void Finish()
         {
             factory.Stop();
+            factory = null;
+            Inputs = null;
+            Outputs = null;
         }
 
         public override bool IsSync

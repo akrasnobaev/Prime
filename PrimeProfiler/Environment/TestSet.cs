@@ -59,12 +59,13 @@ namespace PrimeProfiler
         {
             Tests = new TestSystem[] 
             {
-                new CCROneChain<T>(),
-                new CCRParallelChains<T>(),
-                new CCRTotalAsync<T>(),
-                new PrimeOneChain<T>(),
-                new PrimeParallelChains<T>(),
-                new PrimeAsync<T>()
+                new PrimeAsync<T>(),
+            //    new CCROneChain<T>(),
+                //new CCRParallelChains<T>(),
+                //new CCRTotalAsync<T>(),
+                //new PrimeOneChain<T>(),
+                //new PrimeParallelChains<T>(),
+                
             };
 
             foreach (var e in Tests)

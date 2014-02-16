@@ -17,7 +17,7 @@ namespace PrimeProfiler
         protected override void Initialize()
         {
             funks = new Func<T, T>[Count];
-            factory = new LibertyFactory();
+            factory = new LibertyFactory(false);
             for (int i = 0; i < Count; i++)
             {
                 var chain = factory.CreateChain<T, T>(z => { z.Marker=Computations.Compute(z.Marker); return z; });
@@ -32,6 +32,8 @@ namespace PrimeProfiler
         protected override void Finish()
         {
             factory.Stop();
+            factory = null;
+            funks = null;
         }
 
         public override Type GetDataType

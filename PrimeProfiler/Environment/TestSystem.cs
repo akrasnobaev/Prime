@@ -47,10 +47,11 @@ namespace PrimeProfiler
                 Finish();
             }
             catch { }
-            Console.WriteLine("OK");
+            Console.Write("OK ");
             ElapsedMS= (double)watch.ElapsedMilliseconds;
             GC.Collect();
             GC.Collect();
+            Console.WriteLine(GC.GetTotalMemory(true));
 
         }
 
