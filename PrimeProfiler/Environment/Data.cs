@@ -14,11 +14,18 @@ namespace PrimeProfiler
     }
 
 
-    public class ByteArrayData : Data
+    public class ByteArrayData : Data, ICloneable
     {
         public byte[] data;
 
         public ByteArrayData(int length) { data = new byte[length]; }
+
+        private ByteArrayData() { }
+
+        public object Clone()
+        {
+            return new ByteArrayData { Marker = Marker, data = data };
+        }
     }
 
     [ImmutableObject(true)]

@@ -40,7 +40,7 @@ namespace PrimeProfiler
             for (int c = 0; c < Count; c++)
             {
                 int cc = c;
-                Arbiter.Activate(taskQueue, Arbiter.Receive(true, ports[Length - 1, c], s => { s.Marker=Computations.Compute(s.Marker); flags[cc]++; }));
+                Arbiter.Activate(taskQueue, Arbiter.Receive(true, ports[Length - 1, c], s => { s.Marker = Computations.Compute(s.Marker); lock (flags) { flags[cc]++; }  }));
             }
             InputPorts = new Port<T>[Count];
             for (int i = 0; i < Count; i++)

@@ -20,7 +20,7 @@ namespace PrimeProfiler
     {
         public override double Compute(double input)
         {
-            return UselessFunction(input, 100);
+            return UselessFunction(input, 40000);
         }
     }
         
@@ -36,7 +36,9 @@ namespace PrimeProfiler
     {
         public abstract double Compute(double input);
 
-        public double MeasureTime(int count = -1)
+        public double Time { get; private set; }
+
+        public void MeasureTime(int count = -1)
         {
 
             if (count == -1)
@@ -45,7 +47,7 @@ namespace PrimeProfiler
 
                 var watch1 = new Stopwatch();
                 watch1.Start();
-                while (watch1.ElapsedMilliseconds < 1000)
+                while (watch1.ElapsedMilliseconds < 100)
                 {
                     Compute(1);
                     count++;
@@ -57,7 +59,8 @@ namespace PrimeProfiler
             watch.Start();
             for (int i = 0; i < count; i++) Compute(1);
             watch.Stop();
-            return (double)watch.ElapsedMilliseconds / count;
+            Time = (double)watch.ElapsedMilliseconds / count;
+            Console.WriteLine("Measure " + GetType().Name + " : " + Time);
         }
 
 

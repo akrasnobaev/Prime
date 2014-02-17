@@ -28,9 +28,10 @@ namespace PrimeProfiler
                     e.Data.GetType().Name);
                 foreach (var w in e.Tests)
                 {
-                    builder.AppendFormat("{0,-25}{1}\n",
+                    builder.AppendFormat("{0,-25}{1,-10}{2,-10}\n",
                         w.GetName(),
-                        w.ElapsedMS);
+                        w.TimePerService,
+                        (w.TimePerService-w.Computations.Time)/w.TimePerService);
                 }
             }
             return builder.ToString();
@@ -59,10 +60,10 @@ namespace PrimeProfiler
         {
             Tests = new TestSystem[] 
             {
-                new CCROneChain<T>(),
+              //  new CCROneChain<T>(),
                 new CCRParallelChains<T>(),
                 new CCRTotalAsync<T>(),
-                new PrimeOneChain<T>(),
+              //  new PrimeOneChain<T>(),
                 new PrimeParallelChains<T>(),
                 new PrimeAsync<T>()
             };

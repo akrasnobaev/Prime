@@ -21,6 +21,7 @@ namespace PrimeProfiler
 
         public double ElapsedMS;
 
+        public double TimePerService { get { return 8*ElapsedMS / (Length * Count * WaveCount); } }
 
         public void Run(int length, int widht, int waves, Computations comp)
         {
