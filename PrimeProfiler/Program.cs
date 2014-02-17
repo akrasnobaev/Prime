@@ -13,11 +13,25 @@ namespace PrimeProfiler
     class Program
     {
 
+        static void SingleTest()
+        {
+            var system = new PrimeAsyncParallel<MediumData>();
+            var comp = new EasyComputations();
+            comp.MeasureTime();
+            system.Run(100, 1, 50000, comp);
+            
+            var total=system.ElapsedMS;
+            var overheads=total/(system.Length*system.WaveCount);
+            
+            Console.WriteLine("{0}\n{1}\n{2}\n{3} microS", total,comp.Time,overheads,1000*(overheads-comp.Time));
+            Console.ReadKey();
+        }
 
 
         static void TestMode()
         {
-            new EasyComputations().MeasureTime();
+            SingleTest();
+           // new EasyCompu1tations().MeasureTime();
         }
 
         static void BatchMode(string[] args)

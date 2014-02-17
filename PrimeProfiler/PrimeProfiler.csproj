@@ -56,6 +56,7 @@
     <Compile Include="Systems\CCR\CCROneChain.cs" />
     <Compile Include="Systems\CCR\CCRParallelChains.cs" />
     <Compile Include="Systems\CCR\CCRTotalAsync.cs" />
+    <Compile Include="Systems\PrimeAsync\PrimeAsyncParallel.cs" />
     <Compile Include="Systems\PrimeAsync\PrimeAsync.cs" />
     <Compile Include="Systems\PrimeSync\PrimeOneChain.cs" />
     <Compile Include="Systems\PrimeSync\PrimeParallelChains.cs" />

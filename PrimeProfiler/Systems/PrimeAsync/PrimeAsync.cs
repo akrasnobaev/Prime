@@ -10,8 +10,8 @@ namespace PrimeProfiler
     class PrimeAsync<T> : TestSystem
         where T : Data,new()
     {
-        SourceBlock<T>[] Inputs;
-        ISourceReader<T>[] Outputs;
+        protected SourceBlock<T>[] Inputs;
+        protected ISourceReader<T>[] Outputs;
         IPrimeFactory factory;
 
         protected override void Initialize()
