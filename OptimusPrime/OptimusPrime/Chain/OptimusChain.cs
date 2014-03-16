@@ -41,7 +41,7 @@ namespace Prime.Optimus
             MarkUsed();
 
             var inputService = new OptimusStabService();
-            inputService.OptimusOut = new IOptimusOut[] {new OptimusOut(Input.Name, inputService, Factory.Stopwatch)};
+            inputService.OptimusOut = new IOptimusOut[] {new OptimusOut(Input.Name, inputService, Factory.Stopwatch, Factory.IsLogging)};
 
             var outputService = new OptimusStabService();
             outputService.OptimusIn = new IOptimusIn[] {new OptimusIn(Output.Name, outputService)};

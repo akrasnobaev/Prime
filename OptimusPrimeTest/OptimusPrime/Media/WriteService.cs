@@ -13,7 +13,7 @@ namespace OptimusPrimeTest.OptimusPrime
             : base(TestConstants.Host, TestConstants.DbPage)
         {
             _testDatCollection = testDatCollection;
-            OptimusOut = new IOptimusOut[] { new OptimusOut(TestConstants.StorageKey, this, new Stopwatch()) };
+            OptimusOut = new IOptimusOut[] { new OptimusOut(TestConstants.StorageKey, this, new Stopwatch(), true) };
         }
 
         public override void Initialize()

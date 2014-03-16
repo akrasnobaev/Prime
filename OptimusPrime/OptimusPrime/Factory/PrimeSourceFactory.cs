@@ -7,7 +7,7 @@ namespace Prime
         public override ISource<TPublic> CreateSource<TPublic>(ISourceBlock<TPublic> sourceBlock, string pseudoName = null)
         {
             string outputName = ServiceNameHelper.GetOutName();
-            var service = new OptimusSourceService<TPublic>(sourceBlock, outputName, Stopwatch);
+            var service = new OptimusSourceService<TPublic>(sourceBlock, outputName, Stopwatch, IsLogging);
 
             //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
@@ -39,7 +39,7 @@ namespace Prime
             string pseudoName = null)
         {
             string outputName = ServiceNameHelper.GetOutName();
-            var service = new OptimusFilterService<T>(filterBlock, source.Name, outputName, Stopwatch);
+            var service = new OptimusFilterService<T>(filterBlock, source.Name, outputName, Stopwatch, IsLogging);
 
              //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))

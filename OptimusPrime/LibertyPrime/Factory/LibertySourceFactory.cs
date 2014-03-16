@@ -9,26 +9,39 @@ namespace Prime
         public override ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock, string pseudoName = null)
         {
             var collectionName = ServiceNameHelper.GetCollectionName<T>();
-            
+
             //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
                 pseudoNames.Add(pseudoName, collectionName);
 
             var callSource = new LibertySource<T>(this, collectionName);
-            var timestampCollection = new List<TimeSpan>();
             var smartClone = new SmartClone<T>();
-            sourceBlock.Event += (sender, inputData) =>
+
+            OPEventHandler<T> sourceBlockOnEvent = (sender, inputData) =>
             {
                 callSource.Collection.Add(smartClone.Clone(inputData));
-                // Логирование времени получения данных.
-                timestampCollection.Add(Stopwatch.Elapsed);
                 callSource.Release();
             };
 
-            // Добавляем коллекцию источника в список логируемых коллекций, если логирование включено.
+            // Добавляем коллекцию источника в список логируемых коллекций и логируем временные отпечатки,
+            // если логирование включено.
             if (IsLogging)
+            {
+                var timestampCollection = new List<TimeSpan>();
+
                 collections.Add(collectionName, callSource.Collection);
-            timestamps.Add(collectionName, timestampCollection);
+                timestamps.Add(collectionName, timestampCollection);
+
+                sourceBlockOnEvent = (sender, inputData) =>
+                {
+                    callSource.Collection.Add(smartClone.Clone(inputData));
+                    // Логирование времени получения данных.
+                    timestampCollection.Add(Stopwatch.Elapsed);
+                    callSource.Release();
+                };
+            }
+
+            sourceBlock.Event += sourceBlockOnEvent;
             return callSource;
         }
     }

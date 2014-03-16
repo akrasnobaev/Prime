@@ -13,28 +13,28 @@ namespace Prime
             if (!string.IsNullOrEmpty(pseudoName))
                 pseudoNames.Add(pseudoName, outputName);
 
-            PrintableList<object> logCollection = null;
-            // Добавляем коллекцию для логирования только в том случае, если логирование включено.
+            var smartClone = new SmartClone<TOut>();
+            Func<TIn, TOut> action = inputData => smartClone.Clone(func(inputData));
+
+            // Логируем данные и временные отпечатки только в том случае, если логирование включено.
             if (IsLogging)
             {
-                logCollection = new PrintableList<object>();
+                var logCollection = new PrintableList<object>();
+                var timestampCollection = new List<TimeSpan>();
+
                 collections.Add(outputName, logCollection);
+                timestamps.Add(outputName, timestampCollection);
+
+                action = inputData =>
+                {
+                    var outputData = smartClone.Clone(func(inputData));
+                    logCollection.Add(outputData);
+                    timestampCollection.Add(Stopwatch.Elapsed);
+                    return outputData;
+                };
             }
 
-            var timestampCollection = new List<TimeSpan>();
-            timestamps.Add(outputName, timestampCollection);
-
-            var smartClone = new SmartClone<TOut>();
-            return new LibertyChain<TIn, TOut>(this, inputData =>
-            {
-                var result = smartClone.Clone(func(inputData));
-                // логирование результата работы цепочки, если логирование включенно.
-                if (IsLogging) 
-                    logCollection.Add(result);
-                // логирование времени получения данных.
-                timestampCollection.Add(Stopwatch.Elapsed);
-                return result;
-            }, outputName);
+            return new LibertyChain<TIn, TOut>(this, action, outputName);
         }
 
         public IChain<TIn, TOut> CreateChain<TIn, TOut>(IFunctionalBlock<TIn, TOut> functionalBlock)
