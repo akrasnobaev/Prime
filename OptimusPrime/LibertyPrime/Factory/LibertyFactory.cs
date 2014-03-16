@@ -11,17 +11,17 @@ namespace Prime
         /// <summary>
         /// Список коллекций данных, порожденных топологическими единицами.
         /// </summary>
-        private readonly IDictionary<string, PrintableList<object>> collections;
+        protected readonly IDictionary<string, PrintableList<object>> collections;
 
         /// <summary>
         /// Коллекция псевдонимов имен.
         /// </summary>
-        private readonly Dictionary<string, string> pseudoNames;
+        protected readonly Dictionary<string, string> pseudoNames;
 
         /// <summary>
         /// Список коллекций отпечатков времени от старта фобрики, который определяет момент возникновения данных.
         /// </summary>
-        private readonly Dictionary<string, List<TimeSpan>> timestamps;
+        protected readonly Dictionary<string, List<TimeSpan>> timestamps;
 
         public LibertyFactory(bool isLogging = true) : base(isLogging)
         {
