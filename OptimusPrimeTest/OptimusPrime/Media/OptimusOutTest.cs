@@ -25,7 +25,7 @@ namespace OptimusPrimeTest.OptimusPrime
         {
             stabService = new OptimusStabService(dbPage: 2);
             stopwatch = new Stopwatch();
-            optimusOut = new OptimusOut(storageKey, stabService, stopwatch);
+            optimusOut = new OptimusOut(storageKey, stabService, stopwatch, true);
         }
 
         [TearDown]
@@ -61,11 +61,7 @@ namespace OptimusPrimeTest.OptimusPrime
         public void TestTimeStamps()
         {
             var timeStampKey = ServiceNameHelper.GetTimeStampName(storageKey);
-            TimeSpan result;
-            var emptyRange = stabService.Connection.Lists.Range(stabService.DbPage, timeStampKey, 0, -1);
-            var emptyBytes = stabService.Connection.Wait(emptyRange);
-            var timeStamps = emptyBytes.Select(SerializeExtension.Deserialize<TimeSpan>);
-            CollectionAssert.IsEmpty(timeStamps);
+            isTimeStampsEmpty(timeStampKey);
 
             var datas = TestData.CreateData(DataCount);
             const int waitTime = 5;
@@ -88,6 +84,28 @@ namespace OptimusPrimeTest.OptimusPrime
                 Debug.WriteLine(timeStampList[i]);
                 Assert.Less(expectedTimeStamp, timeStampList[i].TotalMilliseconds);
             }
+        }
+
+        [Test]
+        public void TestTimeStampsWhenNoLogging()
+        {
+            optimusOut = new OptimusOut(storageKey, stabService, stopwatch, false);
+            var timeStampKey = ServiceNameHelper.GetTimeStampName(storageKey);
+            isTimeStampsEmpty(timeStampKey);
+
+            var datas = TestData.CreateData(DataCount);
+            foreach (var data in datas)
+                optimusOut.Set(data);
+
+            isTimeStampsEmpty(timeStampKey);
+        }
+
+        private void isTimeStampsEmpty(string timeStampKey)
+        {
+            var emptyRange = stabService.Connection.Lists.Range(stabService.DbPage, timeStampKey, 0, -1);
+            var emptyBytes = stabService.Connection.Wait(emptyRange);
+            var timeStamps = emptyBytes.Select(SerializeExtension.Deserialize<TimeSpan>);
+            CollectionAssert.IsEmpty(timeStamps);
         }
     }
 }

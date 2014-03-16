@@ -92,5 +92,6 @@ namespace Prime
         void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null);
 
         Stopwatch Stopwatch { get; }
+        bool IsLogging { get; }
     }
 }

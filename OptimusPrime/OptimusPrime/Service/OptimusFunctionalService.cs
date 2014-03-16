@@ -18,12 +18,12 @@ namespace Prime.Optimus
         }
 
         public OptimusFunctionalService(Func<TIn, TOut> functionalBlock, string inputKey, string outputKey,
-            Stopwatch stopwatch)
+            Stopwatch stopwatch, bool isLogging)
         {
             this.functionalBlock = functionalBlock;
 
             OptimusIn = new IOptimusIn[] {new OptimusIn(inputKey, this)};
-            OptimusOut = new IOptimusOut[] {new OptimusOut(outputKey, this, stopwatch)};
+            OptimusOut = new IOptimusOut[] {new OptimusOut(outputKey, this, stopwatch, isLogging)};
         }
 
         public override void Initialize()

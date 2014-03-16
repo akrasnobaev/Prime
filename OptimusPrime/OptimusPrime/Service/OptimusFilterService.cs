@@ -9,12 +9,12 @@ namespace Prime.Optimus
         public readonly OptimusOut Output;
 
         public OptimusFilterService(IFunctionalBlock<T, bool> filterBlock, string inputName,
-            string outputName, Stopwatch stopwatch, string host = "localhost", int dbPage = 1) : base(host, dbPage)
+            string outputName, Stopwatch stopwatch, bool isLogging, string host = "localhost", int dbPage = 1) : base(host, dbPage)
         {
             this.filterBlock = filterBlock;
 
             input = new OptimusIn(inputName, this);
-            Output = new OptimusOut(outputName, this, stopwatch);
+            Output = new OptimusOut(outputName, this, stopwatch, isLogging);
 
             OptimusOut = new IOptimusOut[] {Output};
             OptimusIn = new IOptimusIn[] {input};

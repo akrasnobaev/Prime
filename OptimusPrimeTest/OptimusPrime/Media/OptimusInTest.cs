@@ -41,7 +41,7 @@ namespace OptimusPrimeTest.OptimusPrime
 
         private void WriteData(string setStorageKey, IEnumerable<TestData> testDatas, bool isWait = false)
         {
-            var optimusPrimeOut = new OptimusOut(setStorageKey, stabService, new Stopwatch());
+            var optimusPrimeOut = new OptimusOut(setStorageKey, stabService, new Stopwatch(), true);
             var random = new Random();
             foreach (TestData data in testDatas)
             {

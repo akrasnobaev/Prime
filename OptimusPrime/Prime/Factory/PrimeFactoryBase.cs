@@ -7,7 +7,6 @@ namespace Prime
 {
     public abstract class PrimeFactoryBase : IPrimeFactory
     {
-        internal bool IsLogging;
         public abstract string DumpDb();
         public abstract IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function, string pseudoName = null);
         public abstract ISource<TData> CreateSource<TData>(ISourceBlock<TData> block, string pseudoName = null);
@@ -90,6 +89,8 @@ namespace Prime
         /// Секундомер, стартующий вместе со стартом фабрики
         /// </summary>
         public Stopwatch Stopwatch { get; private set; }
+
+        public bool IsLogging { get; private set; }
 
         /// <summary>
         /// Коллекция потоков, содержащих все сервисы.

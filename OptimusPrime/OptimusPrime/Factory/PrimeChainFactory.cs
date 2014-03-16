@@ -10,7 +10,7 @@ namespace Prime
         {
             var inputName = ServiceNameHelper.GetInName();
             var outputName = ServiceNameHelper.GetOutName();
-            var service = new OptimusFunctionalService<TIn, TOut>(functionalBlock, inputName, outputName, Stopwatch);
+            var service = new OptimusFunctionalService<TIn, TOut>(functionalBlock, inputName, outputName, Stopwatch, IsLogging);
 
             // Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
