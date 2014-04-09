@@ -16,17 +16,20 @@ namespace Prime
             // Параметр "inputData".
             var parameter = Expression.Parameter(typeof (TIn), "inputData");
 
+            var delExpression = Expression.Constant(function);
             // Вызов функтора function.
-            Expression<Func<TIn, TOut>> bind = inputData => function(inputData);
-            var invoke = Expression.Invoke(bind, parameter);
+//            Expression<Func<TIn, TOut>> bind = inputData => function(inputData);
+            var invoke = Expression.Invoke(delExpression, parameter);
 
             // Собираем Clone.
             var smartCloneType = typeof (SmartClone<TOut>);
-            var smartClone = Expression.New(smartCloneType);
-            var clone = Expression.MemberInit(smartClone);
+//            var smartClone = Expression.New(smartCloneType);
+//            var clone = Expression.MemberInit(smartClone);
+
+            var cloneObject = Expression.Constant((new SmartClone<TOut>()));
 
             // Вызываем Clone после на результате работы функтора.
-            var call = Expression.Call(clone,
+            var call = Expression.Call(cloneObject,
                 smartCloneType.GetMethod("Clone", new[] {typeof (TOut)}),
                 invoke);
             var lambdaCall = Expression.Lambda<Func<TIn, TOut>>(call, parameter);
