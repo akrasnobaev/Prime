@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptimusPrime.Codegen", "Opt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptimusPrimeTest", "OptimusPrimeTest\OptimusPrimeTest.csproj", "{1017F485-1965-4F77-8805-0E3F4848E39F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeProfiler", "PrimeProfiler\PrimeProfiler.csproj", "{70969E7F-4509-4EC4-9E1E-864FBEE18265}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeProfiler.Runner", "PrimeProfiler.Runner\PrimeProfiler.Runner.csproj", "{0AB33106-468A-47EF-84AA-E9E260926062}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{1017F485-1965-4F77-8805-0E3F4848E39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1017F485-1965-4F77-8805-0E3F4848E39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1017F485-1965-4F77-8805-0E3F4848E39F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70969E7F-4509-4EC4-9E1E-864FBEE18265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70969E7F-4509-4EC4-9E1E-864FBEE18265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70969E7F-4509-4EC4-9E1E-864FBEE18265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70969E7F-4509-4EC4-9E1E-864FBEE18265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB33106-468A-47EF-84AA-E9E260926062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB33106-468A-47EF-84AA-E9E260926062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB33106-468A-47EF-84AA-E9E260926062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB33106-468A-47EF-84AA-E9E260926062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
