@@ -43,10 +43,10 @@ namespace OptimusPrimeTest.Prime
 
             foreach (var data in testData)
             {
-                var actual = func.Process(data);
                 var expected = data.Clone();
                 expected.Number++;
                 expected.Name += '_';
+                var actual = func.Process(data);
                 expected.AssertAreEqual(actual);
             }
 

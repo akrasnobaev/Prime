@@ -55,6 +55,8 @@
     <Compile Include="Common\Exception\LoggingOffException.cs" />
     <Compile Include="Common\Exception\PrimeException.cs" />
     <Compile Include="Common\Extension\SerializeExtension.cs" />
+    <Compile Include="FuncLibertyPrime\Chain\FuncLibertyChain.cs" />
+    <Compile Include="FuncLibertyPrime\Chain\IFuncLibertyChain.cs" />
     <Compile Include="FuncLibertyPrime\Factory\FuncLibertyChainFactory.cs" />
     <Compile Include="Prime\Factory\IFactoryExtensions.cs" />
     <Compile Include="Prime\Factory\IPrimeFactory.cs" />

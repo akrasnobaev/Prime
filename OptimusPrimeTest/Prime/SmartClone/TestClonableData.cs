@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using OptimusPrimeTest.Prime;
 
-namespace OptimusPrimeTest.LibertyPrime
+namespace OptimusPrimeTest
 {
     public class TestClonableData : ICloneable, ISmartCloneTestData
     {

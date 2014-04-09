@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Prime;
 
-namespace OptimusPrimeTest.LibertyPrime
+namespace OptimusPrimeTest
 {
     [TestFixture]
-    public class SmartCloneFactoryTest
+    public abstract class SmartCloneFactoryTestBase
     {
+        private IPrimeFactory factory;
+        protected abstract IPrimeFactory CreateFactory();
+
+        [SetUp]
+        public void SetUp()
+        {
+            factory = CreateFactory();
+        }
+
         [Test]
         public void TestSmartCloneInSourceReader()
         {
             var testDatas = TestClonableData.CreateDataList(4);
-            var factory = new LibertyFactory();
             var sourceBlock = new SourceBlock<TestClonableData>();
             var sourse = factory.CreateSource(sourceBlock);
 
@@ -50,10 +58,9 @@ namespace OptimusPrimeTest.LibertyPrime
         }
 
         [Test]
-        public void testSmartCloneInLibertyChain()
+        public void TestSmartCloneInLibertyChain()
         {
             var testData = new TestClonableData();
-            var factory = new LibertyFactory();
             var chain = factory.CreateChain<TestClonableData, TestClonableData>(data => data);
             var function = chain.ToFunctionalBlock();
 
@@ -74,7 +81,6 @@ namespace OptimusPrimeTest.LibertyPrime
         [Test, ExpectedException(typeof (DataCanNotBeClonnedPrimeException))]
         public void TestSmartCloneFailInSourceReader()
         {
-            var factory = new LibertyFactory();
             var sourceBlock = new SourceBlock<NonClonableTestData>();
             var source = factory.CreateSource(sourceBlock);
             source.CreateReader();
@@ -83,8 +89,8 @@ namespace OptimusPrimeTest.LibertyPrime
         [Test, ExpectedException(typeof (DataCanNotBeClonnedPrimeException))]
         public void TestSmartCloneFailInLibertyChain()
         {
-            var factory = new LibertyFactory();
-            factory.CreateChain<int, NonClonableTestData>(a => new NonClonableTestData());
+            var chain = factory.CreateChain<int, NonClonableTestData>(a => new NonClonableTestData());
+            chain.ToFunctionalBlock();
         }
     }
 }

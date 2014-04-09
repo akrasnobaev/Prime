@@ -1,9 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
-using OptimusPrimeTest.LibertyPrime;
+using OptimusPrimeTest;
 using Prime;
 
-namespace OptimusPrimeTests.LibertyPrime.Factory.SmartClone
+namespace OptimusPrimeTests
 {
     [TestFixture]
     public class SmartCloneTest

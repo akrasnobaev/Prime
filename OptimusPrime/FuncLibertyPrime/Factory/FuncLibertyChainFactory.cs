@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Prime.Liberty;
+using System.Linq.Expressions;
+using OptimusPrime.FuncLibertyPrime;
 
 namespace Prime
 {
@@ -13,27 +13,25 @@ namespace Prime
             if (!string.IsNullOrEmpty(pseudoName))
                 pseudoNames.Add(pseudoName, outputName);
 
-            var clone = new SmartClone<TOut>();
-            var process = new Func<TIn, TOut>(inputData => clone.Clone(function(inputData)));
+            // Параметр "inputData".
+            var parameter = Expression.Parameter(typeof (TIn), "inputData");
 
-            // Добавляем коллекцию для логирования только в том случае, если логирование включено.
-            if (IsLogging)
-            {
-                var logCollection = new PrintableList<object>();
-                var timestampCollection = new List<TimeSpan>();
+            // Вызов функтора function.
+            Expression<Func<TIn, TOut>> bind = inputData => function(inputData);
+            var invoke = Expression.Invoke(bind, parameter);
 
-                collections.Add(outputName, logCollection);
-                timestamps.Add(outputName, timestampCollection);
+            // Собираем Clone.
+            var smartCloneType = typeof (SmartClone<TOut>);
+            var smartClone = Expression.New(smartCloneType);
+            var clone = Expression.MemberInit(smartClone);
 
-                process = inputData =>
-                {
-                    logCollection.Add(inputData);
-                    timestampCollection.Add(Stopwatch.Elapsed);
-                    return clone.Clone(function(inputData));
-                };
-            }
+            // Вызываем Clone после на результате работы функтора.
+            var call = Expression.Call(clone,
+                smartCloneType.GetMethod("Clone", new[] {typeof (TOut)}),
+                invoke);
+            var lambdaCall = Expression.Lambda<Func<TIn, TOut>>(call, parameter);
 
-            return new LibertyChain<TIn, TOut>(this, process, outputName);
+            return new FuncLibertyChain<TIn, TOut>(this, lambdaCall, outputName);
         }
 
         public override IChain<TIn, TOut> LinkChainToChain<TIn, TOut, TMiddle>(IChain<TIn, TMiddle> first,
@@ -44,11 +42,38 @@ namespace Prime
             second.MarkUsed();
 
             // Используем небезопасное кастование, чтобы исключение указало на правильное место.
-            var firstLibertyChain = (ILibertyChain<TIn, TMiddle>) first;
-            var secondLibertyChain = (ILibertyChain<TMiddle, TOut>) second;
+            var firstChain = (IFuncLibertyChain<TIn, TMiddle>) first;
+            var secondChain = (IFuncLibertyChain<TMiddle, TOut>) second;
 
-            var process = new Func<TIn, TOut>(dataInput => secondLibertyChain.Action(firstLibertyChain.Action(dataInput)));
-            return new LibertyChain<TIn, TOut>(this, process, second.OutputName);
+            var firstExpresion = firstChain.Expression;
+            var secondExpression = secondChain.Expression;
+
+            var body = SwapVisitor.Swap(secondExpression.Body, secondExpression.Parameters[0],
+                firstExpresion.Body);
+            var lambda = Expression.Lambda<Func<TIn, TOut>>(body, firstExpresion.Parameters);
+            return new FuncLibertyChain<TIn, TOut>(this, lambda, secondChain.OutputName);
+        }
+    }
+
+    internal class SwapVisitor : ExpressionVisitor
+    {
+        private readonly Expression from, to;
+
+        private SwapVisitor(Expression from, Expression to)
+        {
+            this.from = from;
+            this.to = to;
+        }
+
+        public static Expression Swap(Expression body,
+            Expression from, Expression to)
+        {
+            return new SwapVisitor(from, to).Visit(body);
+        }
+
+        public override Expression Visit(Expression node)
+        {
+            return node == from ? to : base.Visit(node);
         }
     }
 }

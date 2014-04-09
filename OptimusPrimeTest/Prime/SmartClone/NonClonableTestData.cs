@@ -1,4 +1,4 @@
-﻿namespace OptimusPrimeTest.LibertyPrime
+﻿namespace OptimusPrimeTest
 {
     public class NonClonableTestData
     {
