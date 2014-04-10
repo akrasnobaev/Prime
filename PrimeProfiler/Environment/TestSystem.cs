@@ -12,7 +12,7 @@ namespace PrimeProfiler
     {
         public Computations Computations { get; set; }
         public int Length { get; set; }
-        public int Count { get; set; }
+        public int Width { get; set; }
         public int WaveCount { get; set; }
 
         protected abstract void Initialize();
@@ -21,12 +21,12 @@ namespace PrimeProfiler
 
         public double ElapsedMS;
 
-        public double TimePerService { get { return 8*ElapsedMS / (Length * Count * WaveCount); } }
+        public double TimePerService { get { return 8*ElapsedMS / (Length * Width * WaveCount); } }
 
         public void Run(int length, int widht, int waves, Computations comp)
         {
             Length = length;
-            Count = widht;
+            Width = widht;
             WaveCount = waves;
             Computations = comp;
             Run();

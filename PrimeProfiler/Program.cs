@@ -15,10 +15,14 @@ namespace PrimeProfiler
 
         static void SingleTest()
         {
-            var system = new PrimeAsyncParallel<MediumData>();
+            TestSystem system=null;
+            
+            //system = new PrimeParallelChains<SmallData>();
+            system = new LinqOneChain<SmallData>();
+            
             var comp = new EasyComputations();
             comp.MeasureTime();
-            system.Run(100, 1, 50000, comp);
+            system.Run(100, 1, 10000, comp);
             
             var total=system.ElapsedMS;
             var overheads=total/(system.Length*system.WaveCount);
@@ -43,9 +47,11 @@ namespace PrimeProfiler
             var waves = int.Parse(args[2]);
 
             var systems = new[] { 
+                typeof(For<>),
                 typeof(CCRParallelChains<>), 
                 typeof(CCRTotalAsync<>), 
                 typeof(PrimeParallelChains<>), 
+                typeof(LinqParallelChains<>),
                 typeof(PrimeAsync<>)
             };
 
@@ -77,15 +83,14 @@ namespace PrimeProfiler
             s.Run(length, count, waves, comp);
 
             var writer = new StreamWriter("result.txt", true);
-            writer.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}",
+            writer.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
                 length,
                 count,
                 waves,
                 system.Name,
-                data.Name,
-                comp.GetType().Name,
-                s.ElapsedMS,
-                comp.Time);
+                data.Name,          
+                s.ElapsedMS
+               );
             writer.Close();
         }
 

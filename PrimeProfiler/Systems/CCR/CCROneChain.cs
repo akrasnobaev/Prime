@@ -16,7 +16,7 @@ namespace PrimeProfiler
     {
         protected override void RunWaves()
         {
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < Width; i++)
                 RunOneChain(i, WaveCount);
         }
 

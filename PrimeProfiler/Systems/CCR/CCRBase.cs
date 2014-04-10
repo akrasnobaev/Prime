@@ -22,28 +22,28 @@ namespace PrimeProfiler
             dr = new Dispatcher();
             taskQueue = new DispatcherQueue("samples", dr);
 
-            var ports = new Port<T>[Length, Count];
-            flags = new int[Count];
+            var ports = new Port<T>[Length, Width];
+            flags = new int[Width];
 
             for (int l=0;l<Length;l++)
-                for (int c=0;c<Count;c++)
+                for (int c=0;c<Width;c++)
                     ports[l, c] = new Port<T>();
 
             for (int l = 0; l < Length - 1; l++)
-                for (int c = 0; c < Count; c++)
+                for (int c = 0; c < Width; c++)
                 {
 
                     var ll = l;
                     var cc = c;
                     Arbiter.Activate(taskQueue, Arbiter.Receive(true, ports[ll, cc], s => { s.Marker=Computations.Compute(s.Marker); ports[ll + 1, cc].Post(s); }));
                 }
-            for (int c = 0; c < Count; c++)
+            for (int c = 0; c < Width; c++)
             {
                 int cc = c;
                 Arbiter.Activate(taskQueue, Arbiter.Receive(true, ports[Length - 1, c], s => { s.Marker = Computations.Compute(s.Marker); lock (flags) { flags[cc]++; }  }));
             }
-            InputPorts = new Port<T>[Count];
-            for (int i = 0; i < Count; i++)
+            InputPorts = new Port<T>[Width];
+            for (int i = 0; i < Width; i++)
                 InputPorts[i] = ports[0, i];
         }
 

@@ -23,10 +23,10 @@ namespace PrimeProfiler
 
         protected override void RunWaves()
         {
-            var results = new IAsyncResult[Count];
-            for (int i = 0; i < Count; i++)
+            var results = new IAsyncResult[Width];
+            for (int i = 0; i < Width; i++)
                 results[i] = new Action<int>(RunChain).BeginInvoke(i, null, null);
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < Width; i++)
                 while (!results[i].IsCompleted) Thread.Sleep(0);
         }
 

@@ -17,11 +17,11 @@ namespace PrimeProfiler
         protected override void RunWaves()
         {
             for (int i = 0; i < WaveCount; i++)
-                for (int j = 0; j < Count; j++)
+                for (int j = 0; j < Width; j++)
                     InputPorts[j].Post(new T());
 
 
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < Width; i++)
                 while (flags[i] < WaveCount-3) Thread.Sleep(0);
 
         }

@@ -17,9 +17,9 @@ namespace PrimeProfiler
         protected override void Initialize()
         {
             factory=new LibertyFactory();
-            Inputs=new SourceBlock<T>[Count];
-            Outputs = new ISourceReader<T>[Count];
-            for (int i = 0; i < Count; i++)
+            Inputs=new SourceBlock<T>[Width];
+            Outputs = new ISourceReader<T>[Width];
+            for (int i = 0; i < Width; i++)
             {
                 Inputs[i] = new SourceBlock<T>();
                 var source = factory.CreateSource(Inputs[i]);
@@ -32,11 +32,11 @@ namespace PrimeProfiler
 
         protected override void RunWaves()
         {
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < Width; i++)
                 for (int j = 0; j < WaveCount; j++)
                     Inputs[i].Publish(new T());
 
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < Width; i++)
             {
                 int n = 0;
                 while (true)

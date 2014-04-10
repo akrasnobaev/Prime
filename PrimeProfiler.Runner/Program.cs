@@ -20,21 +20,20 @@ namespace PrimeProfiler.Runner
             process.WaitForExit();
         }
 
-        static void MakeComp(int count, int comp)
+        static void MakeComp(int count, int width)
         {
-            for (int stype = 0; stype < 4; stype++)
+            for (int stype = 0; stype < 6; stype++)
                 for (int dtype = 0; dtype < 2; dtype++)
                 {
-                    Run(10, 10, count, stype, dtype, comp);
+                    Run(100, width, count, stype, dtype, 0);
                 }
         }
 
         static void Main(string[] args)
         {
             File.Delete("result.txt");
-            MakeComp(10000, 0);
-            MakeComp(1000, 1);
-
+            MakeComp(50000, 1);
+            MakeComp(50000, 10);
         }
     }
 }
