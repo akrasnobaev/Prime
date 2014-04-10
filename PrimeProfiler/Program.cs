@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Prime;
 
 namespace PrimeProfiler
 {
@@ -15,7 +16,9 @@ namespace PrimeProfiler
 
         static void SingleTest()
         {
-            var system = new PrimeAsyncParallel<MediumData>();
+            var system = new PrimeOneChain<MediumData,FuncLibertyFactory>();
+
+            
             var comp = new EasyComputations();
             comp.MeasureTime();
             system.Run(100, 1, 50000, comp);
@@ -45,8 +48,6 @@ namespace PrimeProfiler
             var systems = new[] { 
                 typeof(CCRParallelChains<>), 
                 typeof(CCRTotalAsync<>), 
-                typeof(PrimeParallelChains<>), 
-                typeof(PrimeAsync<>)
             };
 
             var datas = new[] {

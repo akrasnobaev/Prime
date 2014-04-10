@@ -7,20 +7,21 @@ using Prime;
 
 namespace PrimeProfiler
 {
-    abstract class PrimeSync<T> : TestSystem
-        where T : Data, new ()
+    abstract class PrimeSync<TData,TFactory> : TestSystem
+        where TData : Data, new ()
+        where TFactory : IPrimeFactory, new()
     {
 
-        protected Func<T, T>[] funks;
+        protected Func<TData, TData>[] funks;
         IPrimeFactory factory;
 
         protected override void Initialize()
         {
-            funks = new Func<T, T>[Count];
-            factory = new LibertyFactory();
+            funks = new Func<TData, TData>[Count];
+            factory = new TFactory();
             for (int i = 0; i < Count; i++)
             {
-                var chain = factory.CreateChain<T, T>(z => { z.Marker=Computations.Compute(z.Marker); return z; });
+                var chain = factory.CreateChain<TData, TData>(z => { z.Marker=Computations.Compute(z.Marker); return z; });
                 for (int j = 0; j < Length - 1; j++)
                     chain = chain.Link(z => { z.Marker = Computations.Compute(z.Marker); return z; });
                 funks[i] = chain.ToFunctionalBlock().Process;
@@ -36,7 +37,7 @@ namespace PrimeProfiler
 
         public override Type GetDataType
         {
-            get { return typeof(T); }
+            get { return typeof(TData); }
         }
     }
 }

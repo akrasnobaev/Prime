@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Prime;
 
 namespace PrimeProfiler
 {
-    class PrimeParallelChains<T> : PrimeSync<T>
-        where T : Data,new()
+    class PrimeParallelChains<TData,TFactory> : PrimeSync<TData,TFactory>
+        where TData : Data,new()
+        where TFactory : IPrimeFactory,new()
     {
         void Run(int chainNumber, int wavesCount)
         {
             for (int i = 0; i < wavesCount; i++)
-                funks[chainNumber](new T());
+                funks[chainNumber](new TData());
         }
 
         protected override void RunWaves()

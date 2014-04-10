@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using OptimusPrime.FuncLibertyPrime;
 
@@ -6,6 +7,16 @@ namespace Prime
 {
     public class FuncLibertyFactory : LibertyFactory
     {
+
+//        void omth()
+//        {
+//            Expression result = Expression.Parameter(typeof (int), "A");
+//            List<Expression> functions = new List<Expression>();
+//            foreach (var e in functions)
+//                result = Expression.Invoke(e, new Expression[] {result});
+//            
+//        }
+
         public override IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function, string pseudoName = null)
         {
             var outputName = ServiceNameHelper.GetCollectionName<TOut>();
