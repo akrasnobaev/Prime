@@ -54,18 +54,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="FuncLibertyPrime\Factory\FuncLibertyLinkChainToChainTest.cs" />
+    <Compile Include="FuncLibertyPrime\Factory\FuncLibertySmartCloneFactoryTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyFactoryTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyLinkChainToChainTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyLinkSourceToChainTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyLinkSourceToFilterTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyRegisterGenericServiceTest.cs" />
-    <Compile Include="LibertyPrime\Factory\SmartClone\ISmartCloneTestData.cs" />
-    <Compile Include="LibertyPrime\Factory\SmartClone\NonClonableTestData.cs" />
-    <Compile Include="LibertyPrime\Factory\SmartClone\SmartCloneFactoryTest.cs" />
-    <Compile Include="LibertyPrime\Factory\SmartClone\SmartCloneTest.cs" />
-    <Compile Include="LibertyPrime\Factory\SmartClone\TestClonableData.cs" />
-    <Compile Include="LibertyPrime\Factory\SmartClone\TestImmutableData.cs" />
-    <Compile Include="LibertyPrime\Factory\SmartClone\TestSerializationData.cs" />
+    <Compile Include="LibertyPrime\Factory\LibertySmartCloneFactoryTest.cs" />
     <Compile Include="LibertyPrime\Generics\LibertyCombinedCollectorTest.cs" />
     <Compile Include="LibertyPrime\Generics\LibertyForkRepeaterTestBase.cs" />
     <Compile Include="LibertyPrime\Generics\LibertyForkTest.cs" />
@@ -111,6 +107,13 @@
     <Compile Include="Prime\Generics\ListenerTestBase.cs" />
     <Compile Include="Prime\LoggerTestBase.cs" />
     <Compile Include="Prime\RepeaterTestBase.cs" />
+    <Compile Include="Prime\SmartClone\ISmartCloneTestData.cs" />
+    <Compile Include="Prime\SmartClone\NonClonableTestData.cs" />
+    <Compile Include="Prime\SmartClone\SmartCloneFactoryTestBase.cs" />
+    <Compile Include="Prime\SmartClone\SmartCloneTest.cs" />
+    <Compile Include="Prime\SmartClone\TestClonableData.cs" />
+    <Compile Include="Prime\SmartClone\TestImmutableData.cs" />
+    <Compile Include="Prime\SmartClone\TestSerializationData.cs" />
     <Compile Include="Prime\SourceReaderTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

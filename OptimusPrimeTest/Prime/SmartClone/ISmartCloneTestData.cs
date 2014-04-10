@@ -1,7 +1,7 @@
 ﻿using System;
 using OptimusPrimeTest.Prime;
 
-namespace OptimusPrimeTest.LibertyPrime
+namespace OptimusPrimeTest
 {
     public interface ISmartCloneTestData
     {

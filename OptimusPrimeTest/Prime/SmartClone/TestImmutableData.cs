@@ -4,7 +4,7 @@ using System.ComponentModel;
 using NUnit.Framework;
 using OptimusPrimeTest.Prime;
 
-namespace OptimusPrimeTest.LibertyPrime
+namespace OptimusPrimeTest
 {
     [ImmutableObject(true)]
     public class TestImmutableData : ISmartCloneTestData
