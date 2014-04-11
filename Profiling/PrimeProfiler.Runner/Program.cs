@@ -25,15 +25,20 @@ namespace PrimeProfiler.Runner
             for (int stype = 0; stype < 6; stype++)
                 for (int dtype = 0; dtype < 2; dtype++)
                 {
-                    Run(100, width, count, stype, dtype, 0);
+                    var cnt = count;
+                    if (stype < 2) cnt *= 10;
+                    Run(100, width, cnt, stype, dtype, 0);
                 }
         }
 
         static void Main(string[] args)
         {
-            File.Delete("result.txt");
-            MakeComp(50000, 1);
-            MakeComp(50000, 10);
+            File.Delete("..\\..\\..\\result.txt");
+            for (int i = 0; i < 10; i++)
+            {
+                MakeComp(100000, 1);
+                MakeComp(2000, 8);
+            }
         }
     }
 }

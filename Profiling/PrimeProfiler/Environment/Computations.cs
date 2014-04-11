@@ -28,7 +28,7 @@ namespace PrimeProfiler
     {
         public override double Compute(double input)
         {
-            return UselessFunction(input, 1);
+            return input;   
         }
     }
 

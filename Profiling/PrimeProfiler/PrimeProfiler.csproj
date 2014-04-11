@@ -67,7 +67,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OptimusPrime\OptimusPrime.csproj">
+    <ProjectReference Include="..\..\OptimusPrime\OptimusPrime.csproj">
       <Project>{12e65f04-c271-4707-a380-1e98b8b078be}</Project>
       <Name>OptimusPrime</Name>
     </ProjectReference>

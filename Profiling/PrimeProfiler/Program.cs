@@ -49,10 +49,10 @@ namespace PrimeProfiler
 
             var systems = new[] { 
                 typeof(For<>),
+                typeof(LinqParallelChains<>),
                 typeof(CCRParallelChains<>), 
                 typeof(CCRTotalAsync<>), 
                 typeof(PrimeParallelChains<>), 
-                typeof(LinqParallelChains<>),
                 typeof(PrimeAsync<>)
             };
 
@@ -83,7 +83,7 @@ namespace PrimeProfiler
 
             s.Run(length, count, waves, comp);
 
-            var writer = new StreamWriter("result.txt", true);
+            var writer = new StreamWriter("..\\..\\..\\result.txt", true);
             writer.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
                 length,
                 count,
