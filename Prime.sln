@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeProfiler", "PrimeProfi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeProfiler.Runner", "PrimeProfiler.Runner\PrimeProfiler.Runner.csproj", "{0AB33106-468A-47EF-84AA-E9E260926062}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Profiler", "Profiler", "{FA249078-EDAB-4D1C-AB56-C2E49F0CD7BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,5 +42,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70969E7F-4509-4EC4-9E1E-864FBEE18265} = {FA249078-EDAB-4D1C-AB56-C2E49F0CD7BE}
+		{0AB33106-468A-47EF-84AA-E9E260926062} = {FA249078-EDAB-4D1C-AB56-C2E49F0CD7BE}
 	EndGlobalSection
 EndGlobal

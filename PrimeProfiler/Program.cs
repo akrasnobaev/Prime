@@ -16,13 +16,14 @@ namespace PrimeProfiler
         static void SingleTest()
         {
             TestSystem system=null;
-            
+
             //system = new PrimeParallelChains<SmallData>();
-            system = new LinqOneChain<SmallData>();
-            
+            //system = new LinqOneChain<SmallData>();
+            //system = new For<SmallData>();
+
             var comp = new EasyComputations();
             comp.MeasureTime();
-            system.Run(100, 1, 10000, comp);
+            system.Run(100, 1, 100000, comp);
             
             var total=system.ElapsedMS;
             var overheads=total/(system.Length*system.WaveCount);

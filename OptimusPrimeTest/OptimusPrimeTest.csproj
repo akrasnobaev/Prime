@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -120,7 +121,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OptimusPrime\OptimusPrime.csproj">
       <Project>{12e65f04-c271-4707-a380-1e98b8b078be}</Project>
-      <Name>OptimusPrime %28OptimusPrime\OptimusPrime%29</Name>
+      <Name>OptimusPrime</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
