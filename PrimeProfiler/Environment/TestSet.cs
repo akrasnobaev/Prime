@@ -64,7 +64,6 @@ namespace PrimeProfiler
                 new CCRParallelChains<T>(),
                 new CCRTotalAsync<T>(),
               //  new PrimeOneChain<T>(),
-                new PrimeParallelChains<T>(),
                 new PrimeAsync<T>()
             };
 

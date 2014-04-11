@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using OptimusPrime.FuncLibertyPrime;
 
@@ -6,6 +7,16 @@ namespace Prime
 {
     public class FuncLibertyFactory : LibertyFactory
     {
+
+//        void omth()
+//        {
+//            Expression result = Expression.Parameter(typeof (int), "A");
+//            List<Expression> functions = new List<Expression>();
+//            foreach (var e in functions)
+//                result = Expression.Invoke(e, new Expression[] {result});
+//            
+//        }
+
         public override IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function, string pseudoName = null)
         {
             var outputName = ServiceNameHelper.GetCollectionName<TOut>();
@@ -16,17 +27,20 @@ namespace Prime
             // Параметр "inputData".
             var parameter = Expression.Parameter(typeof (TIn), "inputData");
 
+            var delExpression = Expression.Constant(function);
             // Вызов функтора function.
-            Expression<Func<TIn, TOut>> bind = inputData => function(inputData);
-            var invoke = Expression.Invoke(bind, parameter);
+//            Expression<Func<TIn, TOut>> bind = inputData => function(inputData);
+            var invoke = Expression.Invoke(delExpression, parameter);
 
             // Собираем Clone.
             var smartCloneType = typeof (SmartClone<TOut>);
-            var smartClone = Expression.New(smartCloneType);
-            var clone = Expression.MemberInit(smartClone);
+//            var smartClone = Expression.New(smartCloneType);
+//            var clone = Expression.MemberInit(smartClone);
+
+            var cloneObject = Expression.Constant((new SmartClone<TOut>()));
 
             // Вызываем Clone после на результате работы функтора.
-            var call = Expression.Call(clone,
+            var call = Expression.Call(cloneObject,
                 smartCloneType.GetMethod("Clone", new[] {typeof (TOut)}),
                 invoke);
             var lambdaCall = Expression.Lambda<Func<TIn, TOut>>(call, parameter);

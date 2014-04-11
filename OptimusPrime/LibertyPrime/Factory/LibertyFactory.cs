@@ -23,7 +23,12 @@ namespace Prime
         /// </summary>
         protected readonly Dictionary<string, List<TimeSpan>> timestamps;
 
-        public LibertyFactory(bool isLogging = true) : base(isLogging)
+
+        public LibertyFactory() : this(false)
+        {
+        }
+
+        public LibertyFactory(bool isLogging) : base(isLogging)
         {
             collections = new Dictionary<string, PrintableList<object>>();
             pseudoNames = new Dictionary<string, string>();
