@@ -20,13 +20,20 @@ namespace PrimeProfiler.Runner
             process.WaitForExit();
         }
 
-        static void MakeComp(int count, int width)
+        static void MakeComp(bool async)
         {
+            int width = async ? 8 : 1;
             for (int stype = 0; stype < 6; stype++)
-                for (int dtype = 0; dtype < 2; dtype++)
+                for (int dtype = 0; dtype < 3; dtype++)
                 {
-                    var cnt = count;
-                    if (stype < 2) cnt *= 10;
+                    var cnt = async ? 2000 : 100000;
+                    if (stype < 2)
+                    {
+                        if (async) cnt *= 100;
+                        else cnt *= 10;
+                    }
+                    else if (stype == 2)
+                        cnt /= 10;
                     Run(100, width, cnt, stype, dtype, 0);
                 }
         }
@@ -36,8 +43,8 @@ namespace PrimeProfiler.Runner
             File.Delete("..\\..\\..\\result.txt");
             for (int i = 0; i < 10; i++)
             {
-                MakeComp(100000, 1);
-                MakeComp(2000, 8);
+                MakeComp(false);
+                MakeComp(true);
             }
         }
     }

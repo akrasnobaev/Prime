@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeProfiler", "Profiling\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeProfiler.Runner", "Profiling\PrimeProfiler.Runner\PrimeProfiler.Runner.csproj", "{0AB33106-468A-47EF-84AA-E9E260926062}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeProfiler.Reader", "Profiling\PrimeProfiler.Reader\PrimeProfiler.Reader.csproj", "{AD8A6269-D919-473D-BFB1-F89CB386EA1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0AB33106-468A-47EF-84AA-E9E260926062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AB33106-468A-47EF-84AA-E9E260926062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AB33106-468A-47EF-84AA-E9E260926062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD8A6269-D919-473D-BFB1-F89CB386EA1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD8A6269-D919-473D-BFB1-F89CB386EA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD8A6269-D919-473D-BFB1-F89CB386EA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD8A6269-D919-473D-BFB1-F89CB386EA1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{70969E7F-4509-4EC4-9E1E-864FBEE18265} = {FA249078-EDAB-4D1C-AB56-C2E49F0CD7BE}
 		{0AB33106-468A-47EF-84AA-E9E260926062} = {FA249078-EDAB-4D1C-AB56-C2E49F0CD7BE}
+		{AD8A6269-D919-473D-BFB1-F89CB386EA1C} = {FA249078-EDAB-4D1C-AB56-C2E49F0CD7BE}
 	EndGlobalSection
 EndGlobal

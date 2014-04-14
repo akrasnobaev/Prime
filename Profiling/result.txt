@@ -1,240 +1,360 @@
-100	1	1000000	For`1	SmallData	1638
-100	1	1000000	For`1	MediumData	2336
-100	1	1000000	LinqParallelChains`1	SmallData	4784
-100	1	1000000	LinqParallelChains`1	MediumData	5748
-100	1	100000	CCRParallelChains`1	SmallData	47786
-100	1	100000	CCRParallelChains`1	MediumData	61418
-100	1	100000	CCRTotalAsync`1	SmallData	9016
-100	1	100000	CCRTotalAsync`1	MediumData	12349
-100	1	100000	PrimeParallelChains`1	SmallData	3169
-100	1	100000	PrimeParallelChains`1	MediumData	3246
-100	1	100000	PrimeAsync`1	SmallData	4616
-100	1	100000	PrimeAsync`1	MediumData	6290
-100	8	20000	For`1	SmallData	87
-100	8	20000	For`1	MediumData	289
-100	8	20000	LinqParallelChains`1	SmallData	245
-100	8	20000	LinqParallelChains`1	MediumData	422
-100	8	2000	CCRParallelChains`1	SmallData	12247
-100	8	2000	CCRParallelChains`1	MediumData	13421
-100	8	2000	CCRTotalAsync`1	SmallData	1287
-100	8	2000	CCRTotalAsync`1	MediumData	1466
-100	8	2000	PrimeParallelChains`1	SmallData	184
-100	8	2000	PrimeParallelChains`1	MediumData	276
-100	8	2000	PrimeAsync`1	SmallData	1095
-100	8	2000	PrimeAsync`1	MediumData	1553
-100	1	1000000	For`1	SmallData	1632
-100	1	1000000	For`1	MediumData	2349
-100	1	1000000	LinqParallelChains`1	SmallData	4787
-100	1	1000000	LinqParallelChains`1	MediumData	5708
-100	1	100000	CCRParallelChains`1	SmallData	47993
-100	1	100000	CCRParallelChains`1	MediumData	57367
-100	1	100000	CCRTotalAsync`1	SmallData	9333
-100	1	100000	CCRTotalAsync`1	MediumData	12563
-100	1	100000	PrimeParallelChains`1	SmallData	3408
-100	1	100000	PrimeParallelChains`1	MediumData	3443
-100	1	100000	PrimeAsync`1	SmallData	4764
-100	1	100000	PrimeAsync`1	MediumData	6182
-100	8	20000	For`1	SmallData	79
-100	8	20000	For`1	MediumData	287
-100	8	20000	LinqParallelChains`1	SmallData	235
-100	8	20000	LinqParallelChains`1	MediumData	437
-100	8	2000	CCRParallelChains`1	SmallData	13405
-100	8	2000	CCRParallelChains`1	MediumData	13784
-100	8	2000	CCRTotalAsync`1	SmallData	1252
-100	8	2000	CCRTotalAsync`1	MediumData	1436
-100	8	2000	PrimeParallelChains`1	SmallData	206
-100	8	2000	PrimeParallelChains`1	MediumData	281
-100	8	2000	PrimeAsync`1	SmallData	1176
-100	8	2000	PrimeAsync`1	MediumData	1470
-100	1	1000000	For`1	SmallData	1651
-100	1	1000000	For`1	MediumData	2326
-100	1	1000000	LinqParallelChains`1	SmallData	4914
-100	1	1000000	LinqParallelChains`1	MediumData	5662
-100	1	100000	CCRParallelChains`1	SmallData	55271
-100	1	100000	CCRParallelChains`1	MediumData	60080
-100	1	100000	CCRTotalAsync`1	SmallData	9035
-100	1	100000	CCRTotalAsync`1	MediumData	12289
-100	1	100000	PrimeParallelChains`1	SmallData	3162
-100	1	100000	PrimeParallelChains`1	MediumData	3280
-100	1	100000	PrimeAsync`1	SmallData	4602
-100	1	100000	PrimeAsync`1	MediumData	6318
-100	8	20000	For`1	SmallData	93
-100	8	20000	For`1	MediumData	291
-100	8	20000	LinqParallelChains`1	SmallData	235
-100	8	20000	LinqParallelChains`1	MediumData	425
-100	8	2000	CCRParallelChains`1	SmallData	12191
-100	8	2000	CCRParallelChains`1	MediumData	13490
-100	8	2000	CCRTotalAsync`1	SmallData	1215
-100	8	2000	CCRTotalAsync`1	MediumData	1470
-100	8	2000	PrimeParallelChains`1	SmallData	200
-100	8	2000	PrimeParallelChains`1	MediumData	286
-100	8	2000	PrimeAsync`1	SmallData	1242
-100	8	2000	PrimeAsync`1	MediumData	1506
-100	1	1000000	For`1	SmallData	1670
-100	1	1000000	For`1	MediumData	2343
-100	1	1000000	LinqParallelChains`1	SmallData	4848
-100	1	1000000	LinqParallelChains`1	MediumData	5620
-100	1	100000	CCRParallelChains`1	SmallData	51829
-100	1	100000	CCRParallelChains`1	MediumData	62106
-100	1	100000	CCRTotalAsync`1	SmallData	9035
-100	1	100000	CCRTotalAsync`1	MediumData	12247
-100	1	100000	PrimeParallelChains`1	SmallData	3180
-100	1	100000	PrimeParallelChains`1	MediumData	3281
-100	1	100000	PrimeAsync`1	SmallData	4632
-100	1	100000	PrimeAsync`1	MediumData	6162
-100	8	20000	For`1	SmallData	84
-100	8	20000	For`1	MediumData	284
-100	8	20000	LinqParallelChains`1	SmallData	227
-100	8	20000	LinqParallelChains`1	MediumData	436
-100	8	2000	CCRParallelChains`1	SmallData	13620
-100	8	2000	CCRParallelChains`1	MediumData	13630
-100	8	2000	CCRTotalAsync`1	SmallData	1249
-100	8	2000	CCRTotalAsync`1	MediumData	1508
-100	8	2000	PrimeParallelChains`1	SmallData	197
-100	8	2000	PrimeParallelChains`1	MediumData	334
-100	8	2000	PrimeAsync`1	SmallData	1190
-100	8	2000	PrimeAsync`1	MediumData	1540
-100	1	1000000	For`1	SmallData	1681
-100	1	1000000	For`1	MediumData	2352
-100	1	1000000	LinqParallelChains`1	SmallData	4953
-100	1	1000000	LinqParallelChains`1	MediumData	5791
-100	1	100000	CCRParallelChains`1	SmallData	57311
-100	1	100000	CCRParallelChains`1	MediumData	63120
-100	1	100000	CCRTotalAsync`1	SmallData	9241
-100	1	100000	CCRTotalAsync`1	MediumData	12432
-100	1	100000	PrimeParallelChains`1	SmallData	3173
-100	1	100000	PrimeParallelChains`1	MediumData	3283
-100	1	100000	PrimeAsync`1	SmallData	4659
-100	1	100000	PrimeAsync`1	MediumData	6200
-100	8	20000	For`1	SmallData	84
-100	8	20000	For`1	MediumData	294
-100	8	20000	LinqParallelChains`1	SmallData	229
-100	8	20000	LinqParallelChains`1	MediumData	423
-100	8	2000	CCRParallelChains`1	SmallData	13280
-100	8	2000	CCRParallelChains`1	MediumData	13667
-100	8	2000	CCRTotalAsync`1	SmallData	1365
-100	8	2000	CCRTotalAsync`1	MediumData	1465
-100	8	2000	PrimeParallelChains`1	SmallData	204
-100	8	2000	PrimeParallelChains`1	MediumData	286
-100	8	2000	PrimeAsync`1	SmallData	1157
-100	8	2000	PrimeAsync`1	MediumData	1504
-100	1	1000000	For`1	SmallData	1658
-100	1	1000000	For`1	MediumData	2367
-100	1	1000000	LinqParallelChains`1	SmallData	4883
-100	1	1000000	LinqParallelChains`1	MediumData	5853
-100	1	100000	CCRParallelChains`1	SmallData	51230
-100	1	100000	CCRParallelChains`1	MediumData	61182
-100	1	100000	CCRTotalAsync`1	SmallData	9386
-100	1	100000	CCRTotalAsync`1	MediumData	12040
-100	1	100000	PrimeParallelChains`1	SmallData	3163
-100	1	100000	PrimeParallelChains`1	MediumData	3291
-100	1	100000	PrimeAsync`1	SmallData	4598
-100	1	100000	PrimeAsync`1	MediumData	6511
-100	8	20000	For`1	SmallData	83
-100	8	20000	For`1	MediumData	288
-100	8	20000	LinqParallelChains`1	SmallData	228
-100	8	20000	LinqParallelChains`1	MediumData	425
-100	8	2000	CCRParallelChains`1	SmallData	14081
-100	8	2000	CCRParallelChains`1	MediumData	13320
-100	8	2000	CCRTotalAsync`1	SmallData	1239
-100	8	2000	CCRTotalAsync`1	MediumData	1465
-100	8	2000	PrimeParallelChains`1	SmallData	177
-100	8	2000	PrimeParallelChains`1	MediumData	295
-100	8	2000	PrimeAsync`1	SmallData	1215
-100	8	2000	PrimeAsync`1	MediumData	1515
-100	1	1000000	For`1	SmallData	1642
-100	1	1000000	For`1	MediumData	2348
-100	1	1000000	LinqParallelChains`1	SmallData	4989
-100	1	1000000	LinqParallelChains`1	MediumData	5635
-100	1	100000	CCRParallelChains`1	SmallData	51060
-100	1	100000	CCRParallelChains`1	MediumData	61966
-100	1	100000	CCRTotalAsync`1	SmallData	8981
-100	1	100000	CCRTotalAsync`1	MediumData	12523
-100	1	100000	PrimeParallelChains`1	SmallData	3231
-100	1	100000	PrimeParallelChains`1	MediumData	3357
-100	1	100000	PrimeAsync`1	SmallData	4593
-100	1	100000	PrimeAsync`1	MediumData	6389
-100	8	20000	For`1	SmallData	84
-100	8	20000	For`1	MediumData	296
-100	8	20000	LinqParallelChains`1	SmallData	238
-100	8	20000	LinqParallelChains`1	MediumData	450
-100	8	2000	CCRParallelChains`1	SmallData	12887
-100	8	2000	CCRParallelChains`1	MediumData	13458
-100	8	2000	CCRTotalAsync`1	SmallData	1259
-100	8	2000	CCRTotalAsync`1	MediumData	1425
-100	8	2000	PrimeParallelChains`1	SmallData	207
-100	8	2000	PrimeParallelChains`1	MediumData	288
-100	8	2000	PrimeAsync`1	SmallData	1229
-100	8	2000	PrimeAsync`1	MediumData	1471
-100	1	1000000	For`1	SmallData	1737
-100	1	1000000	For`1	MediumData	2424
-100	1	1000000	LinqParallelChains`1	SmallData	4874
-100	1	1000000	LinqParallelChains`1	MediumData	5977
-100	1	100000	CCRParallelChains`1	SmallData	50542
-100	1	100000	CCRParallelChains`1	MediumData	62737
-100	1	100000	CCRTotalAsync`1	SmallData	9276
-100	1	100000	CCRTotalAsync`1	MediumData	12745
-100	1	100000	PrimeParallelChains`1	SmallData	3286
-100	1	100000	PrimeParallelChains`1	MediumData	3360
-100	1	100000	PrimeAsync`1	SmallData	4915
-100	1	100000	PrimeAsync`1	MediumData	6225
-100	8	20000	For`1	SmallData	86
-100	8	20000	For`1	MediumData	283
-100	8	20000	LinqParallelChains`1	SmallData	231
-100	8	20000	LinqParallelChains`1	MediumData	423
-100	8	2000	CCRParallelChains`1	SmallData	13778
-100	8	2000	CCRParallelChains`1	MediumData	13507
-100	8	2000	CCRTotalAsync`1	SmallData	1302
-100	8	2000	CCRTotalAsync`1	MediumData	1529
-100	8	2000	PrimeParallelChains`1	SmallData	191
-100	8	2000	PrimeParallelChains`1	MediumData	301
-100	8	2000	PrimeAsync`1	SmallData	1141
-100	8	2000	PrimeAsync`1	MediumData	1585
-100	1	1000000	For`1	SmallData	1639
-100	1	1000000	For`1	MediumData	2339
-100	1	1000000	LinqParallelChains`1	SmallData	4888
-100	1	1000000	LinqParallelChains`1	MediumData	5688
-100	1	100000	CCRParallelChains`1	SmallData	46567
-100	1	100000	CCRParallelChains`1	MediumData	60256
-100	1	100000	CCRTotalAsync`1	SmallData	9462
-100	1	100000	CCRTotalAsync`1	MediumData	12441
-100	1	100000	PrimeParallelChains`1	SmallData	3300
-100	1	100000	PrimeParallelChains`1	MediumData	3501
-100	1	100000	PrimeAsync`1	SmallData	5236
-100	1	100000	PrimeAsync`1	MediumData	6670
-100	8	20000	For`1	SmallData	86
-100	8	20000	For`1	MediumData	295
-100	8	20000	LinqParallelChains`1	SmallData	252
-100	8	20000	LinqParallelChains`1	MediumData	435
-100	8	2000	CCRParallelChains`1	SmallData	13616
-100	8	2000	CCRParallelChains`1	MediumData	13586
-100	8	2000	CCRTotalAsync`1	SmallData	1219
-100	8	2000	CCRTotalAsync`1	MediumData	1436
-100	8	2000	PrimeParallelChains`1	SmallData	199
-100	8	2000	PrimeParallelChains`1	MediumData	297
-100	8	2000	PrimeAsync`1	SmallData	1120
-100	8	2000	PrimeAsync`1	MediumData	1501
-100	1	1000000	For`1	SmallData	1652
-100	1	1000000	For`1	MediumData	2340
-100	1	1000000	LinqParallelChains`1	SmallData	4800
-100	1	1000000	LinqParallelChains`1	MediumData	5651
-100	1	100000	CCRParallelChains`1	SmallData	55401
-100	1	100000	CCRParallelChains`1	MediumData	60222
-100	1	100000	CCRTotalAsync`1	SmallData	9162
-100	1	100000	CCRTotalAsync`1	MediumData	12034
-100	1	100000	PrimeParallelChains`1	SmallData	3382
-100	1	100000	PrimeParallelChains`1	MediumData	3365
-100	1	100000	PrimeAsync`1	SmallData	4863
-100	1	100000	PrimeAsync`1	MediumData	6378
-100	8	20000	For`1	SmallData	89
-100	8	20000	For`1	MediumData	310
-100	8	20000	LinqParallelChains`1	SmallData	240
-100	8	20000	LinqParallelChains`1	MediumData	433
-100	8	2000	CCRParallelChains`1	SmallData	13067
-100	8	2000	CCRParallelChains`1	MediumData	13607
-100	8	2000	CCRTotalAsync`1	SmallData	1234
-100	8	2000	CCRTotalAsync`1	MediumData	1461
-100	8	2000	PrimeParallelChains`1	SmallData	186
-100	8	2000	PrimeParallelChains`1	MediumData	300
-100	8	2000	PrimeAsync`1	SmallData	1247
-100	8	2000	PrimeAsync`1	MediumData	1529
+100	1	1000000	For`1	SmallData	2387	0,02387
+100	1	1000000	For`1	MediumData	1703	0,01703
+100	1	1000000	For`1	BigData	1671	0,01671
+100	1	1000000	LinqParallelChains`1	SmallData	3088	0,03088
+100	1	1000000	LinqParallelChains`1	MediumData	2375	0,02375
+100	1	1000000	LinqParallelChains`1	BigData	2292	0,02292
+100	1	10000	CCRParallelChains`1	SmallData	5491	5,491
+100	1	10000	CCRParallelChains`1	MediumData	4567	4,567
+100	1	10000	CCRParallelChains`1	BigData	4751	4,751
+100	1	100000	CCRTotalAsync`1	SmallData	12995	1,2995
+100	1	100000	CCRTotalAsync`1	MediumData	9826	0,9826
+100	1	100000	CCRTotalAsync`1	BigData	9346	0,9346
+100	1	100000	PrimeParallelChains`1	SmallData	3376	0,3376
+100	1	100000	PrimeParallelChains`1	MediumData	3255	0,3255
+100	1	100000	PrimeParallelChains`1	BigData	3248	0,3248
+100	1	100000	PrimeAsync`1	SmallData	6354	0,6354
+100	1	100000	PrimeAsync`1	MediumData	4915	0,4915
+100	1	100000	PrimeAsync`1	BigData	4923	0,4923
+100	8	200000	For`1	SmallData	2886	0,0180375
+100	8	200000	For`1	MediumData	877	0,00548125
+100	8	200000	For`1	BigData	726	0,0045375
+100	8	200000	LinqParallelChains`1	SmallData	2957	0,01848125
+100	8	200000	LinqParallelChains`1	MediumData	1211	0,00756875
+100	8	200000	LinqParallelChains`1	BigData	1030	0,0064375
+100	8	200	CCRParallelChains`1	SmallData	1363	8,51875
+100	8	200	CCRParallelChains`1	MediumData	1353	8,45625
+100	8	200	CCRParallelChains`1	BigData	1241	7,75625
+100	8	2000	CCRTotalAsync`1	SmallData	1476	0,9225
+100	8	2000	CCRTotalAsync`1	MediumData	1304	0,815
+100	8	2000	CCRTotalAsync`1	BigData	1241	0,775625
+100	8	2000	PrimeParallelChains`1	SmallData	313	0,195625
+100	8	2000	PrimeParallelChains`1	MediumData	205	0,128125
+100	8	2000	PrimeParallelChains`1	BigData	205	0,128125
+100	8	2000	PrimeAsync`1	SmallData	1540	0,9625
+100	8	2000	PrimeAsync`1	MediumData	1204	0,7525
+100	8	2000	PrimeAsync`1	BigData	1085	0,678125
+100	1	1000000	For`1	SmallData	2405	0,02405
+100	1	1000000	For`1	MediumData	1735	0,01735
+100	1	1000000	For`1	BigData	1657	0,01657
+100	1	1000000	LinqParallelChains`1	SmallData	3199	0,03199
+100	1	1000000	LinqParallelChains`1	MediumData	2373	0,02373
+100	1	1000000	LinqParallelChains`1	BigData	2353	0,02353
+100	1	10000	CCRParallelChains`1	SmallData	6289	6,289
+100	1	10000	CCRParallelChains`1	MediumData	4540	4,54
+100	1	10000	CCRParallelChains`1	BigData	4829	4,829
+100	1	100000	CCRTotalAsync`1	SmallData	12765	1,2765
+100	1	100000	CCRTotalAsync`1	MediumData	9415	0,9415
+100	1	100000	CCRTotalAsync`1	BigData	9183	0,9183
+100	1	100000	PrimeParallelChains`1	SmallData	3362	0,3362
+100	1	100000	PrimeParallelChains`1	MediumData	3257	0,3257
+100	1	100000	PrimeParallelChains`1	BigData	3255	0,3255
+100	1	100000	PrimeAsync`1	SmallData	6249	0,6249
+100	1	100000	PrimeAsync`1	MediumData	5072	0,5072
+100	1	100000	PrimeAsync`1	BigData	4635	0,4635
+100	8	200000	For`1	SmallData	2813	0,01758125
+100	8	200000	For`1	MediumData	845	0,00528125
+100	8	200000	For`1	BigData	727	0,00454375
+100	8	200000	LinqParallelChains`1	SmallData	2856	0,01785
+100	8	200000	LinqParallelChains`1	MediumData	1168	0,0073
+100	8	200000	LinqParallelChains`1	BigData	1004	0,006275
+100	8	200	CCRParallelChains`1	SmallData	1428	8,925
+100	8	200	CCRParallelChains`1	MediumData	1329	8,30625
+100	8	200	CCRParallelChains`1	BigData	1288	8,05
+100	8	2000	CCRTotalAsync`1	SmallData	1433	0,895625
+100	8	2000	CCRTotalAsync`1	MediumData	1247	0,779375
+100	8	2000	CCRTotalAsync`1	BigData	1212	0,7575
+100	8	2000	PrimeParallelChains`1	SmallData	284	0,1775
+100	8	2000	PrimeParallelChains`1	MediumData	220	0,1375
+100	8	2000	PrimeParallelChains`1	BigData	197	0,123125
+100	8	2000	PrimeAsync`1	SmallData	1462	0,91375
+100	8	2000	PrimeAsync`1	MediumData	1130	0,70625
+100	8	2000	PrimeAsync`1	BigData	1168	0,73
+100	1	1000000	For`1	SmallData	2394	0,02394
+100	1	1000000	For`1	MediumData	1705	0,01705
+100	1	1000000	For`1	BigData	1646	0,01646
+100	1	1000000	LinqParallelChains`1	SmallData	3042	0,03042
+100	1	1000000	LinqParallelChains`1	MediumData	2364	0,02364
+100	1	1000000	LinqParallelChains`1	BigData	2305	0,02305
+100	1	10000	CCRParallelChains`1	SmallData	5310	5,31
+100	1	10000	CCRParallelChains`1	MediumData	4306	4,306
+100	1	10000	CCRParallelChains`1	BigData	4754	4,754
+100	1	100000	CCRTotalAsync`1	SmallData	12545	1,2545
+100	1	100000	CCRTotalAsync`1	MediumData	9418	0,9418
+100	1	100000	CCRTotalAsync`1	BigData	9229	0,9229
+100	1	100000	PrimeParallelChains`1	SmallData	3301	0,3301
+100	1	100000	PrimeParallelChains`1	MediumData	3245	0,3245
+100	1	100000	PrimeParallelChains`1	BigData	3242	0,3242
+100	1	100000	PrimeAsync`1	SmallData	6446	0,6446
+100	1	100000	PrimeAsync`1	MediumData	4829	0,4829
+100	1	100000	PrimeAsync`1	BigData	4789	0,4789
+100	8	200000	For`1	SmallData	2843	0,01776875
+100	8	200000	For`1	MediumData	954	0,0059625
+100	8	200000	For`1	BigData	763	0,00476875
+100	8	200000	LinqParallelChains`1	SmallData	2919	0,01824375
+100	8	200000	LinqParallelChains`1	MediumData	1177	0,00735625
+100	8	200000	LinqParallelChains`1	BigData	1164	0,007275
+100	8	200	CCRParallelChains`1	SmallData	1257	7,85625
+100	8	200	CCRParallelChains`1	MediumData	1262	7,8875
+100	8	200	CCRParallelChains`1	BigData	1416	8,85
+100	8	2000	CCRTotalAsync`1	SmallData	1469	0,918125
+100	8	2000	CCRTotalAsync`1	MediumData	1276	0,7975
+100	8	2000	CCRTotalAsync`1	BigData	1255	0,784375
+100	8	2000	PrimeParallelChains`1	SmallData	298	0,18625
+100	8	2000	PrimeParallelChains`1	MediumData	215	0,134375
+100	8	2000	PrimeParallelChains`1	BigData	202	0,12625
+100	8	2000	PrimeAsync`1	SmallData	1432	0,895
+100	8	2000	PrimeAsync`1	MediumData	1229	0,768125
+100	8	2000	PrimeAsync`1	BigData	1261	0,788125
+100	1	1000000	For`1	SmallData	2382	0,02382
+100	1	1000000	For`1	MediumData	1739	0,01739
+100	1	1000000	For`1	BigData	1624	0,01624
+100	1	1000000	LinqParallelChains`1	SmallData	3009	0,03009
+100	1	1000000	LinqParallelChains`1	MediumData	2496	0,02496
+100	1	1000000	LinqParallelChains`1	BigData	2356	0,02356
+100	1	10000	CCRParallelChains`1	SmallData	5843	5,843
+100	1	10000	CCRParallelChains`1	MediumData	5841	5,841
+100	1	10000	CCRParallelChains`1	BigData	4962	4,962
+100	1	100000	CCRTotalAsync`1	SmallData	12402	1,2402
+100	1	100000	CCRTotalAsync`1	MediumData	9259	0,9259
+100	1	100000	CCRTotalAsync`1	BigData	9025	0,9025
+100	1	100000	PrimeParallelChains`1	SmallData	3376	0,3376
+100	1	100000	PrimeParallelChains`1	MediumData	3200	0,32
+100	1	100000	PrimeParallelChains`1	BigData	3150	0,315
+100	1	100000	PrimeAsync`1	SmallData	6354	0,6354
+100	1	100000	PrimeAsync`1	MediumData	5038	0,5038
+100	1	100000	PrimeAsync`1	BigData	5077	0,5077
+100	8	200000	For`1	SmallData	2968	0,01855
+100	8	200000	For`1	MediumData	865	0,00540625
+100	8	200000	For`1	BigData	741	0,00463125
+100	8	200000	LinqParallelChains`1	SmallData	3043	0,01901875
+100	8	200000	LinqParallelChains`1	MediumData	1212	0,007575
+100	8	200000	LinqParallelChains`1	BigData	1060	0,006625
+100	8	200	CCRParallelChains`1	SmallData	1327	8,29375
+100	8	200	CCRParallelChains`1	MediumData	1215	7,59375
+100	8	200	CCRParallelChains`1	BigData	1309	8,18125
+100	8	2000	CCRTotalAsync`1	SmallData	1536	0,96
+100	8	2000	CCRTotalAsync`1	MediumData	1378	0,86125
+100	8	2000	CCRTotalAsync`1	BigData	1255	0,784375
+100	8	2000	PrimeParallelChains`1	SmallData	290	0,18125
+100	8	2000	PrimeParallelChains`1	MediumData	227	0,141875
+100	8	2000	PrimeParallelChains`1	BigData	192	0,12
+100	8	2000	PrimeAsync`1	SmallData	1574	0,98375
+100	8	2000	PrimeAsync`1	MediumData	1161	0,725625
+100	8	2000	PrimeAsync`1	BigData	1123	0,701875
+100	1	1000000	For`1	SmallData	2333	0,02333
+100	1	1000000	For`1	MediumData	1700	0,017
+100	1	1000000	For`1	BigData	1666	0,01666
+100	1	1000000	LinqParallelChains`1	SmallData	2961	0,02961
+100	1	1000000	LinqParallelChains`1	MediumData	2380	0,0238
+100	1	1000000	LinqParallelChains`1	BigData	2230	0,0223
+100	1	10000	CCRParallelChains`1	SmallData	5622	5,622
+100	1	10000	CCRParallelChains`1	MediumData	6289	6,289
+100	1	10000	CCRParallelChains`1	BigData	5937	5,937
+100	1	100000	CCRTotalAsync`1	SmallData	12073	1,2073
+100	1	100000	CCRTotalAsync`1	MediumData	9476	0,9476
+100	1	100000	CCRTotalAsync`1	BigData	8823	0,8823
+100	1	100000	PrimeParallelChains`1	SmallData	3299	0,3299
+100	1	100000	PrimeParallelChains`1	MediumData	3290	0,329
+100	1	100000	PrimeParallelChains`1	BigData	3331	0,3331
+100	1	100000	PrimeAsync`1	SmallData	6890	0,689
+100	1	100000	PrimeAsync`1	MediumData	5073	0,5073
+100	1	100000	PrimeAsync`1	BigData	4909	0,4909
+100	8	200000	For`1	SmallData	2859	0,01786875
+100	8	200000	For`1	MediumData	882	0,0055125
+100	8	200000	For`1	BigData	732	0,004575
+100	8	200000	LinqParallelChains`1	SmallData	2967	0,01854375
+100	8	200000	LinqParallelChains`1	MediumData	1249	0,00780625
+100	8	200000	LinqParallelChains`1	BigData	1033	0,00645625
+100	8	200	CCRParallelChains`1	SmallData	1452	9,075
+100	8	200	CCRParallelChains`1	MediumData	1395	8,71875
+100	8	200	CCRParallelChains`1	BigData	1351	8,44375
+100	8	2000	CCRTotalAsync`1	SmallData	1467	0,916875
+100	8	2000	CCRTotalAsync`1	MediumData	1315	0,821875
+100	8	2000	CCRTotalAsync`1	BigData	1250	0,78125
+100	8	2000	PrimeParallelChains`1	SmallData	310	0,19375
+100	8	2000	PrimeParallelChains`1	MediumData	192	0,12
+100	8	2000	PrimeParallelChains`1	BigData	203	0,126875
+100	8	2000	PrimeAsync`1	SmallData	1487	0,929375
+100	8	2000	PrimeAsync`1	MediumData	1114	0,69625
+100	8	2000	PrimeAsync`1	BigData	1123	0,701875
+100	1	1000000	For`1	SmallData	2358	0,02358
+100	1	1000000	For`1	MediumData	1732	0,01732
+100	1	1000000	For`1	BigData	1636	0,01636
+100	1	1000000	LinqParallelChains`1	SmallData	2984	0,02984
+100	1	1000000	LinqParallelChains`1	MediumData	2441	0,02441
+100	1	1000000	LinqParallelChains`1	BigData	2221	0,02221
+100	1	10000	CCRParallelChains`1	SmallData	5796	5,796
+100	1	10000	CCRParallelChains`1	MediumData	4906	4,906
+100	1	10000	CCRParallelChains`1	BigData	5176	5,176
+100	1	100000	CCRTotalAsync`1	SmallData	12438	1,2438
+100	1	100000	CCRTotalAsync`1	MediumData	9686	0,9686
+100	1	100000	CCRTotalAsync`1	BigData	9006	0,9006
+100	1	100000	PrimeParallelChains`1	SmallData	3287	0,3287
+100	1	100000	PrimeParallelChains`1	MediumData	3157	0,3157
+100	1	100000	PrimeParallelChains`1	BigData	3148	0,3148
+100	1	100000	PrimeAsync`1	SmallData	6204	0,6204
+100	1	100000	PrimeAsync`1	MediumData	5012	0,5012
+100	1	100000	PrimeAsync`1	BigData	4918	0,4918
+100	8	200000	For`1	SmallData	2771	0,01731875
+100	8	200000	For`1	MediumData	903	0,00564375
+100	8	200000	For`1	BigData	740	0,004625
+100	8	200000	LinqParallelChains`1	SmallData	2932	0,018325
+100	8	200000	LinqParallelChains`1	MediumData	1216	0,0076
+100	8	200000	LinqParallelChains`1	BigData	1017	0,00635625
+100	8	200	CCRParallelChains`1	SmallData	1567	9,79375
+100	8	200	CCRParallelChains`1	MediumData	1380	8,625
+100	8	200	CCRParallelChains`1	BigData	1467	9,16875
+100	8	2000	CCRTotalAsync`1	SmallData	1484	0,9275
+100	8	2000	CCRTotalAsync`1	MediumData	1304	0,815
+100	8	2000	CCRTotalAsync`1	BigData	1321	0,825625
+100	8	2000	PrimeParallelChains`1	SmallData	315	0,196875
+100	8	2000	PrimeParallelChains`1	MediumData	208	0,13
+100	8	2000	PrimeParallelChains`1	BigData	199	0,124375
+100	8	2000	PrimeAsync`1	SmallData	1488	0,93
+100	8	2000	PrimeAsync`1	MediumData	1255	0,784375
+100	8	2000	PrimeAsync`1	BigData	1161	0,725625
+100	1	1000000	For`1	SmallData	2623	0,02623
+100	1	1000000	For`1	MediumData	1834	0,01834
+100	1	1000000	For`1	BigData	1764	0,01764
+100	1	1000000	LinqParallelChains`1	SmallData	3254	0,03254
+100	1	1000000	LinqParallelChains`1	MediumData	2431	0,02431
+100	1	1000000	LinqParallelChains`1	BigData	2529	0,02529
+100	1	10000	CCRParallelChains`1	SmallData	4471	4,471
+100	1	10000	CCRParallelChains`1	MediumData	4689	4,689
+100	1	10000	CCRParallelChains`1	BigData	4841	4,841
+100	1	100000	CCRTotalAsync`1	SmallData	12501	1,2501
+100	1	100000	CCRTotalAsync`1	MediumData	9684	0,9684
+100	1	100000	CCRTotalAsync`1	BigData	9152	0,9152
+100	1	100000	PrimeParallelChains`1	SmallData	3386	0,3386
+100	1	100000	PrimeParallelChains`1	MediumData	3312	0,3312
+100	1	100000	PrimeParallelChains`1	BigData	3203	0,3203
+100	1	100000	PrimeAsync`1	SmallData	6349	0,6349
+100	1	100000	PrimeAsync`1	MediumData	4924	0,4924
+100	1	100000	PrimeAsync`1	BigData	5094	0,5094
+100	8	200000	For`1	SmallData	2809	0,01755625
+100	8	200000	For`1	MediumData	850	0,0053125
+100	8	200000	For`1	BigData	771	0,00481875
+100	8	200000	LinqParallelChains`1	SmallData	2891	0,01806875
+100	8	200000	LinqParallelChains`1	MediumData	1168	0,0073
+100	8	200000	LinqParallelChains`1	BigData	1020	0,006375
+100	8	200	CCRParallelChains`1	SmallData	1379	8,61875
+100	8	200	CCRParallelChains`1	MediumData	1334	8,3375
+100	8	200	CCRParallelChains`1	BigData	1407	8,79375
+100	8	2000	CCRTotalAsync`1	SmallData	1471	0,919375
+100	8	2000	CCRTotalAsync`1	MediumData	1263	0,789375
+100	8	2000	CCRTotalAsync`1	BigData	1217	0,760625
+100	8	2000	PrimeParallelChains`1	SmallData	274	0,17125
+100	8	2000	PrimeParallelChains`1	MediumData	200	0,125
+100	8	2000	PrimeParallelChains`1	BigData	202	0,12625
+100	8	2000	PrimeAsync`1	SmallData	1447	0,904375
+100	8	2000	PrimeAsync`1	MediumData	1198	0,74875
+100	8	2000	PrimeAsync`1	BigData	1132	0,7075
+100	1	1000000	For`1	SmallData	2382	0,02382
+100	1	1000000	For`1	MediumData	1709	0,01709
+100	1	1000000	For`1	BigData	1659	0,01659
+100	1	1000000	LinqParallelChains`1	SmallData	3130	0,0313
+100	1	1000000	LinqParallelChains`1	MediumData	2367	0,02367
+100	1	1000000	LinqParallelChains`1	BigData	2342	0,02342
+100	1	10000	CCRParallelChains`1	SmallData	6320	6,32
+100	1	10000	CCRParallelChains`1	MediumData	5309	5,309
+100	1	10000	CCRParallelChains`1	BigData	5255	5,255
+100	1	100000	CCRTotalAsync`1	SmallData	12818	1,2818
+100	1	100000	CCRTotalAsync`1	MediumData	9527	0,9527
+100	1	100000	CCRTotalAsync`1	BigData	8930	0,893
+100	1	100000	PrimeParallelChains`1	SmallData	3268	0,3268
+100	1	100000	PrimeParallelChains`1	MediumData	3163	0,3163
+100	1	100000	PrimeParallelChains`1	BigData	3180	0,318
+100	1	100000	PrimeAsync`1	SmallData	6354	0,6354
+100	1	100000	PrimeAsync`1	MediumData	5037	0,5037
+100	1	100000	PrimeAsync`1	BigData	4924	0,4924
+100	8	200000	For`1	SmallData	2762	0,0172625
+100	8	200000	For`1	MediumData	977	0,00610625
+100	8	200000	For`1	BigData	831	0,00519375
+100	8	200000	LinqParallelChains`1	SmallData	2919	0,01824375
+100	8	200000	LinqParallelChains`1	MediumData	1160	0,00725
+100	8	200000	LinqParallelChains`1	BigData	1027	0,00641875
+100	8	200	CCRParallelChains`1	SmallData	1356	8,475
+100	8	200	CCRParallelChains`1	MediumData	1379	8,61875
+100	8	200	CCRParallelChains`1	BigData	1341	8,38125
+100	8	2000	CCRTotalAsync`1	SmallData	1441	0,900625
+100	8	2000	CCRTotalAsync`1	MediumData	1267	0,791875
+100	8	2000	CCRTotalAsync`1	BigData	1278	0,79875
+100	8	2000	PrimeParallelChains`1	SmallData	292	0,1825
+100	8	2000	PrimeParallelChains`1	MediumData	207	0,129375
+100	8	2000	PrimeParallelChains`1	BigData	186	0,11625
+100	8	2000	PrimeAsync`1	SmallData	1575	0,984375
+100	8	2000	PrimeAsync`1	MediumData	1209	0,755625
+100	8	2000	PrimeAsync`1	BigData	1227	0,766875
+100	1	1000000	For`1	SmallData	2362	0,02362
+100	1	1000000	For`1	MediumData	1788	0,01788
+100	1	1000000	For`1	BigData	1741	0,01741
+100	1	1000000	LinqParallelChains`1	SmallData	3066	0,03066
+100	1	1000000	LinqParallelChains`1	MediumData	2388	0,02388
+100	1	1000000	LinqParallelChains`1	BigData	2253	0,02253
+100	1	10000	CCRParallelChains`1	SmallData	6146	6,146
+100	1	10000	CCRParallelChains`1	MediumData	5817	5,817
+100	1	10000	CCRParallelChains`1	BigData	6537	6,537
+100	1	100000	CCRTotalAsync`1	SmallData	12375	1,2375
+100	1	100000	CCRTotalAsync`1	MediumData	9482	0,9482
+100	1	100000	CCRTotalAsync`1	BigData	9061	0,9061
+100	1	100000	PrimeParallelChains`1	SmallData	3349	0,3349
+100	1	100000	PrimeParallelChains`1	MediumData	3286	0,3286
+100	1	100000	PrimeParallelChains`1	BigData	3225	0,3225
+100	1	100000	PrimeAsync`1	SmallData	6195	0,6195
+100	1	100000	PrimeAsync`1	MediumData	4848	0,4848
+100	1	100000	PrimeAsync`1	BigData	4916	0,4916
+100	8	200000	For`1	SmallData	2784	0,0174
+100	8	200000	For`1	MediumData	861	0,00538125
+100	8	200000	For`1	BigData	730	0,0045625
+100	8	200000	LinqParallelChains`1	SmallData	2867	0,01791875
+100	8	200000	LinqParallelChains`1	MediumData	1168	0,0073
+100	8	200000	LinqParallelChains`1	BigData	1225	0,00765625
+100	8	200	CCRParallelChains`1	SmallData	1349	8,43125
+100	8	200	CCRParallelChains`1	MediumData	1268	7,925
+100	8	200	CCRParallelChains`1	BigData	1330	8,3125
+100	8	2000	CCRTotalAsync`1	SmallData	1432	0,895
+100	8	2000	CCRTotalAsync`1	MediumData	1278	0,79875
+100	8	2000	CCRTotalAsync`1	BigData	1257	0,785625
+100	8	2000	PrimeParallelChains`1	SmallData	285	0,178125
+100	8	2000	PrimeParallelChains`1	MediumData	215	0,134375
+100	8	2000	PrimeParallelChains`1	BigData	199	0,124375
+100	8	2000	PrimeAsync`1	SmallData	1578	0,98625
+100	8	2000	PrimeAsync`1	MediumData	1174	0,73375
+100	8	2000	PrimeAsync`1	BigData	1194	0,74625
+100	1	1000000	For`1	SmallData	2441	0,02441
+100	1	1000000	For`1	MediumData	1715	0,01715
+100	1	1000000	For`1	BigData	1677	0,01677
+100	1	1000000	LinqParallelChains`1	SmallData	2996	0,02996
+100	1	1000000	LinqParallelChains`1	MediumData	2360	0,0236
+100	1	1000000	LinqParallelChains`1	BigData	2367	0,02367
+100	1	10000	CCRParallelChains`1	SmallData	5584	5,584
+100	1	10000	CCRParallelChains`1	MediumData	5680	5,68
+100	1	10000	CCRParallelChains`1	BigData	4649	4,649
+100	1	100000	CCRTotalAsync`1	SmallData	12536	1,2536
+100	1	100000	CCRTotalAsync`1	MediumData	9134	0,9134
+100	1	100000	CCRTotalAsync`1	BigData	9509	0,9509
+100	1	100000	PrimeParallelChains`1	SmallData	3487	0,3487
+100	1	100000	PrimeParallelChains`1	MediumData	3310	0,331
+100	1	100000	PrimeParallelChains`1	BigData	3295	0,3295
+100	1	100000	PrimeAsync`1	SmallData	6758	0,6758
+100	1	100000	PrimeAsync`1	MediumData	5098	0,5098
+100	1	100000	PrimeAsync`1	BigData	4909	0,4909
+100	8	200000	For`1	SmallData	2775	0,01734375
+100	8	200000	For`1	MediumData	945	0,00590625
+100	8	200000	For`1	BigData	744	0,00465
+100	8	200000	LinqParallelChains`1	SmallData	2937	0,01835625
+100	8	200000	LinqParallelChains`1	MediumData	1217	0,00760625
+100	8	200000	LinqParallelChains`1	BigData	1016	0,00635
+100	8	200	CCRParallelChains`1	SmallData	1369	8,55625
+100	8	200	CCRParallelChains`1	MediumData	1492	9,325
+100	8	200	CCRParallelChains`1	BigData	1294	8,0875
+100	8	2000	CCRTotalAsync`1	SmallData	1476	0,9225
+100	8	2000	CCRTotalAsync`1	MediumData	1358	0,84875
+100	8	2000	CCRTotalAsync`1	BigData	1236	0,7725
+100	8	2000	PrimeParallelChains`1	SmallData	291	0,181875
+100	8	2000	PrimeParallelChains`1	MediumData	206	0,12875
+100	8	2000	PrimeParallelChains`1	BigData	212	0,1325
+100	8	2000	PrimeAsync`1	SmallData	1685	1,053125
+100	8	2000	PrimeAsync`1	MediumData	1209	0,755625
+100	8	2000	PrimeAsync`1	BigData	1136	0,71

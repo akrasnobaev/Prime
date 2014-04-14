@@ -58,7 +58,8 @@ namespace PrimeProfiler
 
             var datas = new[] {
                 typeof(SmallData),
-                typeof(MediumData)
+                typeof(MediumData),
+                typeof(BigData)
             };
 
             var comps = new Computations[] {
@@ -84,13 +85,14 @@ namespace PrimeProfiler
             s.Run(length, count, waves, comp);
 
             var writer = new StreamWriter("..\\..\\..\\result.txt", true);
-            writer.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
+            writer.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}",
                 length,
                 count,
                 waves,
                 system.Name,
                 data.Name,          
-                s.ElapsedMS
+                s.ElapsedMS,
+                1000*s.ElapsedMS/(length*count*waves)
                );
             writer.Close();
         }

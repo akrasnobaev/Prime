@@ -31,18 +31,18 @@ namespace PrimeProfiler
     [ImmutableObject(true)]
     public class BigData : ByteArrayData
     {
-        public BigData() : base(1000000) { }
+        public BigData() : base(100) { }
     }
 
     [ImmutableObject(true)]
     public class MediumData : ByteArrayData
     {
-        public MediumData() : base(10000) { }
+        public MediumData() : base(1000) { }
     }
 
     [ImmutableObject(true)]
     public class SmallData : ByteArrayData
     {
-        public SmallData() : base(100) { }
+        public SmallData() : base(10000) { }
     }
 }
