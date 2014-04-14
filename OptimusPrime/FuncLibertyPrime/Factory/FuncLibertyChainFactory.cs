@@ -29,21 +29,22 @@ namespace Prime
 
             var delExpression = Expression.Constant(function);
             // Вызов функтора function.
-//            Expression<Func<TIn, TOut>> bind = inputData => function(inputData);
-            var invoke = Expression.Invoke(delExpression, parameter);
+            Expression expression = Expression.Invoke(delExpression, parameter);
 
             // Собираем Clone.
-            var smartCloneType = typeof (SmartClone<TOut>);
-//            var smartClone = Expression.New(smartCloneType);
-//            var clone = Expression.MemberInit(smartClone);
+            var cloningObject = new SmartClone<TOut>();
 
-            var cloneObject = Expression.Constant((new SmartClone<TOut>()));
+            if (!cloningObject.IsEmptyCloning)
+            {
+                var smartCloneType = typeof(SmartClone<TOut>);
+                var cloneExression = Expression.Constant(cloningObject);
+                expression = Expression.Call(
+                    cloneExression,
+                    smartCloneType.GetMethod("Clone", new[] { typeof(TOut) }),
+                    expression);
+            }
 
-            // Вызываем Clone после на результате работы функтора.
-            var call = Expression.Call(cloneObject,
-                smartCloneType.GetMethod("Clone", new[] {typeof (TOut)}),
-                invoke);
-            var lambdaCall = Expression.Lambda<Func<TIn, TOut>>(call, parameter);
+            var lambdaCall = Expression.Lambda<Func<TIn, TOut>>(expression, parameter);
 
             return new FuncLibertyChain<TIn, TOut>(this, lambdaCall, outputName);
         }
