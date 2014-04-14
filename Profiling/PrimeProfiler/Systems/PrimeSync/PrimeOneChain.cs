@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PrimeProfiler
 {
-    class LinqOneChain<TData> : PrimeOneChain<TData>
+    public class LinqOneChain<TData> : PrimeOneChain<TData>
         where TData : Data, new()
     {
         public LinqOneChain()
@@ -17,7 +17,7 @@ namespace PrimeProfiler
         }
     }
 
-    class PrimeOneChain<TData> : PrimeSync<TData>
+    public class PrimeOneChain<TData> : PrimeSync<TData>
         where TData : Data,new()
     {
         public PrimeOneChain()

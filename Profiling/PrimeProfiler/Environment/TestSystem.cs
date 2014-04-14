@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PrimeProfiler
 {
-    abstract class TestSystem
+    public abstract class TestSystem
     {
         public Computations Computations { get; set; }
         public int Length { get; set; }

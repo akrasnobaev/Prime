@@ -11,7 +11,7 @@ namespace PrimeProfiler
     /// At every moment, only one service run. Quite inefficient, of course.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class CCROneChain<T> : CCRParallelChains<T>
+    public class CCROneChain<T> : CCRParallelChains<T>
         where T : Data,new()
     {
         protected override void RunWaves()

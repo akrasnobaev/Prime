@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PrimeProfiler
 {
-    class For<T> : TestSystem
+    public class For<T> : TestSystem
         where T : Data, new()
     {
 

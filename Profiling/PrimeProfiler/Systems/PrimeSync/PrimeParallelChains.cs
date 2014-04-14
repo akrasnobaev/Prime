@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace PrimeProfiler
 {
 
-    class LinqParallelChains<TData> : PrimeParallelChains<TData>
+    public class LinqParallelChains<TData> : PrimeParallelChains<TData>
     where TData : Data, new()
     {
         public LinqParallelChains()
@@ -18,7 +18,7 @@ namespace PrimeProfiler
         }
     }
 
-    class PrimeParallelChains<T> : PrimeSync<T>
+    public class PrimeParallelChains<T> : PrimeSync<T>
         where T : Data,new()
     {
         public PrimeParallelChains()

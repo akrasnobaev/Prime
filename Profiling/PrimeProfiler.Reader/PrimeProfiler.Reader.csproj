@@ -71,6 +71,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrimeProfiler\PrimeProfiler.csproj">
+      <Project>{70969e7f-4509-4ec4-9e1e-864fbee18265}</Project>
+      <Name>PrimeProfiler</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

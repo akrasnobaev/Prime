@@ -7,7 +7,7 @@ using Prime;
 
 namespace PrimeProfiler
 {
-    class PrimeAsync<T> : TestSystem
+    public class PrimeAsync<T> : TestSystem
         where T : Data,new()
     {
         protected SourceBlock<T>[] Inputs;

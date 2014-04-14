@@ -7,7 +7,7 @@ using Prime;
 
 namespace PrimeProfiler
 {
-    abstract class PrimeSync<TData> : TestSystem
+    public abstract class PrimeSync<TData> : TestSystem
         where TData : Data, new ()
     {
 

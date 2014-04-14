@@ -12,7 +12,7 @@ namespace PrimeProfiler
     /// appears after the last processing is done (i.e. status appears after command is fed to effectors)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class CCRParallelChains<T> : CCRBase<T>
+    public class CCRParallelChains<T> : CCRBase<T>
         where T : Data,new()
     {
 

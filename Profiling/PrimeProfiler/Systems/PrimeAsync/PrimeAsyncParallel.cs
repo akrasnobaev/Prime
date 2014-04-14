@@ -8,7 +8,7 @@ using Prime;
 
 namespace PrimeProfiler
 {
-    class PrimeAsyncParallel<T> : PrimeAsync<T>
+    public class PrimeAsyncParallel<T> : PrimeAsync<T>
         where T : Data,new()
     {
 

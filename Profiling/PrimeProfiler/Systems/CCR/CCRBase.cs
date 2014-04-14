@@ -7,7 +7,7 @@ using Microsoft.Ccr.Core;
 
 namespace PrimeProfiler
 {
-    abstract class  CCRBase<T> : TestSystem
+    public abstract class  CCRBase<T> : TestSystem
         where T : Data,new()
     {
         protected Port<T>[] InputPorts;

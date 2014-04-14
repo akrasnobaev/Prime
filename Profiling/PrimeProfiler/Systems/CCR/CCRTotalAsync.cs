@@ -11,7 +11,7 @@ namespace PrimeProfiler
     /// A normal work for CCR: all the tasks are given at the initial time, and then services proceed as they wishes
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class CCRTotalAsync<T> : CCRBase<T>
+    public class CCRTotalAsync<T> : CCRBase<T>
         where T : Data,new()
     {
         protected override void RunWaves()
