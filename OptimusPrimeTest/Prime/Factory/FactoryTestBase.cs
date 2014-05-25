@@ -119,46 +119,6 @@ namespace OptimusPrimeTest.Prime
             factory.Stop();
         }
 
-        [Test]
-        public void TestHandleExceptionHandlesExceptionChain()
-        {
-            var factory = CreateFactory();
-            var chain = factory.CreateHandlesExceptionChain(new Func<TestData, String>(
-                a => { throw new TestException(a.Name); }));
-            chain.HandleExceptions(exception => exception.Message);
-            var functionalBlock = chain.ToFunctionalBlock();
-            var testDatas = TestData.CreateData(2);
-
-            factory.Start();
-
-            foreach (var testData in testDatas)
-            {
-                var chainResult = functionalBlock.Process(testData);
-                Assert.AreEqual(chainResult, testData.Name);
-            }
-
-            factory.Stop();
-        }
-
-        [Test, ExpectedException(typeof(TestException))]
-        public void TestNotHandleExceptionHandlesExceptionChain()
-        {
-            var factory = CreateFactory();
-            var chain = factory.CreateHandlesExceptionChain(new Func<TestData, String>(
-                a => { throw new TestException(a.Name); }));
-            var functionalBlock = chain.ToFunctionalBlock();
-            var testDatas = TestData.CreateData(1);
-
-            factory.Start();
-
-            foreach (var testData in testDatas)
-            {
-               functionalBlock.Process(testData);
-            }
-
-            factory.Stop();
-        }
-
         /// <summary>
         /// Один цикл работы фабрики.
         /// </summary>

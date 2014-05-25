@@ -54,6 +54,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="LibertyPrime\Chain\LibertyHandlesExceptionChainTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyFactoryTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyLinkChainToChainTest.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyLinkSourceToChainTest.cs" />
