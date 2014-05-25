@@ -9,7 +9,7 @@
         IFunctionalBlock<TIn, TOut> ToFunctionalBlock();
 
         /// <summary>
-        /// Фабрика, которой пораждена данныя цепочка.
+        /// Фабрика, которой пораждена цепочка.
         /// </summary>
         IPrimeFactory Factory { get; }
 

@@ -31,6 +31,8 @@ namespace Prime
         /// <returns>Цепочка преобразования данных.</returns>
         IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function, string pseudoName = null);
 
+        IHandlesExceptionChain<TIn, TInnerOut> CreateHandlesExceptionChain<TIn, TInnerOut>(Func<TIn, TInnerOut> function, string pseudoName = null);
+
         /// <summary>
         /// Объединение двух цепочек в одну.
         /// Перваяцепочка преобразует данные из типа TIn в тип TMiddle,

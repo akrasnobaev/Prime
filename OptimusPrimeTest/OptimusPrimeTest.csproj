@@ -97,6 +97,7 @@
     <Compile Include="OptimusPrime\Media\WriteService.cs" />
     <Compile Include="Prime\Common\TestConstants.cs" />
     <Compile Include="Prime\Common\TestData.cs" />
+    <Compile Include="Prime\Common\TestException.cs" />
     <Compile Include="Prime\Factory\FactoryTestBase.cs" />
     <Compile Include="Prime\Factory\LinkChainToChainTestBase.cs" />
     <Compile Include="Prime\Factory\LinkSourceToChainTestBase.cs" />

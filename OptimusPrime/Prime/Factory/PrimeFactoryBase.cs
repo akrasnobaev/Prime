@@ -9,6 +9,8 @@ namespace Prime
     {
         public abstract string DumpDb();
         public abstract IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function, string pseudoName = null);
+
+        public abstract IHandlesExceptionChain<TIn, TInnerOut> CreateHandlesExceptionChain<TIn, TInnerOut>(Func<TIn, TInnerOut> function, string pseudoName = null);
         public abstract ISource<TData> CreateSource<TData>(ISourceBlock<TData> block, string pseudoName = null);
         public abstract void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null);
 

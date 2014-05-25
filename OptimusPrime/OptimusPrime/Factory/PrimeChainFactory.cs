@@ -21,6 +21,11 @@ namespace Prime
             return new OptimusChain<TIn, TOut>(this, service.Input, service.Output);
         }
 
+        public override IHandlesExceptionChain<TIn, TInnerOut> CreateHandlesExceptionChain<TIn, TInnerOut>(Func<TIn, TInnerOut> function, string pseudoName = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public override IChain<TIn, TOut> LinkChainToChain<TIn, TOut, TMiddle>(IChain<TIn, TMiddle> first,
             IChain<TMiddle, TOut> second)
         {
