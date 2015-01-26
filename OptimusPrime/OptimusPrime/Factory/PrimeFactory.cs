@@ -108,9 +108,18 @@ namespace Prime
             return filePath;
         }
 
+
+
         public override void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null)
         {
             throw new NotImplementedException();
+        }
+
+        public override IReciever<TOut> CreateReciever<TOut>(ISource<TOut> source)
+        {
+            string outputName = ServiceNameHelper.GetOutName();
+
+            return new OptimusReciever<TOut>(this, new OptimusIn(source.Name, new OptimusStabService()), outputName);
         }
     }
 }

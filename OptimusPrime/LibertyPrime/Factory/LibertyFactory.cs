@@ -54,5 +54,6 @@ namespace Prime
 
             collections[InputName].Print(t => ToString((T) t));
         }
+
     }
 }

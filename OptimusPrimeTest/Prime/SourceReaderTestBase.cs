@@ -18,10 +18,10 @@ namespace OptimusPrimeTest.Prime
         {
             isReadEnd = new AutoResetEvent(false);
             factory = CreateFactory();
-            sourceBlock = new SourceBlock<TestData>();
-            callSource = factory.CreateSource(sourceBlock);
-            firstCallReader = callSource.CreateReader();
-            secondCallReader = callSource.CreateReader();
+            eventBlock = new EventBlock<TestData>();
+            callSource = factory.CreateSource(eventBlock);
+            firstCallReader = callSource.Factory.CreateReciever(callSource).GetReader();
+            secondCallReader = callSource.Factory.CreateReciever(callSource).GetReader();
             factory.Start();
         }
 
@@ -33,24 +33,24 @@ namespace OptimusPrimeTest.Prime
 
         private AutoResetEvent isReadEnd;
         private IPrimeFactory factory;
-        private SourceBlock<TestData> sourceBlock;
-        private ISourceReader<TestData> firstCallReader;
+        private EventBlock<TestData> eventBlock;
+        private IReader<TestData> firstCallReader;
         private TestData outTestData;
         private ISource<TestData> callSource;
-        private ISourceReader<TestData> secondCallReader;
+        private IReader<TestData> secondCallReader;
 
-        private void WriteData(SourceBlock<TestData> source, IEnumerable<TestData> datas, bool isWait = false)
+        private void WriteData(EventBlock<TestData> @event, IEnumerable<TestData> datas, bool isWait = false)
         {
             var random = new Random();
             foreach (TestData data in datas)
             {
                 if (isWait)
                     Thread.Sleep(random.Next(10));
-                source.Publish(data);
+                @event.Publish(data);
             }
         }
 
-        private void ReadData(ISourceReader<TestData> sourceReader, IEnumerable<TestData> datas, bool isWait = false)
+        private void ReadData(IReader<TestData> sourceReader, IEnumerable<TestData> datas, bool isWait = false)
         {
             var random = new Random();
             foreach (TestData data in datas)
@@ -66,7 +66,7 @@ namespace OptimusPrimeTest.Prime
         {
             List<TestData> testDatas = TestData.CreateData(DataCount);
 
-            new Thread(() => WriteData(sourceBlock, testDatas, true)).Start();
+            new Thread(() => WriteData(eventBlock, testDatas, true)).Start();
             new Thread(() => ReadData(firstCallReader, testDatas, true)).Start();
             isReadEnd.WaitOne();
 
@@ -77,7 +77,7 @@ namespace OptimusPrimeTest.Prime
         {
             List<TestData> testDatas = TestData.CreateData(DataCount);
 
-            WriteData(sourceBlock, testDatas);
+            WriteData(eventBlock, testDatas);
             TestData[] actual = firstCallReader.GetCollection().ToArray();
             Assert.AreEqual(testDatas.Count, actual.Length);
 
@@ -91,7 +91,7 @@ namespace OptimusPrimeTest.Prime
         {
             List<TestData> testDatas = TestData.CreateData(DataCount);
 
-            WriteData(sourceBlock, testDatas);
+            WriteData(eventBlock, testDatas);
             foreach (TestData testData in testDatas)
             {
                 Assert.IsTrue(firstCallReader.TryGet(out outTestData));
@@ -106,7 +106,7 @@ namespace OptimusPrimeTest.Prime
         {
             List<TestData> testDatas = TestData.CreateData(DataCount);
 
-            new Thread(() => WriteData(sourceBlock, testDatas, true)).Start();
+            new Thread(() => WriteData(eventBlock, testDatas, true)).Start();
             new Thread(() => ReadData(firstCallReader, testDatas, true)).Start();
             isReadEnd.WaitOne();
 
@@ -120,9 +120,9 @@ namespace OptimusPrimeTest.Prime
         public void TestGetWhenCallReaderCreateAfterWrite()
         {
             List<TestData> testDatas = TestData.CreateData(DataCount);
-            WriteData(sourceBlock, testDatas);
+            WriteData(eventBlock, testDatas);
 
-            var thirdReader = callSource.CreateReader();
+            var thirdReader = callSource.Factory.CreateReciever(callSource).GetReader();
             ReadData(thirdReader, testDatas);
 
             Assert.IsFalse(thirdReader.TryGet(out outTestData));

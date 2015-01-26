@@ -6,19 +6,19 @@ namespace Prime
     public interface IPrimeFactory
     {
         /// <summary>
-        /// Запуск фабрики.
+        /// Starts factory.
         /// </summary>
         void Start();
 
         /// <summary>
-        /// Остановка фабрики.
+        /// Stops factory.
         /// </summary>
         void Stop();
 
         /// <summary>
-        /// Записывает накопившиеся в системе данные в файл с автоматически сгенерированным именем.
+        /// Dumps all data to file with automatically generated name.
         /// </summary>
-        /// <returns>Автоматически сгенерированное имя файла, в который записываются сгенерированные в системе данные.</returns>
+        /// <returns>Generated file name.</returns>
         string DumpDb();
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Prime
         /// <param name="block">Источник данных типа TData.</param>
         /// <param name="pseudoName">Псевдоним коллекции данных, полученных из источника данных.</param>
         /// <returns>Источник данных типа TData.</returns>
-        ISource<TData> CreateSource<TData>(ISourceBlock<TData> block, string pseudoName = null);
+        ISource<TData> CreateSource<TData>(IEventBlock<TData> block, string pseudoName = null);
 
         /// <summary>
         /// Объединение источника данных и цепочки в источник данных.
@@ -90,6 +90,11 @@ namespace Prime
         /// <param name="InputName">Имя выхода цепочки или источника.</param>
         /// <param name="ToString">Способ преобразования в строку</param>
         void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null);
+
+        /// <summary>
+        /// Create reciever from Event.
+        /// </summary>
+        IReciever<TOut> CreateReciever<TOut>(ISource<TOut> source);
 
         Stopwatch Stopwatch { get; }
         bool IsLogging { get; }

@@ -28,7 +28,7 @@ namespace OptimusPrimeTest.Prime
         public void Setup()
         {
             var factory = CreateFactory();
-            var sourceBlock = new SourceBlock<TestData>();
+            var sourceBlock = new EventBlock<TestData>();
             _source = factory.CreateSource(sourceBlock, SourcePseudoName);
             _chain = factory.CreateChain<TestData, TestData>(MultipleNumber, ChainPseudoName);
             factory.LinkSourceToChain(_source, _chain);

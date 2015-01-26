@@ -14,9 +14,9 @@ namespace Prime
             File.Move(f, filename);
         }
 
-        public static SourceBlock<T> CreateCustomLogger<T>(this IPrimeFactory factory, string loggingName)
+        public static EventBlock<T> CreateCustomLogger<T>(this IPrimeFactory factory, string loggingName)
         {
-            var block = new SourceBlock<T>();
+            var block = new EventBlock<T>();
             factory.CreateSource(block, loggingName);
             return block;
         }

@@ -11,12 +11,12 @@ namespace OptimusPrimeTest.Prime
 
         private class Emulator : IFunctionalBlock<int, int>
         {
-            public readonly SourceBlock<int> Source = new SourceBlock<int>();
+            public readonly EventBlock<int> Event = new EventBlock<int>();
 
             public int Process(int input)
             {
                 for (int i = 0; i < SourceRepetition; i++)
-                    Source.Publish(input);
+                    Event.Publish(input);
                 return input;
             }
         }
@@ -57,7 +57,7 @@ namespace OptimusPrimeTest.Prime
             var emulator = new Emulator();
 
             var smallChain = factory.CreateChain(emulator);
-            var source = factory.CreateSource(emulator.Source);
+            var source = factory.CreateSource(emulator.Event);
 
             var collector = factory.Union(
                 source.CreateAsyncCollector().CreateRepeaterAdapter(),

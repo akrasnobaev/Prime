@@ -2,22 +2,22 @@
 {
     public class LinkSourceToChainGenericService<TIn, TOut> : IGenericService
     {
-        private readonly ISource<TIn> source;
-        private readonly SourceBlock<TOut> sourceBlock;
-        private ISourceReader<TIn> reader;
+        private readonly IReciever<TIn> source;
+        private readonly EventBlock<TOut> eventBlock;
+        private IReader<TIn> reader;
         private readonly IFunctionalBlock<TIn, TOut> functinalBlock;
 
         public LinkSourceToChainGenericService(ISource<TIn> source, IChain<TIn, TOut> chain,
-            SourceBlock<TOut> sourceBlock)
+            EventBlock<TOut> eventBlock)
         {
-            this.source = source;
-            this.sourceBlock = sourceBlock;
+            this.source = source.Factory.CreateReciever(source);
+            this.eventBlock = eventBlock;
             functinalBlock = chain.ToFunctionalBlock();
         }
 
         public void Initialize()
         {
-            reader = source.CreateReader();
+            reader = source.GetReader();
         }
 
         public void DoWork()
@@ -26,7 +26,7 @@
             {
                 var input = reader.Get();
                 var output = functinalBlock.Process(input);
-                sourceBlock.Publish(output);
+                eventBlock.Publish(output);
             }
         }
     }

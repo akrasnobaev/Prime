@@ -4,10 +4,10 @@ namespace Prime
 {
     public partial class PrimeFactory
     {
-        public override ISource<TPublic> CreateSource<TPublic>(ISourceBlock<TPublic> sourceBlock, string pseudoName = null)
+        public override ISource<TPublic> CreateSource<TPublic>(IEventBlock<TPublic> eventBlock, string pseudoName = null)
         {
             string outputName = ServiceNameHelper.GetOutName();
-            var service = new OptimusSourceService<TPublic>(sourceBlock, outputName, Stopwatch, IsLogging);
+            var service = new OptimusSourceService<TPublic>(eventBlock, outputName, Stopwatch, IsLogging);
 
             //Если указан псевдоним, добавляем его в коллекцию псевдонимов имен.
             if (!string.IsNullOrEmpty(pseudoName))
@@ -24,7 +24,7 @@ namespace Prime
             // Помечаем цепочку как использованную.
             _chain.MarkUsed();
 
-            var chain = _chain as IOptimusChane<T1, T2>;
+            var chain = _chain as IOptimusChain<T1, T2>;
             var source = _source as IOptimusSource<T1>;
             chain.Input.ChangeName(source.Output.Name);
 

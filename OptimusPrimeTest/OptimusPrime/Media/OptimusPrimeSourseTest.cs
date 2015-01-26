@@ -42,7 +42,7 @@ namespace OptimusPrimeTest.OptimusPrime
         private static IList<T> TestSourse<T>(IEnumerable<T> sourceData)
         {
             var factory = new PrimeFactory();
-            var sourceBlock = new SourceBlock<T>();
+            var sourceBlock = new EventBlock<T>();
             var optimusPrimeSource = factory.CreateSource(sourceBlock) as OptimusSource<T>;
 
             factory.Start();

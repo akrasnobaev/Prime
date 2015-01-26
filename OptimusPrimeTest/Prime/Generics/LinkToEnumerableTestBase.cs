@@ -14,10 +14,10 @@ namespace OptimusPrimeTest.Prime
         public void TestLinkToEnumerable()
         {
             var factory = CreateFactory();
-            var sourceBlock = new SourceBlock<TestData>();
+            var sourceBlock = new EventBlock<TestData>();
             var firstSource = factory.CreateSource(sourceBlock);
             var secondSource = firstSource.LinkToEnumerable(bifurcatedData);
-            var reader = secondSource.CreateReader();
+            var reader = secondSource.Factory.CreateReciever(secondSource).GetReader();
             var testData = TestData.CreateData(DataCount);
 
             factory.Start();

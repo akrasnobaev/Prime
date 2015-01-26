@@ -11,11 +11,11 @@ namespace OptimusPrimeTest.Prime
     public abstract class LinkSourceToFilterBaseTest
     {
         private IPrimeFactory factory;
-        private SourceBlock<TestData> sourceBlock;
+        private EventBlock<TestData> eventBlock;
         private AutoResetEvent isReadFinished;
         private List<TestData> sourseData;
         private List<TestData> resultData;
-        private ISourceReader<TestData> sourceReader;
+        private IReader<TestData> sourceReader;
         private const int DataCount = 6;
 
         protected abstract IPrimeFactory CreaFactory();
@@ -31,12 +31,12 @@ namespace OptimusPrimeTest.Prime
         public void TestGet()
         {
             var chain = new FunctionalBlock<TestData, bool>(IsEven);
-            sourceBlock = new SourceBlock<TestData>();
-            var source = factory.CreateSource(sourceBlock);
+            eventBlock = new EventBlock<TestData>();
+            var source = factory.CreateSource(eventBlock);
 
             var testSource = factory.LinkSourceToFilter(source, chain);
             sourseData = TestData.CreateData(DataCount);
-            sourceReader = testSource.CreateReader();
+            sourceReader = testSource.Factory.CreateReciever(testSource).GetReader();
             resultData = sourseData.Where(z => z.Number%2 == 0).ToList();
 
             factory.Start();
@@ -69,7 +69,7 @@ namespace OptimusPrimeTest.Prime
             {
                 if (isWait)
                     Thread.Sleep(random.Next(10));
-                sourceBlock.Publish(data);
+                eventBlock.Publish(data);
             }
         }
 

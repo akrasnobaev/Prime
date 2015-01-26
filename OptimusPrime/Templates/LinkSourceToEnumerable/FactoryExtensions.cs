@@ -11,7 +11,7 @@ namespace Prime
         {
             var service = new LinkSourceToEnumerableService<TInput, TOutput>(input, process);
             input.Factory.RegisterGenericService(service);
-            return input.Factory.CreateSource(service.SourceBlock, pseudoname);
+            return input.Factory.CreateSource(service.EventBlock, pseudoname);
         }
 
         public static ISource<TOutput> LinkToEnumerable<TInput, TOutput>

@@ -5,7 +5,7 @@ namespace OptimusPrimeTest.OptimusPrime
 {
     public class OptimusLinkSourceToChainTest : LinkSourceToChainTestBase
     {
-        protected override IPrimeFactory CreaFactory()
+        protected override IPrimeFactory CreateFactory()
         {
             return new PrimeFactory();
         }

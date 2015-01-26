@@ -6,7 +6,7 @@ namespace Prime
 {
     public partial class LibertyFactory
     {
-        public override ISource<T> CreateSource<T>(ISourceBlock<T> sourceBlock, string pseudoName = null)
+        public override ISource<T> CreateSource<T>(IEventBlock<T> eventBlock, string pseudoName = null)
         {
             var collectionName = ServiceNameHelper.GetCollectionName<T>();
 
@@ -41,7 +41,7 @@ namespace Prime
                 };
             }
 
-            sourceBlock.Event += sourceBlockOnEvent;
+            eventBlock.Event += sourceBlockOnEvent;
             return callSource;
         }
     }

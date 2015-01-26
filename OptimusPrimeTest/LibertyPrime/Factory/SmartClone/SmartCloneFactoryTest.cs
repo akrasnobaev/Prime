@@ -13,7 +13,7 @@ namespace OptimusPrimeTest.LibertyPrime
         {
             var testDatas = TestClonableData.CreateDataList(4);
             var factory = new LibertyFactory();
-            var sourceBlock = new SourceBlock<TestClonableData>();
+            var sourceBlock = new EventBlock<TestClonableData>();
             var sourse = factory.CreateSource(sourceBlock);
 
             factory.Start();
@@ -31,7 +31,7 @@ namespace OptimusPrimeTest.LibertyPrime
             }
 
             // test TryGet()
-            var reader = sourse.CreateReader();
+            var reader = sourse.Factory.CreateReciever(sourse).GetReader();
             TestClonableData actual;
             reader.TryGet(out actual);
             copyTestDatas[0].AssertAreEquals(actual);
@@ -75,9 +75,9 @@ namespace OptimusPrimeTest.LibertyPrime
         public void TestSmartCloneFailInSourceReader()
         {
             var factory = new LibertyFactory();
-            var sourceBlock = new SourceBlock<NonClonableTestData>();
+            var sourceBlock = new EventBlock<NonClonableTestData>();
             var source = factory.CreateSource(sourceBlock);
-            source.CreateReader();
+            source.Factory.CreateReciever(source).GetReader();
         }
 
         [Test, ExpectedException(typeof (DataCanNotBeClonnedPrimeException))]

@@ -72,7 +72,7 @@ namespace OptimusPrimeTest.Prime
         /// </summary>
         private void FactoryWork(IPrimeFactory factory)
         {
-            var sourceBlock = new SourceBlock<TestData>();
+            var sourceBlock = new EventBlock<TestData>();
 
             var source = factory.CreateSource(sourceBlock);
             var chain = factory.CreateChain<TestData, TestData>(inputData =>
@@ -87,7 +87,7 @@ namespace OptimusPrimeTest.Prime
             });
             var sourceOfDouble = factory.LinkSourceToChain(source, chain);
             var secondSource = factory.LinkSourceToChain(sourceOfDouble, secondChain);
-            var reader = secondSource.CreateReader();
+            var reader = secondSource.Factory.CreateReciever(secondSource).GetReader();
 
             factory.Start();
 

@@ -6,19 +6,19 @@ namespace Prime
     public class LinkSourceToEnumerableService<TInput, TOutput> : IGenericService
     {
         private Func<TInput, IEnumerable<TOutput>> process;
-        public readonly SourceBlock<TOutput> SourceBlock = new SourceBlock<TOutput>();
-        private ISource<TInput> input;
-        private ISourceReader<TInput> reader;
+        public readonly EventBlock<TOutput> EventBlock = new EventBlock<TOutput>();
+        private IReciever<TInput> input;
+        private IReader<TInput> reader;
 
         public LinkSourceToEnumerableService(ISource<TInput> input, Func<TInput, IEnumerable<TOutput>> process)
         {
-            this.input = input;
+            this.input = input.Factory.CreateReciever(input);
             this.process = process;
         }
 
         public void Initialize()
         {
-            reader = input.CreateReader();
+            reader = input.GetReader();
         }
 
         public void DoWork()
@@ -27,7 +27,7 @@ namespace Prime
             {
                 var data = reader.Get();
                 foreach (var e in process(data))
-                    SourceBlock.Publish(e);
+                    EventBlock.Publish(e);
             }
         }
     }

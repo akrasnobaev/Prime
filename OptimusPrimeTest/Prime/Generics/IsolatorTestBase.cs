@@ -31,7 +31,7 @@ namespace OptimusPrimeTest.Prime
         public void IsolatorTest()
         {
             var factory = CreateFactory();
-            var sourceBlock = new SourceBlock<TestData>();
+            var sourceBlock = new EventBlock<TestData>();
             var source = factory.CreateSource(sourceBlock);
             var iso = factory.CreateChain(new TestChain()).Isolate();
             var out1 = source.Link(iso.CreateIsolated());

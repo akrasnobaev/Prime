@@ -9,8 +9,9 @@ namespace Prime
     {
         public abstract string DumpDb();
         public abstract IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function, string pseudoName = null);
-        public abstract ISource<TData> CreateSource<TData>(ISourceBlock<TData> block, string pseudoName = null);
+        public abstract ISource<TData> CreateSource<TData>(IEventBlock<TData> block, string pseudoName = null);
         public abstract void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null);
+        public abstract IReciever<T> CreateReciever<T>(ISource<T> source);
 
         protected PrimeFactoryBase(bool isLogging = true)
         {
@@ -57,7 +58,7 @@ namespace Prime
         public virtual ISource<TOut> LinkSourceToChain<TIn, TOut>(ISource<TIn> source, IChain<TIn, TOut> chain,
             string pseudoName = null)
         {
-            var sourceBlock = new SourceBlock<TOut>();
+            var sourceBlock = new EventBlock<TOut>();
             var genericService = new LinkSourceToChainGenericService<TIn, TOut>(source, chain, sourceBlock);
             RegisterGenericService(genericService);
             return CreateSource(sourceBlock, pseudoName);
@@ -66,7 +67,7 @@ namespace Prime
         public virtual ISource<T> LinkSourceToFilter<T>(ISource<T> source, IFunctionalBlock<T, bool> filterBlock,
             string pseudoName = null)
         {
-            var sourceBlock = new SourceBlock<T>();
+            var sourceBlock = new EventBlock<T>();
             var genericService = new LinkSourceToFilterGenericService<T>(source, filterBlock, sourceBlock);
             RegisterGenericService(genericService);
             return CreateSource(sourceBlock, pseudoName);

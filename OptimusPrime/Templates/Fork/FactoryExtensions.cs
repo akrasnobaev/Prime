@@ -9,7 +9,7 @@ namespace Prime
             var forkBlock = new ForkBlock<TIn, TOut>(new Func<TIn, TOut>(chain.ToFunctionalBlock().Process));
             return new Fork<TIn, TOut>(
                 chain.Factory.CreateChain(forkBlock.ForkedAction),
-                chain.Factory.CreateSource(forkBlock.Source));
+                chain.Factory.CreateSource(forkBlock.Event));
         }
     }
 }

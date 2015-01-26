@@ -1,5 +1,6 @@
 ﻿namespace Prime
 {
+    //todo CreateReader method
     public interface ISource<TPublic>
     {
         /// <summary>
@@ -11,7 +12,7 @@
         ///     Создает ISourceReader для чтения данных из ISource.
         /// </summary>
         /// <returns>ISourceReader для чтения данных из ISource</returns>
-        ISourceReader<TPublic> CreateReader();
+        //ISourceReader<TPublic> CreateReader();
 
         /// <summary>
         ///     Ключ коллекции данных, сгенерированной ISource.

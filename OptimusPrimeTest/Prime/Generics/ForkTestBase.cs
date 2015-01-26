@@ -17,7 +17,7 @@ namespace OptimusPrimeTest.Prime
             var factory = CreateFactory();
             var chain = factory.CreateChain(new Func<TestData, TestData>(AddOne));
             var fork = chain.Fork();
-            var reader = fork.Source.CreateReader();
+            var reader = fork.Source.Factory.CreateReciever(fork.Source).GetReader();
             var testData = TestData.CreateData(DataCount);
 
             factory.Start();

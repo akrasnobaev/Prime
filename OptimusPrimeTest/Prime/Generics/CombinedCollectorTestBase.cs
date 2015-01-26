@@ -10,7 +10,7 @@ namespace OptimusPrimeTest.Prime
         class IntProducer
         {
             private Random rnd = new Random();
-            public SourceBlock<int> Block = new SourceBlock<int>();
+            public EventBlock<int> Block = new EventBlock<int>();
             private int Max;
 
             private void WorkThread()

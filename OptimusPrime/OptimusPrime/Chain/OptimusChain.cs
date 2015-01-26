@@ -2,7 +2,7 @@ using OptimusPrime.Common.Exception;
 
 namespace Prime.Optimus
 {
-    public class OptimusChain<TIn, TOut> : IOptimusChane<TIn, TOut>
+    public class OptimusChain<TIn, TOut> : IOptimusChain<TIn, TOut>
     {
         private bool isUsed;
 

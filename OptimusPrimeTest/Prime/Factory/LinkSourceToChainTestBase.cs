@@ -11,32 +11,32 @@ namespace OptimusPrimeTest.Prime
     public abstract class LinkSourceToChainTestBase
     {
         private IPrimeFactory factory;
-        private SourceBlock<TestData> sourceBlock;
+        private EventBlock<TestData> eventBlock;
         private AutoResetEvent isReadFinished;
         private TestData outTestData;
         private List<TestData> testDatas;
-        private ISourceReader<TestData> sourceReader;
+        private IReader<TestData> sourceReader;
         private const int DataCount = 3;
 
-        protected abstract IPrimeFactory CreaFactory();
+        protected abstract IPrimeFactory CreateFactory();
 
         [SetUp]
         public void SetUp()
         {
-            factory = CreaFactory();
+            factory = CreateFactory();
             isReadFinished = new AutoResetEvent(false);
-            sourceBlock = new SourceBlock<TestData>();
+            eventBlock = new EventBlock<TestData>();
         }
 
         [Test]
         public void TestGet()
         {
             var chain = factory.CreateChain<TestData, TestData>(AddOne);
-            var source = factory.CreateSource(sourceBlock);
+            var source = factory.CreateSource(eventBlock);
 
             var testSource = factory.LinkSourceToChain(source, chain);
             testDatas = TestData.CreateData(DataCount);
-            sourceReader = testSource.CreateReader();
+            sourceReader = testSource.Factory.CreateReciever(source).GetReader();
 
             factory.Start();
 
@@ -54,7 +54,7 @@ namespace OptimusPrimeTest.Prime
             // first use
             chain.ToFunctionalBlock();
 
-            var source = factory.CreateSource(sourceBlock);
+            var source = factory.CreateSource(eventBlock);
             // second use
             factory.LinkSourceToChain(source, chain);
         }
@@ -80,7 +80,7 @@ namespace OptimusPrimeTest.Prime
             {
                 if (isWait)
                     Thread.Sleep(random.Next(10));
-                sourceBlock.Publish(data);
+                eventBlock.Publish(data);
             }
         }
 

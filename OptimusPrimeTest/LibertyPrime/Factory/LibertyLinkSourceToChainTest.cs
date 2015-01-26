@@ -5,7 +5,7 @@ namespace OptimusPrimeTest.LibertyPrime
 {
     public class LibertyLinkSourceToChainTest : LinkSourceToChainTestBase
     {
-        protected override IPrimeFactory CreaFactory()
+        protected override IPrimeFactory CreateFactory()
         {
             return new LibertyFactory();
         }

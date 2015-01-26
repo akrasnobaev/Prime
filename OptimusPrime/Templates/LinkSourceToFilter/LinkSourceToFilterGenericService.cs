@@ -2,22 +2,22 @@
 {
     public class LinkSourceToFilterGenericService<T> : IGenericService
     {
-        private readonly ISource<T> source;
+        private readonly IReciever<T> source;
         private readonly IFunctionalBlock<T, bool> filterBlock;
-        private readonly SourceBlock<T> sourceBlock;
-        private ISourceReader<T> reader;
+        private readonly EventBlock<T> eventBlock;
+        private IReader<T> reader;
 
         public LinkSourceToFilterGenericService(ISource<T> source, IFunctionalBlock<T, bool> filterBlock,
-            SourceBlock<T> sourceBlock)
+            EventBlock<T> eventBlock)
         {
-            this.source = source;
+            this.source = source.Factory.CreateReciever(source);
             this.filterBlock = filterBlock;
-            this.sourceBlock = sourceBlock;
+            this.eventBlock = eventBlock;
         }
 
         public void Initialize()
         {
-            reader = source.CreateReader();
+            reader = source.GetReader();
         }
 
         public void DoWork()
@@ -27,7 +27,7 @@
                 var input = reader.Get();
                 var isFilter = filterBlock.Process(input);
                 if (isFilter)
-                    sourceBlock.Publish(input);
+                    eventBlock.Publish(input);
             }
         }
     }

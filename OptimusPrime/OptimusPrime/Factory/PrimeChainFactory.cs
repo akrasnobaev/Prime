@@ -28,8 +28,8 @@ namespace Prime
             first.MarkUsed();
             second.MarkUsed();
             
-            var firstChain = first as IOptimusChane<TIn, TMiddle>;
-            var secondChain = second as IOptimusChane<TMiddle, TOut>;
+            var firstChain = first as IOptimusChain<TIn, TMiddle>;
+            var secondChain = second as IOptimusChain<TMiddle, TOut>;
             secondChain.Input.ChangeName(firstChain.Output.Name);
             return new OptimusChain<TIn, TOut>(this, firstChain.Input, secondChain.Output);
         }

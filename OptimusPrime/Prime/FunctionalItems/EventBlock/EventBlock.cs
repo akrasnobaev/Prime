@@ -1,6 +1,6 @@
 ﻿namespace Prime
 {
-    public class SourceBlock<T> : ISourceBlock<T>
+    public class EventBlock<T> : IEventBlock<T>
     {
         public void Publish(T value)
         {

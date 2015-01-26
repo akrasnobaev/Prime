@@ -10,7 +10,7 @@ namespace OptimusPrimeTest.Prime
     {
         private const int DataCount = 3;
 
-        private SourceBlock<TestData> sourceBlock;
+        private EventBlock<TestData> eventBlock;
         private IPrimeFactory factory;
         private ISource<TestData> source;
         private List<TestData> testData;
@@ -22,16 +22,16 @@ namespace OptimusPrimeTest.Prime
         {
             testData = TestData.CreateData(DataCount);
 
-            sourceBlock = new SourceBlock<TestData>();
+            eventBlock = new EventBlock<TestData>();
             factory = CreateFactory();
-            source = factory.CreateSource(sourceBlock);
+            source = factory.CreateSource(eventBlock);
 
             var readCount = 0;
             source.Listen(data => testData[readCount++].AssertAreEqual(data));
 
             factory.Start();
             foreach (var data in testData)
-                sourceBlock.Publish(data);
+                eventBlock.Publish(data);
 
             /// Ожидание окончания работы слушателя.
             /// нет общего механизма уведомления об окончании работы, и делать пока нет необходимости.
