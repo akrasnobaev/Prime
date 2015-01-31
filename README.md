@@ -1,6 +1,7 @@
-Prime
+Prime: a service-oriented framework with minimal communication
+overheads
 =====
 
 Note:
-1. Для работы с OptimusPrime необходим [Redis](http://redis.io/).
-   Сборку для Windows можно найти по [ссылке](http://yadi.sk/d/1Wwgab98Huyr7).
+	To work with OptimusPrime you will need [Redis](http://redis.io/).
+	build for Windows can be found [here](http://yadi.sk/d/1Wwgab98Huyr7).
