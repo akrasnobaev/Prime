@@ -10,7 +10,7 @@ namespace Prime
         public ForkBlock(Func<T, Q> baseAction)
         {
             Event = new EventBlock<Q>();
-            ForkedAction = new Func<T, Q>(
+            ForkedAction = (
                 z =>
                 {
                     var result = baseAction(z);

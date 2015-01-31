@@ -12,9 +12,9 @@ namespace Prime.Optimus
 
         public IOptimusOut Output { get; private set; }
 
-        public ISourceReader<TPublic> CreateReader()
+        public IReciever<TPublic> CreateReciever(string readLogName = null)
         {
-            return new OptimusSourceReader<TPublic>(Output.Name);
+            return Factory.CreateReciever(this);
         }
 
         public string Name

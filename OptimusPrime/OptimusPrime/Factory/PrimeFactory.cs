@@ -115,11 +115,15 @@ namespace Prime
             throw new NotImplementedException();
         }
 
-        public override IReciever<TOut> CreateReciever<TOut>(ISource<TOut> source)
+        public override IReciever<TOut> CreateReciever<TOut>(ISource<TOut> source, string readLogName = null)
         {
             string outputName = ServiceNameHelper.GetOutName();
 
-            return new OptimusReciever<TOut>(this, new OptimusIn(source.Name, new OptimusStabService()), outputName);
+            return IsLogging
+                ? new LoggingOptimusReciever<TOut>(this, new OptimusIn(source.Name, new OptimusStabService()),
+                    outputName)
+                : new OptimusReciever<TOut>(this, new OptimusIn(source.Name, new OptimusStabService()),
+                    outputName);
         }
     }
 }

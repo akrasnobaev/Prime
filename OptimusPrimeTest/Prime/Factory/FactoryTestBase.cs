@@ -43,6 +43,7 @@ namespace OptimusPrimeTest.Prime
                 var factory = CreateFactory();
                 FactoryWork(factory);
             }
+
         }
 
         [Test, ExpectedException(typeof (LoggingOffException))]
@@ -87,7 +88,7 @@ namespace OptimusPrimeTest.Prime
             });
             var sourceOfDouble = factory.LinkSourceToChain(source, chain);
             var secondSource = factory.LinkSourceToChain(sourceOfDouble, secondChain);
-            var reader = secondSource.Factory.CreateReciever(secondSource).GetReader();
+            var reader = secondSource.CreateReciever().GetReader();
 
             factory.Start();
 

@@ -8,29 +8,26 @@ namespace Prime.Liberty
         public string Name { get; private set; }
         public PrintableList<object> Collection { get; private set; }
 
-        private readonly IList<LibertySourceReader<T>> _sourceReaders;
+        public IList<LibertyReciever<T>> Recievers { get; private set; }
 
         public LibertySource(LibertyFactory factory, string name)
         {
             Factory = factory;
             Name = name;
             Collection = new PrintableList<object>();
-            _sourceReaders = new List<LibertySourceReader<T>>();
+            Recievers = new List<LibertyReciever<T>>();
         }
 
-        public ISourceReader<T> CreateReader()
+        public IReciever<T> CreateReciever(string readLogName = null)
         {
-            var sourceReader = new LibertySourceReader<T>(this);
-            lock (_sourceReaders)
-                _sourceReaders.Add(sourceReader);
-            return sourceReader;
+            return Factory.CreateReciever(this, readLogName);
         }
 
         public void Release()
         {
-            lock (_sourceReaders)
-                foreach (var sourceReader in _sourceReaders)
-                    sourceReader.AvailableData.Release();
+            lock (Recievers)
+                foreach (var reciever in Recievers)
+                    reciever.AvailableData.Release();
         }
     }
 }

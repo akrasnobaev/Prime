@@ -56,9 +56,13 @@
     <Compile Include="Common\Exception\PrimeException.cs" />
     <Compile Include="Common\Extension\SerializeExtension.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyRecieverFactory.cs" />
+    <Compile Include="LibertyPrime\Reciever\ILibertyReciever.cs" />
+    <Compile Include="LibertyPrime\Reciever\LibertyReciever.cs" />
+    <Compile Include="LibertyPrime\Reciever\LoggingLibertyReciever.cs" />
     <Compile Include="OptimusPrime\OptimusReader.cs" />
     <Compile Include="OptimusPrime\Reciever\IOptimusReciever.cs" />
-    <Compile Include="OptimusPrime\Reciever\OptimusReciever.cs" />
+    <Compile Include="OptimusPrime\Reciever\LoggingOptimusReciever.cs" />
+    <Compile Include="OptimusPrime\Reciever\OptimueReciever.cs" />
     <Compile Include="OptimusPrime\Service\OptimusRecieverService.cs" />
     <Compile Include="Prime\Factory\IFactoryExtensions.cs" />
     <Compile Include="Prime\Factory\IPrimeFactory.cs" />
@@ -105,7 +109,7 @@
     <Compile Include="LibertyPrime\Factory\LibertyChainFactory.cs" />
     <Compile Include="LibertyPrime\Factory\LibertyFactory.cs" />
     <Compile Include="LibertyPrime\Factory\LibertySourceFactory.cs" />
-    <Compile Include="LibertyPrime\LibertySourceReader.cs" />
+    <Compile Include="LibertyPrime\LibertyReader.cs" />
     <Compile Include="LibertyPrime\Source\ILibertySource.cs" />
     <Compile Include="LibertyPrime\Source\LibertySource.cs" />
     <Compile Include="OptimusPrime\Chain\IOptimusChain.cs" />
@@ -117,7 +121,6 @@
     <Compile Include="OptimusPrime\OptimusIn\OptimusIn.cs" />
     <Compile Include="OptimusPrime\OptimusOut\IOptimusOut.cs" />
     <Compile Include="OptimusPrime\OptimusOut\OptimusOut.cs" />
-    <Compile Include="OptimusPrime\OptimusSourceReader.cs" />
     <Compile Include="OptimusPrime\Service\IOptimusService.cs" />
     <Compile Include="OptimusPrime\Service\OptimusFilterService.cs" />
     <Compile Include="OptimusPrime\Service\OptimusFunctionalService.cs" />

@@ -1,5 +1,6 @@
 ﻿namespace Prime.Optimus
 {
+    //Really needed?
     public class OptimusReader<T> : IReader<T>
     {
         private readonly OptimusReciever<T> _input;

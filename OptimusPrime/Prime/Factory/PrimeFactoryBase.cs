@@ -11,7 +11,7 @@ namespace Prime
         public abstract IChain<TIn, TOut> CreateChain<TIn, TOut>(Func<TIn, TOut> function, string pseudoName = null);
         public abstract ISource<TData> CreateSource<TData>(IEventBlock<TData> block, string pseudoName = null);
         public abstract void ConsoleLog<T>(string InputName, PrintableList<T>.ToString ToString = null);
-        public abstract IReciever<T> CreateReciever<T>(ISource<T> source);
+        public abstract IReciever<T> CreateReciever<T>(ISource<T> source, string readLogName = null);
 
         protected PrimeFactoryBase(bool isLogging = true)
         {

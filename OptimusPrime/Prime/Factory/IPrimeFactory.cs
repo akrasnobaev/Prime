@@ -94,7 +94,7 @@ namespace Prime
         /// <summary>
         /// Create reciever from Event.
         /// </summary>
-        IReciever<TOut> CreateReciever<TOut>(ISource<TOut> source);
+        IReciever<TOut> CreateReciever<TOut>(ISource<TOut> source, string readLogName = null);
 
         Stopwatch Stopwatch { get; }
         bool IsLogging { get; }

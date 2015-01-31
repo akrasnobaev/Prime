@@ -67,7 +67,7 @@ namespace OptimusPrimeTest.Prime
                 if (isWait)
                     Thread.Sleep(random.Next(10));
                 var actual = sourceReader.Get();
-                actual.Number--;
+           //     actual.Number--; WTF??
                 testData.AssertAreEqual(actual);
             }
             isReadFinished.Set();
