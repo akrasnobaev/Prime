@@ -5,9 +5,9 @@ namespace Prime.Liberty
     //Todo really needed?
     public class LibertyReader<T> : IReader<T>
     {
-        private readonly LibertyReciever<T> reciever;
+        private readonly ILibertyReciever<T> reciever;
 
-        public LibertyReader(LibertyReciever<T> reciever)
+        public LibertyReader(ILibertyReciever<T> reciever)
         {
             this.reciever = reciever;
         }

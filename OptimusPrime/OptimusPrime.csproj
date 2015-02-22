@@ -59,9 +59,11 @@
     <Compile Include="LibertyPrime\Reciever\ILibertyReciever.cs" />
     <Compile Include="LibertyPrime\Reciever\LibertyReciever.cs" />
     <Compile Include="LibertyPrime\Reciever\LoggingLibertyReciever.cs" />
+    <Compile Include="LibertyPrime\Reciever\MockLibertyReciever.cs" />
     <Compile Include="OptimusPrime\OptimusReader.cs" />
     <Compile Include="OptimusPrime\Reciever\IOptimusReciever.cs" />
     <Compile Include="OptimusPrime\Reciever\LoggingOptimusReciever.cs" />
+    <Compile Include="OptimusPrime\Reciever\MockOptimusReciever.cs" />
     <Compile Include="OptimusPrime\Reciever\OptimueReciever.cs" />
     <Compile Include="OptimusPrime\Service\OptimusRecieverService.cs" />
     <Compile Include="Prime\Factory\IFactoryExtensions.cs" />

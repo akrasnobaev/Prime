@@ -55,5 +55,10 @@ namespace Prime
             collections[InputName].Print(t => ToString((T) t));
         }
 
+        public IDictionary<string, PrintableList<object>> Collections
+        {
+            get { return collections; }
+        }
+
     }
 }

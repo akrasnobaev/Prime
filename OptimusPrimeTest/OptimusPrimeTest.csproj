@@ -73,6 +73,7 @@
     <Compile Include="LibertyPrime\Generics\LibertyLinkToEnumerableTest.cs" />
     <Compile Include="LibertyPrime\Generics\LibertyListenerTest.cs" />
     <Compile Include="LibertyPrime\LibertyLoggerTest.cs" />
+    <Compile Include="LibertyPrime\LibertyRecieverTest.cs" />
     <Compile Include="LibertyPrime\LibertyRepeaterTest.cs" />
     <Compile Include="LibertyPrime\LibertySourceReaderTest.cs" />
     <Compile Include="OptimusPrime\Factory\OptimusFactoryTest.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="OptimusPrime\Generics\OptimusListenerTest.cs" />
     <Compile Include="OptimusPrime\Media\OptimusInTest.cs" />
     <Compile Include="OptimusPrime\Media\OptimusOutTest.cs" />
+    <Compile Include="OptimusPrime\OptimueRecieverTest.cs" />
     <Compile Include="OptimusPrime\OptimusLoggerTest.cs" />
     <Compile Include="OptimusPrime\OptimusRepeaterTest.cs" />
     <Compile Include="OptimusPrime\OptimusSourceReaderTest.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Prime\Generics\LinkToEnumerableTestBase.cs" />
     <Compile Include="Prime\Generics\ListenerTestBase.cs" />
     <Compile Include="Prime\LoggerTestBase.cs" />
+    <Compile Include="Prime\RecieverTestBase.cs" />
     <Compile Include="Prime\RepeaterTestBase.cs" />
     <Compile Include="Prime\SourceReaderTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

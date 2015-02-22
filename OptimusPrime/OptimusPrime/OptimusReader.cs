@@ -3,9 +3,9 @@
     //Really needed?
     public class OptimusReader<T> : IReader<T>
     {
-        private readonly OptimusReciever<T> _input;
+        private readonly IOptimusReciever<T> _input;
 
-        public OptimusReader(OptimusReciever<T> reciever)
+        public OptimusReader(IOptimusReciever<T> reciever)
         {
             _input = reciever;
         }

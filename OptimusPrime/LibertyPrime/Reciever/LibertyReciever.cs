@@ -57,7 +57,7 @@ namespace Prime.Liberty
 
         private T get()
         {
-            var ret = (T)Collection[ReadCount++];
+            var ret = (T)(Collection[ReadCount++]);
             return ret;
         }
 
